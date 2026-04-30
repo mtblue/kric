@@ -1,0 +1,36 @@
+# 認証情報
+kric.co.jp/www/wp-config.php
+kric.co.jp/data/database.php
+ftpaccess_
+
+# WordPressコア（公式配布物）
+kric.co.jp/www/wp-admin/
+kric.co.jp/www/wp-includes/
+
+# CakePHPコア
+kric.co.jp/data/lib/
+
+# キャッシュ・一時ファイル
+kric.co.jp/data/app/tmp/
+
+# WordPressプラグイン（公開プラグイン）
+kric.co.jp/www/wp-content/plugins/advanced-custom-fields/
+kric.co.jp/www/wp-content/plugins/akismet/
+kric.co.jp/www/wp-content/plugins/all-in-one-seo-pack/
+kric.co.jp/www/wp-content/plugins/breadcrumb-navxt/
+kric.co.jp/www/wp-content/plugins/delete-revision/
+kric.co.jp/www/wp-content/plugins/disable-gutenberg/
+kric.co.jp/www/wp-content/plugins/hello.php
+kric.co.jp/www/wp-content/plugins/html-on-pages/
+kric.co.jp/www/wp-content/plugins/php-code-widget/
+kric.co.jp/www/wp-content/plugins/widgets-on-pages/
+kric.co.jp/www/wp-content/plugins/wp-multibyte-patch/
+
+# WordPressデフォルトテーマ
+kric.co.jp/www/wp-content/themes/twentytwentytwo/
+kric.co.jp/www/wp-content/themes/twentytwentythree/
+kric.co.jp/www/wp-content/themes/twentytwentyfour/
+kric.co.jp/www/wp-content/themes/twentytwentyfive/
+
+# 不要ファイル
+kric.co.jp/www/renewal.zip

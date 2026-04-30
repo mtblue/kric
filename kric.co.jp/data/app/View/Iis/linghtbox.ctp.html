@@ -1,0 +1,72 @@
+<body id="top">
+<a id="top" name="top"></a>
+
+<div id="wrap" style="width:100%; min-width:0%; min-height:0%;">
+<div id="anime_wrap">
+
+<!--==================================ここからヘッダー=========================================-->
+<!--==================================▲ここまでヘッダー=========================================--> 
+
+<!--==================================▼ここからコンテンツ=========================================-->
+<div class="cont_wrap">
+<div class="cont_box" style="width:540px;">
+
+
+<!-- ここから追加 -->
+
+
+<div id="contents" style="width:500px;">
+    <div id="info"><span><img src="/images/iis/info_icon.png" /></span>
+      <h2>登録名簿</h2></div>
+
+    <div id="detail">
+    <table>
+    <tr><th style="text-align:left; paddin-right:10px;">会社名</th><td><?php print(isset($tpl_disp['company_name']) == true ? $tpl_disp['company_name'] : ''); ?></td></tr>
+    <tr><th style="text-align:left; paddin-right:10px;">会社カナ</th><td><?php print(isset($tpl_disp['company_kana']) == true ? $tpl_disp['company_kana'] : ''); ?></td></tr>
+    <tr><th style="text-align:left; paddin-right:10px;">名前</th><td><?php print(isset($tpl_disp['member_name']) == true ? $tpl_disp['member_name'] : ''); ?></td></tr>
+    <tr><th style="text-align:left; paddin-right:10px;">名前カナ</th><td><?php print(isset($tpl_disp['member_namekana']) == true ? $tpl_disp['member_namekana'] : ''); ?></td></tr>
+    <tr><th style="text-align:left; paddin-right:10px;">会社電話番号</th><td><?php print(isset($tpl_disp['company_tel']) == true ? $tpl_disp['company_tel'] : ''); ?></td></tr>
+    <tr><th style="text-align:left; paddin-right:10px;">携帯電話番号1</th><td><?php print(isset($tpl_disp['member_keitai1']) == true ? $tpl_disp['member_keitai1'] : ''); ?>&nbsp;&nbsp;&nbsp;
+<?php
+if (isset($tpl_disp['member_kyaria1']) == true) {
+	foreach($tpl_disp['master_142'] AS $key => $val) {
+		$selected = '';
+		if (isset($tpl_disp['member_kyaria1']) == true && $tpl_disp['member_kyaria1'] == $key) {
+			print($val);
+		}
+	} // foreach end
+}
+?>
+    </td></tr>
+    <tr><th style="text-align:left; paddin-right:10px;">携帯電話番号2</th><td><?php print(isset($tpl_disp['member_keitai2']) == true ? $tpl_disp['member_keitai2'] : ''); ?>&nbsp;&nbsp;&nbsp;
+<?php
+if (isset($tpl_disp['member_kyaria2']) == true) {
+	foreach($tpl_disp['master_142'] AS $key => $val) {
+		$selected = '';
+		if (isset($tpl_disp['member_kyaria2']) == true && $tpl_disp['member_kyaria2'] == $key) {
+			print($val);
+		}
+	} // foreach end
+}
+?>
+    <tr><th style="text-align:left; paddin-right:10px;">メールアドレス</th><td><?php print(isset($tpl_disp['member_email']) == true ? $tpl_disp['member_email'] : ''); ?></td></tr>
+	</table>
+    </div>
+</div>
+
+<!-- ここまで追加 -->
+
+</div>
+<!--cont_box--> 
+
+<!--==================▲ここまでコンテンツ=======================-->
+
+<!--==================▼ここからフッター=======================-->
+<!--==================▲ここまでフッター=======================-->
+
+</div><!-- /cont_wrap -->
+<!--Google Analytics-->
+
+</div>
+</div>
+</body>

@@ -1,0 +1,100 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* 共通利用分 */
+*{ font-size:14px; line-height:1.6; }
+body { margin:0px; padding:0px; background:#FFFDEE; }
+
+/* ヘッダー */
+#wrapper { background:url(../images/common/bg_wrapper.gif) repeat-x #FFFDEE; }
+#wrapper #header { position:relative; width:950px; height:167px; margin:0px auto; padding:0px; }
+
+h1 { position:absolute; top:29px; display:block; background:url(../images/common/logo.gif) no-repeat; width:544px; height:0px; padding-top:57px; overflow:hidden; }
+#header img {position:absolute; top:23px; left:747px; }
+
+#gnavi { position:absolute; top:115px; height:52px; background:url(../images/common/bg_gnavi.gif) repeat; }
+#gnavi ul{ display:block; list-style-type: none; margin:0; padding:0; }
+
+#gnavi li{ float:left; list-style-type:none; margin:0px; padding:0px; }
+#gnavi a.gnavi_index { display:block; background:transparent url(../images/common/gnavi_infomation.gif) no-repeat; width:203px; height:0px; padding-top:52px; overflow:hidden; }
+#gnavi a.gnavi_index:hover { display:block; background:transparent url(../images/common/gnavi_infomation_on.gif) no-repeat; width:203px; height:0px; padding-top:52px; overflow:hidden; }
+#gnavi a.gnavi_company { display:block; background:transparent url(../images/common/gnavi_company.gif) no-repeat; width:116px; height:0px; padding-top:52px; overflow:hidden; }
+#gnavi a.gnavi_company:hover { display:block; background:transparent url(../images/common/gnavi_company_on.gif) no-repeat; width:116px; height:0px; padding-top:52px; overflow:hidden; }
+#gnavi a.gnavi_committee { display:block; background:transparent url(../images/common/gnavi_committee.gif) no-repeat; width:129px; height:0px; padding-top:52px; overflow:hidden; }
+#gnavi a.gnavi_committee:hover { display:block; background:transparent url(../images/common/gnavi_committee_on.gif) no-repeat; width:129px; height:0px; padding-top:52px; overflow:hidden; }
+#gnavi a.gnavi_library { display:block; background:transparent url(../images/common/gnavi_library.gif) no-repeat; width:153px; height:0px; padding-top:52px; overflow:hidden; }
+#gnavi a.gnavi_library:hover { display:block; background:transparent url(../images/common/gnavi_library_on.gif) no-repeat; width:153px; height:0px; padding-top:52px; overflow:hidden; }
+#gnavi li.logout { display:block; width:230px; height:18px; padding-top:15px; padding-left:240px; overflow:hidden; color:#fff; font-weight:bold; }
+#gnavi li.logout a { color:#fff;  text-decoration:none; }
+#gnavi li.logout a:hover { color:#fff;  text-decoration:underline; }
+
+/* サブメニュー */
+#gnavi ul ul{ display:none; position:absolute; top:100%; left:0;}
+#gnavi li { float:left;}
+#gnavi li li { clear:both; background:#FFF; width:150px; height:30px; text-align:center; padding:10px 0px 0px 0px; }
+#gnavi li:hover { position:relative; }
+#gnavi li:hover > ul { display: block}
+#gnavi a { color:#785D30; text-decoration:none; }
+#gnavi a:hover { color:#785D30; text-decoration:underline; }
+
+
+/* メインコンテンツ トップ------------------------------------------------------------------- */
+#contents { width:960px; padding:0px 0px 10px 0px; margin:30px auto 0px auto; background:url(../images/common/bg_main.gif) repeat; }
+#contents #ttl{ padding:20px 0px 20px 20px; font-size:30px; color:#785D30; }
+#contents li{ float:left; }
+#contents .h2{ width:795px; }
+#contents .h2a{ width:475px; }
+#contents .h2b{ width:770px; }
+#contents .h2c{ width:650px; }
+
+#contents .signup{ margin:10px 0px 0px 30px; }
+
+#contents table{ margin:20px 15px 30px 15px; width:930px; background:#FFF; }
+#contents th{ background:url(../images/common/bg_th.gif) repeat-x; height:30px; color:#FFF; padding:10px 0px 10px 20px; text-align:left; vertical-align:top; }
+#contents td{ padding:10px 0px 10px 20px; border-bottom:#999999 1px dashed; }
+#contents .dash{ border-left:#999999 1px dashed; border-right:#999999 1px dashed; }
+
+/* メインコンテンツ ログイン------------------------------------------------------------------- */
+#contents02 { width:560px; height:305px; padding:0px 0px 10px 0px; margin:40px auto 0px auto; background:url(../images/common/bg_main.gif) repeat; position:relative; min-height: 100%; }
+#contents02 .login{ width:530px; height:275px; background:#FFF; position:absolute; top:20px; left:15px; }
+#contents02 table{ margin:62px 0px 0px 50px; }
+#contents02 td{ padding:10px 0px 10px 10px; font-size:16px; font-weight:bold; }
+
+/* メインコンテンツ 会社管理------------------------------------------------------------------- */
+#company th{ background:#FFF; color:#333; padding:16px 0px 0px 14px; border-bottom:#999999 1px dashed; }
+
+
+/* メインコンテンツ 会社管理　メンバー登録------------------------------------------------------------------- */
+#contents .list{ margin:10px 0px 0px 520px; }
+#contents .list02{ margin:10px 0px 0px 320px; }
+#contents .news{ width:660px; background:#F2F2F2; }
+#contents .news .news2{ border-bottom:#FFF 3px solid; }
+#contents .news .news3{ width:148px; }
+#contents .news .sale02{ width:98px; }
+#contents .news .news4{ border-bottom:#F2F2F2 1px solid;  }
+#contents td a{ color:#799D2E; }
+#contents .notice{ vertical-align:top; padding:30px 0px 0px 20px; }
+
+/* フッター */
+#footer { width:100%; margin:0 auto; background:#785D30; height:45px; padding:16px 0px 0px 0px; color:#FFF; text-align:center; }
+#footer02 { width:100%; margin:0 auto; background:#785D30; height:45px; position:absolute; bottom:0px; padding:16px 0px 0px 0px; color:#FFF; text-align:center; }
+
+.error_box {
+	color:#F00;
+	margin:10px 0 10px 20px;
+}
+
+.paging {
+	text-align: center;
+	overflow: hidden;
+}
+.paging strong {
+	color: #333;
+}
+.paging a {
+	color: #799D2E;
+}
+.paging a:hover {
+	color: #A1BA6C;
+}
+

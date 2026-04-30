@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KRIC 関西不動産情報センター</title>
+  <link rel="stylesheet" href="css/style.css?v=5">
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header id="header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <a href="#top" class="logo-text">
+          <img src="images/hd_logo.png" alt="KRIC" class="logo-img">
+          <span class="logo-ja">関西不動産情報センター</span>
+        </a>
+      </div>
+      <div class="header-right">
+        <div class="header-btns">
+          <a href="#join" class="btn-hd btn-hd--join"><img src="images/hd_join.png" class="btn-hd-icon" alt=""><span class="btn-text">ご入会はこちら</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+          <a href="#member" class="btn-hd btn-hd--member"><img src="images/hd_login.png" class="btn-hd-icon" alt=""><span class="btn-text">会員専用｜ログイン</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+        </div>
+        <button class="menu-btn" id="menuBtn" aria-label="メニューを開く">
+          <span class="menu-btn-lines">
+            <span></span><span></span><span></span>
+          </span>
+          <span class="menu-btn-label">MENU</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== GLOBAL NAV ========== -->
+  <div class="gnav-overlay" id="gnavOverlay"></div>
+  <nav class="gnav" id="gnav" aria-hidden="true">
+    <div class="gnav-header">
+      <button class="gnav-close" id="gnavClose" aria-label="閉じる">
+        <span class="gnav-close-icon">✕</span>
+        <span class="gnav-close-label">MENU</span>
+      </button>
+    </div>
+    <ul class="gnav-list">
+      <li><a href="#top">TOP</a></li>
+      <li class="gnav-has-child">
+        <button class="gnav-toggle" aria-expanded="false">KRICについて <span class="gnav-arrow">＋</span></button>
+        <ul class="gnav-child">
+          <li><a href="about.html">KRICについて</a></li>
+          <li><a href="#">設立の目的と社会的使命</a></li>
+          <li><a href="#">理事長あいさつ</a></li>
+        </ul>
+      </li>
+      <li class="gnav-has-child">
+        <button class="gnav-toggle" aria-expanded="false">活動内容 <span class="gnav-arrow">＋</span></button>
+        <ul class="gnav-child">
+          <li><a href="#activities">活動内容</a></li>
+          <li><a href="#">協会内の活動</a></li>
+          <li><a href="#">社会的な活動</a></li>
+        </ul>
+      </li>
+      <li class="gnav-has-child">
+        <button class="gnav-toggle" aria-expanded="false">NEWS <span class="gnav-arrow">＋</span></button>
+        <ul class="gnav-child">
+          <li><a href="#news">NEWS</a></li>
+          <li><a href="#">新着情報</a></li>
+          <li><a href="#">KRICメディア</a></li>
+        </ul>
+      </li>
+      <li class="gnav-has-child">
+        <button class="gnav-toggle" aria-expanded="false">会員紹介 <span class="gnav-arrow">＋</span></button>
+        <ul class="gnav-child">
+          <li><a href="#member-intro">会員紹介</a></li>
+          <li><a href="#">マップ検索</a></li>
+          <li><a href="#">フリーワード検索</a></li>
+        </ul>
+      </li>
+      <li><a href="#join">入会のご案内 <span class="gnav-arrow-link">＞</span></a></li>
+      <li class="gnav-has-child">
+        <button class="gnav-toggle" aria-expanded="false">団体概要 <span class="gnav-arrow">＋</span></button>
+        <ul class="gnav-child">
+          <li><a href="#">団体概要</a></li>
+          <li><a href="#">運営団体</a></li>
+          <li><a href="#">組織図</a></li>
+          <li><a href="#">KRICの歴史</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ========== KVラッパー（ヒーロー＋KRICについて共通背景） ========== -->
+  <div class="kv-wrapper">
+    <div class="kv-bg" style="background-image: url('images/back.png')"></div>
+    <div class="kv-overlay"></div>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="top">
+      <div class="hero-content">
+        <img src="images/top_logo.png" alt="競い合うより、響き合う。KRIC" class="hero-top-logo">
+      </div>
+      <div class="hero-lower">
+        <img src="images/pixta_99406975_M.png" alt="" class="hero-photo">
+        <img src="images/top_logo2.png" alt="PRIDE of MEMBERSHIP" class="hero-top-logo2">
+      </div>
+    </section>
+
+    <!-- ========== KRICについて ========== -->
+    <section class="about-pride" id="about">
+      <div class="about-pride-photo-sp">
+        <img src="images/pixta_99406975_M.png" alt="">
+      </div>
+      <div class="about-pride-inner">
+        <div class="about-pride-photos">
+          <div class="pride-photo pride-photo--top-left">
+            <img src="images/pixta_89681447_S.jpg" alt="">
+          </div>
+          <div class="pride-photo pride-photo--right">
+            <img src="images/pixta_98523184_M.png" alt="">
+          </div>
+          <div class="pride-photo pride-photo--bottom-left">
+            <img src="images/pixta_92814973_L.png" alt="">
+          </div>
+        </div>
+        <div class="about-pride-text">
+          <div class="about-pride-body">
+              <div class="about-pride-heading">
+                <img src="images/list_icon.png" class="sec-star-icon" alt="">
+                <h2 class="sec-title sec-title--light">KRICについて</h2>
+              </div>
+              <p class="about-pride-desc">
+                関西の不動産流通業界の<br>信頼向上のために<br>不動産会社で組織された<br>グループです。
+              </p>
+              <a href="about.html" class="btn-outline-light"><span class="btn-text">詳細はこちら</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /.kv-wrapper -->
+
+  <!-- ========== KRICについて テキスト（SP用） ========== -->
+  <div class="about-pride-text-sp">
+    <div class="about-pride-heading">
+      <img src="images/list_icon.png" class="sec-star-icon" alt="">
+      <h2 class="sec-title sec-title--light">KRICについて</h2>
+    </div>
+    <p class="about-pride-desc">
+      関西の不動産流通業界の<br>信頼向上のために<br>不動産会社で組織された<br>グループです。
+    </p>
+    <a href="about.html" class="btn-outline-light"><span class="btn-text">詳細はこちら</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+  </div>
+
+  <!-- ========== KRICメディア ========== -->
+  <section class="kric-media" id="media">
+    <div class="section-inner">
+      <div class="kric-media-heading">
+        <img src="images/list_icon.png" class="sec-star-icon" alt="">
+        <h2 class="sec-title">KRICメディア</h2>
+        <div class="sec-nav">
+          <a href="#" class="btn-list"><span class="btn-text">一覧へ</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+        </div>
+      </div>
+      <p class="kric-media-desc">MBSラジオやYOUTUBEなど様々なメディアで<br>不動産に関する情報を発信しています。</p>
+      <div class="media-list-btn-sp">
+        <a href="#" class="btn-list"><span class="btn-text">一覧へ</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+      </div>
+      <div class="media-slider-wrap">
+      <div class="media-grid" id="mediaGrid">
+        <div class="media-card">
+          <div class="media-card-img">
+            <img src="images/podcast.jpg" alt="ナニワ地理学">
+          </div>
+          <div class="media-card-body">
+            <div class="media-card-meta">
+              <span class="media-card-label media-card-label--podcast">PODCAST</span>
+              <span class="media-card-date">2025,00,00</span>
+            </div>
+            <p class="media-card-title">第29回放送「京都・伏見篇①」</p>
+            <a href="#" class="media-card-link">視聴はこちら→</a>
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-img">
+            <img src="images/podcast.jpg" alt="不動産会社の選び方">
+          </div>
+          <div class="media-card-body">
+            <div class="media-card-meta">
+              <span class="media-card-label media-card-label--podcast">PODCAST</span>
+              <span class="media-card-date">2025,00,00</span>
+            </div>
+            <p class="media-card-title">第29回放送「京都・伏見篇①」</p>
+            <a href="#" class="media-card-link">視聴はこちら→</a>
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-img">
+            <img src="images/youtube.png" alt="ナニワ地理学">
+          </div>
+          <div class="media-card-body">
+            <div class="media-card-meta">
+              <span class="media-card-label media-card-label--youtube">YOUTUBE</span>
+              <span class="media-card-date">2025,00,00</span>
+            </div>
+            <p class="media-card-title">不動産会社の選び方</p>
+            <a href="#" class="media-card-link">視聴はこちら→</a>
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-img">
+            <img src="images/podcast.jpg" alt="ナニワ地理学">
+          </div>
+          <div class="media-card-body">
+            <div class="media-card-meta">
+              <span class="media-card-label media-card-label--podcast">PODCAST</span>
+              <span class="media-card-date">2025,00,00</span>
+            </div>
+            <p class="media-card-title">第29回放送「京都・伏見篇①」</p>
+            <a href="#" class="media-card-link">視聴はこちら→</a>
+          </div>
+        </div>
+      </div>
+      <div class="media-slider-controls-sp">
+        <button class="media-slider-btn" id="mediaSliderPrev" aria-label="前へ">&#8249;</button>
+        <div class="media-dots-sp" id="mediaDotsSp"></div>
+        <button class="media-slider-btn" id="mediaSliderNext" aria-label="次へ">&#8250;</button>
+      </div>
+      </div><!-- /.media-slider-wrap -->
+    </div>
+  </section>
+
+  <!-- ========== NEWS 新着情報 ========== -->
+  <section class="news" id="news">
+    <div class="section-inner news-inner">
+      <div class="news-left">
+        <div class="news-heading">
+          <img src="images/list_icon.png" class="sec-star-icon" alt="">
+          <h2 class="sec-title">NEWS</h2>
+          <div class="sec-nav">
+            <a href="#" class="btn-list"><span class="btn-text">一覧へ</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+          </div>
+        </div>
+        <div class="news-list-btn-sp">
+          <a href="#" class="btn-list"><span class="btn-text">一覧へ</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+        </div>
+        <ul class="news-list">
+          <li class="news-item">
+            <a href="#" class="news-link">
+              <span class="news-cat news-cat--study">勉強会</span>
+              <span class="news-date">25,00,00</span>
+              <span class="news-title">第586回「地域地区」..</span>
+              <span class="news-arr">→</span>
+            </a>
+          </li>
+          <li class="news-item">
+            <a href="#" class="news-link">
+              <span class="news-cat news-cat--study">勉強会</span>
+              <span class="news-date">25,00,00</span>
+              <span class="news-title">第586回「地域地区」..</span>
+              <span class="news-arr">→</span>
+            </a>
+          </li>
+          <li class="news-item">
+            <a href="#" class="news-link">
+              <span class="news-cat news-cat--study">勉強会</span>
+              <span class="news-date">25,00,00</span>
+              <span class="news-title">第586回「地域地区」..</span>
+              <span class="news-arr">→</span>
+            </a>
+          </li>
+          <li class="news-item">
+            <a href="#" class="news-link">
+              <span class="news-cat news-cat--study">勉強会</span>
+              <span class="news-date">25,00,00</span>
+              <span class="news-title">第586回「地域地区」..</span>
+              <span class="news-arr">→</span>
+            </a>
+          </li>
+          <li class="news-item">
+            <a href="#" class="news-link">
+              <span class="news-cat news-cat--study">勉強会</span>
+              <span class="news-date">25,00,00</span>
+              <span class="news-title">第586回「地域地区」..</span>
+              <span class="news-arr">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="news-right">
+        <img src="images/room-used-official-event.png" alt="公式イベント" class="news-right-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 会員紹介（MAP） ========== -->
+  <section class="member-intro" id="member-intro">
+    <div class="member-city-row">
+      <div class="member-city-img" style="background-image: url('images/pixta_88853599_S.jpg')">
+      </div>
+      <div class="member-city-img" style="background-image: url('images/pixta_94685113_S.jpg'); background-position: right center;">
+      </div>
+      <div class="member-city-img" style="background-image: url('images/pixta_95785405_S.jpg'); background-position: right center;">
+      </div>
+    </div>
+    <div class="member-intro-body">
+      <div class="section-inner">
+        <div class="member-intro-inner">
+          <div class="member-intro-text">
+            <div class="member-intro-heading">
+              <img src="images/list_icon.png" class="sec-star-icon" alt="">
+              <h2 class="sec-title sec-title--light">会員紹介</h2>
+            </div>
+            <p class="member-intro-lead">大阪を中心に関西一円に<br>広がるネットワーク。</p>
+            <p class="member-intro-desc">関西一円の信託銀行・都市銀行の不動産部をはじめ、銀行系列の不動産会社、大手電鉄・商社・ゼネコンなどの直系不動産会社、そして新たな分野で活躍する新進気鋭な不動産会社など、信用と実績を誇る不動産会社で組織された信頼のグループです。</p>
+            <a href="about.html" class="btn-outline-light"><span class="btn-text">詳細はこちら</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+          </div>
+          <div class="member-map-col">
+            <div class="member-map">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d209445!2d135.4550!3d34.7024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e8903b838ed3%3A0xd7aba3aec7da1571!2z5aSn6Ziq5bqc!5e0!3m2!1sja!2sjp!4v1234567890"
+                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade" title="関西エリアマップ"></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="member-search" id="member-search">
+          <div class="member-search-card">
+            <p class="member-search-title">- 会員検索はこちら -</p>
+            <form class="member-search-form" action="#" method="get">
+              <div class="member-search-inputs">
+                <input type="text" class="member-search-input" name="q1" placeholder="会社名">
+                <input type="text" class="member-search-input" name="q2" placeholder="エリア・駅">
+              </div>
+              <div class="member-search-btn-row">
+                <button type="submit" class="member-search-btn"><span class="btn-text">検索</span><span class="btn-sep">|</span><img src="images/search.png" class="search-icon" alt="検索"></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 活動について ========== -->
+  <section class="activities" id="activities">
+    <div class="section-inner activities-inner">
+      <div class="activities-text">
+        <div class="activities-heading">
+          <img src="images/list_icon.png" class="sec-star-icon" alt="">
+          <h2 class="sec-title sec-title--light">活動について</h2>
+        </div>
+        <p class="activities-lead">関西の不動産流通業界のために、<br>協会内外で様々な活動を実施。</p>
+        <p class="activities-desc">人を起点とした情報交換や研修会を通じて知識と実務力を高めるとともに、親睦活動により会員同士の信頼関係と結束を深め、継続的な成長と価値創出を促進しています。</p>
+        <a href="about.html" class="btn-outline-light"><span class="btn-text">詳細はこちら</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+      </div>
+      <div class="activities-photos">
+        <div class="act-photo">
+          <img src="images/pixta_93680086_M.png" alt="">
+        </div>
+        <div class="act-photo">
+          <img src="images/pixta_40524215_M.png" alt="">
+        </div>
+        <div class="act-photo">
+          <img src="images/pixta_76785357_L.png" alt="">
+        </div>
+        <div class="act-photo">
+          <img src="images/pixta_41350523_S.png" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== お問い合わせ ========== -->
+  <section class="contact-cta" id="contact">
+    <div class="contact-cta-photo">
+      <img src="images/ft_contact.png" alt="お問い合わせ">
+      <div class="contact-cta-photo-text">
+        <div class="contact-photo-inner">
+          <p class="contact-photo-label">JOIN</p>
+          <p class="contact-photo-title">入会を<br>お考えの方は<br>こちら</p>
+        </div>
+        <a href="#join" class="contact-photo-link">入会のご案内ページへ <span class="contact-photo-arrow">›</span></a>
+      </div>
+    </div>
+    <div class="contact-cta-inner">
+      <p class="contact-label">CONTACT</p>
+      <h2 class="contact-title">お問い合わせ</h2>
+      <p class="contact-subtitle">KRICについてのご質問やご相談は<br class="contact-subtitle-br">お気軽にお問い合わせください。</p>
+      <hr class="contact-divider">
+      <div class="contact-cols">
+        <div class="contact-col">
+          <p class="contact-col-label">[お電話の場合]</p>
+          <p class="contact-col-note">・受付時間／9:10-16:00</p>
+          <p class="contact-tel"><span class="contact-tel-label">TEL.</span> <a href="tel:0662927791">06-6292-7791</a></p>
+        </div>
+        <div class="contact-col">
+          <p class="contact-col-label">[Webの場合]</p>
+          <p class="contact-col-note">・24時間受付中</p>
+          <a href="#" class="btn-contact-form"><span class="btn-text">お問合せフォーム</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="member">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <a href="#top" class="logo-text logo-text--footer">
+          <img src="images/ft_logo.png" alt="KRIC" class="logo-img logo-img--footer">
+          <span class="logo-ja logo-ja--footer">関西不動産情報センター</span>
+        </a>
+        <div class="footer-address">
+          <p>〒530-0012 大阪市北区芝田2丁目1番18号 西阪急ビル7階</p>
+        </div>
+        <a href="#" class="footer-map-btn"><span class="btn-text">google map</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+      </div>
+      <div class="footer-right">
+        <nav class="footer-nav">
+          <div class="footer-nav-cols">
+            <div class="footer-nav-col">
+              <a href="#top" class="footer-nav-parent">TOP</a>
+            </div>
+            <div class="footer-nav-col">
+              <a href="about.html" class="footer-nav-parent">KRICについて</a>
+              <ul>
+                <li class="footer-nav-self"><a href="about.html">KRICについて</a></li>
+                <li><a href="#">設立の目的と社会的使命</a></li>
+                <li><a href="#">理事長あいさつ</a></li>
+              </ul>
+            </div>
+            <div class="footer-nav-col">
+              <a href="#activities" class="footer-nav-parent">活動内容</a>
+              <ul>
+                <li class="footer-nav-self"><a href="#activities">活動内容</a></li>
+                <li><a href="#">協会内の活動</a></li>
+                <li><a href="#">社会的な活動</a></li>
+              </ul>
+            </div>
+            <div class="footer-nav-col">
+              <a href="#news" class="footer-nav-parent">NEWS</a>
+              <ul>
+                <li class="footer-nav-self"><a href="#news">NEWS</a></li>
+                <li><a href="#">新着情報</a></li>
+                <li><a href="#">KRICメディア</a></li>
+              </ul>
+            </div>
+            <div class="footer-nav-col">
+              <a href="#member-intro" class="footer-nav-parent">会員紹介</a>
+              <ul>
+                <li class="footer-nav-self"><a href="#member-intro">会員紹介</a></li>
+                <li><a href="#">マップ検索</a></li>
+                <li><a href="#">フリーワード検索</a></li>
+              </ul>
+            </div>
+            <div class="footer-nav-col">
+              <a href="#join" class="footer-nav-parent">入会のご案内</a>
+              <ul>
+                <li><a href="#">資格審査の流れ</a></li>
+                <li><a href="#">入会資格</a></li>
+              </ul>
+            </div>
+            <div class="footer-nav-col">
+              <a href="#" class="footer-nav-parent">団体概要</a>
+              <ul>
+                <li class="footer-nav-self"><a href="#">団体概要</a></li>
+                <li><a href="#">運営団体</a></li>
+                <li><a href="#">組織図</a></li>
+                <li><a href="#">KRICの歴史</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="footer-privacy">
+          <a href="#">プライバシーポリシー</a>
+        </div>
+        <a href="#top" class="page-top" aria-label="ページトップへ">∧</a>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <p>Copyright © KRIC 関西不動産情報センター All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- SP固定フッターボタン -->
+  <div class="sp-footer-fixed">
+    <a href="#contact" class="sp-ft-btn sp-ft-btn--join"><img src="images/hd_join.png" class="btn-hd-icon" alt=""><span class="btn-text">ご入会は<br>こちら</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+    <a href="#contact" class="sp-ft-btn sp-ft-btn--contact"><img src="images/hd_login.png" class="btn-hd-icon" alt=""><span class="btn-text">会員専用｜<br>ログイン</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

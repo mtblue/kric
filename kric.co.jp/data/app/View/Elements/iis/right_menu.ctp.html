@@ -1,0 +1,64 @@
+<?php
+	$menu = mb_split("/",$_SERVER['REQUEST_URI']);
+	//print_r($menu[2]);
+	
+?>
+<div id="side">
+<h3>IISメニュー</h3>
+
+<div class="spNavi"><a class="menu01" href="/<?php print(APP_NAME); ?>/index">IISトップ<strong><span><img src="/images/iis/menu_arrow_sp.png" /></span></strong></a></div>
+<?php if($menu[2] =='bd' || $menu[2] =='bd02' || $menu[2] =='bd03' || $menu[2] =='bd04' || $menu[2] =='bd_detail' || $menu[2] =='bd_edit'): ?>
+<!--<div class="spNavi active"><p class="menu02">ビジネスダイレクト<strong><span class="onoff"></span></strong></p></div>-->
+<div class="spNavi active"><a href="/<?php print(APP_NAME); ?>/bd" class="menu02">ビジネスダイレクト<strong><span class="onoff"></span></strong></a></div>
+    <ul class="subNavi">
+    <?php 
+    	$zokusei =0;
+    	if(!empty($tpl_disp['zokusei'])){ $zokusei = $tpl_disp['zokusei'];	}
+    	$zo =0;
+    	if(!empty($tpl_disp['zo'])){ $zo = $tpl_disp['zo'];	}
+    ?>
+    <li class="sub_menu01"><a href="/<?php print(APP_NAME); ?>/bd"<?php if($menu[2] =='bd' || $zo ==1 || $zokusei == 1) { print " class=on"; } ?>>売りたい</a></li>
+    <li class="sub_menu02"><a href="/<?php print(APP_NAME); ?>/bd02"<?php if($menu[2] =='bd02' || $zo ==2 || $zokusei == 2) { print " class=on"; } ?>>買いたい</a></li>
+    <li class="sub_menu03"><a href="/<?php print(APP_NAME); ?>/bd03"<?php if($menu[2] =='bd03' || $zo ==3 || $zokusei == 3) { print " class=on"; } ?>>貸したい</a></li>
+    <li class="sub_menu04"><a href="/<?php print(APP_NAME); ?>/bd04"<?php if($menu[2] =='bd04' || $zo ==4 || $zokusei == 4) { print " class=on"; } ?>>借りたい</a></li>
+    </ul>
+<?php else: ?>
+<!--<div class="spNavi"><p class="menu02">ビジネスダイレクト<strong><span class="onoff"></span></strong></p></div>-->
+<div class="spNavi"><a href="/<?php print(APP_NAME); ?>/bd" class="menu02">ビジネスダイレクト<strong><span class="onoff"></span></strong></a></div>
+<?php endif; ?>
+<div class="spNavi"><a href="/<?php print(APP_NAME); ?>/library" class="menu03">ライブラリ<strong><span><img src="/images/iis/menu_arrow_sp.png" /></span></strong></a></div>
+<div class="spNavi"><a href="/<?php print(APP_NAME); ?>/muster_roll" class="menu04">登録者名簿<strong><span><img src="/images/iis/menu_arrow_sp.png" /></span></strong></a></div>
+<?php if($menu[2] =='company_edit' || $menu[2] =='member_edit' || $menu[2] =='member'): ?>
+<!--<div class="spNavi"><p class="menu05">登録情報<strong><span class="onoff"></span></strong></p></div>-->
+	<?php if($tpl_disp['sessionInfo']['authority_id'] =='1'): ?>
+	<?php if(isset($_SESSION['adminLogin']) == true) { $url = "#"; }else{ $url = '/'.APP_NAME.'/company_edit'; } ?>
+	<div class="spNavi active"><a href="<?php print $url; ?>" class="menu05">登録情報<strong><span class="onoff"></span></strong></a></div>
+	<!--<div class="spNavi"><a href="/<?php print(APP_NAME); ?>/company_edit" class="menu05">登録情報<strong><span class="onoff"></span></strong></a></div>-->
+	<?php else: ?>
+	<?php if(isset($_SESSION['adminLogin']) == true) { $url = "#"; }else{ $url = '/'.APP_NAME.'/member_edit/id='.$tpl_disp['sessionInfo']['member_id']; } ?>
+	<div class="spNavi"><a href="<?php print $url; ?>" class="menu05">登録情報<strong><span class="onoff"></span></strong></a></div>
+	<?php endif; ?>
+	    <ul class="subNavi">
+	    <?php if($tpl_disp['sessionInfo']['authority_id'] =='1'): ?>
+		<?php //if(isset($_SESSION['adminLogin']) == true) { $url = "#"; }else{ $url = '/'.APP_NAME.'/company_edit'; } ?>
+		<?php $url = '/'.APP_NAME.'/company_edit'; ?>
+	    <li class="sub_menu05"><a href="<?php print $url; ?>"<?php if($menu[2] =='company_edit') { print " class=on"; } ?>>会社概要<span><img src="/images/iis/menu_arrow_sp02.png" /></span></a></li>
+	    <!--<li class="sub_menu05"><a href="/<?php print(APP_NAME); ?>/company_edit"<?php if($menu[2] =='company_edit') { print " class=on"; } ?>>会社概要<span><img src="/images/iis/menu_arrow_sp02.png" /></span></a></li>-->
+	    <?php endif; ?>
+		<?php //if(isset($_SESSION['adminLogin']) == true) { $url = "#"; }else{ $url = '/'.APP_NAME.'/member_edit/id='.$tpl_disp['sessionInfo']['member_id']; } ?>
+		<?php $url = '/'.APP_NAME.'/member_edit/id='.$tpl_disp['sessionInfo']['member_id']; ?>
+	    <li class="sub_menu06"><a href="<?php print $url; ?>"<?php if($menu[2] =='member_edit') { print " class=on"; } ?>>個別設定<span><img src="/images/iis/menu_arrow_sp02.png" /></span></a></li>
+	    <!--<li class="sub_menu06"><a href="/<?php print(APP_NAME); ?>/member_edit/id=<?php print($tpl_disp['sessionInfo']['member_id']); ?>"<?php if($menu[2] =='member_edit') { print " class=on"; } ?>>個別設定<span><img src="/images/iis/menu_arrow_sp02.png" /></span></a></li>-->
+	    <?php if($tpl_disp['sessionInfo']['authority_id'] =='1'): ?>
+		<?php //if(isset($_SESSION['adminLogin']) == true) { $url = "#"; }else{ $url = '/'.APP_NAME.'/member'; } ?>
+		<?php $url = '/'.APP_NAME.'/member'; ?>
+	    <li class="sub_menu07"><a href="<?php print $url; ?>"<?php if($menu[2] =='member') { print " class=on"; } ?>>メンバー追加/削除<span><img src="/images/iis/menu_arrow_sp02.png" /></span></a></li>
+	   <!-- <li class="sub_menu07"><a href="/<?php print(APP_NAME); ?>/member"<?php if($menu[2] =='member') { print " class=on"; } ?>>メンバー追加/削除<span><img src="/images/iis/menu_arrow_sp02.png" /></span></a></li>-->
+	    <?php endif; ?>
+	    </ul>
+<?php else: ?>
+<!--<div class="spNavi"><p class="menu05">登録情報<strong><span class="onoff"></span></strong></p></div>-->
+<!--<div class="spNavi"><a href="/<?php print(APP_NAME); ?>/company_edit" class="menu05">登録情報<strong><span class="onoff"></span></strong></a></div>-->
+<div class="spNavi"><a href="/<?php print(APP_NAME); ?>/member_edit/id=<?php print($tpl_disp['sessionInfo']['member_id']); ?>" class="menu05">登録情報<strong><span class="onoff"></span></strong></a></div>
+<?php endif; ?>
+</div>

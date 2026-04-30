@@ -1,0 +1,34 @@
+img {
+	border: 0;
+}
+
+.formedit ul {
+	padding: 0 10px;
+	list-style: none;
+}
+.formedit ul li {
+	float: left;
+	padding: 5px;
+}
+.formedit .cbottom {
+	float: right;
+	padding-right: 10px;
+}
+
+.lightbox_me_default {
+	background-color: #F9F9F9;
+	border: 3px double #ccc;
+	display: none;
+}
+
+.close_x {
+	background: url("/wp-content/plugins/wp-inquiry-form/css/images/close.JPG");
+	display:block;
+	height:23px;
+	line-height:1000px;
+	overflow:hidden;
+	position:absolute;
+	right:5px;
+	top:5px;
+	width:24px;
+}

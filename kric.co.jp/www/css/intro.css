@@ -1,0 +1,82 @@
+.cl { clear:both; }
+
+#section1 ul { margin:0 0 0 18px; padding:0 0 30px 0;}
+#section1 ul li {
+	float:left;
+	margin:0 7px 1em 7px;
+}
+#section1 ul li a {
+	display:block;
+	width:79px;
+	height:26px;
+	text-indent:-9999px;
+	overflow:hidden;
+	/*\*/overflow:hidden;/**/
+}
+#section1 ul li a.name_a { background:url(/images/intro/name_chip_a.gif) no-repeat 0 0;}
+#section1 ul li a.name_ka { background:url(/images/intro/name_chip_ka.gif) no-repeat 0 0;}
+#section1 ul li a.name_sa { background:url(/images/intro/name_chip_sa.gif) no-repeat 0 0;}
+#section1 ul li a.name_ta { background:url(/images/intro/name_chip_ta.gif) no-repeat 0 0;}
+#section1 ul li a.name_na { background:url(/images/intro/name_chip_na.gif) no-repeat 0 0;}
+#section1 ul li a.name_ha { background:url(/images/intro/name_chip_ha.gif) no-repeat 0 0;}
+#section1 ul li a.name_ma { background:url(/images/intro/name_chip_ma.gif) no-repeat 0 0;}
+#section1 ul li a.name_ya { background:url(/images/intro/name_chip_ya.gif) no-repeat 0 0;}
+#section1 ul li a.name_ra { background:url(/images/intro/name_chip_ra.gif) no-repeat 0 0;}
+#section1 ul li a.name_wa { background:url(/images/intro/name_chip_wa.gif) no-repeat 0 0;}
+
+#section1 ul li a.name_a:hover,
+#section1 ul li a.name_ka:hover,
+#section1 ul li a.name_sa:hover,
+#section1 ul li a.name_ta:hover,
+#section1 ul li a.name_na:hover,
+#section1 ul li a.name_ha:hover,
+#section1 ul li a.name_ma:hover,
+#section1 ul li a.name_ya:hover,
+#section1 ul li a.name_ra:hover,
+#section1 ul li a.name_wa:hover
+ { background-position:0 -26px;}
+
+/*Section2*/
+#section2 { margin:30px 0 30px 0;}
+#section2 ul#select { margin: 0 0 0 0.5em;}
+#section2 ul#select li {
+	float:left;
+	width:130px;
+	background:url(/images/shared/icon_arrow_on.gif) no-repeat left center;
+	margin:0 8px 0.6em 0;
+	padding-left:12px;
+}
+
+/*Section3*/
+#section3 { margin:30px 0 30px 0;}
+#section3 form {
+	width:460px;
+	margin:0;
+}
+#section3 ul { margin:0 0 15px 0;}
+#section3 ul li {
+	float:left;
+	width:225px;
+	height:25px;
+	margin:0 0 0.2em 0;
+}
+#section3 form label { vertical-align:middle; margin:0 0 0 0.5em;}
+#section3 form input { vertical-align:middle; margin:0 0 0 0.5em;}
+
+
+@media screen and (max-width: 640px) {
+
+#section2 ul#select li{
+    margin: 0 28px 0.6em 0;
+}
+#section3 form {
+	width:100%;
+}
+#section3 ul li{
+	float: none;
+}
+.cont_sidebox{
+	display:none;
+}
+
+}

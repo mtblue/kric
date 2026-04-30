@@ -1,0 +1,27 @@
+
+table#mlist td{
+	padding-right: 20px;
+    width: 250px;
+}
+
+#mlist_area{
+	margin-left:25px;
+	margin-bottom:50px;
+}
+
+@media screen and (max-width: 640px) {
+
+#mlist_area{
+	margin-left:0px;
+}
+
+table#mlist{
+	width:100%;
+    margin-top: 20px;
+}
+table#mlist td{
+	width:100%;
+	display: block;
+}
+
+}

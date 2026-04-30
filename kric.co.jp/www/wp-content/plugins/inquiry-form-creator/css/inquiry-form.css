@@ -1,0 +1,17 @@
+@charset "utf-8"; 
+
+.iqfm-table {
+    margin-bottom:15px;
+}
+
+.iqfm-table th, .iqfm-table td {
+    border: 1px solid #DCDCDC;
+    padding: 8px 36px 8px 14px;
+}
+
+.iqfm-table th {
+    white-space: nowrap;
+    background-color: #E7E7E7;
+    text-align: left;
+    vertical-align: top;
+}

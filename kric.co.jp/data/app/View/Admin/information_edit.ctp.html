@@ -1,0 +1,80 @@
+<body>
+<div id="wrapper">
+<?php print($this->element('admin/header')); ?>
+<!-- /wrapper --></div>
+<div id="contents">
+<ul id="ttl">
+  <li><img src="/material/admin/images/common/icon_infomation.gif" width="43" height="37" alt="アイコン">&nbsp; インフォメーション管理</li>
+ </ul>
+ <p class="clear"></p>
+ <div id="company">
+
+<link rel="stylesheet" media="all" type="text/css" href="/material/datepicker/css/jquery-ui-1.10.3.custom.min.css" />
+<style type="text/css">
+.ui_tpicker_time_label { display:none; }
+.ui_tpicker_time { display:none; }
+.ui_tpicker_hour_label { margin-left:46px; }
+.ui_tpicker_hour { margin-top:-25px; }
+.ui_tpicker_minute_label { margin-top:-23px; margin-left:110px; }
+.ui_tpicker_minute { margin-top:-24px; margin-left:65px; }
+</style>
+<script type="text/javascript" src="/material/datepicker/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="/material/datepicker/js/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="/material/datepicker/js/jquery.ui.datepicker-ja.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('#info_date').datetimepicker({
+		controlType: 'select',
+		buttonImage: '/material/datepicker/css/images',
+		dateFormat: 'yy年m月d日',
+		timeFormat: 'H:mm',
+		currentText: '現在の時間',
+		closeText: 'OK',
+		timeText: '時間',
+		hourText: '時',
+		minuteText: '分',
+	});
+});
+</script>
+
+<form action="<?php print(HTTP_TO_SCRIPT_NAME); ?>" method="post" name="form" id="form" enctype="multipart/form-data">
+<input name="cmd" type="hidden" id="cmd" value="registration" />
+<input name="id" type="hidden" id="id" value="<?php print(isset($tpl_disp['org_info']['information_id']) == true ? $tpl_disp['org_info']['information_id'] : ''); ?>" />
+
+<div class="error_box">
+<?php foreach($tpl_errDoc AS $val) { print($val.'<br />'); } ?>
+</div>
+
+ <table>
+ <!--<tr><th>インフォメーション管理ID</th><td><?php print(isset($tpl_disp['org_info']['information_id']) == true ? $tpl_disp['org_info']['information_id'] : ''); ?></td></tr>-->
+ <tr><th>日時</th><td><input type="text" name="info_date" id="info_date" size="40" value="<?php print(isset($tpl_disp['info_date']) == true ? $tpl_disp['info_date'] : ''); ?>" /></td></tr>
+ <tr><th>タイトル</th><td><input type="text" name="title" size="40" value="<?php print(isset($tpl_disp['title']) == true ? $tpl_disp['title'] : ''); ?>"></td></tr>
+ <tr><th valign="top">内容</th><td><textarea name="doc" style="width:600px; height:200px;"><?php print(isset($tpl_disp['doc']) == true ? $tpl_disp['doc'] : ''); ?></textarea></td></tr>
+<tr><th>ファイル</th><td colspan="2">
+<input name="file" type="file" size="50" />
+<?php if (isset($tpl_disp['org_info']['file']) == true && $tpl_disp['org_info']['file'] != '') { ?>
+<br /><a href="/<?php print(APP_NAME); ?>/file/na=<?php print(isset($tpl_disp['org_info']['file']) == true ? $tpl_disp['org_info']['file'] : ''); ?>" target="_blank"><?php print(isset($tpl_disp['org_info']['file']) == true ? $tpl_disp['org_info']['file'] : '-'); ?></a>
+<br /><input name="file_delete" type="checkbox" value="checked" />削除
+<?php } ?>
+</td></tr>
+<tr><td colspan="2" align="center"><a href="JavaScript:vold(0);" onClick="JavaScript:location.href='<?php print(isset($tpl_disp['back_url']) == true ? $tpl_disp['back_url'] : ''); ?>'"><img src="/material/admin/images/company/btn_list.gif" width="126" height="25" alt="一覧に戻る"></a>&nbsp;&nbsp;<input type="image" src="/material/admin/images/company/btn_entry.gif" width="126" height="25" alt="登録">&nbsp;&nbsp;<img src="/material/admin/images/company/btn_preview.gif" width="126" height="25" alt="プレビュー" onclick="preview();"></td></tr>
+</table>
+</form>
+
+<script language="JavaScript">
+$(function(){
+});
+function preview() {
+	$('#form').attr('target', '_blank');
+	$('#form').attr('action', '/admin/information_view');
+	$('#form').submit();
+	$('#form').attr('target', '');
+	$('#form').attr('action', '/admin/information_edit');
+}
+</script>
+
+
+</div>
+<!-- /contents --></div>
+<?php print($this->element('admin/footer')); ?>
+</body>

@@ -1,0 +1,63 @@
+<body>
+<div id="wrapper">
+<?php print($this->element('admin/header')); ?>
+<!-- /wrapper --></div>
+<div id="contents">
+<ul id="ttl">
+  <li><img src="/material/admin/images/common/icon_infomation.gif" width="43" height="37" alt="アイコン">&nbsp; ライブラリ管理</li>
+ </ul>
+ <p class="clear"></p>
+
+<script type="text/javascript">
+$(function(){
+});
+function category_edit(id, na) {
+//alert(id+' / '+na);
+	$('#cmd').val('category_edit');
+	$('#id').val(id);
+	$('#category_name').val(na);
+	$('#but').val('編集');
+}
+</script>
+<script language="JavaScript">
+<!--
+	function delete_chk(id) {
+		res = confirm("削除してもよろしいですか？");
+		if (res == true) {
+			location.href="/<?php print(ROOT_TO_PATH); ?>/cmd=delete/id=" + id + "/cid=" + <?php print(isset($tpl_form['cid']) == true ? $tpl_form['cid'] : ''); ?> + "<?php print(isset($PARAM) == true ? '/'.$PARAM : ''); ?>";
+		} else {
+			return false;
+		}
+	}
+// -->
+</script>
+
+<form action="<?php print(HTTP_TO_SCRIPT_NAME); ?>" method="post" name="form" id="form">
+<input name="cmd" type="hidden" id="cmd" value="category_add" />
+<input name="cid" type="hidden" id="cid" value="<?php print(isset($tpl_form['cid']) == true ? $tpl_form['cid'] : ''); ?>" />
+<input name="id" type="hidden" id="id" value="" />
+<div class="category_form">子カテゴリ名：<input name="category_name" type="text" id="category_name" class="text" value="" />
+<input name="送信" type="submit" class="button_next" id="but" value="追加" /></div>
+</form>
+
+ <table>
+ <tr><th>子カテゴリ名</th><th>操作</th></tr>
+
+<?php if (count($tpl_disp['main_list']) > 0) { ?>
+<?php foreach($tpl_disp['main_list'] AS $inc => $row) { ?>
+ <tr>
+   <td><img src="/material/admin/images/top/icon_day.gif" width="13" height="13">&nbsp; <?php print($row['category_name']); ?></td><td><a href="JavaScript:void(0);" onClick="return delete_chk(<?php print($row['category_id']); ?>)">削除</a> / <a href="javascript:void(0);" onClick="category_edit(<?php print($row['category_id']); ?>, '<?php print($row['category_name']); ?>')">修正</a></td></tr>
+<?php } } else { ?>
+<tr>
+<td colspan="2">情報は登録されていません。</td>
+</tr>
+<?php } ?>
+</table>
+<div class="paging">
+<?php if ($tpl_disp['navi']['direct_navi'] != '') { ?>
+<?php print($tpl_disp['navi']['direct_navi_first']); ?><?php print($tpl_disp['navi']['direct_navi']); ?><?php print($tpl_disp['navi']['direct_navi_last']); ?>
+<?php } ?>
+</div>
+<!-- /contents --></div>
+<?php print($this->element('admin/footer')); ?>
+</body>

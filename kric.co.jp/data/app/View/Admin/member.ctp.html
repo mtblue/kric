@@ -1,0 +1,89 @@
+<body>
+<?php
+if (isset($tpl_disp['company']['company_kana'])){
+	$KeyList = array(
+		'a' =>	array('あ', 'い', 'う', 'え', 'お', 'ア', 'イ', 'ウ', 'エ', 'オ'),	// あ
+		'ka' =>	array('か', 'が', 'き', 'ぎ', 'く', 'ぐ', 'け', 'げ', 'こ', 'ご', 'カ', 'ガ', 'キ', 'ギ', 'ク', 'グ', 'ケ', 'ゲ', 'コ', 'ゴ'),	// か
+		'sa' =>	array('さ', 'ざ', 'し', 'じ', 'す', 'ず', 'せ', 'ぜ', 'そ', 'ぞ', 'サ', 'ザ', 'シ', 'ジ', 'ス', 'ズ', 'セ', 'ゼ', 'ソ', 'ゾ'),	// さ
+		'ta' =>	array('た', 'だ', 'ち', 'ぢ', 'つ', 'づ', 'て', 'で', 'と', 'ど', 'タ', 'ダ', 'チ', 'ヂ', 'ツ', 'ヅ', 'テ', 'デ', 'ト', 'ド'),	// た
+		'na' =>	array('な', 'に', 'ぬ', 'ね', 'の', 'ナ', 'ニ', 'ヌ', 'ネ', 'ノ'),	// な
+		'ha' =>	array('は', 'ば', 'ぱ', 'ひ', 'び', 'ぴ', 'ふ', 'ぶ', 'ぷ', 'へ', 'べ', 'ぺ', 'ほ', 'ぼ', 'ぽ', 'ハ', 'バ', 'パ', 'ヒ', 'ビ', 'ピ', 'フ', 'ブ', 'プ', 'ヘ', 'ベ', 'ペ', 'ホ', 'ボ', 'ポ'),	// は
+		'ma' =>	array('ま', 'み', 'む', 'め', 'も', 'マ', 'ミ', 'ム', 'メ', 'モ'),	// ま
+		'ya' =>	array('や', 'ゆ', 'よ', 'ヤ', 'ユ', 'ヨ'),							// や
+		'ra' =>	array('ら', 'り', 'る', 'れ', 'ろ', 'ラ', 'リ', 'ル', 'レ', 'ロ'),	// ら
+		'wa' =>	array('わ', 'ワ'),													// わ
+	);
+	foreach($KeyList as $key => $value){
+		$KeyFlg = array_search(substr($tpl_disp['company']['company_kana'], 0, 3), $KeyList[$key]);
+		if($KeyFlg > 0) {  $keyKana =$key;  }
+	}
+}
+?>
+
+
+<div id="wrapper">
+<?php print($this->element('admin/header')); ?>
+<!-- /wrapper --></div>
+<div id="contents">
+<ul id="ttl">
+  <li class="h2c"><img src="/material/admin/images/common/icon_infomation.gif" width="43" height="37" alt="アイコン">&nbsp; 会社管理</li>
+  <li class="signup">
+  <a href="/admin/company/Name=<?php print($keyKana); ?>"><img src="/material/admin/images/company/btn_list.gif" alt="一覧に戻る"></a> 
+  <a href="/<?php print(APP_NAME); ?>/member_edit/cid=<?php print($tpl_form['cid']); ?>"><img src="/material/admin/images/top/btn_signup.gif" width="99" height="25" alt="新規登録"></a></li>
+
+ </ul>
+ <p class="clear"></p>
+
+<script language="JavaScript">
+<!--
+	function delete_chk(id) {
+		res = confirm("削除してもよろしいですか？");
+		if (res == true) {
+			location.href="/<?php print(ROOT_TO_PATH); ?>/cmd=delete/id=" + id + "<?php print(isset($PARAM) == true ? '/'.$PARAM : ''); ?>";
+		} else {
+			return false;
+		}
+	}
+	function authentication_chk(id) {
+		res = confirm("認証してもよろしいですか？");
+		if (res == true) {
+			location.href="/<?php print(ROOT_TO_PATH); ?>/cmd=authentication/id=" + id + "<?php print(isset($PARAM) == true ? '/'.$PARAM : ''); ?>";
+		} else {
+			return false;
+		}
+	}
+// -->
+</script>
+<div style="margin:20px;"><?php print_r ($tpl_disp['company']['company_name']); ?></div>
+<table>
+<tr><th>名前</th><th>メールアドレス</th><th>操作</th><th></th></tr>
+<!--<tr><th>名前</th><th>メールアドレス</th><th>操作</th><th></th></tr>-->
+
+<?php if (count($tpl_disp['main_list']) > 0) { ?>
+<?php foreach($tpl_disp['main_list'] AS $inc => $row) { ?>
+ <tr>
+   <td><img src="/material/admin/images/top/icon_day.gif" width="13" height="13">&nbsp; <?php print($row['name']); ?></td>
+   <td><?php print($row['email1']); ?></td>
+   <td><a href="/<?php print(APP_NAME); ?>/member_edit/id=<?php print($row['member_id']); ?>">修正</a> / <a href="JavaScript:void(0);" onClick="return delete_chk(<?php print($row['member_id']); ?>)">削除</a><?php if($row['login_flg']=='0') { ?> / <a href="JavaScript:void(0);" onClick="return authentication_chk(<?php print($row['member_id']); ?>)">認証</a><?php }else{ ?> / <a href="/iis/member_edit/id=<?php print($row['member_id']); ?>" target="_blank">設定確認</a><?php } ?></td>
+   <td>
+   <?php 
+   	if($row['login_flg']=='0') { print "<span style=\"color:red\">招待中</span> (登録日時".$row['create_date'].")";
+   	}else{ print "最終更新日時：" .$row['update_date']; }
+   ?>
+   </td>
+</tr>
+<?php } } else { ?>
+<tr>
+<td colspan="4">情報は登録されていません。</td>
+</tr>
+<?php } ?>
+</table>
+<div class="paging">
+<?php if ($tpl_disp['navi']['direct_navi'] != '') { ?>
+<?php print($tpl_disp['navi']['direct_navi_first']); ?><?php print($tpl_disp['navi']['direct_navi']); ?><?php print($tpl_disp['navi']['direct_navi_last']); ?>
+<?php } ?>
+</div>
+<!-- /contents --></div>
+<?php print($this->element('admin/footer')); ?>
+
+</body>

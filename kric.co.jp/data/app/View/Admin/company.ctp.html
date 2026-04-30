@@ -1,0 +1,71 @@
+<body>
+<div id="wrapper">
+<?php print($this->element('admin/header')); ?>
+<!-- /wrapper --></div>
+<div id="contents">
+<ul id="ttl">
+  <li class="h2"><img src="/material/admin/images/common/icon_infomation.gif" width="43" height="37" alt="アイコン">&nbsp; 会社管理</li>
+  <li class="signup"><a href="/<?php print(APP_NAME); ?>/company_edit/"><img src="/material/admin/images/top/btn_signup.gif" width="99" height="25" alt="新規登録"></a></li>
+ </ul>
+ <p class="clear"></p>
+
+<script language="JavaScript">
+<!--
+	function delete_chk(id) {
+		res = confirm("削除してもよろしいですか？");
+		if (res == true) {
+			location.href="/<?php print(ROOT_TO_PATH); ?>/cmd=delete/id=" + id + "<?php print(isset($PARAM) == true ? '/'.$PARAM : ''); ?>";
+		} else {
+			return false;
+		}
+	}
+// -->
+</script>
+
+    <div style="margin:15px;">
+            <div style="margin-bottom:10px;">インデックス：</div>
+			<ul>
+			<li style="margin-right:10px;"><a href="<?php print(HTTP_TO_SCRIPT_NAME); ?>/Name=a"><img src="/images/iis/btn_a<?php if($tpl_form['Name']=='a'){ print "_on";} ?>.gif" /></a></li>
+			<li style="margin-right:10px;"><a href="<?php print(HTTP_TO_SCRIPT_NAME); ?>/Name=ka"><img src="/images/iis/btn_ka<?php if($tpl_form['Name']=='ka'){ print "_on";} ?>.gif" /></a></li>
+			<li style="margin-right:10px;"><a href="<?php print(HTTP_TO_SCRIPT_NAME); ?>/Name=sa"><img src="/images/iis/btn_sa<?php if($tpl_form['Name']=='sa'){ print "_on";} ?>.gif" /></a></li>
+			<li style="margin-right:10px;"><a href="<?php print(HTTP_TO_SCRIPT_NAME); ?>/Name=ta"><img src="/images/iis/btn_ta<?php if($tpl_form['Name']=='ta'){ print "_on";} ?>.gif" /></a></li>
+			<li style="margin-right:10px;"><a href="<?php print(HTTP_TO_SCRIPT_NAME); ?>/Name=na"><img src="/images/iis/btn_na<?php if($tpl_form['Name']=='na'){ print "_on";} ?>.gif" /></a></li>
+			<li style="margin-right:10px;"><a href="<?php print(HTTP_TO_SCRIPT_NAME); ?>/Name=ha"><img src="/images/iis/btn_ha<?php if($tpl_form['Name']=='ha'){ print "_on";} ?>.gif" /></a></li>
+			<li style="margin-right:10px;"><a href="<?php print(HTTP_TO_SCRIPT_NAME); ?>/Name=ma"><img src="/images/iis/btn_ma<?php if($tpl_form['Name']=='ma'){ print "_on";} ?>.gif" /></a></li>
+			<li style="margin-right:10px;"><a href="<?php print(HTTP_TO_SCRIPT_NAME); ?>/Name=ya"><img src="/images/iis/btn_ya<?php if($tpl_form['Name']=='ya'){ print "_on";} ?>.gif" /></a></li>
+			<li style="margin-right:10px;"><a href="<?php print(HTTP_TO_SCRIPT_NAME); ?>/Name=ra"><img src="/images/iis/btn_ra<?php if($tpl_form['Name']=='ra'){ print "_on";} ?>.gif" /></a></li>
+			<li style="margin-right:10px;"><a href="<?php print(HTTP_TO_SCRIPT_NAME); ?>/Name=wa"><img src="/images/iis/btn_wa<?php if($tpl_form['Name']=='wa'){ print "_on";} ?>.gif" /></a></li>
+			</ul>
+    </div>
+	<div style="clear:both;"></div>
+
+<table>
+<tr><th>社名</th><th>操作</th></tr>
+
+<?php if (count($tpl_disp['main_list']) > 0) { ?>
+
+<?php //foreach(array_filter($tpl_disp['main_list']) AS $inc => $list) { ?>
+	<?php //foreach($list AS $row) { ?>
+
+
+<?php foreach($tpl_disp['main_list'] AS $inc => $row) { ?>
+ <tr>
+ <?php if($row['company_id'] != '0'): ?> 
+   <td><img src="/material/admin/images/top/icon_day.gif" width="13" height="13">&nbsp; <?php print($row['company_name']); ?></td><td><a href="JavaScript:void(0);" onclick="return delete_chk(<?php print($row['company_id']); ?>)">削除</a> / <a href="/<?php print(APP_NAME); ?>/company_edit/id=<?php print($row['company_id']); ?>">修正</a> / <a href="/<?php print(APP_NAME); ?>/member/cid=<?php print($row['company_id']); ?>">メンバー</a></td>
+ <?php endif; ?>
+ </tr>
+<?php //} } } else { ?>
+<?php  } } else { ?>
+<tr>
+<td colspan="2">情報は登録されていません。</td>
+</tr>
+<?php } ?>
+</table>
+<div class="paging">
+<?php if ($tpl_disp['navi']['direct_navi'] != '') { ?>
+<?php print($tpl_disp['navi']['direct_navi_first']); ?><?php print($tpl_disp['navi']['direct_navi']); ?><?php print($tpl_disp['navi']['direct_navi_last']); ?>
+<?php } ?>
+</div>
+<!-- /contents --></div>
+<?php print($this->element('admin/footer')); ?>
+</body>

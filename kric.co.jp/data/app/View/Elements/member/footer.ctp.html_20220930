@@ -1,0 +1,94 @@
+
+	<div class="clear"></div>
+	<div class="mgBottom45"></div>
+	<div class="pageTopL"><a href="#top"><img src="/wp-content/themes/default/images/bt_pageTop.png" alt="このページのトップへ"></a></div>
+	<div class="footer_wrap">
+		<div class="footer">
+			<div class="footer1">
+				<div class="menu-footer-navi1-container">
+					<ul id="menu-footer-navi1" class="menu">
+						<li id="menu-item-4763" class="menu-item menu-item-type-post_type menu-item-4763">
+							<a href="/kric.html">KRICについて</a>
+							<ul class="sub-menu">
+								<li id="menu-item-4762" class="menu-item menu-item-type-post_type menu-item-4762"><a href="/kric/history.html">KRICの歴史</a></li>
+								<li id="menu-item-4761" class="menu-item menu-item-type-post_type menu-item-4761"><a href="/kric/object.html">設立の目的と社会的使命</a></li>
+								<li id="menu-item-4760" class="menu-item menu-item-type-post_type menu-item-4760"><a href="/kric/formation.html">組織図</a></li>
+								<li id="menu-item-4764" class="menu-item menu-item-type-post_type menu-item-4764"><a href="/kric.html">一覧はこちら</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer1">
+				<div class="menu-footer-navi2-container">
+					<ul id="menu-footer-navi2" class="menu">
+						<li id="menu-item-4768" class="menu-item menu-item-type-post_type menu-item-4768">
+							<a href="/activity.html">私たちの活動</a>
+							<ul class="sub-menu">
+								<li id="menu-item-4767" class="menu-item menu-item-type-post_type menu-item-4767"><a href="/activity/communication.html">人から始まる情報交換</a></li>
+								<li id="menu-item-4766" class="menu-item menu-item-type-post_type menu-item-4766"><a href="/activity/training.html">想いをかたちにする研修会</a></li>
+								<li id="menu-item-4765" class="menu-item menu-item-type-post_type menu-item-4765"><a href="/activity/friendship.html">絆を深める親睦活動</a></li>
+								<li id="menu-item-4769" class="menu-item menu-item-type-post_type menu-item-4769"><a href="/activity.html">一覧はこちら</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer1">
+				<div class="menu-footer-navi3-container">
+					<ul id="menu-footer-navi3" class="menu">
+						<li id="menu-item-4773" class="menu-item menu-item-type-post_type current-menu-item page_item page-item-4748 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-4773">
+							<a href="/member.html">会員紹介</a>
+							<ul class="sub-menu">
+								<li id="menu-item-4772" class="menu-item menu-item-type-post_type menu-item-4772"><a href="/member/?Mode=list-name&Name=a">会員名で検索（五十音検索）</a></li>
+								<li id="menu-item-4771" class="menu-item menu-item-type-post_type menu-item-4771"><a href="/member/?Mode=list-area&Area=100">エリアで検索</a></li>
+								<li id="menu-item-4770" class="menu-item menu-item-type-post_type menu-item-4770"><a href="/member/?Mode=list-industry&Category=100">業務種目で検索</a></li>
+								<li id="menu-item-4774" class="menu-item menu-item-type-post_type current-menu-item page_item page-item-4748 current_page_item menu-item-4774"><a href="/member/">一覧はこちら</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer2">
+				<div class="menu-footer-navi4-container">
+					<ul id="menu-footer-navi4" class="menu">
+						<li id="menu-item-4775" class="menu-item menu-item-type-post_type menu-item-4775">
+							<a href="/enter.html">会員のメリット</a>
+							<ul class="sub-menu">
+								<li id="menu-item-4777" class="menu-item menu-item-type-custom menu-item-4777"><a href="/enter.html#infor">情報交換会</a></li>
+								<li id="menu-item-4778" class="menu-item menu-item-type-custom menu-item-4778"><a href="/enter.html#training">研修会</a></li>
+								<li id="menu-item-4779" class="menu-item menu-item-type-custom menu-item-4779"><a href="/enter.html#friend">親睦活動</a></li>
+								<li id="menu-item-4780" class="menu-item menu-item-type-post_type menu-item-4780"><a href="/enter.html">一覧はこちら</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="mgBottom20"></div>
+			<div class="footer_sitemap">
+				<div class="menu-footer-sitemap1-container">
+					<ul id="menu-footer-sitemap1" class="menu">
+						<li id="menu-item-4782" class="menu-item menu-item-type-post_type menu-item-4782"><a href="/service.html">KRICがあなたにできること</a></li>
+						<li id="menu-item-4781" class="menu-item menu-item-type-post_type menu-item-4781"><a href="/enter.html">入会をお考えの方</a></li>
+						<li id="menu-item-4783" class="menu-item menu-item-type-taxonomy menu-item-4783"><a href="/archives/category/tell">KRICからお伝えしたいこと</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="footer_sitemap2">
+				<div class="menu-footer-sitemap2-container">
+					<ul id="menu-footer-sitemap2" class="menu">
+						<li id="menu-item-4785" class="menu-item menu-item-type-post_type menu-item-4785"><a href="/contact.html">お問合せ</a></li>
+						<li id="menu-item-4784" class="menu-item menu-item-type-post_type menu-item-4784"><a href="/about.html">運営団体</a></li>
+						<li id="menu-item-4787" class="menu-item menu-item-type-post_type menu-item-4787"><a href="/sitemap.html">サイトマップ</a></li>
+						<li id="menu-item-4786" class="menu-item menu-item-type-post_type menu-item-4786"><a href="/privacy.html">プライバシーポリシー</a></li>
+						<li id="menu-item-4873" class="menu-item menu-item-type-post_type menu-item-4873"><a href="/">TOP</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="copyright_wrap">
+		<div class="copyright"> Copyright ©	KRIC 関西不動産情報センター All Rights Reserved. </div>
+	</div>

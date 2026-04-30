@@ -1,0 +1,95 @@
+<body id="top">
+<a id="top" name="top"></a>
+<div id="wrap">
+  <div id="anime_wrap">
+
+<!--==================================ここからヘッダー=========================================-->
+<?php print($this->element('iis/header')); ?>
+<!--==================================▲ここまでヘッダー=========================================--> 
+
+
+
+<!--==================================▼ここからぱんくずとSNSボタン=========================================-->
+
+<div class="pankuzu_wrap">
+  <div class="pan_sns">
+    <div class="pankuzu"> <img src="/wp-content/themes/default/images/index_img_05.png" width="12" height="12" alt="" class="img_float" /><h1><!-- Breadcrumb NavXT 3.5.1 --><a href="/">関西不動産情報センター TOP</a>＞<a href="/<?php print(APP_NAME); ?>/index">IISトップ</a>＞ライブラリ</h1></div>
+  </div>
+</div>
+<!--==================================▲ここまでぱんくずとsnsボタン=========================================-->
+<!--==================================▼ここからコンテンツ=========================================-->
+<div class="cont_wrap">
+<div class="cont_box">
+
+
+<!-- ここから追加 -->
+
+
+<div id="contents">
+    <div id="bd"><span><img src="/images/iis/bd_icon.png" /></span>
+      <h2>ライブラリ</h2></div>
+
+    <div id="detail02">
+
+<?php if (count($tpl_disp['main_list']) > 0) { ?>
+
+	<ul class="lib">
+
+<?php
+	$co = count($tpl_disp['main_list']);
+	if ($co % 2) {
+		$co ++;
+	}
+	for($i=0; $i<$co; $i++) {
+		$row = isset($tpl_disp['main_list'][$i]) == true ? $tpl_disp['main_list'][$i] : '';
+		if (($i+1) % 2) {
+?>
+    
+<?php
+		}
+		if ($row == '') {
+			//print('<td>&nbsp;</td>');
+		} else {
+?>
+		<li class="lib"><a href="/<?php print(APP_NAME); ?>/library_list/cg=<?php print($row['category_id']); ?>"><?php print($row['category_name']); ?></a></li>
+
+<?php
+		}
+		if (($i+1) % 2) {} else {
+?>
+	
+<?php
+		}
+	}
+?>
+	</ul>
+   	<div style="clear: both"></div>
+<?php } else { ?>
+        <div style="text-align:center;">現在、ライブラリ情報はございません。</div>
+<?php } ?>
+
+	</div>
+
+</div>
+
+
+<?php print($this->element('iis/right_menu')); ?>
+
+
+
+<!-- ここまで追加 -->
+
+</div>
+<!--cont_box--> 
+
+<!--==================▲ここまでコンテンツ=======================-->
+<!--==================▼ここからフッター=======================-->
+<?php print($this->element('iis/footer')); ?>
+<!--==================▲ここまでフッター=======================-->
+
+</div><!-- /cont_wrap -->
+<!--Google Analytics-->
+
+</div>
+</div>
+</body>

@@ -1,0 +1,122 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link rel="stylesheet" href="/wp-content/themes/default/css/format.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/wp-content/themes/default/css/common.css" type="text/css" media="screen" />
+
+<link rel="stylesheet" href="/wp-content/themes/default/css/ress.css">
+<link rel="stylesheet" href="/wp-content/themes/default/css/base.css">
+<link rel="stylesheet" href="/wp-content/themes/default/css/contents.css">
+<link rel='stylesheet' id='wp-pagenavi-css' href='/css/intro.css' type='text/css' media='all' />
+
+<script src="/wp-content/themes/default/js/jquery-3.6.0.min.js"></script>
+<script src="/wp-content/themes/default/js/imageMapResizer.min.js"></script>
+<script src="/wp-content/themes/default/js/main.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42383364-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42383364-1');
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TK4JNG0SP8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TK4JNG0SP8');
+</script>
+</head>
+
+<body id="member">
+<div id="container">
+
+<div id="headerArea">
+<header>
+<script type="text/javascript">
+$(function(){
+	login_bar();
+});
+function login_bar() {
+	$.get('/member/login_bar', function(data) {
+//alert(data);
+		$("#log_bar").empty().append(data);
+	});
+}
+</script>
+
+
+	<div id="h_login">
+		<img src="/wp-content/themes/default/images/index_login_01.png" width="125" height="18" alt="会員専用ログイン">
+		<form action="/iis/login/" method="post">
+	<input type="hidden" name="Submit" value="1">
+	<input name="cmd" type="hidden" value="login">
+			<dl>
+				<dt>ログインID</dt>
+				<dd><input type="text" name="MailAddress" class="user" value=""></dd>
+			</dl>
+			<dl>
+				<dt>パスワード</dt>
+				<dd><input type="password" name="Password" class="pass"></dd>
+			</dl>
+			<div class="submit"><input type="image" src="/wp-content/themes/default/images/index_login_02.png" alt="送信する"></div>
+		</form>
+		<div class="forgot"><a href="/iis/login/?forget=1">※パスワードの変更・再発行はこちら</a></div>
+	</div>
+	<div id="h_sns">
+		<div class="tweet">
+			<a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-lang="ja">ツイートする</a> 
+			<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script> 
+		</div>
+		<div class="facebook">
+			<iframe src="https://www.facebook.com/widgets/like.php?href=/&layout=button_count" scrolling="no" frameborder="0" style="border:none; width:120px; height:21px;" allowtransparency="true"></iframe>
+		</div>
+	</div>
+	<div id="loginBtn">
+		<a href="/enter.html"><img src="/wp-content/themes/default/images/h_login.png" alt="お問い合わせ24時間受付中"></a>
+	</div>
+	
+	<div id="navBtn">
+	<div class="btnBody">
+		<span class="top"></span>
+		<span class="middle"></span>
+		<span class="bottom"></span>
+	</div>
+	</div>
+
+	<div id="menu">
+	<nav>
+		<ul id="nav_main">
+			<li><a href="/">トップページ</a></li>
+			<li><a href="/kric.html">KRICについて</a></li>
+			<li><a href="/activity.html">私たちの活動</a></li>
+			<li><a href="/member/">会員紹介</a></li>
+			<li><a href="/enter.html">入会をお考えの方</a></li>
+			<!--<li><a href="#">KRICラジオ</a></li>-->
+			<li><a href="/about.html">お問合せ運営団体</a></li>
+			<li><a href="/sitemap.html">サイトマップ</a></li>
+			<li><a href="/privacy.html">プライバシーポリシー</a></li>
+		</ul>
+	</nav>
+	<!--
+	<div id="menu_inq">
+		<p class="tel"><span>TEL</span> 06-6292-7791</p>
+		<p class="time">受付時間 9:10～16:00（土・日・祝日除く）</p>
+		<p><a href="/contact.html"><img src="/wp-content/themes/default/images/menu_mail.png" alt="お問い合わせ24時間受付中"></a></p>
+	</div>
+	-->
+	</div>
+
+	<div id="overlay"></div>
+
+</header>	
+<!-- /#headerArea --></div>
+
+<main>
+<div id="titleArea">
+	<h1><a href="/"><img src="/wp-content/themes/default/images/site_title1.png" alt="関西不動産情報センター、KRIC"></a></h1>
+	<p class="pride"><img src="/wp-content/themes/default/images/site_title2.png" alt="PRIDE OF MEMBERSHIP 競い合うことよりも、響き合うこと。それが、メンバーシップの誇り。"></p>
+</div>

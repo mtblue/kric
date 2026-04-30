@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja-JP" xml:lang="ja-JP">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta http-equiv="Cache-Control" content="no-store"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="/material/admin/css/style.css" />
+<title>システム管理</title>
+<script language="JavaScript">
+<!--
+	function delete_chk(id) {
+		res = confirm("削除してもよろしいですか？");
+		if (res == true) {
+			location.href="/<?php print(ROOT_TO_PATH); ?>/cmd=delete/id=" + id + "<?php print(isset($PARAM) == true ? '/'.$PARAM : ''); ?>";
+		} else {
+			return false;
+		}
+	}
+// -->
+</script>
+</head>
+
+<body>
+
+<!-- container -->
+<div id="container">
+
+<!-- head -->
+<div id="head">
+<h1>システム管理</h1>
+<div class="home"></div>
+</div>
+<!-- /head -->
+
+<!-- menu -->
+<?php include(dirname(__FILE__) . '/gmenw.ctp.html'); ?>
+<!-- /menu -->
+
+<!-- main -->
+<div id="main">
+
+<!-- content -->
+<div id="content">
+
+<div class="title">インフォメーション管理一覧</div>
+
+<div class="line"></div>
+
+<!--
+<div class="search_form">
+<form name="search_form" action="<?php print(HTTP_TO_SCRIPT_NAME); ?>" method="post">
+<input name="cmd" type="hidden" value="search">
+キーワード：<input type="text" name="keyword" id="keyword" value="<?php print(isset($tpl_disp['keyword']) == true ? $tpl_disp['keyword'] : ''); ?>" />
+<input name="" type="submit" value="検索" />
+</form>
+</div>
+-->
+
+<?php if (count($tpl_disp['main_list']) > 0) { ?>
+<div class="search_navi">
+<table>
+<tr>
+<td>
+全<span><?php print($tpl_disp['navi']['item_max_num']); ?></span>件中、<?php print($tpl_disp['navi']['startnum']); ?>～<?php print($tpl_disp['navi']['endnum']); ?>件を表示　表示件数：<?php print($tpl_disp['navi']['dispnum']); ?>件
+<?php if ($tpl_disp['navi']['direct_navi'] != '') { ?>
+<ul>
+<?php print($tpl_disp['navi']['navigator_before']); ?>　<?php print($tpl_disp['navi']['direct_navi_first']); ?><?php print($tpl_disp['navi']['direct_navi']); ?><?php print($tpl_disp['navi']['direct_navi_last']); ?>　<?php print($tpl_disp['navi']['navigator_next']); ?>
+</ul>
+<?php } ?>
+</td>
+</tr>
+</table>
+</div>
+<?php } ?>
+
+<div class="list">
+<table>
+
+<tr>
+<td colspan="5" class="delac" style="text-align:right;"><a href="/<?php print(APP_NAME); ?>/information_edit/">新規登録</a>&nbsp;</td>
+</tr>
+
+<tr>
+<th>インフォメーション管理ＩＤ</th>
+<th>日時</th>
+<th>タイトル</th>
+<th>編集</th>
+<th>削除</th>
+</tr>
+
+<?php if (count($tpl_disp['main_list']) > 0) { ?>
+<?php foreach($tpl_disp['main_list'] AS $inc => $row) { ?>
+
+<tr>
+<td><?php print($row['information_id']); ?></td>
+<td><?php print($row['info_date']); ?></td>
+<td><?php print($row['title']); ?></td>
+<td><a href="/<?php print(APP_NAME); ?>/information_edit/id=<?php print($row['information_id']); ?>">編集</a></td>
+<td><a href="JavaScript:void(0);" onclick="return delete_chk(<?php print($row['information_id']); ?>)">削除</a></td>
+</tr>
+
+<?php } } else { ?>
+
+<tr>
+<td colspan="5">情報は登録されていません。</td>
+</tr>
+
+<?php } ?>
+
+</table>
+</div>
+
+</div>
+<!-- /content -->
+
+</div>
+<!-- /main -->
+
+<!-- footer -->
+<div id="footer">
+</div>
+<!-- /footer -->
+
+</div>
+<!-- /container -->
+
+</body>
+</html>

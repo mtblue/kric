@@ -1,0 +1,126 @@
+<body>
+<div id="wrapper">
+<?php print($this->element('admin/header')); ?>
+<!-- /wrapper --></div>
+<div id="contents">
+<ul id="ttl">
+  <li class="h2b"><img src="/material/admin/images/common/icon_infomation.gif" width="43" height="37" alt="アイコン">&nbsp; 会社管理</li>
+  <li class="signup"><a href="JavaScript:vold(0);" onclick="JavaScript:location.href='<?php print(isset($tpl_disp['back_url']) == true ? $tpl_disp['back_url'] : ''); ?>'"><img src="/material/admin/images/company/btn_list.gif" width="126" height="25" alt="一覧に戻る"></a></li>
+ </ul>
+
+ <p class="clear"></p>
+ <div id="company">
+ 
+ <form action="<?php print(HTTP_TO_SCRIPT_NAME); ?>" method="post" name="form" id="form" enctype="multipart/form-data">
+<input name="cmd" type="hidden" id="cmd" value="registration" />
+<input name="id" type="hidden" id="id" value="<?php print(isset($tpl_disp['org_info']['company_id']) == true ? $tpl_disp['org_info']['company_id'] : ''); ?>" />
+
+<div class="error_box">
+<?php foreach($tpl_errDoc AS $val) { print($val.'<br />'); } ?>
+</div>
+
+<table>
+ <!--<tr><th>会員会社管理ID</th><td><?php print(isset($tpl_disp['org_info']['company_id']) == true ? $tpl_disp['org_info']['company_id'] : ''); ?></td></tr>-->
+ <tr><th>社名 <span class="red">(*)</span></th><td><input type="text" name="company_name" size="40" value="<?php print(isset($tpl_disp['company_name']) == true ? $tpl_disp['company_name'] : ''); ?>"></td></tr>
+ <tr><th>社名カナ <span class="red">(*)</span></th><td><input type="text" name="company_kana" size="40" value="<?php print(isset($tpl_disp['company_kana']) == true ? $tpl_disp['company_kana'] : ''); ?>"></td></tr>
+ <tr><th>代表者 <span class="red">(*)</span></th><td><input type="text" name="daihyousha" size="40" value="<?php print(isset($tpl_disp['daihyousha']) == true ? $tpl_disp['daihyousha'] : ''); ?>"></td></tr>
+ <tr><th>免許 <span class="red">(*)</span></th><td><input type="text" name="menkyo" size="40" value="<?php print(isset($tpl_disp['menkyo']) == true ? $tpl_disp['menkyo'] : ''); ?>"></td></tr>
+ <tr><th>郵便番号 <span class="red">(*)</span></th><td><input type="text" name="zip" size="40" value="<?php print(isset($tpl_disp['zip']) == true ? $tpl_disp['zip'] : ''); ?>"></td></tr>
+ <tr><th>都道府県 <span class="red">(*)</span></th><td>
+ <select name="ken" size="1" />
+<option value=""></option>
+<?php
+foreach($tpl_disp['master_120'] AS $key => $val) {
+	$selected = '';
+	if (isset($tpl_disp['ken']) == true && $tpl_disp['ken'] == $key) {
+		$selected = 'selected="selected"';
+	}
+?>
+<option value="<?php print($key); ?>" <?php print($selected); ?>><?php print($val); ?></option>
+<?php
+} // foreach end
+?>
+</select>
+</td></tr>
+ <tr><th>住所 <span class="red">(*)</span></th><td><input type="text" name="address" size="40" value="<?php print(isset($tpl_disp['address']) == true ? $tpl_disp['address'] : ''); ?>"></td></tr>
+ <tr><th>交通</th><td><input type="text" name="koutsu" size="40" value="<?php print(isset($tpl_disp['koutsu']) == true ? $tpl_disp['koutsu'] : ''); ?>"></td></tr>
+ <tr><th>所属エリア <span class="red">(*)</span></th><td colspan="2">
+<select name="shozoku" size="1" />
+<option value=""></option>
+<?php
+foreach($tpl_disp['master_121'] AS $key => $val) {
+	$selected = '';
+	if (isset($tpl_disp['shozoku']) == true && $tpl_disp['shozoku'] == $key) {
+		$selected = 'selected="selected"';
+	}
+?>
+<option value="<?php print($key); ?>" <?php print($selected); ?>><?php print($val); ?></option>
+<?php
+} // foreach end
+?>
+</select>
+</td></tr>
+ <tr><th>電話番号 <span class="red">(*)</span></th><td><input type="text" name="tel" size="40" value="<?php print(isset($tpl_disp['tel']) == true ? $tpl_disp['tel'] : ''); ?>"></td></tr>
+ <tr><th>FAX番号 <span class="red">(*)</span></th><td><input type="text" name="fax" size="40" value="<?php print(isset($tpl_disp['fax']) == true ? $tpl_disp['fax'] : ''); ?>"></td></tr>
+ <tr><th>URL</th><td><input type="text" name="url" size="40" value="<?php print(isset($tpl_disp['url']) == true ? $tpl_disp['url'] : ''); ?>"></td></tr>
+ <tr><th>メールアドレス</th><td><input type="text" name="email" size="40" value="<?php print(isset($tpl_disp['email']) == true ? $tpl_disp['email'] : ''); ?>"></td></tr>
+ <tr><th>事業内容 <span class="red">(*)</span></th><td><textarea cols="45" rows="2" name="jigyounaiyou"><?php print(isset($tpl_disp['jigyounaiyou']) == true ? $tpl_disp['jigyounaiyou'] : ''); ?></textarea></td></tr>
+ <tr><th>加盟団体 <span class="red">(*)</span></th><td><textarea cols="45" rows="2" name="kameidantai"><?php print(isset($tpl_disp['kameidantai']) == true ? $tpl_disp['kameidantai'] : ''); ?></textarea></td></tr>
+ <tr><th>沿革</th><td><textarea cols="45" rows="2" name="enkaku"><?php print(isset($tpl_disp['enkaku']) == true ? $tpl_disp['enkaku'] : ''); ?></textarea></td></tr>
+ <tr><th>紹介文 <span class="red">(*)</span></th><td><textarea cols="45" rows="2" name="shoukaibun"><?php print(isset($tpl_disp['shoukaibun']) == true ? $tpl_disp['shoukaibun'] : ''); ?></textarea></td></tr>
+ <tr><th>業種 <span class="red">(*)</span></th><td>
+<?php
+foreach($tpl_disp['master_122'] AS $key => $val) {
+	$chekced = '';
+	if (isset($tpl_disp['gyoushu']) == true && is_array($tpl_disp['gyoushu']) == true && in_array($key, $tpl_disp['gyoushu']) == true) {
+		$chekced = 'checked';
+	}
+?>
+<input name="gyoushu[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /><?php print($val); ?><br />
+<?php
+} // foreach end
+?>
+</td></tr>
+<tr><th>アクセスマップ</th><td colspan="2">
+&nbsp;&nbsp;<?php
+foreach($tpl_disp['master_123'] AS $key => $val) {
+	$chekced = '';
+	if (isset($tpl_disp['map_flg']) == true && $tpl_disp['map_flg'] == $key) {
+		$chekced = 'checked';
+	}
+?>
+<input name="map_flg" type="radio" value="<?php print($key); ?>" <?php print($chekced); ?> /><?php print($val); ?>&nbsp;&nbsp;
+<?php
+} // foreach end
+?>
+</td></tr>
+<tr><th>googleマップ</th><td colspan="2"><input type="text" name="google_map" size="50" value="<?php print(isset($tpl_disp['google_map']) == true ? $tpl_disp['google_map'] : ''); ?>"> <a href="/material/map-info.jpg" class="thickbox">Googleマップのアドレスについて</a></td></tr>
+<tr><th>アップロード画像</th><td colspan="2">
+<input name="upload_map" type="file" size="50" />
+<?php if (isset($tpl_disp['org_info']['upload_map']) == true && $tpl_disp['org_info']['upload_map'] != '') { ?>
+<br /><img src="/<?php print(APP_NAME); ?>/file/na=<?php print(isset($tpl_disp['org_info']['upload_map']) == true ? $tpl_disp['org_info']['upload_map'] : ''); ?>" width="100" />
+<br /><input name="upload_map_delete" type="checkbox" value="checked" />削除
+<?php } ?>
+</td></tr>
+<tr><td colspan="2" align="center"><img src="/material/admin/images/company/btn_preview.gif" width="126" height="25" alt="プレビュー" onclick="preview();">&nbsp;&nbsp;<input type="image" src="/material/admin/images/company/btn_entry.gif" width="126" height="25" alt="登録"></td></tr>
+</table>
+</form>
+<script language="JavaScript">
+$(function(){
+});
+function preview() {
+	$('#form').attr('target', '_blank');
+	$('#form').attr('action', '/admin/company_view');
+	$('#form').submit();
+	$('#form').attr('target', '');
+	$('#form').attr('action', '/admin/company_edit');
+}
+</script>
+
+<link type="text/css" rel="stylesheet" href="/material/thickbox/thickbox.css" />
+<script type="text/javascript" src="/material/thickbox/thickbox.js"></script>
+
+</div>
+<!-- /contents --></div>
+<?php print($this->element('admin/footer')); ?>
+</body>

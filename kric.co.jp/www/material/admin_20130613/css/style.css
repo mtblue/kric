@@ -1,0 +1,240 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+/* default --------------------------------*/
+body,
+h1,h2,h3,h4,h5,h6,p,
+ul,ol,li,dl,dt,dd,
+form,fieldset,legend,pre,blockquote,button {
+	margin:0px;
+	padding:0px;
+}
+
+table { border-collapse: collapse; }
+
+ul,li { list-style:none; }
+
+img {
+	margin:0px;
+	padding:0px;
+	border:0px;
+	vertical-align:bottom;
+}
+
+th { font-weight:normal; }
+
+body{
+	height:100%;
+	background-color:#FFFFFF;
+	margin:0px 0px 0px 0px;
+	padding:0px 0px 0px 0px;
+	text-align:center;
+	font-family: "メイリオ", "Meiryo", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ　Pro　W3", "ＭＳ Ｐゴシック", arial, helvetica, clean, sans-serif;
+}
+html{
+	height:100%;
+}
+#container{
+	width:100%;
+	background-color: #E0FFC2;
+	text-align: left;
+}
+
+/* std ---------------------------------------*/
+.p8 {
+	font-size: 8px;
+}
+.p10 {
+	font-size: 10px;
+}
+.p12 {
+	font-size: 12px;
+}
+.p14 {
+	font-size: 14px;
+}
+#head,#menu,#main,td,th{
+	font-size:12px;
+	line-height:16px;
+}
+h3{
+	margin:0px 0px 10px 0px;
+	padding:0px 0px 0px 0px;
+	font-size:14px;
+}
+
+.error_box {
+	color:#FF0000;
+	margin: 10px;
+}
+
+/* head --------------------------------------*/
+#head{
+	width:100%;
+	height:49px;
+	margin:0px;
+	padding:0px;
+	background:url(../images/head_bg.gif);
+}
+h1{
+	margin:0px 0px 0px 10px;
+	padding:20px 0px 0px 0px;
+	font-size:16px;
+	color:#48483F;
+	float:left;
+}
+.home{
+	float:right;
+	margin:0px 10px 0px 0px;
+	padding:30px 0px 0px 0px;
+}
+#head a{
+	color:#009900;
+}
+#head a:hover{
+	background-color:#009900;
+	color:#FFFFFF;
+}
+
+/* menu --------------------------------------*/
+#menu{
+	margin:0px;
+	padding:0px;
+	width:100%;
+	background-color: #71D86D;
+}
+#menu ul{
+	list-style:none;
+	margin:0px;
+	padding:5px 0px;
+}
+#menu li{
+	display:block;
+	float:left;
+	background-repeat:no-repeat;
+	background-position:100% 0%;
+	padding:0px 5px 0px 5px;
+	margin:0px 0px 0px 0px;
+}
+#menu a{
+	color:#FFFFFF;
+	text-decoration:none;
+	padding: 0 10px 0 0;
+	border-right: 1px solid #CCCCCC;
+}
+#menu a:hover{
+	text-decoration:none;
+	color: #FF8000;
+}
+
+/* main --------------------------------------*/
+#main{
+	width:100%;
+	margin:0px;
+	padding:0px;
+	height: 100%;
+}
+#main a{
+	color:#009900;
+}
+#main a:hover{
+	background-color:#009900;
+	color:#FFFFFF;
+}
+
+/* content -----------------------------------*/
+#content {
+	margin:10px;
+}
+
+/* footer ------------------------------------*/
+#footer {
+	clear:both;
+	color:#000000;
+	font-size:12px;
+	margin:10px 0 0 0;
+	padding:0;
+	text-align:center;
+	width:100%;
+	height:20px;
+}
+
+/* login --------------------------------*/
+.login_box {
+	margin: 20px;
+	width:100%;
+	text-align:center;
+}
+.login_box table {
+	margin-right:auto;
+	margin-left:auto;
+}
+.login_box table,
+.login_box td,
+.login_box th {
+	border:1px solid #C0C0C0;
+	border-collapse:collapse;
+	padding:3px 10px 3px 10px;
+}
+.login_box th {
+	text-align:left;
+	background-color:#DDDDDD;
+}
+.login_button {
+	margin: 20px 0 0 0;
+}
+
+/* search_navi --------------------------------*/
+.search_navi {
+	padding:3px;
+}
+.search_navi ul{
+	width: 100%;
+	margin: 0;
+	padding: 5px 0 5px 0;
+	list-style-type: none;
+}
+.search_navi li{
+	display: inline;
+	padding: 3px;
+}
+
+/* list --------------------------------*/
+.list table,
+.list td,
+.list th {
+	border-collapse:collapse;
+	padding:3px 10px 3px 10px;
+}
+.list th {
+	border:1px solid #C0C0C0;
+	text-align:left;
+	background-color:#DDDDDD;
+}
+.list td {
+	border:1px solid #C0C0C0;
+	text-align:left;
+}
+.list .delac {
+	border:1px solid #E0FFC2;
+}
+
+/* edit_box --------------------------------*/
+.edit_box .text {
+	width:300px;
+}
+.edit_box table,
+.edit_box th,
+.edit_box td {
+	border:1px solid #C0C0C0;
+	border-collapse:collapse;
+	padding:3px 10px 3px 10px;
+}
+.edit_box th {
+	width:120px;
+	text-align:left;
+	background-color:#DDDDDD;
+}
+.edit_box td {
+	text-align:left;
+}

@@ -1,0 +1,131 @@
+<body id="top">
+<a id="top" name="top"></a>
+
+<div id="wrap">
+<div id="anime_wrap">
+
+<!--==================================ここからヘッダー=========================================-->
+<?php print($this->element('iis/header')); ?>
+<!--==================================▲ここまでヘッダー=========================================--> 
+
+
+
+<!--==================================▼ここからぱんくずとSNSボタン=========================================-->
+
+<div class="pankuzu_wrap">
+  <div class="pan_sns">
+    <div class="pankuzu"> <img src="/wp-content/themes/default/images/index_img_05.png" width="12" height="12" alt="" class="img_float" /><h1><!-- Breadcrumb NavXT 3.5.1 --><a href="/">関西不動産情報センター TOP</a>＞IISトップ</h1></div>
+  </div>
+</div>
+<!--==================================▲ここまでぱんくずとsnsボタン=========================================-->
+<!--==================================▼ここからコンテンツ=========================================-->
+<div class="cont_wrap">
+<div class="cont_box">
+
+<?php
+	if(isset($_COOKIE["KRIC_IIS_Cookie"]) == true) {
+		$tpl_disp['id'] = $_COOKIE["KRIC_IIS_Cookie"];
+	}
+?>
+
+<div id="contents">
+    <div id="bd">
+	    <span><img src="/images/iis/bd_icon.png" /></span>
+	    <h2>IIS ログイン</h2>
+    </div>
+<div id="detail04">
+<form name="form" action="<?php print(HTTP_TO_SCRIPT_NAME); ?>" method="post">
+<input name="cmd" type="hidden" value="login">
+<input name="session" type="hidden" value="<?php print(isset($tpl_disp['session']) == true ? $tpl_disp['session'] : ''); ?>" />
+<?php //print $tpl_disp['id']; ?>
+<!-- container -->
+<div id="container">
+
+<!-- head -->
+<div id="head">
+</div>
+<!-- /head -->
+
+<!-- main -->
+<div id="main">
+
+<!-- content -->
+<div id="content">
+
+<div class="login_box">
+
+<div class="tab">
+	<div class="tabArea">
+
+<div style="margin:0 0 0 30px;">
+
+<div class="title">会員 ログイン</div>
+<div class="explain">IDとパスワードを入力してください。</div>
+<br>
+
+<div id="information">
+<div class="error_box">
+<?php foreach($tpl_errDoc AS $val) { print($val.'<br />'); } ?>
+</div>
+
+<table class="login_table" border="0" cellspacing="0" cellpadding="0">
+<tr><td colspan="2"></td></tr>
+<tr>
+<th style="width:100px; text-align:left; padding-right:10px;">ログインID</th>
+<td><input name="id" type="text" id="id" class="box" size="25" value="<?php print(isset($tpl_disp['id']) == true ? $tpl_disp['id'] : ''); ?>" style="width:250px; height:20px; padding:5px;" /></td>
+</tr>
+<tr>
+<th style="width:100px; text-align:left; padding-right:10px;">パスワード</th>
+<td><input name="pass" type="password" id="pass" class="box" size="26" value="<?php print(isset($tpl_disp['pass']) == true ? $tpl_disp['pass'] : ''); ?>" style="width:250px; height:20px; padding:5px;" /></td>
+</tr>
+<tr><th></th><td><br /><input type="submit" class="login_button" name="login" value="ログイン" style="padding:5px 20px;" /></td></tr>
+</table>
+<br>
+<br>
+<a href="/<?php print(APP_NAME); ?>/reminder">※パスワードの変更・再発行はこちら</a>
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+
+</div>
+<!-- /login_box -->
+
+</div>
+<!-- /content -->
+
+</div>
+<!-- /main -->
+
+<!-- footer -->
+<div id="footer">
+</div>
+<!-- /footer -->
+
+</div>
+<!-- /container -->
+
+</div><!-- /detail04 -->
+</form>
+
+</div>
+<!-- /contents -->
+
+</div>
+<!--cont_box--> 
+
+<!--==================▲ここまでコンテンツ=======================-->
+<!--==================▼ここからフッター=======================-->
+<?php print($this->element('iis/footer')); ?>
+<!--==================▲ここまでフッター=======================-->
+
+</div><!-- /cont_wrap -->
+<!--Google Analytics-->
+
+</div>
+</div>
+</body>

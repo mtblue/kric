@@ -1,0 +1,81 @@
+
+<link rel="stylesheet" href="/wp-content/themes/default/css/format.css" type="text/css" media="screen" />
+<!--<link rel="stylesheet" href="/wp-content/themes/default/css/common.css" type="text/css" media="screen" />-->
+<link rel="alternate" type="application/rss+xml" title="関西不動産情報センター／KRIC（クリック） RSS Feed" href="/feed" />
+<link rel="pingback" href="/xmlrpc.php" />
+<link rel="alternate" type="application/rss+xml" title="関西不動産情報センター／KRIC（クリック） &raquo; 会員紹介 のコメントのフィード" href="/member.html/feed" />
+<link rel='stylesheet' id='iqfmcss-css' href='/wp-content/plugins/inquiry-form-creator/css/inquiry-form.css?ver=0.7' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-pagenavi-css' href='/wp-content/plugins/wp-pagenavi/pagenavi-css.css?ver=2.70' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-pagenavi-css' href='/css/intro.css' type='text/css' media='all' />
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery.js?ver=1.4.2'></script>
+<script type='text/javascript' src='/wp-content/plugins/inquiry-form-creator/js/ajaxzip2/ajaxzip2.js?ver=2.10'></script>
+<script type='text/javascript' src='/wp-content/plugins/inquiry-form-creator/js/jquery.upload.js?ver=1.0.2'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
+<link rel='index' title='関西不動産情報センター／KRIC（クリック）' href='https://www.kric.co.jp/' />
+<link rel='prev' title='KRICがあなたにできること' href='/service.html' />
+<link rel='next' title='入会をお考えの方' href='/enter.html' />
+<!-- All in One SEO Pack 1.6.13.2 by Michael Torbert of Semper Fi Web Design[434,520] -->
+<meta name="Keywords" content="会員名簿,KRIC,関西,不動産" />
+<meta name="Description" content="関西不動産情報センター（KRIC）の会員一覧です。" />
+<link rel="canonical" href="/member.html" />
+<!-- /all in one seo pack -->
+<script type="text/javascript">AjaxZip2.JSONDATA = "/wp-content/plugins/inquiry-form-creator/js/ajaxzip2/data";</script><script type="text/javascript" src="/wp-content/themes/default/js/jquery.js"></script>
+<script type="text/javascript" src="/wp-content/themes/default/js/smoothscroll.js"></script>
+<script type="text/javascript" src="/wp-content/themes/default/js/heightLine.js"></script>
+<script type="text/javascript" src="/wp-content/themes/default/js/jquery.cross-slide.js"></script>
+<script type="text/javascript" src="/wp-content/themes/default/js/jquery.cycle.js"></script>
+<script type="text/javascript" src="/wp-content/themes/default/js/current.js"></script>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"> {lang: 'en'} </script>
+<script type="text/javascript" src="/Scripts/AC_RunActiveContent.js"></script>
+<script type="text/javascript" src="/wp-content/themes/default/js/ibox.js"></script>
+<script type="text/javascript">
+iBox.padding = 100;
+iBox.default_width = 750;
+iBox.default_height = 500;
+iBox.inherit_frames = true;
+</script>
+
+
+<link rel="stylesheet" href="/wp-content/themes/default/css/common.css" type="text/css" media="screen" />
+</head>
+<body>
+<script type="text/javascript">
+$(function(){
+	login_bar();
+});
+function login_bar() {
+	$.get('/member/login_bar', function(data) {
+//alert(data);
+		$("#log_bar").empty().append(data);
+	});
+}
+</script>
+<div class="header_all">
+	<div class="header_login">
+		<div class="header_login_inner" id="log_bar">
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="main_img_inner">
+		<div class="logo"><a href="/"><img src="/wp-content/themes/default/images/index_img_01.png" alt="関西不動産情報センター、KRIC" /></a></div>
+		<img src="/wp-content/themes/default/images/index_img_02.png" width="342" height="92" alt="競い合うことよりも、響き合うこと。それが、メンバーシップの誇り。" class="header_cap" /><img src="/wp-content/themes/default/images/index_img_03.png" width="230" height="85" alt="お問合せ24時間受付中" class="header_tel" usemap="#Map3" border="0" />
+		<map name="Map3" id="Map3">
+			<area shape="rect" coords="0,50,230,85" href="/contact.html" />
+		</map>
+		<img src="/wp-content/themes/default/images/index_img_04.png" width="159" height="154" alt="" class="header_woman"/> </div>
+	</div>
+	<div class="menubox">
+		<div class="mod_Gnavi">
+			<ul class="ex_clearfix">
+				<li><a class="top" href="/"><img src="/wp-content/themes/default/images/index_menu_01.jpg" width="97" height="96" alt="Menu01" /></a></li>
+				<li><a class="kric" href="/kric.html"><img src="/wp-content/themes/default/images/index_menu_02.jpg" width="159" height="96" alt="Menu02" /></a></li>
+				<li><a class="activity" href="/activity.html"><img src="/wp-content/themes/default/images/index_menu_03.jpg" width="151" height="96" alt="Menu03" /></a></li>
+				<li><a class="service" href="/service.html"><img src="/wp-content/themes/default/images/index_menu_04.jpg" width="247" height="96" alt="Menu04" /></a></li>
+				<li><a class="member" href="/member/"><img src="/wp-content/themes/default/images/index_menu_05.jpg" width="123" height="96" alt="Menu05" /></a></li>
+				<li><a class="enter" href="/enter.html"><img src="/wp-content/themes/default/images/index_menu_06.jpg" width="183" height="96" alt="Menu06" /></a></li>
+			</ul>
+		</div><!--mod_Gnavi_end -->
+	</div>
+</div>
+

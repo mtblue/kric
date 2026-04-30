@@ -1,0 +1,345 @@
+<body>
+<div id="wrapper">
+<?php print($this->element('admin/header')); ?>
+<!-- /wrapper --></div>
+<div id="contents">
+<ul id="ttl">
+  <li class="h2a"><img src="/material/admin/images/common/icon_infomation.gif" width="43" height="37" alt="アイコン">&nbsp;会社管理&nbsp;メンバー登録</li>
+  <li class="list02"><a href="/<?php print(APP_NAME); ?>/member/cid=<?php print(isset($tpl_form['cid']) == true ? $tpl_form['cid'] : ''); ?>"><img src="/material/admin/images/company/btn_list.gif" width="126" height="25" alt="一覧に戻る"></a></li>
+ </ul>
+ <p class="clear"></p>
+
+
+
+
+<?php if($tpl_form['cmd'] == ''):
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------*/
+?>
+
+<form action="<?php print(HTTP_TO_SCRIPT_NAME); ?>" method="post" name="form" id="form">
+<input name="cmd" type="hidden" id="cmd" value="confirm" />
+<input name="id" type="hidden" id="id" value="<?php print(isset($tpl_disp['org_info']['member_id']) == true ? $tpl_disp['org_info']['member_id'] : ''); ?>" />
+<input name="cid" type="hidden" id="cid" value="<?php print(isset($tpl_form['cid']) == true ? $tpl_form['cid'] : ''); ?>" />
+<input name="company_name" type="hidden" id="cid" value="<?php print(isset($tpl_disp['org_info']['company_name']) == true ? $tpl_disp['org_info']['company_name'] : ''); ?>" />
+
+<div class="error_box">
+<?php foreach($tpl_errDoc AS $val) { print($val.'<br />'); } ?>
+</div>
+
+ <table>
+ <tr><th colspan="3"><?php print(isset($tpl_disp['org_info']['company_name']) == true ? $tpl_disp['org_info']['company_name'] : ''); ?></th></tr>
+ <tr>
+   <td>ログインID</td>
+   <td colspan="2">
+<?php if(isset($tpl_disp['org_info']['member_id']) == true): ?>
+      <input type="text" name="login_id" size="40" value="<?php print(isset($tpl_disp['login_id']) == true ? $tpl_disp['login_id'] : ''); ?>">
+<?php else: ?>
+      (自動生成)
+<?php endif; ?>
+ </td>
+ </tr>
+ <tr><td>パスワード</td>
+   <td colspan="2">
+<?php if(isset($tpl_disp['org_info']['member_id']) == true): ?>
+     <input type="password" name="pass" size="40" value="<?php print(isset($tpl_disp['pass']) == true ? $tpl_disp['pass'] : ''); ?>">
+<?php else: ?>
+      (自動生成)
+<?php endif; ?>
+   </td>
+ </tr>
+      <tr>
+      	<td>権限</td>
+      	<td colspan="2">
+<select name="authority_id" size="1" />
+<?php
+foreach($tpl_disp['master_140'] AS $key => $val) {
+	$selected = '';
+	if(isset($tpl_disp['authority_id']) == false && $key == 1){
+		$selected = 'selected="selected"';
+	}else{
+		if (isset($tpl_disp['authority_id']) == true && $tpl_disp['authority_id'] == $key) {
+			$selected = 'selected="selected"';
+		}
+	}
+?>
+<option value="<?php print($key); ?>" <?php print($selected); ?>><?php print($val); ?></option>
+<?php
+} // foreach end
+?>
+</select>
+		</td>
+      	</tr>
+ <tr><td>名前</td><td colspan="2"><input type="text" name="name" size="40" value="<?php print(isset($tpl_disp['name']) == true ? $tpl_disp['name'] : ''); ?>"></td></tr>
+ <tr><td>名前カナ</td><td colspan="2"><input type="text" name="kana" size="40" value="<?php print(isset($tpl_disp['kana']) == true ? $tpl_disp['kana'] : ''); ?>"></td></tr>
+ <tr><td>携帯電話1</td><td><input type="text" name="keitai1" size="40" value="<?php print(isset($tpl_disp['keitai1']) == true ? $tpl_disp['keitai1'] : ''); ?>"></td><td>キャリア<select name="kyaria1" size="1" />
+<option value=""></option>
+<?php
+foreach($tpl_disp['master_141'] AS $key => $val) {
+	$selected = '';
+	if (isset($tpl_disp['kyaria1']) == true && $tpl_disp['kyaria1'] == $key) {
+		$selected = 'selected="selected"';
+	}
+?>
+<option value="<?php print($key); ?>" <?php print($selected); ?>><?php print($val); ?></option>
+<?php
+} // foreach end
+?>
+</select>
+
+</td></tr>
+   <td>携帯電話2</td><td><input type="text" name="keitai2" size="40" value="<?php print(isset($tpl_disp['keitai2']) == true ? $tpl_disp['keitai2'] : ''); ?>"></td><td>キャリア<select name="kyaria2" size="1" />
+<option value=""></option>
+<?php
+foreach($tpl_disp['master_142'] AS $key => $val) {
+	$selected = '';
+	if (isset($tpl_disp['kyaria2']) == true && $tpl_disp['kyaria2'] == $key) {
+		$selected = 'selected="selected"';
+	}
+?>
+<option value="<?php print($key); ?>" <?php print($selected); ?>><?php print($val); ?></option>
+<?php
+} // foreach end
+?>
+</select>
+
+</td></tr>
+   <tr><td>メールアドレス1</td><td colspan="2"><input type="text" name="email1" size="60" value="<?php print(isset($tpl_disp['email1']) == true ? $tpl_disp['email1'] : ''); ?>"></td></tr>
+    <tr><td class="notice">通知設定</td><td colspan="2">
+    <table class="news">
+<?php
+foreach($tpl_disp['master_143'] AS $key => $val) {
+	$chekced = '';
+	if (isset($tpl_disp['tsuchi1']) == true && is_array($tpl_disp['tsuchi1']) == true && in_array($key, $tpl_disp['tsuchi1']) == true) {
+		$chekced = 'checked';
+	}
+	if ($key == '1') {
+?>
+    	<tr class="news2"><td class="news3"><?php print($val); ?></td><td></td><td><input name="tsuchi1[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /></td></tr>
+<?php } elseif ($key == '2') { ?>
+       	<tr class="news4"><td rowspan="4">ビジネスダイレクト</td><td><?php print($val); ?></td><td><input name="tsuchi1[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /></td></tr>
+<?php } elseif ($key == '3') { ?>
+        <tr class="news4"><td class="sale02"><?php print($val); ?></td><td><input name="tsuchi1[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /></td></tr>
+<?php } elseif ($key == '4') { ?>
+        <tr class="news4"><td class="sale02"><?php print($val); ?></td><td><input name="tsuchi1[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /></td></tr>
+<?php } elseif ($key == '5') { ?>
+        <tr class="news4"><td class="sale02"><?php print($val); ?></td><td><input name="tsuchi1[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /></td></tr>
+<?php
+	}
+} // foreach end
+?>
+    </table>
+	</td></tr>    
+    <tr><td>メールアドレス2</td><td colspan="2"><input type="text" name="email2" size="60" value="<?php print(isset($tpl_disp['email2']) == true ? $tpl_disp['email2'] : ''); ?>"></td></tr>
+    <tr><td class="notice">通知設定</td><td colspan="2">
+	<table class="news">
+<?php
+foreach($tpl_disp['master_144'] AS $key => $val) {
+	$chekced = '';
+	if (isset($tpl_disp['tsuchi2']) == true && is_array($tpl_disp['tsuchi2']) == true && in_array($key, $tpl_disp['tsuchi2']) == true) {
+		$chekced = 'checked';
+	}
+	if ($key == '1') {
+?>
+    	<tr class="news2"><td class="news3"><?php print($val); ?></td><td></td><td><input name="tsuchi2[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /></td></tr>
+<?php } elseif ($key == '2') { ?>
+       	<tr class="news4"><td rowspan="4">ビジネスダイレクト</td><td><?php print($val); ?></td><td><input name="tsuchi2[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /></td></tr>
+<?php } elseif ($key == '3') { ?>
+        <tr class="news4"><td class="sale02"><?php print($val); ?></td><td><input name="tsuchi2[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /></td></tr>
+<?php } elseif ($key == '4') { ?>
+        <tr class="news4"><td class="sale02"><?php print($val); ?></td><td><input name="tsuchi2[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /></td></tr>
+<?php } elseif ($key == '5') { ?>
+        <tr class="news4"><td class="sale02"><?php print($val); ?></td><td><input name="tsuchi2[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /></td></tr>
+<?php
+	}
+} // foreach end
+?>
+    </table>
+	</td></tr>
+    <tr><td>メールアドレス3</td><td colspan="2"><input type="text" name="email3" size="60" value="<?php print(isset($tpl_disp['email3']) == true ? $tpl_disp['email3'] : ''); ?>"></td></tr>
+    <tr><td class="notice">通知設定</td><td colspan="2">
+	<table class="news">
+<?php
+foreach($tpl_disp['master_145'] AS $key => $val) {
+	$chekced = '';
+	if (isset($tpl_disp['tsuchi3']) == true && is_array($tpl_disp['tsuchi3']) == true && in_array($key, $tpl_disp['tsuchi3']) == true) {
+		$chekced = 'checked';
+	}
+	if ($key == '1') {
+?>
+    	<tr class="news2"><td class="news3"><?php print($val); ?></td><td></td><td><input name="tsuchi3[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /></td></tr>
+<?php } elseif ($key == '2') { ?>
+       	<tr class="news4"><td rowspan="4">ビジネスダイレクト</td><td><?php print($val); ?></td><td><input name="tsuchi3[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /></td></tr>
+<?php } elseif ($key == '3') { ?>
+        <tr class="news4"><td class="sale02"><?php print($val); ?></td><td><input name="tsuchi3[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /></td></tr>
+<?php } elseif ($key == '4') { ?>
+        <tr class="news4"><td class="sale02"><?php print($val); ?></td><td><input name="tsuchi3[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /></td></tr>
+<?php } elseif ($key == '5') { ?>
+        <tr class="news4"><td class="sale02"><?php print($val); ?></td><td><input name="tsuchi3[]" type="checkbox" value="<?php print($key); ?>" <?php print($chekced); ?> /></td></tr>
+<?php
+	}
+} // foreach end
+?>
+    </table>
+	</td></tr>
+      <td colspan="3" align="center">
+      <a href="/<?php print(APP_NAME); ?>/member/cid=<?php print(isset($tpl_form['cid']) == true ? $tpl_form['cid'] : ''); ?>"><img src="/material/admin/images/company/btn_list.gif" width="126" height="25" alt="一覧に戻る"></a>
+      <input type="image" src="/material/admin/images/company/btn_check.gif" width="126" height="25" alt="確認画面">
+      </td>
+      </tr>
+	</table>
+</form>
+
+
+<?php elseif ($tpl_form['cmd'] == 'confirm'):
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------*/
+?>
+
+<form action="<?php print(HTTP_TO_SCRIPT_NAME); ?>" method="post" name="form" id="form">
+<input name="cmd" type="hidden" id="cmd" value="registration" />
+<input name="id" type="hidden" id="id" value="<?php print(isset($tpl_disp['org_info']['member_id']) == true ? $tpl_disp['org_info']['member_id'] : ''); ?>" />
+<input name="cid" type="hidden" value="<?php print(isset($tpl_form['cid']) == true ? $tpl_form['cid'] : ''); ?>" />
+
+<div class="error_box">
+<?php foreach($tpl_errDoc AS $val) { print($val.'<br />'); } ?>
+</div>
+ <table>
+ <tr><th colspan="3"><?php print_r($_POST['company_name']); ?></th></tr>
+ <tr>
+   <td>ログインID</td>
+   <td colspan="2">
+   <input type="hidden" name="login_id" value="<?php print(isset($tpl_disp['login_id']) == true ? $tpl_disp['login_id'] : ''); ?>">
+   <?php print(isset($tpl_disp['login_id']) == true ? $tpl_disp['login_id'] : ''); ?>
+   </td>
+ </tr>
+ <tr><td>パスワード</td>
+   <td colspan="2">
+   <input type="hidden" name="pass" value="<?php print(isset($tpl_disp['pass']) == true ? $tpl_disp['pass'] : ''); ?>"> *******
+   </td>
+ </tr>
+      <tr>
+      	<td>権限</td>
+      	<td colspan="2">
+      	<input type="hidden" name="authority_id" value="<?php print(isset($tpl_disp['authority_id']) == true ? $tpl_disp['authority_id'] : '1'); ?>">
+<?php
+foreach($tpl_disp['master_140'] AS $key => $val) {
+	if($key == $tpl_disp['authority_id']){
+		print $val;
+	}
+}
+?>
+		</td>
+      	</tr>
+ <tr><td>名前</td><td colspan="2"><input type="hidden" name="name" value="<?php print(isset($tpl_disp['name']) == true ? $tpl_disp['name'] : ''); ?>"><?php print(isset($tpl_disp['name']) == true ? $tpl_disp['name'] : ''); ?></td></tr>
+ <tr><td>名前カナ</td><td colspan="2"><input type="hidden" name="kana" value="<?php print(isset($tpl_disp['kana']) == true ? $tpl_disp['kana'] : ''); ?>"><?php print(isset($tpl_disp['kana']) == true ? $tpl_disp['kana'] : ''); ?></td></tr>
+ <tr><td>携帯電話1</td>
+     <td colspan="2"><input type="hidden" name="keitai1" value="<?php print(isset($tpl_disp['keitai1']) == true ? $tpl_disp['keitai1'] : ''); ?>"><?php print(isset($tpl_disp['keitai1']) == true ? $tpl_disp['keitai1'] : ''); ?>
+(
+<?php
+foreach($tpl_disp['master_141'] AS $key => $val) {
+	if (isset($tpl_disp['kyaria1']) == true && $tpl_disp['kyaria1'] == $key) {
+		print $val;
+	}
+}
+?>
+)
+<input type="hidden" name="kyaria1" value="<?php print(isset($tpl_disp['kyaria1']) == true ? $tpl_disp['kyaria1'] : ''); ?>">
+
+</td></tr>
+<tr>
+   <td>携帯電話2</td>
+   <td colspan="2"><input type="hidden" name="keitai2" value="<?php print(isset($tpl_disp['keitai2']) == true ? $tpl_disp['keitai2'] : ''); ?>"><?php print(isset($tpl_disp['keitai2']) == true ? $tpl_disp['keitai2'] : ''); ?>
+(
+<?php
+foreach($tpl_disp['master_142'] AS $key => $val) {
+	$selected = '';
+	if (isset($tpl_disp['kyaria2']) == true && $tpl_disp['kyaria2'] == $key) {
+		print $val;
+	}
+}
+?>
+)
+<input type="hidden" name="kyaria2" value="<?php print(isset($tpl_disp['kyaria2']) == true ? $tpl_disp['kyaria2'] : ''); ?>">
+</td></tr>
+
+   <tr><td>メールアドレス1</td><td colspan="2"><input type="hidden" name="email1" value="<?php print(isset($tpl_disp['email1']) == true ? $tpl_disp['email1'] : ''); ?>"><?php print(isset($tpl_disp['email1']) == true ? $tpl_disp['email1'] : ''); ?></td></tr>
+    <tr><td>通知設定</td><td>
+<?php
+$co = 0;$chekced = '';
+foreach($tpl_disp['master_143'] AS $key => $val) {
+	if (isset($tpl_disp['tsuchi1']) == true && is_array($tpl_disp['tsuchi1']) == true && in_array($key, $tpl_disp['tsuchi1']) == true) {
+		if ($key > 1) { $co ++; }
+		if ($co >= 1) { print('ビジネスダイレクト '); }
+		print ("$val"."<br />");
+		$chekced .= "|".$key;
+	}elseif (is_array($tpl_disp['tsuchi1']) != true && $tpl_disp['tsuchi1'] == $key) {
+		if ($key > 1) { print('ビジネスダイレクト '); }
+		print ("$val"."<br />");
+		$chekced .= "|".$key;
+	}
+}
+$chekced .= "|";
+?>
+<input type="hidden" name="tsuchi1" value="<?php if($chekced !='|') { print $chekced; } ?>">
+
+	</td></tr>
+    <tr><td>メールアドレス2</td><td colspan="2"><input type="hidden" name="email2" value="<?php print(isset($tpl_disp['email2']) == true ? $tpl_disp['email2'] : ''); ?>"><?php print(isset($tpl_disp['email2']) == true ? $tpl_disp['email2'] : ''); ?></td></tr>
+    <tr><td>通知設定</td><td>
+<?php
+$co = 0;$chekced = '';
+foreach($tpl_disp['master_144'] AS $key => $val) {
+	if (isset($tpl_disp['tsuchi2']) == true && is_array($tpl_disp['tsuchi2']) == true && in_array($key, $tpl_disp['tsuchi2']) == true) {
+		if ($key > 1) { $co ++; }
+		if ($co >= 1) { print('ビジネスダイレクト '); }
+		print ("$val"."<br />");
+		$chekced .= "|".$key;
+	}elseif (is_array($tpl_disp['tsuchi2']) != true && $tpl_disp['tsuchi2'] == $key) {
+		if ($key > 1) { print('ビジネスダイレクト '); }
+		print ("$val"."<br />");
+		$chekced .= "|".$key;
+	}
+}
+$chekced .= "|";
+?>
+<input type="hidden" name="tsuchi2" value="<?php if($chekced !='') { print $chekced; } ?>">
+	</td></tr>
+    <tr><td>メールアドレス3</td><td colspan="2"><input type="hidden" name="email3" value="<?php print(isset($tpl_disp['email3']) == true ? $tpl_disp['email3'] : ''); ?>"><?php print(isset($tpl_disp['email3']) == true ? $tpl_disp['email3'] : ''); ?></td></tr>
+    <tr><td>通知設定</td><td>
+<?php
+$co = 0;$chekced = '';
+foreach($tpl_disp['master_145'] AS $key => $val) {
+	if (isset($tpl_disp['tsuchi3']) == true && is_array($tpl_disp['tsuchi3']) == true && in_array($key, $tpl_disp['tsuchi3']) == true) {
+		if ($key > 1) { $co ++; }
+		if ($co >= 1) { print('ビジネスダイレクト '); }
+		print ("$val"."<br />");
+		$chekced .= "|".$key;
+	}elseif (is_array($tpl_disp['tsuchi3']) != true && $tpl_disp['tsuchi3'] == $key) {
+		if ($key > 1) { print('ビジネスダイレクト '); }
+		print ("$val"."<br />");
+		$chekced .= "|".$key;
+	}
+}
+$chekced .= "|";
+?>
+<input type="hidden" name="tsuchi3" value="<?php if($chekced !='') { print $chekced; } ?>">
+	</td></tr>
+      <td colspan="3" align="center">
+      <a href="/<?php print(APP_NAME); ?>/member/cid=<?php print(isset($tpl_form['cid']) == true ? $tpl_form['cid'] : ''); ?>"><img src="/material/admin/images/company/btn_list.gif" width="126" height="25" alt="一覧に戻る"></a>
+      <?php if(isset($tpl_disp['org_info']['member_id'])) { ?>
+      <a href="/admin/member_edit/id=<?php print(isset($tpl_disp['org_info']['member_id']) == true ? $tpl_disp['org_info']['member_id'] : ''); ?>"><img src="/material/admin/images/company/btn_back.gif" width="126" height="25" alt="戻る"></a>
+		<?php }else{ ?>
+      <a href="/admin/member_edit/member_edit/cid=<?php print(isset($tpl_form['cid']) == true ? $tpl_form['cid'] : ''); ?>"><img src="/material/admin/images/company/btn_back.gif" width="126" height="25" alt="戻る"></a>
+		<?php } ?>
+      <input type="image" src="/material/admin/images/company/btn_confirm.gif" width="126" height="25" alt="登録">
+      </td></tr>
+	</table>
+</form>
+
+<?php endif;
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+?>
+
+
+
+<!-- /contents --></div>
+<?php print($this->element('admin/footer')); ?>
+</body>

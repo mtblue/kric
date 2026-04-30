@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+/*///3-1.News List/////////////////////////////////////////////////*/
+/*Main contents*/
+#newslist #contents {
+	background:none;
+	margin:30px 0 0 0;
+}
+#newslist #contents h2 {
+	color:#6C5635;
+	font-size:130%;
+	font-weight:bolder;
+	border-bottom:1px solid #6C5635;	
+	margin:0 0 4px 0;
+	padding:0 0 2px 0.1em;
+}
+/*Section*/
+#newslist #contents #section {
+	position:relative;
+	width:720px;
+	margin:0 auto 0.5em auto;
+}
+#newslist #contents #section dl {
+	width:700px;
+	margin:0 0.5em 0 0.5em;
+}
+#newslist #contents #section dt {
+	float:left;
+	width:80px;
+	background:url(../imges/shared/icon_arrow_on.gif) no-repeat left center;
+	padding:4px 0 2px 1em;
+}
+#newslist #contents #section dd { text-align:justify; padding:4px 0.5em 2px 85px;}
+#newslist #contents #section dd.new a {
+	background:url(../imges/shared/icon_new.gif) no-repeat right center;
+	padding-right:38px;
+}
+#newslist #contents #section p#back {
+	position:absolute;
+	right:1px;
+	top:4px;
+}
+
+/*Close*/
+#newslist #contents .bottom_back {
+	width:720px;
+	min-height:12px;
+	text-align:right;
+	background:url(../imges/shared/icon_doted.gif) repeat-x left top;
+	margin:0 auto 20px auto;
+	padding:5px 0 0 0;
+}
+/*Footer*/
+#newslist #footer { padding:0; background:none;}

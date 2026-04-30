@@ -1,0 +1,14 @@
+<?php if (isset($tpl_disp['sessionInfo']['member_id']) == true) { ?>
+            <p style="padding-top:10px;"><font color="#FFFFFF">こんにちは、<?php print(isset($tpl_disp['sessionInfo']['company_name']) == true ? $tpl_disp['sessionInfo']['company_name'] : ''); ?>　<?php print(isset($tpl_disp['sessionInfo']['name']) == true ? $tpl_disp['sessionInfo']['name'] : ''); ?>様　[<a href="/iis/logout">ログアウト</a>]</font></p>
+<?php } else { ?>
+			<img src="/wp-content/themes/default/images/index_login_01.png" width="125" height="18" class="login_icon" />
+			<form action="/iis/login/" name="aaa" method="post"><input name="cmd" type="hidden" value="login">
+			<input name="session" type="hidden" value="<?php print(isset($tpl_disp['session']) == true ? $tpl_disp['session'] : ''); ?>" />
+				<div class="mail">メールアドレス</div>
+				<div class="mail2"><input type="text" name="id" class="user"></div>
+				<div class="pw">パスワード</div>
+				<div class="pw2"><input type="password" name="pass" class="pass"></div>
+				<div class="submit"><input type="image" src="/wp-content/themes/default/images/index_login_02.png" alt="送信する" align="middle"></div>
+			</form>
+			<p class="republic"><a href="/iis/login/?forget=1">※パスワードの変更・再発行はこちら</a></p>
+<?php } ?>

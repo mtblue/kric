@@ -1,0 +1,98 @@
+<body id="member">
+<a id="top" name="top"></a>
+<!--==================================ここからヘッダー=========================================-->
+<?php print($this->element('member/header')); ?>
+<!--==================================▲ここまでヘッダー=========================================--> 
+
+<!--==================================▼ここからコンテンツ=========================================-->
+<div class="cont_wrap">
+
+	<div class="cont_box">
+		<div class="cont_main">
+			<div class="txt_h2_bg"><div class="txt_h2_in"><h2><div class="txt_h2">会員紹介</div></h2></div></div>
+<div class="clear"></div>
+
+<div id="section1">
+	<h4><div class="txt_h4">会員名で検索(五十音検索)</div></h4>
+	<ul class="clearfix">
+		<li><a href="./?Mode=list-name&Name=a"  class="name_a">あ</a></li>
+		<li><a href="./?Mode=list-name&Name=ka" class="name_ka">か</a></li>
+		<li><a href="./?Mode=list-name&Name=sa" class="name_sa">さ</a></li>
+		<li><a href="./?Mode=list-name&Name=ta" class="name_ta">た</a></li>
+		<li><a href="./?Mode=list-name&Name=na" class="name_na">な</a></li>
+		<li><a href="./?Mode=list-name&Name=ha" class="name_ha">は</a></li>
+		<li><a href="./?Mode=list-name&Name=ma" class="name_ma">ま</a></li>
+		<li><a href="./?Mode=list-name&Name=ya" class="name_ya">や</a></li>
+		<li><a href="./?Mode=list-name&Name=ra" class="name_ra">ら</a></li>
+		<li><a href="./?Mode=list-name&Name=wa" class="name_wa">わ</a></li>
+	</ul>
+</div>
+<div class="clear"></div>
+
+<div id="mlist_area">
+<div style="text-align:right;">>> <a href="/member/">会員紹介のトップへ</a></div>
+
+
+		<table id="mlist">
+
+<?php foreach(array_filter($tpl_disp['main_list']) AS $inc => $list) { ?>
+	<tr><th colspan="2" align="left"><br />[&nbsp;<?php print($inc); ?>&nbsp;]</th></tr>
+	<?php foreach($list AS $row) { ?>
+			<tr>
+			<td rowspan="2" valign="top"><a href="/intro/?c=<?php print($row['company_id']); ?>" target="_blank"><?php print(isset($row['company_name']) == true && $row['company_name'] != '' ? $row['company_name'] : '未記入'); ?></a></td>
+			<td><?php print(isset($row['zip']) == true ? '〒'.$row['zip'] : '&nbsp;'); ?></td>
+			</tr>
+			<tr class="info">
+			<td><div style="margin-bottom:15px;"><?php print($tpl_disp['master_120'][$row['ken']]); ?><?php print(isset($row['address']) == true ? $row['address'] : '未記入'); ?></div></td>
+			</tr>
+	<?php
+	} // foreach end 
+} // foreach end
+?>
+		</table>
+<div style="text-align:right;">>> <a href="/member/">会員紹介のトップへ</a></div>
+</div>
+
+		</div><!--cont_main-->
+		
+		<div class="cont_sidebox">
+			<div class="side_cap_bg">
+				<div class="side_cap_in">
+					<div class="side_cap_h2"> 会員紹介 </div>
+				</div>
+			</div>
+			<div id="SideNavi">
+				<div class="menu-side-navi1-container">
+					<ul id="menu-side-navi1" class="menu">
+						<li id="menu-item-4791" class="menu-item menu-item-type-post_type menu-item-4791"><a href="/member/?Mode=list-name&Name=a">会員名で検索(五十音検索) </a></li>
+						<li id="menu-item-4793" class="menu-item menu-item-type-post_type menu-item-4793"><a href="/member/?Mode=list-area&Area=100">エリアで検索</a></li>
+						<li id="menu-item-4792" class="menu-item menu-item-type-post_type menu-item-4792"><a href="/member/?Mode=list-industry&Category=100">業務種目で検索</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="mgBottom20"></div>
+			<a href="/enter/guide.html"><img src="/wp-content/themes/default/images/index_img_06.jpg" width="230" height="72" alt="入会のご案内" class="css-hover" /></a>
+			<div class="mgBottom20"></div>
+			<a href="/enter.html"><img src="/wp-content/themes/default/images/index_img_07.jpg" width="230" height="52" alt="会員のメリット" class="side_img css-hover" /></a><br />
+			<ul id="globalnavi">
+				<li id="menu1"><a href="/enter.html#infor">情報交換会</a></li>
+				<li id="menu2"><a href="/enter.html#training">研修会</a></li>
+				<li id="menu3"><a href="/enter.html#friend">親睦活動</a></li>
+				<li id="menu4"><a href="/enter.html#webpage">会員専用ページによる充実した情報交換</a></li>
+				<li id="menu5"><a href="/enter.html#share">各種書類の共有</a></li>
+				<li id="menu6"><a href="/enter.html#magazine">広報誌『ＫＲＩＣかわら版』の発刊</a></li>
+			</ul>
+		</div><!--cont_sidebox--> 
+	</div><!--cont_box--> 
+
+<!--==================▲ここまでコンテンツ=======================-->
+<!--==================▼ここからフッター=======================-->
+<?php print($this->element('member/footer')); ?>
+<!--==================▲ここまでフッター=======================-->
+</div>
+<!-- /cont_wrap -->
+<!--Google Analytics-->
+<script type="text/javascript">
+
+</script>
+</body>

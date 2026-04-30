@@ -1,0 +1,119 @@
+<body>
+<div id="wrapper">
+<?php print($this->element('admin/header')); ?>
+<!-- /wrapper --></div>
+<div id="contents">
+<ul id="ttl">
+  <li><img src="/material/admin/images/common/icon_infomation.gif" width="43" height="37" alt="アイコン">&nbsp; ライブラリ管理</li>
+ </ul>
+ <p class="clear"></p>
+ <div id="company">
+ 
+<script language="JavaScript">
+$(function(){
+	$('#opener_id').change(function(){
+		getChild();
+	});
+});
+function getChild() {
+	var id = $('#opener_id').val();
+//alert('['+id+']');
+	$.get('library_edit/cmd=get_child/id='+id, function(data) {
+		$("#category_id").empty();
+		$("#category_id").append('<option value=""></option>');
+		$("#category_id").append(data);
+	});
+}
+</script>
+
+<form action="<?php print(HTTP_TO_SCRIPT_NAME); ?>" method="post" name="form" id="form" enctype="multipart/form-data">
+<input name="cmd" type="hidden" id="cmd" value="registration" />
+<input name="id" type="hidden" id="id" value="<?php print(isset($tpl_disp['org_info']['library_id']) == true ? $tpl_disp['org_info']['library_id'] : ''); ?>" />
+
+<div class="error_box">
+<?php foreach($tpl_errDoc AS $val) { print($val.'<br />'); } ?>
+</div>
+
+<table>
+ <!--<tr><th>ライブラリ管理ID</th><td><?php print(isset($tpl_disp['org_info']['library_id']) == true ? $tpl_disp['org_info']['library_id'] : ''); ?></td></tr>-->
+ <tr><th>親カテゴリ</th><td>
+ <select name="opener_id" id="opener_id" class="" />
+<?php
+foreach($tpl_disp['opener_category_list'] AS $key => $val) {
+	$selected = '';
+	if (isset($tpl_disp['opener_id']) == true && $tpl_disp['opener_id'] == $key) {
+		$selected = 'selected="selected"';
+	}
+?>
+<option value="<?php print($key); ?>" <?php print($selected); ?>><?php print($val); ?></option>
+<?php
+} // foreach end
+?>
+</select>
+</td></tr>
+ <tr><th>子カテゴリ</th><td>
+ <select name="category_id" id="category_id" class="" />
+ <option value=""></option>
+<?php
+foreach($tpl_disp['child_category_list'] AS $key => $val) {
+	$selected = '';
+	if (isset($tpl_disp['category_id']) == true && $tpl_disp['category_id'] == $key) {
+		$selected = 'selected="selected"';
+	}
+?>
+<option value="<?php print($key); ?>" <?php print($selected); ?>><?php print($val); ?></option>
+<?php
+} // foreach end
+?>
+</select>
+</td></tr>
+ <tr><th>タイトル</th><td><input type="text" name="title" size="40" value="<?php print(isset($tpl_disp['title']) == true ? $tpl_disp['title'] : ''); ?>"></td></tr>
+ <tr><th valign="top">内容</th><td><textarea name="doc" style="width:600px; height:300px;"><?php print(isset($tpl_disp['doc']) == true ? $tpl_disp['doc'] : ''); ?></textarea></td></tr>
+ <tr><th>ファイル1</th><td>
+ <input name="file1" type="file" />
+<?php if (isset($tpl_disp['org_info']['file1']) == true && $tpl_disp['org_info']['file1'] != '') { ?>
+<br /><a href="/<?php print(APP_NAME); ?>/file/na=<?php print(isset($tpl_disp['org_info']['file1']) == true ? $tpl_disp['org_info']['file1'] : ''); ?>" target="_blank"><?php print(isset($tpl_disp['org_info']['file1']) == true ? $tpl_disp['org_info']['file1'] : '-'); ?></a>
+<br /><input name="file1_delete" type="checkbox" value="checked" />削除
+<?php } ?>
+</td></tr>
+ <tr><th>ファイル2</th><td>
+<input name="file2" type="file" />
+<?php if (isset($tpl_disp['org_info']['file2']) == true && $tpl_disp['org_info']['file2'] != '') { ?>
+<br /><a href="/<?php print(APP_NAME); ?>/file/na=<?php print(isset($tpl_disp['org_info']['file2']) == true ? $tpl_disp['org_info']['file2'] : ''); ?>" target="_blank"><?php print(isset($tpl_disp['org_info']['file2']) == true ? $tpl_disp['org_info']['file2'] : '-'); ?></a>
+<br /><input name="file2_delete" type="checkbox" value="checked" />削除
+<?php } ?>
+</td></tr>
+ <tr><th>ファイル3</th><td>
+ <input name="file3" type="file" />
+<?php if (isset($tpl_disp['org_info']['file3']) == true && $tpl_disp['org_info']['file3'] != '') { ?>
+<br /><a href="/<?php print(APP_NAME); ?>/file/na=<?php print(isset($tpl_disp['org_info']['file3']) == true ? $tpl_disp['org_info']['file3'] : ''); ?>" target="_blank"><?php print(isset($tpl_disp['org_info']['file3']) == true ? $tpl_disp['org_info']['file3'] : '-'); ?></a>
+<br /><input name="file3_delete" type="checkbox" value="checked" />削除
+<?php } ?>
+</td></tr>
+<tr><td colspan="2" align="center">
+    <a href="JavaScript:vold(0);" onClick="JavaScript:location.href='<?php print(isset($tpl_disp['back_url']) == true ? $tpl_disp['back_url'] : ''); ?>'"><img src="/material/admin/images/company/btn_list.gif" width="126" height="25" alt="一覧に戻る"></a>&nbsp;&nbsp;
+    <input type="image" src="/material/admin/images/company/btn_entry.gif" width="126" height="25" alt="登録">
+    <img src="/material/admin/images/company/btn_preview.gif" width="126" height="25" alt="プレビュー" onclick="preview();">
+    <!--<a href="/iis/library_detail/id=<?php print(isset($tpl_disp['org_info']['library_id']) == true ? $tpl_disp['org_info']['library_id'] : ''); ?>" target="_brank"><img src="/material/admin/images/company/btn_view.gif" width="126" height="25" alt="一覧に戻る"></a>&nbsp;&nbsp;-->
+
+    </td></tr>
+</table>
+</form>
+
+<script language="JavaScript">
+$(function(){
+});
+function preview() {
+	$('#form').attr('target', '_blank');
+	$('#form').attr('action', '/admin/library_view');
+	$('#form').submit();
+	$('#form').attr('target', '');
+	$('#form').attr('action', '/admin/library_edit');
+}
+</script>
+
+
+</div>
+<!-- /contents --></div>
+<?php print($this->element('admin/footer')); ?>
+</body>

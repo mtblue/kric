@@ -1,0 +1,77 @@
+<body id="top">
+<a id="top" name="top"></a>
+<div id="wrap">
+  <div id="anime_wrap">
+
+<!--==================================ここからヘッダー=========================================-->
+<?php print($this->element('iis/header')); ?>
+<!--==================================▲ここまでヘッダー=========================================--> 
+
+
+
+<!--==================================▼ここからぱんくずとSNSボタン=========================================-->
+
+<div class="pankuzu_wrap">
+  <div class="pan_sns">
+    <div class="pankuzu"> <img src="/wp-content/themes/default/images/index_img_05.png" width="12" height="12" alt="" class="img_float" /><h1><!-- Breadcrumb NavXT 3.5.1 --><a href="/">関西不動産情報センター TOP</a>＞<a href="/<?php print(APP_NAME); ?>/index">IISトップ</a>＞<a href="/<?php print(APP_NAME); ?>/library">ライブラリ</a>＞<a href="/<?php print(APP_NAME); ?>/library_list/cg=<?php print(isset($tpl_disp['opener_id']) == true ? nl2br($tpl_disp['opener_id']) : ''); ?>"><?php print(isset($tpl_disp['opener_name']) == true ? nl2br($tpl_disp['opener_name']) : ''); ?></a>＞<?php print($tpl_disp['title']); ?></h1></div>
+  </div>
+</div>
+<!--==================================▲ここまでぱんくずとsnsボタン=========================================-->
+<!--==================================▼ここからコンテンツ=========================================-->
+<div class="cont_wrap">
+<div class="cont_box">
+
+
+<!-- ここから追加 -->
+
+
+<div id="contents">
+    <div id="bd"><span><img src="/images/iis/bd_icon.png" /></span>
+      <h2>ライブラリ</h2></div>
+      
+    <div id="detail03">
+      <div id="title_area">
+      <div id="name"><h3><?php print($tpl_disp['title']); ?></h3></div>
+      </div>
+
+    	<div class="box">
+      <div style="color:#000;"><?php print(isset($tpl_disp['doc']) == true ? nl2br($tpl_disp['doc']) : ''); ?></div>
+      <div id="list_btn_a"><?php if (isset($tpl_disp['update_date']) == true) { print(date('Y年m月d日 H:i', strtotime($tpl_disp['update_date']))); } ?></div>
+      <div id="list_btn041">
+<?php
+for($i=1; $i<=3; $i++) {
+	if (isset($tpl_disp['file'.$i]) == false || $tpl_disp['file'.$i] == '') { continue; }
+?>
+            <br />
+            <a href="/<?php print(APP_NAME); ?>/file/na=<?php print(isset($tpl_disp['file'.$i]) == true ? $tpl_disp['file'.$i] : ''); ?>" target="_blank"><?php print($tpl_disp['file'.$i]); ?></a>
+<?php
+}
+?>
+	  </div>
+	</div>
+      <div class="write"></div>
+      <div id="list_btn03"><a href="<?php print(isset($tpl_disp['back_url']) == true ? $tpl_disp['back_url'] : ''); ?>">一覧に戻る</a></div>
+    </div>
+      
+</div>
+
+<?php print($this->element('iis/right_menu')); ?>
+
+
+
+<!-- ここまで追加 -->
+
+</div>
+<!--cont_box--> 
+
+<!--==================▲ここまでコンテンツ=======================-->
+<!--==================▼ここからフッター=======================-->
+<?php print($this->element('iis/footer')); ?>
+<!--==================▲ここまでフッター=======================-->
+
+</div><!-- /cont_wrap -->
+<!--Google Analytics-->
+
+</div>
+</div>
+</body>

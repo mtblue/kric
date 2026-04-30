@@ -1,0 +1,51 @@
+<IfModule mod_rewrite.c>
+ RewriteEngine On
+RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/fileauth.txt
+RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/6c06ef349afa1481f81704507415b22c.txt
+RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/bd600d68289d46c207ddd4055df676ac.txt
+RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/aea686c8e0783507ee0ffd67fa5351e2.txt
+RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/f2fa6287545167a809220cc91df571fb.txt
+RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/0afb97a88cc169fdba8de89a7dcd8473.txt
+
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L] 
+ #RewriteCond %{HTTP_HOST} ^(kric.co.jp)(:80)?
+ #RewriteRule ^(.*) https://kric.co.jp/$1 [R=301,L]
+
+ RedirectMatch /crade https://kric.co.jp/intro/?c=7
+ RedirectMatch /shinwa https://kric.co.jp/intro/?c=84
+ RedirectMatch /settsushoukai https://kric.co.jp/intro/?c=126
+ RedirectMatch /settushoukai https://kric.co.jp/intro/?c=126
+ RedirectMatch /fujikohsan https://kric.co.jp/intro/?c=127
+
+RewriteBase /
+RewriteRule ^member/ - [L]
+RewriteRule ^index\.php$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . /index.php [L]
+</IfModule>
+
+
+
+#SetEnvIf User-Agent "Googlebot" allowbot
+#SetEnvIf User-Agent "Slurp" allowbot
+#SetEnvIf User-Agent "bingbot" allowbot
+
+
+# BEGIN WordPress
+# "BEGIN WordPress" から "END WordPress" までのディレクティブ (行) は
+# 動的に生成され、WordPress フィルターによってのみ修正が可能です。
+# これらのマーカー間にあるディレクティブへのいかなる変更も上書きされてしまいます。
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/member/
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
