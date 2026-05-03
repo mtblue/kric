@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登録情報 会社概要 - KRIC 会員専用ページ</title>
+  <link rel="stylesheet" href="../css/style.css?v=17">
+  <link rel="stylesheet" href="../css/member.css?v=1">
+</head>
+<body class="is-member">
+
+  <!-- ========== HEADER ========== -->
+  <header id="header" class="is-scrolled">
+    <div class="header-inner">
+      <div class="header-logo">
+        <a href="../index.html" class="logo-text">
+          <img src="../images/hd_logo.png" alt="KRIC" class="logo-img">
+          <span class="logo-ja">関西不動産情報センター</span>
+        </a>
+      </div>
+      <div class="header-right">
+        <div class="header-btns">
+          <a href="../index.html" class="btn-hd btn-hd--member">
+            <img src="../images/hd_login.png" class="btn-hd-icon" alt="">
+            <span class="btn-text">会員専用｜ログアウト</span>
+            <span class="btn-sep">|</span>
+            <span class="btn-arrow">▶</span>
+          </a>
+        </div>
+        <button class="menu-btn" id="menuBtn" aria-label="メニューを開く">
+          <span class="menu-btn-lines">
+            <span></span><span></span><span></span>
+          </span>
+          <span class="menu-btn-label">MENU</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== GLOBAL NAV ========== -->
+  <div class="gnav-overlay" id="gnavOverlay"></div>
+  <nav class="gnav" id="gnav" aria-hidden="true">
+    <div class="gnav-header">
+      <button class="gnav-close" id="gnavClose" aria-label="閉じる">
+        <span class="gnav-close-icon">✕</span>
+        <span class="gnav-close-label">MENU</span>
+      </button>
+    </div>
+    <ul class="gnav-list">
+      <li><a href="../index.html">TOP</a></li>
+      <li><a href="index.html">インフォメーション</a></li>
+      <li><a href="bd.html">ビジネスダイレクト</a></li>
+      <li><a href="#">ライブラリ</a></li>
+      <li><a href="#">KRICメディア</a></li>
+      <li><a href="#">登録者名簿</a></li>
+      <li><a href="reg-company.html">登録情報</a></li>
+    </ul>
+  </nav>
+
+  <!-- ========== 会員ページタイトルバー ========== -->
+  <div class="mem-page-bar">
+    <p class="mem-breadcrumb mem-breadcrumb--sp">関西不動産情報センターTOP &gt; 会員専用ページ &gt; 登録情報 &gt; 会社概要</p>
+    <div class="mem-page-bar-inner">
+      <h1 class="mem-page-title">[会員専用ページ]</h1>
+      <p class="mem-page-user">株式会社○○○○○○　　　●● ●●　様</p>
+    </div>
+  </div>
+
+  <!-- ========== 会員ナビタブ ========== -->
+  <nav class="mem-nav" aria-label="会員メニュー">
+    <div class="mem-nav-inner">
+      <ul class="mem-nav-list">
+        <li class="mem-nav-item">
+          <a href="index.html" class="mem-nav-link">インフォメーション <span class="mem-nav-arr">▼</span></a>
+        </li>
+        <li class="mem-nav-item">
+          <a href="bd.html" class="mem-nav-link">ビジネスダイレクト <span class="mem-nav-arr">▼</span></a>
+        </li>
+        <li class="mem-nav-item">
+          <a href="#" class="mem-nav-link">ライブラリ <span class="mem-nav-arr">▼</span></a>
+        </li>
+        <li class="mem-nav-item">
+          <a href="#" class="mem-nav-link">KRICメディア <span class="mem-nav-arr">▼</span></a>
+        </li>
+        <li class="mem-nav-item">
+          <a href="#" class="mem-nav-link">登録者名簿 <span class="mem-nav-arr">▼</span></a>
+        </li>
+        <li class="mem-nav-item is-active has-sub">
+          <a href="reg-company.html" class="mem-nav-link">登録情報 <span class="mem-nav-arr">▼</span></a>
+          <ul class="mem-nav-sub">
+            <li class="is-active"><a href="reg-company.html">会社概要</a></li>
+            <li><a href="#">個別設定</a></li>
+            <li><a href="#">メンバー追加／削除</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <!-- パンくず -->
+        <p class="mem-breadcrumb mem-breadcrumb--pc">関西不動産情報センターTOP &gt; 会員専用ページ &gt; 登録情報 &gt; 会社概要</p>
+
+        <div class="reg-layout">
+
+          <!-- メインコンテンツ -->
+          <div class="reg-content">
+
+            <!-- セクション見出し -->
+            <div class="mem-sec-head">
+              <h2 class="mem-sec-title">─ 登録情報 ─</h2>
+            </div>
+
+            <h3 class="reg-subtitle">会社概要</h3>
+
+            <!-- フォーム -->
+            <form action="#" method="post" class="reg-form">
+
+              <p class="reg-required-note">※は入力必須項目です。</p>
+
+              <div class="reg-table">
+
+                <div class="reg-row">
+                  <label class="reg-label">社名 <span class="reg-required">※</span></label>
+                  <div class="reg-input"><input type="text" name="company_name"></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">社名カナ <span class="reg-required">※</span></label>
+                  <div class="reg-input"><input type="text" name="company_kana"></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">代表者名 <span class="reg-required">※</span></label>
+                  <div class="reg-input"><input type="text" name="representative"></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">免許 <span class="reg-required">※</span></label>
+                  <div class="reg-input"><input type="text" name="license"></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">郵便番号 <span class="reg-required">※</span></label>
+                  <div class="reg-input reg-input--zip">
+                    <input type="text" name="zip1" class="reg-input-zip" maxlength="3">
+                    <span class="reg-zip-sep">–</span>
+                    <input type="text" name="zip2" class="reg-input-zip" maxlength="4">
+                    <button type="button" class="reg-zip-btn">郵便番号から住所を自動入力</button>
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">都道府県 <span class="reg-required">※</span></label>
+                  <div class="reg-input"><input type="text" name="prefecture"></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">市区町村 <span class="reg-required">※</span></label>
+                  <div class="reg-input"><input type="text" name="city"></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">町名番地 <span class="reg-required">※</span></label>
+                  <div class="reg-input"><input type="text" name="address"></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">建物名</label>
+                  <div class="reg-input"><input type="text" name="building"></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">交通 <span class="reg-required">※</span></label>
+                  <div class="reg-input"><input type="text" name="access"></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">電話番号 <span class="reg-required">※</span></label>
+                  <div class="reg-input"><input type="tel" name="tel"></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">FAX番号</label>
+                  <div class="reg-input"><input type="tel" name="fax"></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">URL</label>
+                  <div class="reg-input"><input type="url" name="url"></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">メールアドレス</label>
+                  <div class="reg-input"><input type="email" name="email"></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">事業内容 <span class="reg-required">※</span></label>
+                  <div class="reg-input"><textarea name="business" class="reg-textarea"></textarea></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">加盟団体</label>
+                  <div class="reg-input"><textarea name="association" class="reg-textarea"></textarea></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">沿革</label>
+                  <div class="reg-input"><textarea name="history" class="reg-textarea"></textarea></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">紹介文</label>
+                  <div class="reg-input"><textarea name="pr_text" class="reg-textarea"></textarea></div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">会社紹介動画URL</label>
+                  <div class="reg-input">
+                    <input type="url" name="pr_video">
+                    <p class="reg-hint">※YouTubeにアップロードされた動画に限ります。</p>
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">アクセスマップ</label>
+                  <div class="reg-input">
+                    <div class="reg-map-header">
+                      <label class="reg-map-check"><input type="checkbox" name="map_check"> GoogleマップURL</label>
+                      <a href="#" class="reg-link" id="mapGuideLink">Googleマップのアドレスについて→</a>
+                    </div>
+                    <input type="text" name="map_url">
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- オリジナル画像 -->
+              <div class="reg-logo-section">
+                <p class="reg-logo-title">■ オリジナル画像</p>
+                <div class="reg-file-row">
+                  <label class="reg-file-btn">
+                    ファイルを選択
+                    <input type="file" name="logo" accept="image/jpeg,image/png" class="reg-file-input">
+                  </label>
+                  <span class="reg-file-name">ファイル未選択</span>
+                </div>
+                <p class="reg-hint">※添付可能なファイル形式:jpg・png</p>
+                <div class="reg-map-preview">
+                  <div class="reg-map-img">
+                    <img src="../images/map.png" alt="map画像">
+                  </div>
+                </div>
+                <p class="reg-file-current">00000000000000.jpg</p>
+                <button type="button" class="reg-delete-btn">削除</button>
+              </div>
+
+              <!-- 送信ボタン -->
+              <div class="reg-submit-row">
+                <button type="submit" class="reg-submit-btn">
+                  <span class="btn-text">確認</span>
+                  <span class="btn-sep">|</span>
+                  <span class="btn-arrow">▶</span>
+                </button>
+              </div>
+
+            </form>
+
+          </div>
+
+          <!-- サイドナビ -->
+          <nav class="reg-sidenav" aria-label="登録情報メニュー">
+            <ul class="reg-sidenav-list">
+              <li class="reg-sidenav-item is-active"><a href="reg-company.html">会社概要</a></li>
+              <li class="reg-sidenav-item"><a href="#">個別設定</a></li>
+              <li class="reg-sidenav-item"><a href="#">メンバー追加／削除</a></li>
+            </ul>
+          </nav>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== FOOTER（会員版） ========== -->
+  <footer class="footer mem-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <a href="../index.html" class="logo-text logo-text--footer">
+          <img src="../images/ft_logo.png" alt="KRIC" class="logo-img logo-img--footer">
+          <span class="logo-ja logo-ja--footer">関西不動産情報センター</span>
+        </a>
+        <div class="footer-address">
+          <p>〒530-0012 大阪市北区芝田2丁目1番18号 西阪急ビル7階</p>
+        </div>
+        <a href="#" class="footer-map-btn">
+          <span class="btn-text">google map</span>
+          <span class="btn-sep">|</span>
+          <span class="btn-arrow">▶</span>
+        </a>
+      </div>
+      <div class="footer-right">
+        <nav class="footer-nav">
+          <div class="footer-nav-cols mem-ft-nav-cols">
+            <div class="footer-nav-col">
+              <a href="index.html" class="footer-nav-parent">インフォメーション</a>
+            </div>
+            <div class="footer-nav-col">
+              <a href="bd.html" class="footer-nav-parent">ビジネスダイレクト</a>
+              <ul>
+                <li><a href="#">売りたい</a></li>
+                <li><a href="#">買いたい</a></li>
+                <li><a href="#">貸したい</a></li>
+                <li><a href="#">借りたい</a></li>
+              </ul>
+            </div>
+            <div class="footer-nav-col">
+              <a href="#" class="footer-nav-parent">ライブラリ</a>
+            </div>
+            <div class="footer-nav-col">
+              <a href="#" class="footer-nav-parent">KRICメディア</a>
+              <ul>
+                <li><a href="#">【MBSラジオ】村瀬哲史とKRIC！不動産の時間</a></li>
+                <li><a href="#">【MBSラジオ】予備校講師村瀬哲史のナニワ地理学</a></li>
+                <li><a href="#">【YouTube】ナニワの地理学スピンオフ</a></li>
+              </ul>
+            </div>
+            <div class="footer-nav-col">
+              <a href="#" class="footer-nav-parent">登録者名簿</a>
+            </div>
+            <div class="footer-nav-col">
+              <a href="reg-company.html" class="footer-nav-parent">登録情報</a>
+              <ul>
+                <li><a href="reg-company.html">会社概要</a></li>
+                <li><a href="#">個別設定</a></li>
+                <li><a href="#">メンバー追加／削除</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="footer-privacy">
+          <a href="#">プライバシーポリシー</a>
+        </div>
+        <a href="#" class="page-top mem-page-top" aria-label="ページトップへ">∧</a>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <p>Copyright © KRIC 関西不動産情報センター All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+
+  <!-- ========== Googleマップ説明モーダル ========== -->
+  <div class="map-modal-overlay" id="mapModal">
+    <div class="map-modal">
+      <div class="map-modal-step">
+        <div class="map-modal-step-left">
+          <span class="map-modal-num">1</span>
+          <p class="map-modal-text">会社名、住所などで<br>Googleマップで検索</p>
+        </div>
+        <img src="../images/g_map1.png" alt="" class="map-modal-img">
+      </div>
+      <div class="map-modal-step">
+        <div class="map-modal-step-left">
+          <span class="map-modal-num">2</span>
+          <p class="map-modal-text">共有ボタンをクリック</p>
+        </div>
+        <img src="../images/g_map2.png" alt="" class="map-modal-img">
+      </div>
+      <div class="map-modal-step">
+        <div class="map-modal-step-left">
+          <span class="map-modal-num">3</span>
+          <p class="map-modal-text">リンクをコピーをクリック</p>
+        </div>
+        <img src="../images/g_map3.png" alt="" class="map-modal-img">
+      </div>
+      <div class="map-modal-step">
+        <div class="map-modal-step-left">
+          <span class="map-modal-num">4</span>
+          <p class="map-modal-text">コピーしたURLを貼り付け</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var link = document.getElementById('mapGuideLink');
+      var modal = document.getElementById('mapModal');
+      if (!link || !modal) return;
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.classList.add('is-open');
+      });
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) modal.classList.remove('is-open');
+      });
+    })();
+  </script>
+</body>
+</html>

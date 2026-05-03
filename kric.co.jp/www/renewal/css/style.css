@@ -34,9 +34,8 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
 
 /* ----- 共通レイアウト ----- */
 .section-inner {
-  max-width: 1180px;
-  margin: 50px auto;
-  padding: 0 24px;
+  max-width: 1220px;
+  margin: 100px auto 50px;
 }
 
 /* ----- プレースホルダー ----- */
@@ -77,13 +76,14 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
 .sec-star-icon { width: 20px; height: auto; flex-shrink: 0; }
 .sec-bullet { color: var(--orange); font-size: 1rem; }
 .sec-title {
-  font-size: 1.6rem;
+  font-size: 2.25rem;
   font-weight: normal;
   color: var(--navy);
   flex: 1;
   padding-top: 4px;
 }
 .sec-title--light { color: var(--white); }
+.about-pride-heading .sec-title { font-size: 2.8125rem; }
 .sec-nav { display: flex; gap: 4px; margin-left: auto; }
 .sec-arr {
   width: 26px; height: 26px;
@@ -185,14 +185,14 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
 }
 .logo-ja {
   font-family: "Yu Mincho", "游明朝", YuMincho, serif;
-  font-size: 0.85rem;
+  font-size: 1.375rem;
   letter-spacing: 0.05em;
   color: #ffffff;
 }
 .logo-text--footer .logo-kric { color: var(--navy); }
-.logo-text--footer .logo-ja   { color: var(--text-mid); font-size: 1rem; }
-.logo-img { height: 30px; width: auto; display: block; }
-.logo-img--footer { height: 40px; }
+.logo-text--footer .logo-ja   { color: var(--text-mid); font-size: 1.375rem; }
+.logo-img { width: 148px; height: auto; max-height: 50px; object-fit: contain; display: block; }
+.logo-img--footer { height: 56px; }
 
 
 /* =============================================
@@ -206,6 +206,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   background: rgba(10, 26, 53, 0.95);
   backdrop-filter: blur(4px);
   transition: background 0.3s;
+  overflow: hidden;
 }
 #header.is-scrolled { background: rgba(10, 26, 53, 0.99); }
 
@@ -213,11 +214,11 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 0 14px 20px;
+  padding: 25px 0 25px 40px;
   gap: 16px;
 }
 .header-right { display: flex; align-items: center; gap: 12px; }
-.header-btns  { display: flex; gap: 8px; }
+.header-btns  { display: flex; gap: 20px; }
 
 .btn-hd {
   display: inline-flex;
@@ -225,7 +226,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   overflow: hidden;
   font-size: 0.72rem;
   line-height: 1;
-  height: 32px;
+  height: 50px;
   padding: 8px 8px 8px 12px;
   letter-spacing: 0.03em;
   white-space: nowrap;
@@ -233,9 +234,10 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   transition: opacity 0.2s;
 }
 .btn-hd:hover { opacity: 0.85; }
+.btn-hd .btn-text { font-size: 18px; }
 .btn-hd--join   { background: #C0AD5E; color: var(--white); }
 .btn-hd--member { background: #00a0e9; color: var(--white); }
-.btn-hd-icon { height: 20px; width: auto; margin-right: 6px; align-self: center; flex-shrink: 0; }
+.btn-hd-icon { height: 30px; width: auto; margin-right: 6px; align-self: center; flex-shrink: 0; }
 
 .menu-btn {
   background: var(--white);
@@ -245,21 +247,22 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   align-items: center;
   justify-content: center;
   align-self: stretch;
-  padding: 0 18px;
-  margin: -14px 0 -14px 25px;
+  width: 100px;
+  padding: 0;
+  margin: -25px 0 -25px 25px;
 }
 .menu-btn-lines { display: flex; flex-direction: column; gap: 5px; margin-bottom: 5px; }
 .menu-btn-lines span {
   display: block;
-  width: 22px; height: 2px;
+  width: 40px; height: 3.9px;
   background: var(--navy);
   transition: transform 0.3s, opacity 0.3s;
 }
-.menu-btn-label { font-size: 0.5rem; letter-spacing: 0.15em; }
+.menu-btn-label { font-size: 0.85rem; letter-spacing: 0.15em; }
 
-.menu-btn.is-open .menu-btn-lines span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-btn.is-open .menu-btn-lines span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
 .menu-btn.is-open .menu-btn-lines span:nth-child(2) { opacity: 0; }
-.menu-btn.is-open .menu-btn-lines span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.menu-btn.is-open .menu-btn-lines span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
 
 /* =============================================
@@ -404,22 +407,24 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   align-items: center;
   gap: 0;
   width: 100%;
-  max-width: 1080px;
+  max-width: 1220px;
   margin-top: 100px;
+  position: relative;
 }
 .hero-photo {
-  width: 45%;
-  height: auto;
+  width: 575px;
+  height: 331px;
   flex-shrink: 0;
   position: relative;
   z-index: 1;
   margin-right: -480px;
+  object-fit: cover;
 }
 .hero-top-logo2 {
-  flex: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   max-width: 320px;
-  margin: 0 auto;
-  position: relative;
   z-index: 2;
   opacity: 0.75;
 }
@@ -448,12 +453,12 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   background: rgba(0, 160, 233, 0.15);
 }
 .about-pride-inner {
-  max-width: 1080px;
+  max-width: 1220px;
   margin: 0 auto;
   padding: 0 24px 0 50px;
   display: grid;
-  grid-template-columns: 564px 1fr;
-  gap: 0;
+  grid-template-columns: 765px 1fr;
+  gap: 20px;
   align-items: start;
 }
 .about-pride-body {
@@ -464,11 +469,10 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   align-items: center;
   gap: 12px;
   margin-top: 40px;
-  margin-bottom: 16px;
 }
 .about-pride-desc {
   color: rgba(255,255,255,0.85);
-  font-size: 1.2rem;
+  font-size: 1.625rem;
   line-height: 1.7;
   margin-left: 35px;
   margin-bottom: 24px;
@@ -478,8 +482,8 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
    全画像アスペクト比 3:2 に合わせたコンテナ寸法で維持 */
 .about-pride-photos {
   display: grid;
-  grid-template-columns: 250px 350px;
-  grid-template-rows: 139px 119px;
+  grid-template-columns: 296px 465px;
+  grid-template-rows: 196px 154px;
   gap: 1px;
 }
 .pride-photo { overflow: hidden; }
@@ -494,7 +498,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
 .pride-photo--bottom-left {
   grid-column: 1;
   grid-row: 2;
-  margin-left: 30px;
+  margin-left: 43px;
 }
 /* 右: row1/3 span（264px）から padding 15px×2 で 234px → 350×234 ≈ 3:2 */
 .pride-photo--right {
@@ -570,7 +574,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
 .media-card-label--podcast { background: #00a0e9; }
 .media-card-label--youtube  { background: #00a0e9; }
 .media-card-date {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: var(--text-mid);
 }
 .media-card-title {
@@ -581,7 +585,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   line-height: 1.5;
 }
 .media-card-link {
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   color: var(--text-mid);
 }
 
@@ -717,17 +721,17 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
    会員検索
    ============================================= */
 .member-search {
-  margin: 50px auto;
+  margin: 80px auto;
   padding: 0;
 }
 .member-search-card {
   background: var(--white);
   max-width: 1180px;
   margin: 0 auto;
-  padding: 60px 40px;
+  padding: 70px 40px;
 }
 .member-search-title {
-  font-size: 1rem;
+  font-size: 1.625rem;
   color: var(--navy);
   font-weight: normal;
   text-align: center;
@@ -738,7 +742,9 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
 .member-search-inputs {
   display: flex;
   gap: 12px;
-  margin-bottom: 16px;
+  margin: 0 auto 30px;
+  width: 660px;
+  height: 60px;
 }
 .member-search-input {
   flex: 1;
@@ -760,7 +766,8 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
 }
 .member-search-btn {
   padding: 6px 18px;
-  background: var(--navy);
+  width: 180px;
+  background: #231815;
   color: var(--white);
   font-size: 0.9rem;
   font-family: inherit;
@@ -774,6 +781,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   gap: 8px;
 }
 .member-search-btn:hover { opacity: 0.7; }
+.member-search-btn .btn-text { padding: 2px 30px; }
 .search-icon { width: 16px; height: auto; display: block; }
 
 
@@ -791,7 +799,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px;
-  align-items: center;
+  align-items: start;
 }
 .activities-photos { order: 1; }
 .activities-text   { order: 2; }
@@ -818,12 +826,12 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
 }
 .activities-photos {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
+  grid-template-columns: 292px 292px;
+  gap: 2px;
 }
 .act-photo { overflow: hidden; }
 .act-photo img {
-  width: 100%; height: 130px;
+  width: 292px; height: 187px;
   object-fit: cover;
 }
 
@@ -835,7 +843,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   background: #00a0e9;
   display: flex;
   align-items: stretch;
-  height: 265px;
+  height: 350px;
 }
 .contact-cta-photo {
   flex-shrink: 0;
@@ -878,7 +886,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   letter-spacing: 0.2em;
 }
 .contact-photo-title {
-  font-size: 1.4rem;
+  font-size: 2.25rem;
   font-weight: normal;
   line-height: 1.4;
   margin-bottom: 16px;
@@ -887,7 +895,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.8rem;
+  font-size: 1.125rem;
   color: var(--white);
   align-self: flex-end;
 }
@@ -903,7 +911,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
 }
 .contact-cta-inner {
   flex: 1;
-  padding: 30px 40px;
+  padding: 50px 40px;
   overflow: hidden;
 }
 .contact-label {
@@ -913,7 +921,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   letter-spacing: 0.2em;
 }
 .contact-title {
-  font-size: 1.4rem;
+  font-size: 2.25rem;
   font-weight: normal;
   color: var(--white);
   margin-bottom: 5px;
@@ -927,13 +935,15 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
 .contact-divider {
   border: none;
   border-top: 1px solid rgba(255,255,255,0.5);
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+  width: 520px;
 }
 .contact-cols {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: 1fr auto;
+  gap: 30px;
   align-items: start;
+  width: 520px;
 }
 .contact-col-label {
   font-size: 0.875rem;
@@ -944,7 +954,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   color: var(--white);
 }
 .contact-tel {
-  font-size: 1.75rem;
+  font-size: 2.0625rem;
   font-weight: normal;
   color: var(--white);
   margin-top: 10px;
@@ -974,16 +984,16 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   background: var(--white);
 }
 .footer-inner {
-  max-width: 1280px;
+  max-width: 1520px;
   margin: 0 auto;
-  padding: 40px 24px 32px;
+  padding: 40px 100px 32px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 50px;
 }
 .footer-left {
-  flex: 0 0 350px;
+  flex: 0 0 460px;
 }
 .footer-right {
   flex: 1 1 0;
@@ -1101,25 +1111,326 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
 
 
 /* =============================================
+   KRICについて ページ固有スタイル
+   ============================================= */
+
+/* ページKV（写真帯） */
+.page-kv {
+  position: relative;
+  margin-top: 100px;
+}
+.page-kv-photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height: 350px;
+}
+.page-kv-photo {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+.page-kv-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.page-kv-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #007bc7;
+  mix-blend-mode: multiply;
+  opacity: 0.3;
+}
+.page-kv-photo--placeholder {
+  background: #1a2e50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.8rem;
+}
+.page-kv-title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.page-kv-label {
+  max-width: 1180px;
+  margin: 0 auto;
+  color: var(--white);
+  font-size: 2.8125rem;
+  letter-spacing: 0.1em;
+}
+.page-breadcrumb {
+  position: relative;
+  z-index: 1;
+  padding: 10px 24px;
+}
+.page-breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--white);
+}
+.page-breadcrumb-list li + li::before {
+  content: '>';
+  margin-right: 8px;
+}
+.page-breadcrumb-list a {
+  color: var(--white);
+  transition: color 0.2s;
+}
+.page-breadcrumb-list a:hover { color: rgba(255,255,255,0.7); }
+
+/* PRIDE セクション */
+.about-pride-sec {
+  position: relative;
+  overflow: hidden;
+  padding: 0 24px;
+}
+.about-pride-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.about-pride-sec-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 100px auto;
+  text-align: center;
+}
+.about-pride-graphic {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+}
+.about-pride-graphic img {
+  max-width: 480px;
+  width: 100%;
+}
+.about-pride-catch {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--white);
+  margin-bottom: 28px;
+  letter-spacing: 0.05em;
+}
+.about-pride-text {
+  font-size: 1.125rem;
+  color: rgba(255,255,255,0.82);
+  line-height: 2;
+  text-align: justify;
+  width: 400px;
+  margin: 0 auto 70px;
+}
+
+/* 5つのコンセプト */
+.about-concepts { margin: 20px 0 150px; display: flex; justify-content: center; }
+.about-concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 120px 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 20px 32px;
+  align-items: center;
+}
+.concept-item--top      { grid-column: 2; grid-row: 1; text-align: center; }
+.concept-item--left     { grid-column: 1; grid-row: 2; text-align: right; }
+.concept-item--center   { grid-column: 2; grid-row: 2; text-align: center; }
+.concept-item--right    { grid-column: 3; grid-row: 2; text-align: left; }
+.concept-item--bot-left { grid-column: 1; grid-row: 3; text-align: right; }
+.concept-item--bot-right{ grid-column: 3; grid-row: 3; text-align: left; }
+.concept-item--center img { width: 90px; height: 90px; object-fit: contain; }
+.concept-en {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--gold-light);
+  letter-spacing: 0.15em;
+  margin-bottom: 4px;
+}
+.concept-ja {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.concept-desc {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+}
+
+/* 理事長あいさつ */
+.about-chairman {
+  background: var(--white);
+  padding: 130px 24px;
+}
+.about-chairman-inner {
+  width: fit-content;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 494px 490px;
+  gap: 20px;
+  align-items: start;
+}
+.about-chairman-title {
+  font-size: 2.25rem;
+  font-weight: normal;
+  color: var(--navy);
+  margin-bottom: 28px;
+}
+.about-chairman-body {
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: justify;
+  color: var(--text);
+  margin-bottom: 28px;
+  width: 494px;
+}
+.about-chairman-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: rgba(255,255,255,0);
+  padding: 30px 40px;
+}
+.chairman-role {
+  font-size: 1.25rem;
+}
+.chairman-name-ja {
+  font-size: 1.75rem;
+}
+.about-chairman-photo {
+  padding-top: 90px;
+  position: relative;
+  width: 490px;
+}
+.about-chairman-photo img {
+  width: 100%;
+  display: block;
+}
+.about-chairman-photo--placeholder {
+  background: #e8edf5;
+  aspect-ratio: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 0.85rem;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* 入会CTA */
+.about-join {
+  position: relative;
+  background: var(--navy);
+  padding: 64px 24px;
+  overflow: hidden;
+}
+.about-join-bg--placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0a1a35 60%, #1a3a6a);
+}
+.about-join-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.about-join-label {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--gold-light);
+  letter-spacing: 0.2em;
+  margin-bottom: 8px;
+}
+.about-join-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+.about-join-btn { display: inline-flex; }
+
+/* =============================================
    タブレット レスポンシブ（1024px以下）
    ============================================= */
 @media (max-width: 1024px) {
 
+  /* 共通レイアウト */
+  .section-inner { margin: 50px auto; padding: 0 24px; }
+
+  /* セクション見出し */
+  .sec-title { font-size: 1.8rem; }
+  .about-pride-heading .sec-title { font-size: 1.8rem; }
+  .contact-photo-title { font-size: 1.8rem; }
+  .activities-lead { font-size: 1rem; }
+  .member-intro-lead { font-size: 1rem; }
+
+  /* ヘッダー */
+  .header-inner { padding: 10px 0 10px 24px; }
+  .logo-img { width: 118px; max-height: 40px; }
+  .logo-ja { font-size: 1.1rem; }
+  .btn-hd { height: 40px; }
+  .btn-hd .btn-text { font-size: 0.875rem; }
+  .btn-hd-icon { height: 24px; }
+  .menu-btn { width: 80px; margin: -10px 0 -10px 16px; }
+  .menu-btn-lines { gap: 4px; margin-bottom: 4px; }
+  .menu-btn-lines span { width: 32px; height: 3.1px; }
+  .menu-btn-label { font-size: 0.68rem; }
+
+  /* ヒーロー・ページKV */
+  .hero-photo { width: 430px; height: 248px; }
+  .page-kv { margin-top: 60px; }
+
   /* お問い合わせ CTA */
+  .contact-cta { height: 280px; }
   .contact-cta-inner { padding: 20px 24px; overflow: hidden; }
   .contact-title { font-size: 1.1rem; }
   .contact-tel { font-size: 1.3rem; margin-top: 4px; }
-  .contact-cols { gap: 20px; }
+  .contact-cols { gap: 20px; width: 400px; }
+  .contact-divider { width: 400px; }
 
   /* KRICについて（index） */
   .about-pride-inner {
-    grid-template-columns: 450px 1fr;
+    grid-template-columns: 500px 1fr;
   }
   .about-pride-photos {
     grid-template-columns: 200px 280px;
     grid-template-rows: 111px 95px;
   }
   .about-pride-desc { font-size: 1rem; }
+  .activities-inner { margin: 0 auto; }
+
+  /* KRICについて（about page）*/
+  .about-chairman { padding: 104px 24px; }
+  .about-chairman-inner { grid-template-columns: 395px 392px; }
+  .about-chairman-body { width: 395px; font-size: 0.8rem; }
+  .about-chairman-photo { width: 392px; padding-top: 72px; }
+  .about-chairman-photo img { width: 392px; }
+  .about-chairman-title { font-size: 1.8rem; }
+  .chairman-role { font-size: 1rem; }
+  .chairman-name-ja { font-size: 1.4rem; }
+
+  /* フッター */
+  .footer-inner { flex-direction: column; gap: 24px; padding: 40px 40px 32px; }
+  .footer-left { flex: none; width: 100%; }
+  .footer-right { width: 100%; }
+  .footer-nav-cols { margin-top: 16px; }
 
 }
 
@@ -1132,12 +1443,26 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   /* ヘッダー */
   .header-btns { display: none; }
   .header-inner { padding: 0 0 0 16px; }
-  .menu-btn { margin: 0; padding: 0 16px; height: 56px; align-self: auto; }
+  .logo-img { width: auto; max-height: 30px; }
+  .menu-btn { margin: 0; padding: 0; width: 56px; height: 56px; align-self: auto; }
+  .menu-btn-lines { margin-bottom: 0; gap: 5px; }
+  .menu-btn-lines span { width: 18px; height: 2px; }
+  .menu-btn.is-open .menu-btn-lines span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-btn.is-open .menu-btn-lines span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .menu-btn-label { font-size: 0.5rem; }
   .gnav-close { height: 56px; padding: 0 16px; }
 
   /* グローバルナビ */
   .gnav { padding: 80px 24px 60px; }
   .gnav-list { max-width: 100%; }
+
+  /* 共通レイアウト */
+  .section-inner { margin: 50px auto; padding: 0 24px; }
+
+  /* セクション見出し */
+  .sec-title { font-size: 1.6rem; }
+  .about-pride-heading .sec-title { font-size: 1.6rem; }
+  .about-pride-heading { padding-bottom: 16px; }
 
   /* ヒーロー */
   .hero { height: 85svh; min-height: 320px; padding: 0 10% 48px; justify-content: flex-end; gap: 90px; }
@@ -1149,7 +1474,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
     justify-content: center;
   }
   .hero-photo { display: none; }
-  .hero-top-logo2 { max-width: 280px; flex: none; margin: 0 auto; }
+  .hero-top-logo2 { position: static; transform: none; max-width: 280px; flex: none; margin: 0 auto; }
 
   /* SP用 about-pride 写真 */
   .about-pride-photo-sp {
@@ -1172,7 +1497,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
     padding: 5% 15% 15% 5%;
   }
   .about-pride-text-sp .about-pride-heading { justify-content: center; }
-  .about-pride-text-sp .about-pride-desc { margin-left: 18%; text-align: left; }
+  .about-pride-text-sp .about-pride-desc { margin-left: 10%; text-align: left; }
   .about-pride-text-sp .btn-outline-light { margin-left: 5%; }
   .about-pride .about-pride-text { display: none; }
 
@@ -1276,15 +1601,16 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   .member-search-card { padding: 56px 40px; }
   .member-search-btn { padding-top: 4px; padding-bottom: 4px; }
   .member-search-btn .btn-text { padding-left: 15px; padding-right: 15px; }
-  .member-search-inputs { flex-direction: column; }
+  .member-search-inputs { flex-direction: column; width: 100%; height: auto; }
   .member-search-input { min-width: 0; }
 
   /* 活動について */
   .activities { padding-bottom: 100px; }
-  .activities-inner { grid-template-columns: 1fr; gap: 50px; }
+  .activities-inner { grid-template-columns: 1fr; gap: 50px; margin: 0 auto; }
   .activities-photos { order: 0; }
   .activities-text   { order: 0; }
-  .activities-photos { gap: 1px; }
+  .activities-photos { gap: 1px; grid-template-columns: 1fr 1fr; }
+  .act-photo img { width: 100%; height: auto; }
   .activities-lead { margin-left: 0; padding-left: 30px; }
   .activities-desc { margin-left: 0; padding-left: 30px; width: 255px; }
   .member-intro-desc { width: 255px; }
@@ -1294,6 +1620,8 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   .contact-cta { flex-direction: column; height: auto; }
   .contact-cta-photo { width: 100%; height: 200px; }
   .contact-cta-inner { padding: 24px; }
+  .contact-photo-title { font-size: 1.4rem; }
+  .contact-photo-link { font-size: 0.8rem; }
   .contact-photo-title br { display: none; }
   .contact-subtitle-br { display: inline; }
   .contact-cta-photo-text { align-items: flex-start; }
@@ -1307,7 +1635,9 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   .cta-tel { font-size: 1.4rem; }
 
   /* フッター */
-  .footer-inner { flex-direction: column; gap: 24px; padding-bottom: 0; }
+  .footer-inner { flex-direction: column; gap: 24px; padding-bottom: 0; padding-left: 24px; padding-right: 24px; }
+  .logo-img--footer { height: 40px; max-height: 40px; }
+  .logo-text--footer .logo-ja { font-size: 1rem; }
   .footer-left { flex: none; width: 100%; }
   .footer-right {
     flex: none;
@@ -1382,262 +1712,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
 }
 
 
-/* =============================================
-   KRICについて ページ固有スタイル
-   ============================================= */
-
-/* ページKV（写真帯） */
-.page-kv {
-  position: relative;
-  margin-top: 60px;
-}
-.page-kv-photos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  height: 200px;
-}
-.page-kv-photo {
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-}
-.page-kv-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-.page-kv-photo::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #007bc7;
-  mix-blend-mode: multiply;
-  opacity: 0.3;
-}
-.page-kv-photo--placeholder {
-  background: #1a2e50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255,255,255,0.4);
-  font-size: 0.8rem;
-}
-.page-kv-title {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.page-kv-label {
-  max-width: 1180px;
-  margin: 0 auto;
-  color: var(--white);
-  font-size: 1.6rem;
-  letter-spacing: 0.1em;
-}
-.page-breadcrumb {
-  position: relative;
-  z-index: 1;
-  padding: 10px 24px;
-}
-.page-breadcrumb-list {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.75rem;
-  color: var(--white);
-}
-.page-breadcrumb-list li + li::before {
-  content: '>';
-  margin-right: 8px;
-}
-.page-breadcrumb-list a {
-  color: var(--white);
-  transition: color 0.2s;
-}
-.page-breadcrumb-list a:hover { color: rgba(255,255,255,0.7); }
-
-/* PRIDE セクション */
-.about-pride-sec {
-  position: relative;
-  overflow: hidden;
-  padding: 0 24px;
-}
-.about-pride-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-}
-.about-pride-sec-inner {
-  position: relative;
-  z-index: 1;
-  max-width: 1180px;
-  margin: 100px auto;
-  text-align: center;
-}
-.about-pride-graphic {
-  margin-bottom: 40px;
-  display: flex;
-  justify-content: center;
-}
-.about-pride-graphic img {
-  max-width: 480px;
-  width: 100%;
-}
-.about-pride-catch {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: var(--white);
-  margin-bottom: 28px;
-  letter-spacing: 0.05em;
-}
-.about-pride-text {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.82);
-  line-height: 2;
-  text-align: justify;
-  width: 70%;
-  margin: 0 auto 70px;
-}
-
-/* 5つのコンセプト */
-.about-concepts { margin: 20px 0 150px; display: flex; justify-content: center; }
-.about-concept-grid {
-  display: grid;
-  grid-template-columns: 1fr 120px 1fr;
-  grid-template-rows: auto auto auto;
-  gap: 20px 32px;
-  align-items: center;
-}
-.concept-item--top      { grid-column: 2; grid-row: 1; text-align: center; }
-.concept-item--left     { grid-column: 1; grid-row: 2; text-align: right; }
-.concept-item--center   { grid-column: 2; grid-row: 2; text-align: center; }
-.concept-item--right    { grid-column: 3; grid-row: 2; text-align: left; }
-.concept-item--bot-left { grid-column: 1; grid-row: 3; text-align: right; }
-.concept-item--bot-right{ grid-column: 3; grid-row: 3; text-align: left; }
-.concept-item--center img { width: 90px; height: 90px; object-fit: contain; }
-.concept-en {
-  font-size: 0.875rem;
-  font-weight: bold;
-  color: var(--gold-light);
-  letter-spacing: 0.15em;
-  margin-bottom: 4px;
-}
-.concept-ja {
-  font-size: 1rem;
-  font-weight: bold;
-  color: var(--white);
-  margin-bottom: 6px;
-}
-.concept-desc {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.7);
-  line-height: 1.6;
-}
-
-/* 理事長あいさつ */
-.about-chairman {
-  background: var(--white);
-  padding: 120px 24px;
-}
-.about-chairman-inner {
-  max-width: 1180px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: 20px;
-  align-items: start;
-  width: 50%;
-}
-.about-chairman-title {
-  font-size: 1.4rem;
-  font-weight: normal;
-  color: var(--navy);
-  margin-bottom: 28px;
-}
-.about-chairman-body {
-  font-size: 0.875rem;
-  line-height: 1.6;
-  text-align: justify;
-  color: var(--text);
-  margin-bottom: 28px;
-}
-.about-chairman-name {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  background: rgba(255,255,255,0);
-  padding: 12px 25px;
-}
-.chairman-role {
-  font-size: 0.875rem;
-}
-.chairman-name-ja {
-  font-size: 1.1rem;
-}
-.about-chairman-photo {
-  padding-top: 66px;
-  position: relative;
-}
-.about-chairman-photo img {
-  width: 100%;
-  display: block;
-}
-.about-chairman-photo--placeholder {
-  background: #e8edf5;
-  aspect-ratio: 3/4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #999;
-  font-size: 0.85rem;
-  text-align: center;
-  line-height: 1.8;
-}
-
-/* 入会CTA */
-.about-join {
-  position: relative;
-  background: var(--navy);
-  padding: 64px 24px;
-  overflow: hidden;
-}
-.about-join-bg--placeholder {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #0a1a35 60%, #1a3a6a);
-}
-.about-join-inner {
-  position: relative;
-  z-index: 1;
-  max-width: 1180px;
-  margin: 0 auto;
-}
-.about-join-label {
-  font-size: 0.75rem;
-  font-weight: bold;
-  color: var(--gold-light);
-  letter-spacing: 0.2em;
-  margin-bottom: 8px;
-}
-.about-join-title {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: var(--white);
-  margin-bottom: 28px;
-}
-.about-join-btn { display: inline-flex; }
-
-/* レスポンシブ */
+/* レスポンシブ（about page） */
 @media (max-width: 768px) {
   .page-kv { margin-top: 56px; }
   .page-kv-photos { height: 130px; }
@@ -1663,6 +1738,7 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   }
   .about-chairman { padding: 50px 24px; }
   .about-chairman-inner { grid-template-columns: 1fr; width: 90%; gap: 0; }
+  .about-chairman-body { font-size: 1.5rem; width: auto; }
   .about-chairman-photo { order: 1; width: 100%; max-width: none; padding-top: 0; }
   .about-chairman-photo img { width: 100%; max-width: 100%; }
   .about-join-title { font-size: 1.2rem; }
