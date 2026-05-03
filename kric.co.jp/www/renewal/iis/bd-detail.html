@@ -47,13 +47,34 @@
       </button>
     </div>
     <ul class="gnav-list">
-      <li><a href="../index.html">TOP</a></li>
-      <li><a href="index.html">インフォメーション</a></li>
-      <li><a href="bd.html">ビジネスダイレクト</a></li>
-      <li><a href="#">ライブラリ</a></li>
-      <li><a href="#">KRICメディア</a></li>
-      <li><a href="#">登録者名簿</a></li>
-      <li><a href="reg-company.html">登録情報</a></li>
+      <li><a href="index.html">インフォメーション<span class="gnav-arrow gnav-arrow-link">＞</span></a></li>
+      <li>
+        <button class="gnav-toggle" aria-expanded="false">ビジネスダイレクト<span class="gnav-arrow">＋</span></button>
+        <ul class="gnav-child">
+          <li><a href="bd.html">売りたい</a></li>
+          <li><a href="#">買いたい</a></li>
+          <li><a href="#">貸したい</a></li>
+          <li><a href="#">借りたい</a></li>
+        </ul>
+      </li>
+      <li><a href="#">ライブラリ<span class="gnav-arrow gnav-arrow-link">＞</span></a></li>
+      <li>
+        <button class="gnav-toggle" aria-expanded="false">KRICメディア<span class="gnav-arrow">＋</span></button>
+        <ul class="gnav-child">
+          <li><a href="#">【MBSラジオ】村瀬哲史とKRIC！不動産の時間</a></li>
+          <li><a href="#">【MBSラジオ】予備校講師村瀬哲史のナニワ地理学</a></li>
+          <li><a href="#">【YouTube】ナニワの地理学スピンオフ</a></li>
+        </ul>
+      </li>
+      <li><a href="#">登録者名簿<span class="gnav-arrow gnav-arrow-link">＞</span></a></li>
+      <li>
+        <button class="gnav-toggle" aria-expanded="false">登録情報<span class="gnav-arrow">＋</span></button>
+        <ul class="gnav-child">
+          <li><a href="reg-company.html">会社概要</a></li>
+          <li><a href="#">個別設定</a></li>
+          <li><a href="#">メンバー追加／削除</a></li>
+        </ul>
+      </li>
     </ul>
   </nav>
 
@@ -62,7 +83,7 @@
     <p class="mem-breadcrumb mem-breadcrumb--sp">関西不動産情報センターTOP &gt; 会員専用ページ &gt; ビジネスダイレクト &gt; 売りたい &gt; 詳細</p>
     <div class="mem-page-bar-inner">
       <h1 class="mem-page-title">[会員専用ページ]</h1>
-      <p class="mem-page-user">株式会社○○○○○○　　　●● ●●　様</p>
+      <p class="mem-page-user"><span class="mem-page-company">株式会社○○○○○○</span><span class="mem-page-sep">｜</span><span class="mem-page-name">●● ●●　様</span></p>
     </div>
   </div>
 
@@ -213,7 +234,7 @@
             <div class="footer-nav-col">
               <a href="bd.html" class="footer-nav-parent">ビジネスダイレクト</a>
               <ul>
-                <li><a href="#">売りたい</a></li>
+                <li><a href="bd.html">売りたい</a></li>
                 <li><a href="#">買いたい</a></li>
                 <li><a href="#">貸したい</a></li>
                 <li><a href="#">借りたい</a></li>

@@ -1392,6 +1392,8 @@ button { cursor: pointer; background: none; border: none; font-family: inherit; 
   .menu-btn-lines { gap: 4px; margin-bottom: 4px; }
   .menu-btn-lines span { width: 32px; height: 3.1px; }
   .menu-btn-label { font-size: 0.68rem; }
+  .menu-btn.is-open .menu-btn-lines span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-btn.is-open .menu-btn-lines span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   /* ヒーロー・ページKV */
   .hero-photo { width: 430px; height: 248px; }
