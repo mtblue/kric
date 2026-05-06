@@ -325,6 +325,51 @@ html { font-size: 18px; }
 
 
 /* =============================================
+   インフォメーション 詳細
+   ============================================= */
+.info-detail {
+  width: 700px;
+  margin: 0 auto;
+}
+.info-detail-date {
+  font-size: 0.889rem;
+  color: #000;
+  margin-bottom: 8px;
+}
+.info-detail-title {
+  font-size: 1.111rem;
+  font-weight: bold;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.info-detail-divider {
+  border: none;
+  border-top: 1px solid var(--gray-line);
+  margin-bottom: 24px;
+}
+.info-detail-body {
+  font-size: 0.889rem;
+  color: #000;
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.info-detail-footer {
+  margin-top: 60px;
+  text-align: right;
+}
+.info-detail-back {
+  font-size: 0.889rem;
+  color: var(--navy);
+  transition: opacity 0.2s;
+}
+.info-detail-back:hover {
+  opacity: 0.7;
+}
+
+
+/* =============================================
    ビジネスダイレクト
    ============================================= */
 
@@ -722,6 +767,140 @@ html { font-size: 18px; }
 }
 .bd-detail-back:hover {
   color: var(--gold);
+}
+
+
+/* =============================================
+   ビジネスダイレクト 新規登録
+   ============================================= */
+.bd-reg {
+  width: 700px;
+  margin: 0 auto;
+  padding: 40px 0 60px;
+}
+.bd-reg-title {
+  font-size: 1.278rem;
+  font-weight: normal;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.bd-reg-divider {
+  border: none;
+  border-top: 1px solid var(--gray-line);
+  margin-bottom: 32px;
+}
+.bd-reg-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 40px;
+}
+.bd-reg-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 0;
+  align-items: start;
+  border-bottom: 1px solid var(--gray-line);
+  padding: 14px 0;
+}
+.bd-reg-label {
+  font-size: 0.778rem;
+  color: var(--navy);
+  font-weight: bold;
+  padding: 6px 10px 6px 0;
+  display: flex;
+  align-items: flex-start;
+  white-space: nowrap;
+}
+.bd-reg-input {
+  padding: 4px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.bd-reg-text {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 0.778rem;
+  border: 1px solid #ccc;
+  background: var(--white);
+  color: #000;
+}
+.bd-reg-select {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 0.778rem;
+  border: 1px solid #ccc;
+  background: var(--white);
+  color: #000;
+}
+.bd-reg-textarea {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 0.778rem;
+  border: 1px solid #ccc;
+  background: var(--white);
+  color: #000;
+  height: 100px;
+  resize: vertical;
+}
+.bd-reg-hint {
+  font-size: 0.667rem;
+  color: #000;
+}
+.bd-reg-thumb {
+  width: 160px;
+  height: 110px;
+  background: #ccc;
+}
+.bd-reg-filename {
+  font-size: 0.667rem;
+  color: #000;
+}
+.bd-reg-pdf-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+.bd-reg-pdf-name {
+  font-size: 0.667rem;
+  color: var(--navy);
+  text-decoration: underline;
+}
+.bd-reg-submit-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+.bd-reg-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  background: #c0ad5e;
+  color: var(--white);
+  font-size: 0.889rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  width: 180px;
+  height: 40px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.bd-reg-submit-btn:hover {
+  opacity: 0.85;
+}
+.bd-reg-submit-btn .btn-text {
+  flex: 1;
+  text-align: center;
+}
+.bd-reg-note {
+  font-size: 0.667rem;
+  color: #000;
+  text-align: center;
+  line-height: 1.8;
 }
 
 
@@ -1282,6 +1461,11 @@ html { font-size: 18px; }
     width: auto;
   }
 
+  /* ビジネスダイレクト 新規登録 */
+  .bd-reg {
+    width: auto;
+  }
+
   /* Googleマップモーダル タブレット */
   .map-modal {
     width: 90vw;
@@ -1339,7 +1523,8 @@ html { font-size: 18px; }
     font-size: 2.222rem;
   }
   .mem-page-user {
-    font-size: 1.333rem;
+    font-size: 0.889rem;
+    white-space: normal;
   }
 
   /* タブナビ：非表示 */
@@ -1601,6 +1786,9 @@ html { font-size: 18px; }
     font-size: 1rem;
     padding: 8px;
   }
+  .reg-input--zip {
+    flex-wrap: wrap;
+  }
   .reg-input-zip {
     width: 70px !important;
   }
@@ -1654,6 +1842,44 @@ html { font-size: 18px; }
     text-align: center;
     padding-left: 0;
     padding-right: 0;
+  }
+
+  /* ビジネスダイレクト 新規登録 */
+  .bd-reg {
+    width: auto;
+    padding: 20px 0 40px;
+  }
+  .bd-reg-title {
+    font-size: 1.889rem;
+  }
+  .bd-reg-row {
+    display: block;
+    padding: 16px 0;
+  }
+  .bd-reg-label {
+    font-size: 1.111rem;
+    padding: 0 0 8px 0;
+  }
+  .bd-reg-text,
+  .bd-reg-select,
+  .bd-reg-textarea {
+    font-size: 1rem;
+    padding: 10px 8px;
+  }
+  .bd-reg-hint {
+    font-size: 1rem;
+  }
+  .bd-reg-filename,
+  .bd-reg-pdf-name {
+    font-size: 1rem;
+  }
+  .bd-reg-submit-btn {
+    width: 220px;
+    height: 56px;
+    font-size: 1.222rem;
+  }
+  .bd-reg-note {
+    font-size: 1rem;
   }
 
   /* Googleマップモーダル SP */

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>インフォメーション - KRIC 会員専用ページ</title>
+  <title>ビジネスダイレクト 新規登録 - KRIC 会員専用ページ</title>
   <link rel="stylesheet" href="../css/style.css?v=17">
   <link rel="stylesheet" href="../css/member.css?v=1">
 </head>
@@ -80,7 +80,7 @@
 
   <!-- ========== 会員ページタイトルバー ========== -->
   <div class="mem-page-bar">
-    <p class="mem-breadcrumb mem-breadcrumb--sp">関西不動産情報センターTOP &gt; 会員専用ページ &gt; インフォメーション</p>
+    <p class="mem-breadcrumb mem-breadcrumb--sp">関西不動産情報センターTOP &gt; 会員専用ページ &gt; ビジネスダイレクト &gt; 売りたい &gt; 新規登録</p>
     <div class="mem-page-bar-inner">
       <h1 class="mem-page-title">[会員専用ページ]</h1>
       <p class="mem-page-user"><span class="mem-page-company">株式会社○○○○○○</span><span class="mem-page-sep">｜</span><span class="mem-page-name">●● ●●　様</span></p>
@@ -91,10 +91,10 @@
   <nav class="mem-nav" aria-label="会員メニュー">
     <div class="mem-nav-inner">
       <ul class="mem-nav-list">
-        <li class="mem-nav-item is-active">
+        <li class="mem-nav-item">
           <a href="index.html" class="mem-nav-link">インフォメーション <span class="mem-nav-arr">▼</span></a>
         </li>
-        <li class="mem-nav-item">
+        <li class="mem-nav-item is-active">
           <a href="bd.html" class="mem-nav-link">ビジネスダイレクト <span class="mem-nav-arr">▼</span></a>
         </li>
         <li class="mem-nav-item">
@@ -124,74 +124,134 @@
       <div class="mem-card">
 
         <!-- パンくず -->
-        <p class="mem-breadcrumb mem-breadcrumb--pc">関西不動産情報センターTOP &gt; 会員専用ページ &gt; インフォメーション</p>
+        <p class="mem-breadcrumb mem-breadcrumb--pc">関西不動産情報センターTOP &gt; 会員専用ページ &gt; ビジネスダイレクト &gt; 売りたい &gt; 新規登録</p>
 
         <!-- セクション見出し -->
-        <div class="mem-sec-head">
-          <h2 class="mem-sec-title">─ インフォメーション ─</h2>
-          <p class="mem-sec-sub">事務局からのお知らせ</p>
+        <div class="mem-sec-head bd-sec-head">
+          <h2 class="mem-sec-title">─ ビジネスダイレクト ─</h2>
+          <a href="bd-reg.html" class="bd-register-btn"><span class="btn-text">新規登録</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
         </div>
 
-        <hr class="mem-divider">
+        <!-- サブタブ -->
+        <div class="bd-subtabs">
+          <a href="bd.html" class="bd-subtab is-active">売りたい <span class="bd-subtab-arr">▼</span></a>
+          <a href="#" class="bd-subtab">買いたい <span class="bd-subtab-arr">▼</span></a>
+          <a href="#" class="bd-subtab">貸したい <span class="bd-subtab-arr">▼</span></a>
+          <a href="#" class="bd-subtab">借りたい <span class="bd-subtab-arr">▼</span></a>
+        </div>
 
-        <!-- お知らせリスト -->
-        <ul class="info-list">
-          <li class="info-item">
-            <div class="info-item-body">
-              <span class="info-date">25.00.00</span>
-              <a href="info-detail.html" class="info-title">８月運営委員会報告簡略版</a>
-            </div>
-            <span class="info-arrow">→</span>
-          </li>
-          <li class="info-item">
-            <div class="info-item-body">
-              <span class="info-date">25.00.00</span>
-              <a href="info-detail.html" class="info-title">８月運営委員会報告簡略版</a>
-            </div>
-            <span class="info-arrow">→</span>
-          </li>
-          <li class="info-item">
-            <div class="info-item-body">
-              <span class="info-date">25.00.00</span>
-              <a href="info-detail.html" class="info-title">８月運営委員会報告簡略版</a>
-            </div>
-            <span class="info-arrow">→</span>
-          </li>
-          <li class="info-item">
-            <div class="info-item-body">
-              <span class="info-date">25.00.00</span>
-              <a href="info-detail.html" class="info-title">８月運営委員会報告簡略版</a>
-            </div>
-            <span class="info-arrow">→</span>
-          </li>
-          <li class="info-item">
-            <div class="info-item-body">
-              <span class="info-date">25.00.00</span>
-              <a href="info-detail.html" class="info-title">８月運営委員会報告簡略版</a>
-            </div>
-            <span class="info-arrow">→</span>
-          </li>
-        </ul>
+        <!-- 新規登録フォーム -->
+        <div class="bd-reg">
 
-        <hr class="mem-divider mem-divider--no-bottom">
+          <h3 class="bd-reg-title">新規登録</h3>
+          <hr class="bd-reg-divider">
 
-        <!-- ページネーション -->
-        <div class="mem-pagination">
-          <a href="#" class="mem-pg-prev">&lt;</a>
-          <div class="mem-pg-pages">
-            <a href="#" class="mem-pg-num is-current">1</a>
-            <span class="mem-pg-sep">｜</span>
-            <a href="#" class="mem-pg-num">2</a>
-            <span class="mem-pg-sep">｜</span>
-            <a href="#" class="mem-pg-num">3</a>
-            <span class="mem-pg-sep">｜</span>
-            <a href="#" class="mem-pg-num">4</a>
-            <span class="mem-pg-sep">｜</span>
-            <a href="#" class="mem-pg-num">5</a>
-            <span class="mem-pg-dots">・・・・・</span>
-            <a href="#" class="mem-pg-num">10</a>
-          </div>
-          <a href="#" class="mem-pg-next">&gt;</a>
+          <form class="bd-reg-form">
+            <div class="bd-reg-table">
+
+              <div class="bd-reg-row">
+                <span class="bd-reg-label">•投稿タイトル</span>
+                <div class="bd-reg-input">
+                  <input type="text" class="bd-reg-text">
+                </div>
+              </div>
+
+              <div class="bd-reg-row">
+                <span class="bd-reg-label">•売買賃値</span>
+                <div class="bd-reg-input">
+                  <select class="bd-reg-select">
+                    <option value="">選択してください</option>
+                    <option value="sell">売りたい</option>
+                    <option value="buy">買いたい</option>
+                    <option value="rent-out">貸したい</option>
+                    <option value="rent-in">借りたい</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="bd-reg-row">
+                <span class="bd-reg-label">•種別</span>
+                <div class="bd-reg-input">
+                  <select class="bd-reg-select">
+                    <option value="">選択してください</option>
+                    <option value="land">土地</option>
+                    <option value="house">一戸建</option>
+                    <option value="mansion">マンション</option>
+                    <option value="other-all">住宅以外の建物（全部）</option>
+                    <option value="other-part">住宅以外の建物（一部）</option>
+                    <option value="other">その他</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="bd-reg-row">
+                <span class="bd-reg-label">•所在地</span>
+                <div class="bd-reg-input">
+                  <input type="text" class="bd-reg-text">
+                </div>
+              </div>
+
+              <div class="bd-reg-row">
+                <span class="bd-reg-label">•備考</span>
+                <div class="bd-reg-input">
+                  <textarea class="bd-reg-textarea"></textarea>
+                </div>
+              </div>
+
+              <div class="bd-reg-row">
+                <span class="bd-reg-label">•動画URL</span>
+                <div class="bd-reg-input">
+                  <input type="url" class="bd-reg-text">
+                  <p class="bd-reg-hint">※YouTube動画のみ掲載可能</p>
+                </div>
+              </div>
+
+              <div class="bd-reg-row">
+                <span class="bd-reg-label">•添付ファイル</span>
+                <div class="bd-reg-input">
+                  <button type="button" class="reg-file-btn">
+                    <span>ファイルを選択</span>
+                  </button>
+                  <p class="bd-reg-hint">※添付可能なファイル形式:jpg・png・pdf</p>
+                  <div class="bd-reg-thumb"></div>
+                  <p class="bd-reg-filename">00000000000000.jpg</p>
+                  <button type="button" class="reg-delete-btn">削除</button>
+                  <div class="bd-reg-pdf-row">
+                    <img src="../images/pdf.png" alt="" class="bd-detail-pdf-icon">
+                    <span class="bd-reg-pdf-name">00000000000000.pdf</span>
+                  </div>
+                  <button type="button" class="reg-delete-btn">削除</button>
+                </div>
+              </div>
+
+              <div class="bd-reg-row">
+                <span class="bd-reg-label">•登録者情報(会社)</span>
+                <div class="bd-reg-input">
+                  <input type="text" class="bd-reg-text" value="○○○○○○○○○○">
+                </div>
+              </div>
+
+              <div class="bd-reg-row">
+                <span class="bd-reg-label">•登録者情報(氏名)</span>
+                <div class="bd-reg-input">
+                  <input type="text" class="bd-reg-text" value="○○○○○○○○○○">
+                </div>
+              </div>
+
+            </div>
+
+            <div class="bd-reg-submit-row">
+              <button type="button" class="bd-reg-submit-btn">
+                <span class="btn-text">確認</span>
+                <span class="btn-sep">|</span>
+                <span class="btn-arrow">▶</span>
+              </button>
+            </div>
+
+            <p class="bd-reg-note">登録完了後、登録後の一覧表が表示されます。<br>登録ボタンを押した後、登録処理に時間がかかる場合がございますので、そのままお待ちください。</p>
+
+          </form>
+
         </div>
 
       </div>
