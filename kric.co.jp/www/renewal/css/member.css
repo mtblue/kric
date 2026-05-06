@@ -1579,7 +1579,7 @@ html { font-size: 18px; }
   /* ページネーション */
   .mem-pagination {
     width: auto;
-    font-size: 1.333rem;
+    font-size: 0.889rem;
   }
 
   /* フッター */
@@ -1629,7 +1629,7 @@ html { font-size: 18px; }
     margin-right: -40px;
   }
   .bd-subtab {
-    font-size: 1.5rem;
+    font-size: 0.889rem;
     padding: 10px 4px;
   }
   .bd-filter {
@@ -1774,7 +1774,7 @@ html { font-size: 18px; }
     font-size: 0.889rem;
     padding: 0 0 6px 0;
     white-space: normal;
-    width: 30%;
+    width: 50%;
   }
   .reg-input {
     padding: 0;
