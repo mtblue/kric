@@ -3,7 +3,7 @@
    ============================================= */
 
 /* ----- フォント基準（18px） ----- */
-html { font-size: 18px; }
+html { font-size: 18px; font-variant-emoji: text; }
 
 /* ----- ロゴ（base 18px でのサイズ補正） ----- */
 .logo-ja { font-size: 1.222rem; }
@@ -1493,7 +1493,7 @@ html { font-size: 18px; }
   }
   .is-member .btn-hd--member .btn-arrow {
     min-width: auto;
-    padding: 0 10px 0 3px;
+    padding: 0 8px 0 3px;
     text-align: center;
     font-size: 0.778rem;
   }
