@@ -1520,7 +1520,7 @@ html { font-size: 18px; }
     align-items: flex-start;
   }
   .mem-page-title {
-    font-size: 2.222rem;
+    font-size: 1.111rem;
   }
   .mem-page-user {
     font-size: clamp(0.833rem, 4.8vw, 1rem);
@@ -1553,10 +1553,10 @@ html { font-size: 18px; }
 
   /* セクション見出し */
   .mem-sec-title {
-    font-size: 2.167rem;
+    font-size: 1.111rem;
   }
   .mem-sec-sub {
-    font-size: 1.333rem;
+    font-size: 0.667rem;
   }
 
   /* 区切り線 */
@@ -1570,10 +1570,10 @@ html { font-size: 18px; }
     width: auto;
   }
   .info-date {
-    font-size: 1.25rem;
+    font-size: 0.625rem;
   }
   .info-title {
-    font-size: 1.333rem;
+    font-size: 0.667rem;
   }
 
   /* ページネーション */
@@ -1610,12 +1610,12 @@ html { font-size: 18px; }
   }
   .bd-sec-head .bd-register-btn {
     position: static;
-    width: 270px;
+    width: 135px;
     align-self: flex-end;
   }
   .bd-register-btn {
     width: 100%;
-    height: 60px;
+    height: 30px;
     font-size: 1.333rem;
     justify-content: center;
   }
@@ -1624,7 +1624,7 @@ html { font-size: 18px; }
     text-align: center;
     padding-left: 0;
     padding-right: 0;
-    font-size: 1.222rem;
+    font-size: 0.611rem;
   }
   .bd-subtabs {
     width: auto;
@@ -1643,28 +1643,30 @@ html { font-size: 18px; }
     margin: 16px auto;
   }
   .bd-filter-label {
-    font-size: 1.222rem;
+    font-size: 0.611rem;
   }
   .bd-filter-btn {
-    font-size: 1.389rem;
+    font-size: 0.694rem;
     padding: 6px 12px;
   }
   .bd-filter-search {
     margin-top: 0;
-    height: 60px;
+    height: 30px;
     align-self: flex-start;
   }
   .bd-search-input {
-    flex: 1;
-    width: auto;
-    font-size: 1.222rem;
+    width: 120px;
+    font-size: 0.611rem;
   }
   .bd-search-btn {
     padding: 0 16px;
     flex-shrink: 0;
   }
+  .bd-register-btn .btn-arrow {
+    font-size: 0.667rem;
+  }
   .bd-search-icon {
-    height: 24px;
+    height: 12px;
   }
   .bd-grid {
     grid-template-columns: 1fr;
@@ -1672,11 +1674,11 @@ html { font-size: 18px; }
     gap: 12px;
   }
   .bd-badge-label {
-    font-size: 1.278rem;
+    font-size: 0.639rem;
     padding: 2px 12px;
   }
   .bd-badge-value {
-    font-size: 1.611rem;
+    font-size: 0.806rem;
   }
   .bd-card-info {
     padding-left: 40px;
@@ -1685,22 +1687,22 @@ html { font-size: 18px; }
   }
   .bd-card-meta,
   .bd-card-member {
-    font-size: 1.611rem;
+    font-size: 0.806rem;
   }
   .bd-card-title {
-    font-size: 1.722rem;
+    font-size: 0.861rem;
     margin: 10px 40px;
     padding-top: 20px;
     padding-bottom: 20px;
   }
   .bd-card-row {
-    font-size: 1.611rem;
+    font-size: 0.806rem;
     padding: 8px 40px 6px 40px;
   }
   .bd-card-more {
-    width: 36px;
-    height: 36px;
-    font-size: 1.4rem;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
     margin: 8px 40px 8px 8px;
   }
 
@@ -1710,10 +1712,10 @@ html { font-size: 18px; }
     padding: 20px 0 40px;
   }
   .bd-detail-date {
-    font-size: 1.222rem;
+    font-size: 0.611rem;
   }
   .bd-detail-title {
-    font-size: 1.889rem;
+    font-size: 0.944rem;
   }
   .bd-detail-divider {
     margin: 16px 0 20px;
@@ -1724,7 +1726,7 @@ html { font-size: 18px; }
   }
   .bd-detail-row {
     display: block;
-    font-size: 1.167rem;
+    font-size: 0.611rem;
   }
   .bd-detail-label {
     display: block;
@@ -1732,7 +1734,7 @@ html { font-size: 18px; }
   }
   .bd-detail-value {
     display: block;
-    font-size: 1.222rem;
+    font-size: 0.611rem;
   }
   .bd-detail-thumb {
     width: 100%;
@@ -1741,13 +1743,13 @@ html { font-size: 18px; }
   .bd-detail-company,
   .bd-detail-person,
   .bd-detail-member {
-    font-size: 1.1rem;
+    font-size: 0.611rem;
   }
   .bd-detail-author {
     margin-bottom: 30px;
   }
   .bd-detail-back {
-    font-size: 1.1rem;
+    font-size: 0.667rem;
   }
 
   /* 登録情報フォーム */
@@ -1758,7 +1760,7 @@ html { font-size: 18px; }
     display: none;
   }
   .reg-subtitle {
-    font-size: 1.222rem;
+    font-size: 0.944rem;
     width: 100%;
     margin-bottom: 16px;
   }
@@ -1766,7 +1768,7 @@ html { font-size: 18px; }
     width: 100%;
   }
   .reg-required-note {
-    font-size: 0.778rem;
+    font-size: 0.611rem;
   }
   .reg-row {
     display: block;
@@ -1774,7 +1776,7 @@ html { font-size: 18px; }
   }
   .reg-label {
     display: flex;
-    font-size: 0.889rem;
+    font-size: 0.611rem;
     padding: 0 0 6px 0;
     white-space: normal;
     width: 50%;
@@ -1805,27 +1807,33 @@ html { font-size: 18px; }
     height: 100px;
   }
   .reg-hint {
-    font-size: 0.889rem;
+    font-size: 0.611rem;
+  }
+  .reg-map-check {
+    font-size: 0.611rem;
+  }
+  .reg-link {
+    font-size: 0.611rem;
   }
   .reg-logo-title {
-    font-size: 1rem;
+    font-size: 0.611rem;
   }
   .reg-file-btn {
-    font-size: 0.889rem;
+    font-size: 0.611rem;
     padding: 8px 16px;
   }
   .reg-file-name {
-    font-size: 0.889rem;
+    font-size: 0.611rem;
   }
   .reg-map-img {
     width: 100%;
     height: auto;
   }
   .reg-file-current {
-    font-size: 0.889rem;
+    font-size: 0.611rem;
   }
   .reg-delete-btn {
-    font-size: 0.889rem;
+    font-size: 0.611rem;
     padding: 6px 16px;
   }
   .reg-map-header {
