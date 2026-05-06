@@ -1523,7 +1523,7 @@ html { font-size: 18px; }
     font-size: 2.222rem;
   }
   .mem-page-user {
-    font-size: 0.889rem;
+    font-size: clamp(0.5rem, 2.4vw, 0.889rem);
     white-space: normal;
   }
 
@@ -1579,7 +1579,7 @@ html { font-size: 18px; }
   /* ページネーション */
   .mem-pagination {
     width: auto;
-    font-size: 0.889rem;
+    font-size: clamp(0.5rem, 2.4vw, 0.889rem);
   }
 
   /* フッター */
