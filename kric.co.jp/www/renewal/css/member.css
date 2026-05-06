@@ -965,7 +965,7 @@ html { font-size: 18px; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.611rem;
+  font-size: 0.667rem;
   font-weight: bold;
   flex-shrink: 0;
   margin-top: 6px;
@@ -1487,6 +1487,16 @@ html { font-size: 18px; }
   .is-member .btn-hd--member {
     height: 35px;
   }
+  .is-member .btn-hd--member .btn-text {
+    font-size: 0.778rem;
+    padding: 0 5px;
+  }
+  .is-member .btn-hd--member .btn-arrow {
+    min-width: auto;
+    padding: 0 10px 0 3px;
+    text-align: center;
+    font-size: 0.778rem;
+  }
   .is-member .logo-ja:not(.logo-ja--footer) {
     display: none;
   }
@@ -1612,6 +1622,7 @@ html { font-size: 18px; }
     position: static;
     width: 135px;
     align-self: flex-end;
+    padding: 0 5px;
   }
   .bd-register-btn {
     width: 100%;
@@ -1624,7 +1635,7 @@ html { font-size: 18px; }
     text-align: center;
     padding-left: 0;
     padding-right: 0;
-    font-size: 0.611rem;
+    font-size: 0.667rem;
   }
   .bd-subtabs {
     width: auto;
@@ -1643,7 +1654,7 @@ html { font-size: 18px; }
     margin: 16px auto;
   }
   .bd-filter-label {
-    font-size: 0.611rem;
+    font-size: 0.667rem;
   }
   .bd-filter-btn {
     font-size: 0.694rem;
@@ -1656,7 +1667,7 @@ html { font-size: 18px; }
   }
   .bd-search-input {
     width: 120px;
-    font-size: 0.611rem;
+    font-size: 0.667rem;
   }
   .bd-search-btn {
     padding: 0 16px;
@@ -1712,7 +1723,7 @@ html { font-size: 18px; }
     padding: 20px 0 40px;
   }
   .bd-detail-date {
-    font-size: 0.611rem;
+    font-size: 0.667rem;
   }
   .bd-detail-title {
     font-size: 0.944rem;
@@ -1726,7 +1737,7 @@ html { font-size: 18px; }
   }
   .bd-detail-row {
     display: block;
-    font-size: 0.611rem;
+    font-size: 0.667rem;
   }
   .bd-detail-label {
     display: block;
@@ -1734,7 +1745,7 @@ html { font-size: 18px; }
   }
   .bd-detail-value {
     display: block;
-    font-size: 0.611rem;
+    font-size: 0.667rem;
   }
   .bd-detail-thumb {
     width: 100%;
@@ -1743,7 +1754,7 @@ html { font-size: 18px; }
   .bd-detail-company,
   .bd-detail-person,
   .bd-detail-member {
-    font-size: 0.611rem;
+    font-size: 0.667rem;
   }
   .bd-detail-author {
     margin-bottom: 30px;
@@ -1768,7 +1779,7 @@ html { font-size: 18px; }
     width: 100%;
   }
   .reg-required-note {
-    font-size: 0.611rem;
+    font-size: 0.667rem;
   }
   .reg-row {
     display: block;
@@ -1776,7 +1787,7 @@ html { font-size: 18px; }
   }
   .reg-label {
     display: flex;
-    font-size: 0.611rem;
+    font-size: 0.667rem;
     padding: 0 0 6px 0;
     white-space: normal;
     width: 50%;
@@ -1807,33 +1818,33 @@ html { font-size: 18px; }
     height: 100px;
   }
   .reg-hint {
-    font-size: 0.611rem;
+    font-size: 0.667rem;
   }
   .reg-map-check {
-    font-size: 0.611rem;
+    font-size: 0.667rem;
   }
   .reg-link {
-    font-size: 0.611rem;
+    font-size: 0.667rem;
   }
   .reg-logo-title {
-    font-size: 0.611rem;
+    font-size: 0.667rem;
   }
   .reg-file-btn {
-    font-size: 0.611rem;
+    font-size: 0.667rem;
     padding: 8px 16px;
   }
   .reg-file-name {
-    font-size: 0.611rem;
+    font-size: 0.667rem;
   }
   .reg-map-img {
     width: 100%;
     height: auto;
   }
   .reg-file-current {
-    font-size: 0.611rem;
+    font-size: 0.667rem;
   }
   .reg-delete-btn {
-    font-size: 0.611rem;
+    font-size: 0.667rem;
     padding: 6px 16px;
   }
   .reg-map-header {
