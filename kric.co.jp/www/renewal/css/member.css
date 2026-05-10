@@ -1768,6 +1768,26 @@ html { font-size: 18px; font-variant-emoji: text; }
   .info-list {
     width: auto;
   }
+  .info-detail,
+  .info-detail-date,
+  .info-detail-title,
+  .info-detail-divider,
+  .info-detail-body,
+  .info-detail-footer {
+    width: 100%;
+  }
+  .info-detail-date {
+    font-size: 0.667rem;
+  }
+  .info-detail-body {
+    font-size: 0.667rem;
+  }
+  .info-detail-title {
+    font-size: 0.944rem;
+  }
+  .info-detail-back {
+    font-size: 0.667rem;
+  }
   .info-date {
     font-size: 0.625rem;
   }
