@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ビジネスダイレクト 詳細 - KRIC 会員専用ページ</title>
+  <title>登録情報 個別設定 確認 - KRIC 会員専用ページ</title>
   <link rel="stylesheet" href="../css/style.css?v=17">
   <link rel="stylesheet" href="../css/member.css?v=1">
 </head>
@@ -80,7 +80,7 @@
 
   <!-- ========== 会員ページタイトルバー ========== -->
   <div class="mem-page-bar">
-    <p class="mem-breadcrumb mem-breadcrumb--sp"><a href="../index.html">関西不動産情報センターTOP</a> &gt; <a href="index.html">会員専用ページ</a> &gt; ビジネスダイレクト &gt; <a href="bd.html">売りたい</a> &gt; 詳細</p>
+    <p class="mem-breadcrumb mem-breadcrumb--sp"><a href="../index.html">関西不動産情報センターTOP</a> &gt; <a href="index.html">会員専用ページ</a> &gt; 登録情報 &gt; 個別設定 &gt; 確認</p>
     <div class="mem-page-bar-inner">
       <h1 class="mem-page-title">[会員専用ページ]</h1>
       <p class="mem-page-user"><span class="mem-page-company">株式会社○○○○○○</span><span class="mem-page-sep">｜</span><span class="mem-page-name">●● ●●　様</span></p>
@@ -94,7 +94,7 @@
         <li class="mem-nav-item">
           <a href="index.html" class="mem-nav-link">インフォメーション <span class="mem-nav-arr">▼</span></a>
         </li>
-        <li class="mem-nav-item is-active">
+        <li class="mem-nav-item">
           <a href="bd.html" class="mem-nav-link">ビジネスダイレクト <span class="mem-nav-arr">▼</span></a>
         </li>
         <li class="mem-nav-item">
@@ -106,11 +106,11 @@
         <li class="mem-nav-item">
           <a href="#" class="mem-nav-link">登録者名簿 <span class="mem-nav-arr">▼</span></a>
         </li>
-        <li class="mem-nav-item has-sub">
+        <li class="mem-nav-item is-active has-sub">
           <a href="reg-company.html" class="mem-nav-link">登録情報 <span class="mem-nav-arr">▼</span></a>
           <ul class="mem-nav-sub">
             <li><a href="reg-company.html">会社概要</a></li>
-            <li><a href="reg-member.html">個別設定</a></li>
+            <li class="is-active"><a href="reg-member.html">個別設定</a></li>
             <li><a href="#">メンバー追加／削除</a></li>
           </ul>
         </li>
@@ -124,83 +124,119 @@
       <div class="mem-card">
 
         <!-- パンくず -->
-        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="../index.html">関西不動産情報センターTOP</a> &gt; <a href="index.html">会員専用ページ</a> &gt; ビジネスダイレクト &gt; <a href="bd.html">売りたい</a> &gt; 詳細</p>
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="../index.html">関西不動産情報センターTOP</a> &gt; <a href="index.html">会員専用ページ</a> &gt; 登録情報 &gt; 個別設定 &gt; 確認</p>
 
-        <!-- セクション見出し -->
-        <div class="mem-sec-head bd-sec-head">
-          <h2 class="mem-sec-title">─ ビジネスダイレクト ─</h2>
-          <a href="bd-reg.html" class="bd-register-btn"><span class="btn-text">新規登録</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
-        </div>
+        <div class="reg-layout">
 
-        <!-- サブタブ -->
-        <div class="bd-subtabs">
-          <a href="bd.html" class="bd-subtab is-active">売りたい <span class="bd-subtab-arr">▼</span></a>
-          <a href="#" class="bd-subtab">買いたい <span class="bd-subtab-arr">▼</span></a>
-          <a href="#" class="bd-subtab">貸したい <span class="bd-subtab-arr">▼</span></a>
-          <a href="#" class="bd-subtab">借りたい <span class="bd-subtab-arr">▼</span></a>
-        </div>
+          <!-- メインコンテンツ -->
+          <div class="reg-content">
 
-        <!-- 詳細コンテンツ -->
-        <div class="bd-detail">
-
-          <p class="bd-detail-date">25.00.00</p>
-          <h3 class="bd-detail-title">【価格変更】県立医療センター近く利回り８％高稼働レジ</h3>
-
-          <hr class="bd-detail-divider">
-
-          <!-- 詳細フィールド -->
-          <div class="bd-detail-table">
-
-            <div class="bd-detail-row">
-              <span class="bd-detail-label">•種別</span>
-              <span class="bd-detail-value">収益マンション</span>
+            <!-- セクション見出し -->
+            <div class="mem-sec-head">
+              <h2 class="mem-sec-title">─ 登録情報 ─</h2>
             </div>
 
-            <div class="bd-detail-row">
-              <span class="bd-detail-label">•所在地</span>
-              <span class="bd-detail-value">四日市市大字日永5380-158</span>
-            </div>
+            <h3 class="reg-subtitle">個別設定</h3>
+            <hr class="bd-reg-divider">
 
-            <div class="bd-detail-row">
-              <span class="bd-detail-label">•備考</span>
-              <span class="bd-detail-value">遠隔地ではありますが、県立医療センターの近くにあり<br>長年安定稼働しております。</span>
-            </div>
+            <!-- 確認表示 -->
+            <div class="reg-confirm reg-confirm-table">
 
-            <div class="bd-detail-row">
-              <span class="bd-detail-label">•動画</span>
-              <div class="bd-detail-value">
-                <div class="bd-detail-video">
-                  <img src="../images/movie.png" alt="" class="bd-detail-play-img">
+              <div class="reg-row">
+                <span class="reg-label">ログインID</span>
+                <span class="reg-confirm-value">○○○○○○○○○○</span>
+              </div>
+
+              <div class="reg-row">
+                <span class="reg-label">パスワード</span>
+                <span class="reg-confirm-value">○○○○○○○○○○</span>
+              </div>
+
+              <div class="reg-row">
+                <span class="reg-label">会員名</span>
+                <span class="reg-confirm-value">○○○○○○○○○○</span>
+              </div>
+
+              <div class="reg-row">
+                <span class="reg-label">名前</span>
+                <span class="reg-confirm-value">○○○○○○○○○○</span>
+              </div>
+
+              <div class="reg-row">
+                <span class="reg-label">名前カナ</span>
+                <span class="reg-confirm-value">○○○○○○○○○○</span>
+              </div>
+
+              <div class="reg-row">
+                <span class="reg-label">携帯電話1</span>
+                <span class="reg-confirm-value">○○○○○○○○○○</span>
+              </div>
+
+              <div class="reg-row">
+                <span class="reg-label">携帯電話2</span>
+                <span class="reg-confirm-value">○○○○○○○○○○</span>
+              </div>
+
+              <div class="reg-row">
+                <span class="reg-label">メールアドレス1</span>
+                <span class="reg-confirm-value">○○○○○○○○○○</span>
+              </div>
+
+              <div class="reg-row">
+                <span class="reg-label">通知設定</span>
+                <span class="reg-confirm-value">○○○○○○○○○○</span>
+              </div>
+
+              <div class="reg-row">
+                <span class="reg-label">メールアドレス2</span>
+                <span class="reg-confirm-value">○○○○○○○○○○</span>
+              </div>
+
+              <div class="reg-row">
+                <span class="reg-label">通知設定</span>
+                <span class="reg-confirm-value">○○○○○○○○○○</span>
+              </div>
+
+              <div class="reg-row">
+                <span class="reg-label">自由投稿欄</span>
+                <span class="reg-confirm-value">○○○○○○○○○○</span>
+              </div>
+
+              <div class="reg-row">
+                <span class="reg-label">顔写真</span>
+                <div class="reg-member-photo">
+                  <img src="../images/bd_person.png" alt="顔写真">
                 </div>
               </div>
+
             </div>
 
-            <div class="bd-detail-row">
-              <span class="bd-detail-label">•添付ファイル</span>
-              <div class="bd-detail-value">
-                <div class="bd-detail-attachment">
-                  <div class="bd-detail-thumb"></div>
-                  <a href="#" class="bd-detail-pdf">
-                    <img src="../images/pdf.png" alt="" class="bd-detail-pdf-icon">
-                    <span class="bd-detail-pdf-name">00000000000000.pdf</span>
-                  </a>
-                </div>
-              </div>
+            <!-- 登録・戻るボタン -->
+            <div class="bd-reg-confirm-row">
+              <button type="button" class="bd-reg-submit-btn">
+                <span class="btn-text">登録</span>
+                <span class="btn-sep">|</span>
+                <span class="btn-arrow">▶</span>
+              </button>
+              <button type="button" class="bd-reg-back-btn" onclick="history.back()">
+                <span class="btn-text">戻る</span>
+                <span class="btn-sep">|</span>
+                <span class="btn-arrow">▶</span>
+              </button>
             </div>
 
+            <p class="bd-reg-note">登録完了後、登録後の一覧表が表示されます。<br>登録ボタンを押した後、登録処理に時間がかかる場合がございますので、そのままお待ちください。</p>
+
           </div>
 
-          <!-- 投稿者情報 -->
-          <div class="bd-detail-author">
-            <p class="bd-detail-company">今西建設株式会社</p>
-            <p class="bd-detail-person">今西 頼久</p>
-            <a href="#" class="bd-detail-member">＜登録者情報を見る＞</a>
-          </div>
-
-          <!-- 戻るリンク -->
-          <div class="bd-detail-footer">
-            <a href="bd.html" class="bd-detail-back">一覧へ戻る &gt;</a>
-          </div>
+          <!-- サイドナビ -->
+          <nav class="reg-sidenav" aria-label="登録情報メニュー">
+            <ul class="reg-sidenav-list">
+              <li class="reg-sidenav-item"><a href="reg-company.html">会社概要</a></li>
+              <li class="reg-sidenav-item is-active"><a href="reg-member.html">個別設定</a></li>
+              <li class="reg-sidenav-item"><a href="#">メンバー追加／削除</a></li>
+            </ul>
+          </nav>
 
         </div>
 
@@ -252,8 +288,7 @@
               </ul>
             </div>
             <div class="footer-nav-col">
-              <a href="#" class="footer-nav-parent">登録者名簿</a>
-            </div>
+              <a href="#" class="footer-nav-parent">登録者名簿</a></div>
             <div class="footer-nav-col">
               <a href="reg-company.html" class="footer-nav-parent">登録情報</a>
               <ul>

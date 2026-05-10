@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>登録情報 会社概要 - KRIC 会員専用ページ</title>
+  <title>登録情報 会社概要 確認 - KRIC 会員専用ページ</title>
   <link rel="stylesheet" href="../css/style.css?v=17">
   <link rel="stylesheet" href="../css/member.css?v=1">
 </head>
@@ -80,7 +80,7 @@
 
   <!-- ========== 会員ページタイトルバー ========== -->
   <div class="mem-page-bar">
-    <p class="mem-breadcrumb mem-breadcrumb--sp"><a href="../index.html">関西不動産情報センターTOP</a> &gt; <a href="index.html">会員専用ページ</a> &gt; 登録情報 &gt; 会社概要</p>
+    <p class="mem-breadcrumb mem-breadcrumb--sp"><a href="../index.html">関西不動産情報センターTOP</a> &gt; <a href="index.html">会員専用ページ</a> &gt; 登録情報 &gt; 会社概要 &gt; 確認</p>
     <div class="mem-page-bar-inner">
       <h1 class="mem-page-title">[会員専用ページ]</h1>
       <p class="mem-page-user"><span class="mem-page-company">株式会社○○○○○○</span><span class="mem-page-sep">｜</span><span class="mem-page-name">●● ●●　様</span></p>
@@ -124,7 +124,7 @@
       <div class="mem-card">
 
         <!-- パンくず -->
-        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="../index.html">関西不動産情報センターTOP</a> &gt; <a href="index.html">会員専用ページ</a> &gt; 登録情報 &gt; 会社概要</p>
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="../index.html">関西不動産情報センターTOP</a> &gt; <a href="index.html">会員専用ページ</a> &gt; 登録情報 &gt; 会社概要 &gt; 確認</p>
 
         <div class="reg-layout">
 
@@ -138,159 +138,103 @@
 
             <h3 class="reg-subtitle">会社概要</h3>
 
-            <!-- フォーム -->
-            <form action="#" method="post" class="reg-form">
+            <!-- 確認表示 -->
+            <div class="reg-confirm">
 
-              <p class="reg-required-note">※は入力必須項目です。</p>
+              <!-- 会社名ヘッダー -->
+              <div class="reg-confirm-head">(社名) 株式会社○○○○○○○○○○</div>
 
-              <div class="reg-table">
+              <!-- 紹介文 -->
+              <p class="reg-confirm-intro">(紹介文) ○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○</p>
 
+              <!-- 基本情報テーブル -->
+              <div class="reg-confirm-table">
                 <div class="reg-row">
-                  <label class="reg-label">社名 <span class="reg-required">※</span></label>
-                  <div class="reg-input"><input type="text" name="company_name"></div>
+                  <span class="reg-label">代表者名</span>
+                  <span class="reg-confirm-value">○○○○○○○○○○</span>
                 </div>
-
                 <div class="reg-row">
-                  <label class="reg-label">社名カナ <span class="reg-required">※</span></label>
-                  <div class="reg-input"><input type="text" name="company_kana"></div>
+                  <span class="reg-label">免許</span>
+                  <span class="reg-confirm-value">○○○○○○○○○○</span>
                 </div>
-
                 <div class="reg-row">
-                  <label class="reg-label">代表者名 <span class="reg-required">※</span></label>
-                  <div class="reg-input"><input type="text" name="representative"></div>
+                  <span class="reg-label">郵便番号</span>
+                  <span class="reg-confirm-value">○○○○○○○○○○</span>
                 </div>
-
                 <div class="reg-row">
-                  <label class="reg-label">免許 <span class="reg-required">※</span></label>
-                  <div class="reg-input"><input type="text" name="license"></div>
+                  <span class="reg-label">都道府県</span>
+                  <span class="reg-confirm-value">○○○○○○○○○○</span>
                 </div>
-
                 <div class="reg-row">
-                  <label class="reg-label">郵便番号 <span class="reg-required">※</span></label>
-                  <div class="reg-input reg-input--zip">
-                    <input type="text" name="zip1" class="reg-input-zip" maxlength="3">
-                    <span class="reg-zip-sep">–</span>
-                    <input type="text" name="zip2" class="reg-input-zip" maxlength="4">
-                    <button type="button" class="reg-zip-btn">郵便番号から住所を自動入力</button>
-                  </div>
+                  <span class="reg-label">住所</span>
+                  <span class="reg-confirm-value">○○○○○○○○○○</span>
                 </div>
-
                 <div class="reg-row">
-                  <label class="reg-label">都道府県 <span class="reg-required">※</span></label>
-                  <div class="reg-input"><input type="text" name="prefecture"></div>
+                  <span class="reg-label">交通</span>
+                  <span class="reg-confirm-value">○○○○○○○○○○</span>
                 </div>
-
                 <div class="reg-row">
-                  <label class="reg-label">市区町村 <span class="reg-required">※</span></label>
-                  <div class="reg-input"><input type="text" name="city"></div>
+                  <span class="reg-label">電話番号</span>
+                  <span class="reg-confirm-value">○○○○○○○○○○</span>
                 </div>
-
                 <div class="reg-row">
-                  <label class="reg-label">町名番地 <span class="reg-required">※</span></label>
-                  <div class="reg-input"><input type="text" name="address"></div>
+                  <span class="reg-label">FAX番号</span>
+                  <span class="reg-confirm-value">○○○○○○○○○○</span>
                 </div>
-
                 <div class="reg-row">
-                  <label class="reg-label">建物名</label>
-                  <div class="reg-input"><input type="text" name="building"></div>
+                  <span class="reg-label">URL</span>
+                  <span class="reg-confirm-value"><a href="#" class="reg-confirm-url">○○○○○○○○○○→</a></span>
                 </div>
-
                 <div class="reg-row">
-                  <label class="reg-label">交通 <span class="reg-required">※</span></label>
-                  <div class="reg-input"><input type="text" name="access"></div>
+                  <span class="reg-label">メールアドレス</span>
+                  <span class="reg-confirm-value"><a href="#" class="reg-confirm-url">○○○○○○○○○○→</a></span>
                 </div>
-
-                <div class="reg-row">
-                  <label class="reg-label">電話番号 <span class="reg-required">※</span></label>
-                  <div class="reg-input"><input type="tel" name="tel"></div>
-                </div>
-
-                <div class="reg-row">
-                  <label class="reg-label">FAX番号</label>
-                  <div class="reg-input"><input type="tel" name="fax"></div>
-                </div>
-
-                <div class="reg-row">
-                  <label class="reg-label">URL</label>
-                  <div class="reg-input"><input type="url" name="url"></div>
-                </div>
-
-                <div class="reg-row">
-                  <label class="reg-label">メールアドレス</label>
-                  <div class="reg-input"><input type="email" name="email"></div>
-                </div>
-
-                <div class="reg-row">
-                  <label class="reg-label">事業内容 <span class="reg-required">※</span></label>
-                  <div class="reg-input"><textarea name="business" class="reg-textarea"></textarea></div>
-                </div>
-
-                <div class="reg-row">
-                  <label class="reg-label">加盟団体</label>
-                  <div class="reg-input"><textarea name="association" class="reg-textarea"></textarea></div>
-                </div>
-
-                <div class="reg-row">
-                  <label class="reg-label">沿革</label>
-                  <div class="reg-input"><textarea name="history" class="reg-textarea"></textarea></div>
-                </div>
-
-                <div class="reg-row">
-                  <label class="reg-label">紹介文</label>
-                  <div class="reg-input"><textarea name="pr_text" class="reg-textarea"></textarea></div>
-                </div>
-
-                <div class="reg-row">
-                  <label class="reg-label">会社紹介動画URL</label>
-                  <div class="reg-input">
-                    <input type="url" name="pr_video">
-                    <p class="reg-hint">※YouTubeにアップロードされた動画に限ります。</p>
-                  </div>
-                </div>
-
-                <div class="reg-row">
-                  <label class="reg-label">アクセスマップ</label>
-                  <div class="reg-input">
-                    <div class="reg-map-header">
-                      <label class="reg-map-check"><input type="checkbox" name="map_check"> GoogleマップURL</label>
-                      <a href="#" class="reg-link" id="mapGuideLink">Googleマップのアドレスについて→</a>
-                    </div>
-                    <input type="text" name="map_url">
-                  </div>
-                </div>
-
               </div>
 
-              <!-- オリジナル画像 -->
-              <div class="reg-logo-section">
-                <p class="reg-logo-title">■ オリジナル画像</p>
-                <div class="reg-file-row">
-                  <label class="reg-file-btn">
-                    ファイルを選択
-                    <input type="file" name="logo" accept="image/jpeg,image/png" class="reg-file-input">
-                  </label>
-                  <span class="reg-file-name">ファイル未選択</span>
+              <!-- 事業内容 -->
+              <div class="reg-confirm-section-head">事業内容</div>
+              <p class="reg-confirm-text">○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○</p>
+
+              <!-- 加盟団体 -->
+              <div class="reg-confirm-section-head">加盟団体</div>
+              <p class="reg-confirm-text reg-confirm-text--half">○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○</p>
+
+              <!-- 沿革 -->
+              <div class="reg-confirm-section-head">沿革</div>
+              <p class="reg-confirm-text reg-confirm-text--half">○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○</p>
+
+              <!-- アクセスマップ -->
+              <div class="reg-confirm-section-head">アクセスマップ</div>
+              <p class="reg-confirm-text"><a href="#" class="reg-confirm-url">Googleマップ URL：○○○○○○○○○○○○○○→</a></p>
+              <div class="reg-map-preview">
+                <div class="reg-map-img">
+                  <img src="../images/map.png" alt="map画像">
                 </div>
-                <p class="reg-hint">※添付可能なファイル形式:jpg・png</p>
-                <div class="reg-map-preview">
-                  <div class="reg-map-img">
-                    <img src="../images/map.png" alt="map画像">
-                  </div>
-                </div>
-                <p class="reg-file-current">00000000000000.jpg</p>
-                <button type="button" class="reg-delete-btn">削除</button>
               </div>
 
-              <!-- 送信ボタン -->
-              <div class="reg-submit-row">
-                <a href="reg-company-confirm.html" class="reg-submit-btn">
-                  <span class="btn-text">確認</span>
-                  <span class="btn-sep">|</span>
-                  <span class="btn-arrow">▶</span>
-                </a>
+              <!-- 会社の動画 -->
+              <div class="reg-confirm-section-head">会社の動画</div>
+              <div class="bd-detail-video">
+                <img src="../images/movie.png" alt="" class="bd-detail-play-img">
               </div>
 
-            </form>
+            </div>
+
+            <!-- 登録・戻るボタン -->
+            <div class="bd-reg-confirm-row">
+              <button type="button" class="bd-reg-submit-btn">
+                <span class="btn-text">登録</span>
+                <span class="btn-sep">|</span>
+                <span class="btn-arrow">▶</span>
+              </button>
+              <button type="button" class="bd-reg-back-btn" onclick="history.back()">
+                <span class="btn-text">戻る</span>
+                <span class="btn-sep">|</span>
+                <span class="btn-arrow">▶</span>
+              </button>
+            </div>
+
+            <p class="bd-reg-note">登録完了後、登録後の一覧表が表示されます。<br>登録ボタンを押した後、登録処理に時間がかかる場合がございますので、そのままお待ちください。</p>
 
           </div>
 
@@ -377,53 +321,5 @@
   </footer>
 
   <script src="../js/main.js"></script>
-
-  <!-- ========== Googleマップ説明モーダル ========== -->
-  <div class="map-modal-overlay" id="mapModal">
-    <div class="map-modal">
-      <div class="map-modal-step">
-        <div class="map-modal-step-left">
-          <span class="map-modal-num">1</span>
-          <p class="map-modal-text">会社名、住所などで<br>Googleマップで検索</p>
-        </div>
-        <img src="../images/g_map1.png" alt="" class="map-modal-img">
-      </div>
-      <div class="map-modal-step">
-        <div class="map-modal-step-left">
-          <span class="map-modal-num">2</span>
-          <p class="map-modal-text">共有ボタンをクリック</p>
-        </div>
-        <img src="../images/g_map2.png" alt="" class="map-modal-img">
-      </div>
-      <div class="map-modal-step">
-        <div class="map-modal-step-left">
-          <span class="map-modal-num">3</span>
-          <p class="map-modal-text">リンクをコピーをクリック</p>
-        </div>
-        <img src="../images/g_map3.png" alt="" class="map-modal-img">
-      </div>
-      <div class="map-modal-step">
-        <div class="map-modal-step-left">
-          <span class="map-modal-num">4</span>
-          <p class="map-modal-text">コピーしたURLを貼り付け</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    (function() {
-      var link = document.getElementById('mapGuideLink');
-      var modal = document.getElementById('mapModal');
-      if (!link || !modal) return;
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        modal.classList.add('is-open');
-      });
-      modal.addEventListener('click', function(e) {
-        if (e.target === modal) modal.classList.remove('is-open');
-      });
-    })();
-  </script>
 </body>
 </html>

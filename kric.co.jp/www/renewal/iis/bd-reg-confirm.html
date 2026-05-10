@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ビジネスダイレクト 詳細 - KRIC 会員専用ページ</title>
+  <title>ビジネスダイレクト 新規登録 確認 - KRIC 会員専用ページ</title>
   <link rel="stylesheet" href="../css/style.css?v=17">
   <link rel="stylesheet" href="../css/member.css?v=1">
 </head>
@@ -80,7 +80,7 @@
 
   <!-- ========== 会員ページタイトルバー ========== -->
   <div class="mem-page-bar">
-    <p class="mem-breadcrumb mem-breadcrumb--sp"><a href="../index.html">関西不動産情報センターTOP</a> &gt; <a href="index.html">会員専用ページ</a> &gt; ビジネスダイレクト &gt; <a href="bd.html">売りたい</a> &gt; 詳細</p>
+    <p class="mem-breadcrumb mem-breadcrumb--sp"><a href="../index.html">関西不動産情報センターTOP</a> &gt; <a href="index.html">会員専用ページ</a> &gt; ビジネスダイレクト &gt; 売りたい &gt; 新規登録 &gt; 確認</p>
     <div class="mem-page-bar-inner">
       <h1 class="mem-page-title">[会員専用ページ]</h1>
       <p class="mem-page-user"><span class="mem-page-company">株式会社○○○○○○</span><span class="mem-page-sep">｜</span><span class="mem-page-name">●● ●●　様</span></p>
@@ -124,12 +124,12 @@
       <div class="mem-card">
 
         <!-- パンくず -->
-        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="../index.html">関西不動産情報センターTOP</a> &gt; <a href="index.html">会員専用ページ</a> &gt; ビジネスダイレクト &gt; <a href="bd.html">売りたい</a> &gt; 詳細</p>
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="../index.html">関西不動産情報センターTOP</a> &gt; <a href="index.html">会員専用ページ</a> &gt; ビジネスダイレクト &gt; 売りたい &gt; 新規登録 &gt; 確認</p>
 
         <!-- セクション見出し -->
         <div class="mem-sec-head bd-sec-head">
           <h2 class="mem-sec-title">─ ビジネスダイレクト ─</h2>
-          <a href="bd-reg.html" class="bd-register-btn"><span class="btn-text">新規登録</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+          <a href="bd-reg.html" class="bd-register-btn"><span class="btn-text">新規登録</span><span class="btn-sep">|</span><span class="btn-arrow">▶&#xFE0E;</span></a>
         </div>
 
         <!-- サブタブ -->
@@ -140,7 +140,7 @@
           <a href="#" class="bd-subtab">借りたい <span class="bd-subtab-arr">▼</span></a>
         </div>
 
-        <!-- 詳細コンテンツ -->
+        <!-- 確認コンテンツ -->
         <div class="bd-detail">
 
           <p class="bd-detail-date">25.00.00</p>
@@ -194,13 +194,24 @@
           <div class="bd-detail-author">
             <p class="bd-detail-company">今西建設株式会社</p>
             <p class="bd-detail-person">今西 頼久</p>
-            <a href="#" class="bd-detail-member">＜登録者情報を見る＞</a>
+            <a href="reg-company.html" class="bd-detail-member">＜登録者情報を見る＞</a>
           </div>
 
-          <!-- 戻るリンク -->
-          <div class="bd-detail-footer">
-            <a href="bd.html" class="bd-detail-back">一覧へ戻る &gt;</a>
+          <!-- 登録・戻るボタン -->
+          <div class="bd-reg-confirm-row">
+            <button type="button" class="bd-reg-submit-btn">
+              <span class="btn-text">登録</span>
+              <span class="btn-sep">|</span>
+              <span class="btn-arrow">▶</span>
+            </button>
+            <button type="button" class="bd-reg-back-btn" onclick="history.back()">
+              <span class="btn-text">戻る</span>
+              <span class="btn-sep">|</span>
+              <span class="btn-arrow">▶</span>
+            </button>
           </div>
+
+          <p class="bd-reg-note">登録完了後、登録後の一覧表が表示されます。<br>登録ボタンを押した後、登録処理に時間がかかる場合がございますので、そのままお待ちください。</p>
 
         </div>
 

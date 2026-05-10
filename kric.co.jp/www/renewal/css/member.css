@@ -190,7 +190,7 @@ html { font-size: 18px; font-variant-emoji: text; }
 }
 .mem-card {
   background: var(--white);
-  padding: 15px 30px 48px;
+  padding: 15px 30px 100px;
 }
 
 
@@ -328,18 +328,18 @@ html { font-size: 18px; font-variant-emoji: text; }
    インフォメーション 詳細
    ============================================= */
 .info-detail {
-  width: 700px;
+  width: 1000px;
   margin: 0 auto;
 }
 .info-detail-date {
-  font-size: 0.889rem;
+  font-size: 0.833rem;
   color: #000;
   margin-bottom: 8px;
 }
 .info-detail-title {
-  font-size: 1.111rem;
+  font-size: 1.278rem;
   font-weight: bold;
-  color: var(--navy);
+  color: #00214C;
   margin-bottom: 16px;
 }
 .info-detail-divider {
@@ -379,7 +379,7 @@ html { font-size: 18px; font-variant-emoji: text; }
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   width: 1000px;
   margin-left: auto;
   margin-right: auto;
@@ -587,6 +587,8 @@ html { font-size: 18px; font-variant-emoji: text; }
   font-weight: bold;
   color: #00214c;
   transition: opacity 0.2s;
+  position: relative;
+  z-index: 1;
 }
 .bd-card-member:hover {
   opacity: 0.7;
@@ -626,6 +628,11 @@ html { font-size: 18px; font-variant-emoji: text; }
   margin: 8px 15px 5px;
   transition: opacity 0.2s;
 }
+.bd-card-more::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
 .bd-card-more:hover {
   opacity: 0.7;
 }
@@ -637,7 +644,7 @@ html { font-size: 18px; font-variant-emoji: text; }
 .bd-detail {
   width: 1000px;
   margin: 0 auto;
-  padding: 40px 0 60px;
+  padding: 40px 0;
 }
 .bd-detail-date {
   font-size: 1rem;
@@ -695,6 +702,10 @@ html { font-size: 18px; font-variant-emoji: text; }
   color: var(--white);
   font-size: 1.8rem;
   opacity: 0.9;
+}
+.reg-confirm .bd-detail-video {
+  width: 400px;
+  height: 225px;
 }
 
 /* 添付ファイル */
@@ -774,20 +785,25 @@ html { font-size: 18px; font-variant-emoji: text; }
    ビジネスダイレクト 新規登録
    ============================================= */
 .bd-reg {
-  width: 700px;
+  width: 1000px;
   margin: 0 auto;
-  padding: 40px 0 60px;
 }
 .bd-reg-title {
   font-size: 1.278rem;
   font-weight: normal;
-  color: var(--navy);
-  margin-bottom: 16px;
+  color: #00214D;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid var(--gray-line);
 }
 .bd-reg-divider {
   border: none;
-  border-top: 1px solid var(--gray-line);
   margin-bottom: 32px;
+}
+.bd-reg-form {
+  width: 700px;
+  margin: 0 auto;
 }
 .bd-reg-table {
   display: flex;
@@ -797,11 +813,13 @@ html { font-size: 18px; font-variant-emoji: text; }
 }
 .bd-reg-row {
   display: grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: 140px 1fr;
   gap: 0;
   align-items: start;
-  border-bottom: 1px solid var(--gray-line);
-  padding: 14px 0;
+}
+.bd-reg-row:has(.bd-reg-thumb) {
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 .bd-reg-label {
   font-size: 0.778rem;
@@ -816,6 +834,7 @@ html { font-size: 18px; font-variant-emoji: text; }
   padding: 4px 0;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 6px;
 }
 .bd-reg-text {
@@ -827,7 +846,7 @@ html { font-size: 18px; font-variant-emoji: text; }
   color: #000;
 }
 .bd-reg-select {
-  width: 100%;
+  width: 50%;
   padding: 6px 8px;
   font-size: 0.778rem;
   border: 1px solid #ccc;
@@ -849,8 +868,8 @@ html { font-size: 18px; font-variant-emoji: text; }
   color: #000;
 }
 .bd-reg-thumb {
-  width: 160px;
-  height: 110px;
+  width: 350px;
+  height: 200px;
   background: #ccc;
 }
 .bd-reg-filename {
@@ -878,29 +897,196 @@ html { font-size: 18px; font-variant-emoji: text; }
   display: inline-flex;
   align-items: center;
   overflow: hidden;
-  background: #c0ad5e;
-  color: var(--white);
+  background: var(--white);
+  color: #000;
   font-size: 0.889rem;
-  font-weight: bold;
-  border: none;
+  border: 1px solid #000;
   border-radius: 10px;
   width: 180px;
   height: 40px;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: background 0.2s, color 0.2s, opacity 0.2s;
 }
 .bd-reg-submit-btn:hover {
-  opacity: 0.85;
+  opacity: 1;
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
 }
 .bd-reg-submit-btn .btn-text {
+  padding-left: 30px;
+  padding-right: 30px;
   flex: 1;
   text-align: center;
+  font-weight: normal;
 }
 .bd-reg-note {
-  font-size: 0.667rem;
+  font-size: 0.778rem;
   color: #000;
-  text-align: center;
   line-height: 1.8;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+/* 確認ページ ボタン行 */
+.bd-reg-confirm-row .bd-reg-submit-btn {
+  background: #c0ad5e;
+  color: var(--white);
+  border: none;
+  font-weight: bold;
+  transition: opacity 0.2s;
+}
+.bd-reg-confirm-row .bd-reg-submit-btn:hover {
+  opacity: 0.85;
+  background: #c0ad5e;
+  color: var(--white);
+  border-color: transparent;
+}
+.bd-reg-confirm-row .bd-reg-submit-btn .btn-text {
+  padding-left: 45px;
+  padding-right: 45px;
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+}
+.bd-reg-confirm-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
+.bd-reg-back-btn {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--white);
+  color: #000;
+  font-size: 0.889rem;
+  border: 1px solid #000;
+  border-radius: 10px;
+  width: 180px;
+  height: 40px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, opacity 0.2s;
+}
+.bd-reg-back-btn:hover {
+  opacity: 1;
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+.bd-reg-back-btn .btn-text {
+  padding-left: 30px;
+  padding-right: 30px;
+  flex: 1;
+  text-align: center;
+  font-weight: normal;
+}
+
+/* 会社概要確認ページ 表示 */
+.reg-confirm {
+  width: 700px;
+  margin: 30px auto;
+}
+.reg-confirm-head {
+  background: #00214c;
+  color: var(--white);
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.reg-confirm-intro {
+  font-size: 0.889rem;
+  color: #000;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  overflow-wrap: break-word;
+  word-break: break-all;
+}
+.reg-confirm-table {
+  margin-bottom: 10px;
+}
+.reg-confirm .reg-confirm-table {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #00214c;
+}
+.reg-confirm-value {
+  font-size: 0.889rem;
+  color: #000;
+}
+.reg-confirm-url {
+  color: var(--navy);
+}
+.reg-confirm-section-head {
+  background: var(--navy);
+  color: var(--white);
+  padding: 6px 16px;
+  font-size: 0.889rem;
+  font-weight: bold;
+  margin: 24px 0 12px 0;
+}
+.reg-confirm-text {
+  font-size: 0.889rem;
+  color: #000;
+  line-height: 1.8;
+  margin-bottom: 12px;
+  overflow-wrap: break-word;
+}
+.reg-confirm-text--half {
+  width: 50%;
+}
+.reg-input.reg-input--photo {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.reg-member-photo {
+  position: relative;
+  display: inline-block;
+}
+.reg-confirm .reg-member-photo {
+  margin-top: 50px;
+}
+.reg-confirm .reg-label {
+  padding: 0;
+}
+.reg-member-photo img {
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+.reg-member-photo-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 33, 76, 0.7);
+  color: var(--white);
+  font-size: 0.667rem;
+  text-align: center;
+  padding: 3px 0;
+}
+
+/* 通知設定チェックボックスグループ */
+.reg-notify-group {
+  display: flex;
+  flex-direction: column;
+}
+.reg-notify-group .reg-map-check {
+  font-weight: normal;
+}
+.reg-notify-label {
+  font-size: 0.778rem;
+  color: #000;
+  margin-top: 2px;
+}
+.reg-notify-checks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 24px;
 }
 
 
@@ -1035,7 +1221,7 @@ html { font-size: 18px; font-variant-emoji: text; }
 
 /* フォーム */
 .reg-form {
-  width: 600px;
+  width: 700px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1088,7 +1274,8 @@ html { font-size: 18px; font-variant-emoji: text; }
 .reg-input input[type="text"],
 .reg-input input[type="tel"],
 .reg-input input[type="url"],
-.reg-input input[type="email"] {
+.reg-input input[type="email"],
+.reg-input input[type="password"] {
   width: 100%;
   padding: 4px 8px;
   font-size: 0.778rem;
@@ -1155,11 +1342,16 @@ html { font-size: 18px; font-variant-emoji: text; }
 .reg-textarea--tall {
   height: 120px;
 }
+.reg-row:has(.reg-textarea--tall) {
+  padding-bottom: 30px;
+}
+.reg-row:has(.reg-notify-group) {
+  padding-bottom: 20px;
+}
 .reg-hint {
   font-size: 0.667rem;
   color: #000;
   width: 100%;
-  margin-bottom: 10px;
 }
 .reg-link {
   font-size: 0.778rem;
@@ -1233,6 +1425,7 @@ html { font-size: 18px; font-variant-emoji: text; }
 }
 .reg-file-current {
   font-size: 0.778rem;
+  font-weight: bold;
   color: #000;
   margin-bottom: 8px;
 }
@@ -1255,8 +1448,7 @@ html { font-size: 18px; font-variant-emoji: text; }
 .reg-submit-row {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
-  margin-bottom: 100px;
+  margin-top: 100px;
 }
 .reg-submit-btn {
   display: inline-flex;
@@ -1417,7 +1609,7 @@ html { font-size: 18px; font-variant-emoji: text; }
     max-width: 1024px;
   }
   .mem-divider {
-    width: 800px;
+    width: 100%;
   }
   .is-member .menu-btn {
     width: 60px;
@@ -1439,7 +1631,7 @@ html { font-size: 18px; font-variant-emoji: text; }
     font-size: 85%;
   }
   .mem-pagination {
-    width: 800px;
+    width: 100%;
   }
 
   /* 登録情報フォーム */
@@ -1464,6 +1656,9 @@ html { font-size: 18px; font-variant-emoji: text; }
   /* ビジネスダイレクト 新規登録 */
   .bd-reg {
     width: auto;
+  }
+  .bd-detail {
+    width: 100%;
   }
 
   /* Googleマップモーダル タブレット */
@@ -1493,7 +1688,7 @@ html { font-size: 18px; font-variant-emoji: text; }
   }
   .is-member .btn-hd--member .btn-arrow {
     min-width: auto;
-    padding: 0 8px 0 3px;
+    padding: 0 6px 0 3px;
     text-align: center;
     font-size: 0.778rem;
   }
@@ -1763,9 +1958,54 @@ html { font-size: 18px; font-variant-emoji: text; }
     font-size: 0.667rem;
   }
 
+  /* 確認ページ SP */
+  .bd-detail-video {
+    width: 200px;
+    height: 133px;
+  }
+  .bd-reg-confirm-row {
+    gap: 30px;
+    margin-top: 30px;
+  }
+  .bd-reg-back-btn {
+    width: 180px;
+    height: 40px;
+    font-size: 0.889rem;
+  }
+  .bd-reg-back-btn .btn-text {
+    flex: 1;
+    text-align: center;
+  }
+
+  /* 会社概要確認 SP */
+  .reg-confirm {
+    width: 100%;
+  }
+  .reg-confirm-head {
+    font-size: 0.889rem;
+    padding: 8px 12px;
+  }
+  .reg-confirm-intro {
+    font-size: 0.778rem;
+  }
+  .reg-confirm-value {
+    font-size: 0.778rem;
+  }
+  .reg-confirm-section-head {
+    font-size: 0.778rem;
+    margin: 16px 0 8px 0;
+    padding: 6px 12px;
+  }
+  .reg-confirm-text {
+    font-size: 0.778rem;
+  }
+
   /* 登録情報フォーム */
   .reg-layout {
     flex-direction: column;
+  }
+  .reg-content {
+    width: 100%;
   }
   .reg-sidenav {
     display: none;
@@ -1798,7 +2038,8 @@ html { font-size: 18px; font-variant-emoji: text; }
   .reg-input input[type="text"],
   .reg-input input[type="tel"],
   .reg-input input[type="url"],
-  .reg-input input[type="email"] {
+  .reg-input input[type="email"],
+  .reg-input input[type="password"] {
     font-size: 1rem;
     padding: 8px;
   }
@@ -1865,6 +2106,13 @@ html { font-size: 18px; font-variant-emoji: text; }
     padding-left: 0;
     padding-right: 0;
   }
+  .reg-notify-label {
+    font-size: 0.667rem;
+  }
+  .reg-member-photo img {
+    width: 100px;
+    height: 125px;
+  }
 
   /* ビジネスダイレクト 新規登録 */
   .bd-reg {
@@ -1872,14 +2120,18 @@ html { font-size: 18px; font-variant-emoji: text; }
     padding: 20px 0 40px;
   }
   .bd-reg-title {
-    font-size: 1.889rem;
+    font-size: 0.944rem;
+    width: 100%;
+  }
+  .bd-reg-form {
+    width: 100%;
   }
   .bd-reg-row {
     display: block;
     padding: 16px 0;
   }
   .bd-reg-label {
-    font-size: 1.111rem;
+    font-size: 0.667rem;
     padding: 0 0 8px 0;
   }
   .bd-reg-text,
@@ -1895,13 +2147,34 @@ html { font-size: 18px; font-variant-emoji: text; }
   .bd-reg-pdf-name {
     font-size: 1rem;
   }
-  .bd-reg-submit-btn {
-    width: 220px;
-    height: 56px;
-    font-size: 1.222rem;
-  }
   .bd-reg-note {
-    font-size: 1rem;
+    font-size: 0.667rem;
+    width: 100%;
+  }
+  .bd-reg-input .reg-file-btn {
+    width: 100%;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 0.889rem;
+    padding: 14px;
+  }
+  .bd-reg-thumb {
+    width: 100%;
+    height: 240px;
+  }
+  .bd-reg-filename {
+    color: var(--navy);
+    text-decoration: underline;
+    font-size: 0.889rem;
+  }
+  .bd-reg-pdf-name {
+    font-size: 0.889rem;
+  }
+  .bd-reg-submit-btn {
+    width: 180px;
+    height: 40px;
+    font-size: 0.889rem;
   }
 
   /* Googleマップモーダル SP */
