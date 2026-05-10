@@ -914,8 +914,6 @@ html { font-size: 18px; font-variant-emoji: text; }
   border-color: var(--navy);
 }
 .bd-reg-submit-btn .btn-text {
-  padding-left: 30px;
-  padding-right: 30px;
   flex: 1;
   text-align: center;
   font-weight: normal;
@@ -943,8 +941,6 @@ html { font-size: 18px; font-variant-emoji: text; }
   border-color: transparent;
 }
 .bd-reg-confirm-row .bd-reg-submit-btn .btn-text {
-  padding-left: 45px;
-  padding-right: 45px;
   flex: 1;
   text-align: center;
   font-weight: bold;
@@ -976,9 +972,7 @@ html { font-size: 18px; font-variant-emoji: text; }
   color: var(--white);
   border-color: var(--navy);
 }
-.bd-reg-back-btn .btn-text {
-  padding-left: 30px;
-  padding-right: 30px;
+.bd-reg-back-btn .btn-text {  
   flex: 1;
   text-align: center;
   font-weight: normal;
@@ -2135,13 +2129,16 @@ html { font-size: 18px; font-variant-emoji: text; }
     padding: 0 0 8px 0;
   }
   .bd-reg-text,
-  .bd-reg-select,
   .bd-reg-textarea {
     font-size: 1rem;
     padding: 10px 8px;
   }
+  .bd-reg-select {
+    font-size: 0.667rem;
+    padding: 10px 8px;
+  }
   .bd-reg-hint {
-    font-size: 1rem;
+    font-size: 0.667rem;
   }
   .bd-reg-filename,
   .bd-reg-pdf-name {
