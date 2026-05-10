@@ -1829,14 +1829,14 @@ html { font-size: 18px; font-variant-emoji: text; }
   }
   .bd-sec-head .bd-register-btn {
     position: static;
-    width: 135px;
+    width: 180px;
     align-self: flex-end;
     padding: 0 5px;
   }
   .bd-register-btn {
-    width: 100%;
-    height: 30px;
-    font-size: 1.333rem;
+    width: 135px;
+    height: 40px;
+    font-size: 0.889rem;
     justify-content: center;
   }
   .bd-register-btn .btn-text {
@@ -1844,7 +1844,7 @@ html { font-size: 18px; font-variant-emoji: text; }
     text-align: center;
     padding-left: 0;
     padding-right: 0;
-    font-size: 0.667rem;
+    font-size: 0.889rem;
   }
   .bd-subtabs {
     width: auto;
@@ -1994,6 +1994,11 @@ html { font-size: 18px; font-variant-emoji: text; }
   /* 会社概要確認 SP */
   .reg-confirm {
     width: 100%;
+  }
+  .reg-confirm .bd-detail-video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
   .reg-confirm-head {
     font-size: 0.889rem;
@@ -2169,12 +2174,8 @@ html { font-size: 18px; font-variant-emoji: text; }
     width: 100%;
   }
   .bd-reg-input .reg-file-btn {
-    width: 100%;
-    display: block;
-    text-align: center;
-    box-sizing: border-box;
-    font-size: 0.889rem;
-    padding: 14px;
+    font-size: 0.667rem;
+    padding: 8px 16px;
   }
   .bd-reg-thumb {
     width: 100%;
