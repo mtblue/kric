@@ -1,0 +1,12 @@
+AuthType Basic
+AuthName "KRIC Test Environment"
+AuthUserFile /home/kric/www/.htpasswd
+Require valid-user
+Order allow,deny
+Allow from 133.200.158.33
+Satisfy any
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_URI} !^/kric\.co\.jp/
+RewriteRule ^(.*)$ kric.co.jp/www/$1 [L]
