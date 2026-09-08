@@ -1,0 +1,37 @@
+
+# シークレット設定（パスワード類）
+deploy_config.sh
+
+# 旧サイト参照コピー（会員データ含む可能性）
+kric.co.jp/
+
+# DB バックアップ・個人情報含む可能性のあるファイル
+Database/
+Backup/
+*.sql.bak
+EMAIL_SEND_LIST.md
+kric.xlsx
+
+# AI セッションデータ（会話履歴・プロジェクトデータ）
+.claude/
+
+# 一時ファイル・作業用
+tmp_design/
+/*.png
+/*.jpg
+/*.jpeg
+/*.gif
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# SSH 鍵（万一 kric/ 直下に置いた場合）
+*.pem
+*.key
+id_rsa
+id_ed25519

@@ -1,0 +1,10 @@
+#!/bin/bash
+# =============================================================================
+# deploy_config.sh.example — デプロイ用シークレット設定テンプレート
+#
+# このファイルを deploy_config.sh にコピーして実際の値を設定してください。
+# deploy_config.sh は .gitignore で除外されています。
+# =============================================================================
+
+TEST_DB_PASS_DEFAULT="your-test-db-password"
+PROD_DB_PASS_DEFAULT="your-prod-db-password"
