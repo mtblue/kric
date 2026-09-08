@@ -1,0 +1,98 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; 管理画面 &gt; <a href="/<?php echo APP_NAME; ?>/company">会社管理</a> &gt; メンバー一覧</p>
+
+        <div class="bd-sec-head">
+          <h2 class="mem-sec-title">─ 会社管理 ─</h2>
+          <a href="/<?php echo APP_NAME; ?>/member_edit/cid=<?php echo h($tpl_form['cid']); ?>" class="adm-btn-new-member bd-register-btn">
+            <span class="btn-text">新規登録（メンバー）</span>
+            <span class="btn-sep">|</span>
+            <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+          </a>
+        </div>
+
+        <h3 class="bd-reg-title">メンバー一覧</h3>
+        <p class="adm-company-name"><?php echo h($tpl_disp['company']['company_name']); ?></p>
+
+        <div class="adm-table-wrap">
+        <table class="adm-table adm-table--member">
+          <thead>
+            <tr>
+              <th>名前</th>
+              <th>メールアドレス</th>
+              <th>ステータス</th>
+              <th>操作</th>
+              <th>承認</th>
+              <th>最終更新日時</th>
+            </tr>
+          </thead>
+          <tbody>
+<?php if (count($tpl_disp['main_list']) > 0) { ?>
+<?php foreach ($tpl_disp['main_list'] as $row) { ?>
+            <tr>
+              <td data-label="名前"><?php echo h($row['name']); ?></td>
+              <td data-label="メールアドレス"><?php echo h($row['email1']); ?></td>
+              <td class="adm-td-actions" data-label="ステータス">
+<?php if ($row['login_flg'] == '0'): ?>
+                <span class="adm-status adm-status--pending">招待中</span>
+<?php else: ?>
+                <span class="adm-status adm-status--active">登録済み</span>
+<?php endif; ?>
+              </td>
+              <td class="adm-td-actions" data-label="操作">
+                <a href="/<?php echo APP_NAME; ?>/member_edit/id=<?php echo h($row['member_id']); ?>" class="mem-member-edit-btn"><span class="btn-text">修正</span></a>
+                <a href="javascript:void(0);" onclick="return delete_chk(<?php echo h($row['member_id']); ?>)" class="mem-member-del-btn"><span class="btn-text">削除</span></a>
+              </td>
+              <td class="adm-td-actions" data-label="承認">
+<?php if ($row['login_flg'] == '0'): ?>
+                <a href="/<?php echo APP_NAME; ?>/member/cmd=authentication/id=<?php echo h($row['member_id']); ?>/cid=<?php echo h($tpl_form['cid']); ?>" class="mem-member-approve-btn"><span class="btn-text">承認</span></a>
+<?php endif; ?>
+              </td>
+              <td data-label="最終更新日時"><?php
+                if ($row['login_flg'] == '0') {
+                  echo date('y.m.d', strtotime($row['create_date'])) . '　' . date('H:i', strtotime($row['create_date']));
+                } elseif (!empty($row['update_date']) && $row['update_date'] != '0000-00-00 00:00:00') {
+                  echo date('y.m.d', strtotime($row['update_date'])) . '　' . date('H:i', strtotime($row['update_date']));
+                }
+              ?></td>
+            </tr>
+<?php } } else { ?>
+            <tr>
+              <td colspan="6">情報は登録されていません。</td>
+            </tr>
+<?php } ?>
+          </tbody>
+        </table>
+        </div>
+
+<?php if (!empty($tpl_disp['navi']['direct_navi'])): ?>
+        <nav class="mem-pagination" aria-label="ページ">
+          <?php echo $tpl_disp['navi']['navigator_before']; ?>
+          <div class="mem-pg-pages">
+            <?php echo $tpl_disp['navi']['direct_navi_first']; ?>
+            <?php echo $tpl_disp['navi']['direct_navi']; ?>
+            <?php echo $tpl_disp['navi']['direct_navi_last']; ?>
+          </div>
+          <?php echo $tpl_disp['navi']['navigator_next']; ?>
+        </nav>
+<?php endif; ?>
+
+        <div class="bd-detail-footer adm-back-footer">
+          <a href="/<?php echo APP_NAME; ?>/company" class="bd-detail-back">会社一覧へ戻る &gt;</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+  function delete_chk(id) {
+    if (confirm('削除してもよろしいですか？')) {
+      location.href = '/<?php echo APP_NAME; ?>/member/cmd=delete/id=' + id + '/cid=<?php echo h($tpl_form['cid']); ?>';
+    }
+    return false;
+  }
+  </script>

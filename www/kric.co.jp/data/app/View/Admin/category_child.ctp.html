@@ -1,0 +1,96 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; 管理画面 &gt; <a href="/<?php echo APP_NAME; ?>/library">ライブラリ管理</a> &gt; <a href="/<?php echo APP_NAME; ?>/category">カテゴリ設定</a> &gt; 子カテゴリ一覧</p>
+
+        <div class="mem-sec-head">
+          <h2 class="mem-sec-title">─ ライブラリ管理 ─</h2>
+        </div>
+
+        <h3 class="bd-reg-title">カテゴリ設定（子カテゴリ一覧）</h3>
+        <hr class="bd-reg-divider">
+
+        <!-- 新規追加 -->
+        <form action="<?php echo HTTP_TO_SCRIPT_NAME; ?>" method="post" id="catForm">
+          <input type="hidden" name="cmd" id="catCmd" value="category_add">
+          <input type="hidden" name="cid" id="catCid" value="<?php echo h(isset($tpl_form['cid']) ? $tpl_form['cid'] : ''); ?>">
+          <input type="hidden" name="id" id="catId" value="">
+          <div class="adm-add-row">
+            <span class="adm-add-label">子カテゴリ名（新規登録）</span>
+            <input type="text" name="category_name" id="catName" class="adm-add-input" value="">
+            <button type="submit" class="reg-delete-btn adm-add-btn" id="catBtn">追加</button>
+          </div>
+        </form>
+
+        <!-- 一覧テーブル -->
+        <div class="adm-table-wrap">
+        <table class="adm-table adm-table--cat-child">
+          <thead>
+            <tr>
+              <th>子カテゴリ名</th>
+              <th>操作</th>
+              <th>最終更新日時</th>
+            </tr>
+          </thead>
+          <tbody>
+<?php if (count($tpl_disp['main_list']) > 0) { ?>
+<?php foreach ($tpl_disp['main_list'] as $row) { ?>
+            <tr>
+              <td data-label="子カテゴリ名"><?php echo h($row['category_name']); ?></td>
+              <td class="adm-td-actions" data-label="操作">
+                <a href="javascript:void(0);" onclick="category_edit(<?php echo h($row['category_id']); ?>, '<?php echo h($row['category_name']); ?>')" class="mem-member-edit-btn"><span class="btn-text">修正</span></a>
+                <a href="javascript:void(0);" onclick="return delete_chk(<?php echo h($row['category_id']); ?>)" class="mem-member-del-btn"><span class="btn-text">削除</span></a>
+              </td>
+              <td data-label="最終更新日時"><?php
+                if (!empty($row['update_date']) && $row['update_date'] != '0000-00-00 00:00:00') {
+                  echo date('y.m.d', strtotime($row['update_date'])) . '　' . date('H:i', strtotime($row['update_date']));
+                }
+              ?></td>
+            </tr>
+<?php } } else { ?>
+            <tr>
+              <td colspan="3">情報は登録されていません。</td>
+            </tr>
+<?php } ?>
+          </tbody>
+        </table>
+        </div>
+
+<?php if (!empty($tpl_disp['navi']['direct_navi'])): ?>
+        <nav class="mem-pagination" aria-label="ページ">
+          <?php echo $tpl_disp['navi']['navigator_before']; ?>
+          <div class="mem-pg-pages">
+            <?php echo $tpl_disp['navi']['direct_navi_first']; ?>
+            <?php echo $tpl_disp['navi']['direct_navi']; ?>
+            <?php echo $tpl_disp['navi']['direct_navi_last']; ?>
+          </div>
+          <?php echo $tpl_disp['navi']['navigator_next']; ?>
+        </nav>
+<?php endif; ?>
+
+        <div class="bd-detail-footer adm-back-footer">
+          <a href="/<?php echo APP_NAME; ?>/category" class="bd-detail-back">親カテゴリ一覧へ戻る &gt;</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+  function category_edit(id, na) {
+    document.getElementById('catCmd').value = 'category_edit';
+    document.getElementById('catId').value = id;
+    document.getElementById('catName').value = na;
+    document.getElementById('catBtn').textContent = '編集';
+    document.getElementById('catName').focus();
+  }
+  function delete_chk(id) {
+    var cid = document.getElementById('catCid').value;
+    if (confirm('削除してもよろしいですか？')) {
+      location.href = '/<?php echo APP_NAME; ?>/category_child/cmd=delete/id=' + id + '/cid=' + cid;
+    }
+    return false;
+  }
+  </script>

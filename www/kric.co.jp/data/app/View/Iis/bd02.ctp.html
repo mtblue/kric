@@ -1,0 +1,101 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; <a href="/iis/index">会員専用ページ</a> &gt; ビジネスダイレクト &gt; 買いたい</p>
+
+        <div class="mem-sec-head bd-sec-head">
+          <h2 class="mem-sec-title">─ ビジネスダイレクト ─</h2>
+          <a href="/<?php echo APP_NAME; ?>/bd_edit/zo=2" class="bd-register-btn"><span class="btn-text">新規登録</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></a>
+        </div>
+
+        <div class="bd-subtabs">
+          <a href="/<?php echo APP_NAME; ?>/bd"   class="bd-subtab">売りたい <span class="bd-subtab-arr">▼</span></a>
+          <a href="/<?php echo APP_NAME; ?>/bd02" class="bd-subtab is-active">買いたい <span class="bd-subtab-arr">▼</span></a>
+          <a href="/<?php echo APP_NAME; ?>/bd03" class="bd-subtab">貸したい <span class="bd-subtab-arr">▼</span></a>
+          <a href="/<?php echo APP_NAME; ?>/bd04" class="bd-subtab">借りたい <span class="bd-subtab-arr">▼</span></a>
+        </div>
+
+        <?php
+          $shubetsu_options = array('土地', '一戸建', 'マンション', '住宅以外の建物（全部）', '住宅以外の建物（一部）', 'その他');
+          $current_shubetsu = isset($tpl_disp['shubetsu_filter']) ? $tpl_disp['shubetsu_filter'] : '';
+          $current_keyword  = isset($tpl_disp['keyword_filter'])  ? $tpl_disp['keyword_filter']  : '';
+        ?>
+        <div class="bd-filter">
+          <div class="bd-filter-left">
+            <span class="bd-filter-label">&lt;種別を絞り込む&gt;</span>
+            <div class="bd-filter-selects">
+<?php foreach ($shubetsu_options as $opt): ?>
+              <a href="/<?php echo APP_NAME; ?>/bd02/shubetsu=<?php echo urlencode($opt); ?><?php echo ($current_keyword !== '') ? '/keyword=' . urlencode($current_keyword) : ''; ?>" class="bd-filter-btn<?php echo ($current_shubetsu === $opt) ? ' is-active' : ''; ?>"><?php echo h($opt); ?></a>
+<?php endforeach; ?>
+            </div>
+          </div>
+          <div class="bd-filter-search">
+            <input type="text" id="bd-keyword-input" class="bd-search-input" placeholder="フリーワードで検索" value="<?php echo h($current_keyword); ?>">
+            <span class="bd-search-sep"></span>
+            <button id="bd-search-btn" class="bd-search-btn"><img src="/wp-content/themes/default/images/search2.png" alt="検索" class="bd-search-icon"></button>
+          </div>
+        </div>
+        <script>
+        (function() {
+          var btn   = document.getElementById('bd-search-btn');
+          var input = document.getElementById('bd-keyword-input');
+          function doSearch() {
+            var keyword = input.value.trim();
+            var base    = '/<?php echo APP_NAME; ?>/bd02';
+            var parts   = [];
+            <?php if ($current_shubetsu !== ''): ?>
+            parts.push('shubetsu=<?php echo urlencode($current_shubetsu); ?>');
+            <?php endif; ?>
+            if (keyword !== '') { parts.push('keyword=' + encodeURIComponent(keyword)); }
+            window.location.href = base + (parts.length ? '/' + parts.join('/') : '');
+          }
+          btn.addEventListener('click', doSearch);
+          input.addEventListener('keydown', function(e) { if (e.key === 'Enter') { doSearch(); } });
+        })();
+        </script>
+
+<?php if (count($tpl_disp['main_list']) > 0): ?>
+        <div class="bd-grid">
+<?php foreach ($tpl_disp['main_list'] as $row): ?>
+          <div class="bd-card">
+            <div class="bd-card-head">
+              <span class="bd-badge-label">種別</span>
+              <span class="bd-badge-value"><?php echo h(isset($row['shubetsu']) ? $row['shubetsu'] : ''); ?></span>
+            </div>
+            <div class="bd-card-info">
+              <p class="bd-card-meta"><?php echo h(isset($row['update_date']) ? date('y.m.d', strtotime($row['update_date'])) : ''); ?></p>
+              <p class="bd-card-meta"><?php echo h(isset($row['company_name']) ? $row['company_name'] : ''); ?></p>
+              <p class="bd-card-meta"><?php echo h(isset($row['member_name']) ? $row['member_name'] : ''); ?></p>
+              <a href="/<?php echo APP_NAME; ?>/linghtbox/id=<?php echo h($row['member_id']); ?>/" class="bd-card-member js-lightbox-link">＜登録者情報を見る＞</a>
+            </div>
+            <p class="bd-card-title"><?php echo h($row['title']); ?></p>
+            <p class="bd-card-row"><span class="bd-card-label">【所在地】</span><?php echo h(isset($row['syozaichi']) ? $row['syozaichi'] : ''); ?></p>
+<?php if (!empty($row['doc'])): ?>
+            <p class="bd-card-row"><span class="bd-card-label">【備考】</span><?php echo h(mb_strimwidth(strip_tags($row['doc']), 0, 60, '...')); ?></p>
+<?php endif; ?>
+            <a href="/<?php echo APP_NAME; ?>/bd_detail/id=<?php echo h($row['business_direct_id']); ?>" class="bd-card-more">→</a>
+          </div>
+<?php endforeach; ?>
+        </div>
+
+        <hr class="mem-divider mem-divider--no-bottom">
+
+        <div class="mem-pagination">
+          <?php echo $tpl_disp['navi']['navigator_before']; ?>
+          <div class="mem-pg-pages">
+            <?php echo $tpl_disp['navi']['direct_navi_first']; ?>
+            <?php echo $tpl_disp['navi']['direct_navi']; ?>
+            <?php echo $tpl_disp['navi']['direct_navi_last']; ?>
+          </div>
+          <?php echo $tpl_disp['navi']['navigator_next']; ?>
+        </div>
+
+<?php else: ?>
+        <p style="text-align:center;">現在、情報はございません。</p>
+<?php endif; ?>
+
+      </div>
+    </div>
+  </main>

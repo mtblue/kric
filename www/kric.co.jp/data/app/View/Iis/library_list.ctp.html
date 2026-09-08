@@ -1,0 +1,87 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <?php
+          $openerName = isset($tpl_disp['opener_category']['category_name']) ? $tpl_disp['opener_category']['category_name'] : '';
+          $currentCg  = isset($tpl_form['cg']) ? $tpl_form['cg'] : '';
+          $currentId  = isset($_GET['id']) ? $_GET['id'] : (isset($tpl_form['id']) ? $tpl_form['id'] : '');
+        ?>
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; <a href="/iis/index">会員専用ページ</a> &gt; <a href="/<?php echo APP_NAME; ?>/library">ライブラリ</a><?php if ($openerName != ''): ?> &gt; <?php echo h($openerName); ?><?php endif; ?></p>
+
+        <div class="lib-head">
+          <h2 class="mem-sec-title">─ ライブラリ ─</h2>
+          <form class="lib-search" action="/<?php echo APP_NAME; ?>/library_list<?php echo $currentCg != '' ? '/cg=' . h($currentCg) : ''; ?>" method="get">
+            <input type="text" class="lib-search-input" placeholder="フリーワードで検索" name="q" value="<?php echo isset($_GET['q']) ? h($_GET['q']) : ''; ?>">
+            <button type="submit" class="lib-search-btn" aria-label="検索">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="#666">
+                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+
+        <?php if ($openerName != ''): ?>
+        <div class="lib-current-folder">
+          <img src="/wp-content/themes/default/images/folder.png" alt="" class="lib-folder-icon">
+          <span class="lib-folder-name"><?php echo h($openerName); ?></span>
+        </div>
+        <?php endif; ?>
+
+        <?php if (!empty($tpl_disp['category_list']) && (int)$currentCg > 0): ?>
+        <nav class="lib-subtabs" aria-label="サブカテゴリ">
+          <?php foreach ($tpl_disp['category_list'] as $row): ?>
+          <?php $isActive = ($currentId != '' && $currentId == $row['category_id']); ?>
+          <a href="/<?php echo APP_NAME; ?>/library_list/cg=<?php echo h($row['opener_id']); ?>/id=<?php echo h($row['category_id']); ?>" class="lib-subtab<?php echo $isActive ? ' is-active' : ''; ?>">
+            <img src="/wp-content/themes/default/images/<?php echo $isActive ? 'folder3.png' : 'folder4.png'; ?>" alt="" class="lib-subtab-icon">
+            <?php echo h($row['category_name']); ?>
+          </a>
+          <?php endforeach; ?>
+        </nav>
+        <?php endif; ?>
+
+        <?php if (!empty($tpl_disp['main_list'])): ?>
+        <div class="lib-card-grid">
+          <?php foreach ($tpl_disp['main_list'] as $row): ?>
+          <?php
+            global $objOrg;
+            $docFull = isset($row['doc']) ? $row['doc'] : '';
+            $docShort = (mb_strlen($docFull) > 60) ? mb_substr($docFull, 0, 60) . '...' : $docFull;
+            $dateStr = isset($row['update_date']) ? date('y.m.d', strtotime($row['update_date'])) : '';
+          ?>
+          <a href="/<?php echo APP_NAME; ?>/library_detail/id=<?php echo h($row['library_id']); ?>" class="lib-card">
+            <p class="lib-card-date"><?php echo h($dateStr); ?></p>
+            <p class="lib-card-title"><?php echo h($row['title']); ?></p>
+            <?php if ($docShort != ''): ?>
+            <p class="lib-card-body"><?php echo h($docShort); ?></p>
+            <?php endif; ?>
+            <p class="lib-card-arrow">→</p>
+          </a>
+          <?php endforeach; ?>
+        </div>
+
+        <hr class="mem-divider mem-divider--no-bottom">
+
+        <?php if (!empty($tpl_disp['navi']['direct_navi'])): ?>
+        <nav class="mem-pagination" aria-label="ページ">
+          <?php echo $tpl_disp['navi']['navigator_before']; ?>
+          <div class="mem-pg-pages">
+            <?php echo $tpl_disp['navi']['direct_navi_first']; ?>
+            <?php echo $tpl_disp['navi']['direct_navi']; ?>
+            <?php echo $tpl_disp['navi']['direct_navi_last']; ?>
+          </div>
+          <?php echo $tpl_disp['navi']['navigator_next']; ?>
+        </nav>
+        <?php endif; ?>
+
+        <?php else: ?>
+        <p style="text-align:center; margin:40px 0;">ライブラリ情報はありません。</p>
+        <?php endif; ?>
+
+        <p class="lib-back"><a href="/<?php echo APP_NAME; ?>/library">一覧へ戻る &gt;</a></p>
+
+      </div>
+    </div>
+  </main>

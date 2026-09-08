@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メンバー一覧 | 会社管理 | 管理画面 | KRIC</title>
+  <link rel="stylesheet" href="css/style.css?v=17">
+  <link rel="stylesheet" href="css/member.css?v=15">
+  <link rel="stylesheet" href="css/admin.css?v=1">
+</head>
+<body class="is-member">
+
+  <!-- ========== HEADER ========== -->
+  <header id="header" class="is-scrolled">
+    <div class="header-inner">
+      <div class="header-logo">
+        <a href="index.html" class="logo-text">
+          <img src="images/hd_logo.png" alt="KRIC" class="logo-img">
+          <span class="logo-ja">関西不動産情報センター</span>
+        </a>
+      </div>
+      <div class="header-right">
+        <div class="header-btns">
+          <a href="index.html" class="btn-hd btn-hd--member">
+            <img src="images/hd_login.png" class="btn-hd-icon" alt="">
+            <span class="btn-text">会員専用｜ログアウト</span>
+            <span class="btn-sep">|</span>
+            <span class="btn-arrow">▶</span>
+          </a>
+        </div>
+        <button class="menu-btn" id="menuBtn" aria-label="メニューを開く">
+          <span class="menu-btn-lines">
+            <span></span><span></span><span></span>
+          </span>
+          <span class="menu-btn-label">MENU</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== GLOBAL NAV ========== -->
+  <div class="gnav-overlay" id="gnavOverlay"></div>
+  <nav class="gnav" id="gnav" aria-hidden="true">
+    <div class="gnav-header">
+      <button class="gnav-close" id="gnavClose" aria-label="閉じる">
+        <span class="gnav-close-icon">✕</span>
+        <span class="gnav-close-label">MENU</span>
+      </button>
+    </div>
+    <ul class="gnav-list">
+      <li><a href="admin-info.html">インフォメーション管理 <span class="gnav-arrow gnav-arrow-link">＞</span></a></li>
+      <li><a href="admin-company.html">会社管理 <span class="gnav-arrow gnav-arrow-link">＞</span></a></li>
+      <li class="gnav-has-child">
+        <button class="gnav-toggle" aria-expanded="false">ライブラリ管理 <span class="gnav-arrow">＋</span></button>
+        <ul class="gnav-child">
+          <li><a href="admin-library.html">ライブラリ管理</a></li>
+          <li><a href="admin-library-category.html">カテゴリ設定</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ========== ページタイトルバー ========== -->
+  <div class="mem-page-bar">
+    <p class="mem-breadcrumb mem-breadcrumb--sp"><a href="index.html">関西不動産情報センターTOP</a> &gt; <a href="#">管理画面</a> &gt; <a href="admin-company.html">会社管理</a> &gt; メンバー一覧</p>
+    <div class="mem-page-bar-inner">
+      <h1 class="mem-page-title">［管理画面］</h1>
+      <p class="mem-page-user"><span class="mem-page-company">株式会社○○○○○○</span><span class="mem-page-sep">｜</span><span class="mem-page-name">●●●● 様</span></p>
+    </div>
+  </div>
+
+  <!-- ========== ナビタブ ========== -->
+  <nav class="mem-nav" aria-label="管理メニュー">
+    <div class="mem-nav-inner">
+      <ul class="mem-nav-list">
+        <li class="mem-nav-item">
+          <a href="admin-info.html" class="mem-nav-link">インフォメーション管理 <span class="mem-nav-arr">▼</span></a>
+        </li>
+        <li class="mem-nav-item is-active">
+          <a href="admin-company.html" class="mem-nav-link">会社管理 <span class="mem-nav-arr">▼</span></a>
+        </li>
+        <li class="mem-nav-item">
+          <a href="admin-library.html" class="mem-nav-link">ライブラリ管理 <span class="mem-nav-arr">▼</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <!-- パンくず -->
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="index.html">関西不動産情報センターTOP</a> &gt; <a href="#">管理画面</a> &gt; <a href="admin-company.html">会社管理</a> &gt; メンバー一覧</p>
+
+        <!-- セクション見出し + 新規登録ボタン -->
+        <div class="bd-sec-head">
+          <h2 class="mem-sec-title">─ 会社管理 ─</h2>
+          <a href="admin-company-member-new.html" class="adm-btn-new-member bd-register-btn">
+            <span class="btn-text">新規登録（メンバー）</span>
+            <span class="btn-sep">|</span>
+            <span class="btn-arrow">▶</span>
+          </a>
+        </div>
+
+        <!-- サブタイトル -->
+        <h3 class="bd-reg-title">メンバー一覧</h3>
+        <p class="adm-company-name">株式会社アイエイホーム</p>
+
+        <!-- 一覧テーブル -->
+        <div class="adm-table-wrap">
+        <table class="adm-table adm-table--member">
+          <thead>
+            <tr>
+              <th>名前</th>
+              <th>メールアドレス</th>
+              <th>ステータス</th>
+              <th>操作</th>
+              <th>最終更新日時</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="名前"><a href="#" class="adm-link js-dir-modal-open">大富　則夫</a></td>
+              <td data-label="メールアドレス">info@aiei-h.com</td>
+              <td class="adm-td-actions" data-label="ステータス"><span class="adm-status adm-status--active">登録済み</span></td>
+              <td class="adm-td-actions" data-label="操作">
+                <a href="admin-company-member-edit.html" class="mem-member-edit-btn"><span class="btn-text">修正</span></a>
+                <a href="#" class="mem-member-del-btn"><span class="btn-text">削除</span></a>
+              </td>
+              <td data-label="最終更新日時">25.12.23　12:30</td>
+            </tr>
+            <tr>
+              <td data-label="名前"><a href="#" class="adm-link js-dir-modal-open">大富　則夫</a></td>
+              <td data-label="メールアドレス">info@aiei-h.com</td>
+              <td class="adm-td-actions" data-label="ステータス"><span class="adm-status adm-status--pending">招待中</span></td>
+              <td class="adm-td-actions" data-label="操作">
+                <a href="admin-company-member-edit.html" class="mem-member-edit-btn"><span class="btn-text">修正</span></a>
+                <a href="#" class="mem-member-del-btn"><span class="btn-text">削除</span></a>
+              </td>
+              <td data-label="最終更新日時">25.12.23　12:30</td>
+            </tr>
+            <tr>
+              <td data-label="名前"><a href="#" class="adm-link js-dir-modal-open">大富　則夫</a></td>
+              <td data-label="メールアドレス">info@aiei-h.com</td>
+              <td class="adm-td-actions" data-label="ステータス"><span class="adm-status adm-status--active">登録済み</span></td>
+              <td class="adm-td-actions" data-label="操作">
+                <a href="admin-company-member-edit.html" class="mem-member-edit-btn"><span class="btn-text">修正</span></a>
+                <a href="#" class="mem-member-del-btn"><span class="btn-text">削除</span></a>
+              </td>
+              <td data-label="最終更新日時">25.12.23　12:30</td>
+            </tr>
+            <tr>
+              <td data-label="名前"><a href="#" class="adm-link js-dir-modal-open">大富　則夫</a></td>
+              <td data-label="メールアドレス">info@aiei-h.com</td>
+              <td class="adm-td-actions" data-label="ステータス"><span class="adm-status adm-status--pending">招待中</span></td>
+              <td class="adm-td-actions" data-label="操作">
+                <a href="admin-company-member-edit.html" class="mem-member-edit-btn"><span class="btn-text">修正</span></a>
+                <a href="#" class="mem-member-del-btn"><span class="btn-text">削除</span></a>
+              </td>
+              <td data-label="最終更新日時">25.12.23　12:30</td>
+            </tr>
+            <tr>
+              <td data-label="名前"><a href="#" class="adm-link js-dir-modal-open">大富　則夫</a></td>
+              <td data-label="メールアドレス">info@aiei-h.com</td>
+              <td class="adm-td-actions" data-label="ステータス"><span class="adm-status adm-status--active">登録済み</span></td>
+              <td class="adm-td-actions" data-label="操作">
+                <a href="admin-company-member-edit.html" class="mem-member-edit-btn"><span class="btn-text">修正</span></a>
+                <a href="#" class="mem-member-del-btn"><span class="btn-text">削除</span></a>
+              </td>
+              <td data-label="最終更新日時">25.12.23　12:30</td>
+            </tr>
+            <tr>
+              <td data-label="名前"><a href="#" class="adm-link js-dir-modal-open">大富　則夫</a></td>
+              <td data-label="メールアドレス">info@aiei-h.com</td>
+              <td class="adm-td-actions" data-label="ステータス"><span class="adm-status adm-status--pending">招待中</span></td>
+              <td class="adm-td-actions" data-label="操作">
+                <a href="admin-company-member-edit.html" class="mem-member-edit-btn"><span class="btn-text">修正</span></a>
+                <a href="#" class="mem-member-del-btn"><span class="btn-text">削除</span></a>
+              </td>
+              <td data-label="最終更新日時">25.12.23　12:30</td>
+            </tr>
+            <tr>
+              <td data-label="名前"><a href="#" class="adm-link js-dir-modal-open">大富　則夫</a></td>
+              <td data-label="メールアドレス">info@aiei-h.com</td>
+              <td class="adm-td-actions" data-label="ステータス"><span class="adm-status adm-status--active">登録済み</span></td>
+              <td class="adm-td-actions" data-label="操作">
+                <a href="admin-company-member-edit.html" class="mem-member-edit-btn"><span class="btn-text">修正</span></a>
+                <a href="#" class="mem-member-del-btn"><span class="btn-text">削除</span></a>
+              </td>
+              <td data-label="最終更新日時">25.12.23　12:30</td>
+            </tr>
+            <tr>
+              <td data-label="名前"><a href="#" class="adm-link js-dir-modal-open">大富　則夫</a></td>
+              <td data-label="メールアドレス">info@aiei-h.com</td>
+              <td class="adm-td-actions" data-label="ステータス"><span class="adm-status adm-status--pending">招待中</span></td>
+              <td class="adm-td-actions" data-label="操作">
+                <a href="admin-company-member-edit.html" class="mem-member-edit-btn"><span class="btn-text">修正</span></a>
+                <a href="#" class="mem-member-del-btn"><span class="btn-text">削除</span></a>
+              </td>
+              <td data-label="最終更新日時">25.12.23　12:30</td>
+            </tr>
+            <tr>
+              <td data-label="名前"><a href="#" class="adm-link js-dir-modal-open">大富　則夫</a></td>
+              <td data-label="メールアドレス">info@aiei-h.com</td>
+              <td class="adm-td-actions" data-label="ステータス"><span class="adm-status adm-status--active">登録済み</span></td>
+              <td class="adm-td-actions" data-label="操作">
+                <a href="admin-company-member-edit.html" class="mem-member-edit-btn"><span class="btn-text">修正</span></a>
+                <a href="#" class="mem-member-del-btn"><span class="btn-text">削除</span></a>
+              </td>
+              <td data-label="最終更新日時">25.12.23　12:30</td>
+            </tr>
+            <tr>
+              <td data-label="名前"><a href="#" class="adm-link js-dir-modal-open">大富　則夫</a></td>
+              <td data-label="メールアドレス">info@aiei-h.com</td>
+              <td class="adm-td-actions" data-label="ステータス"><span class="adm-status adm-status--pending">招待中</span></td>
+              <td class="adm-td-actions" data-label="操作">
+                <a href="admin-company-member-edit.html" class="mem-member-edit-btn"><span class="btn-text">修正</span></a>
+                <a href="#" class="mem-member-del-btn"><span class="btn-text">削除</span></a>
+              </td>
+              <td data-label="最終更新日時">25.12.23　12:30</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <!-- ページネーション -->
+        <div class="mem-pagination">
+          <a href="#" class="mem-pg-prev">&lt;</a>
+          <div class="mem-pg-pages">
+            <a href="#" class="mem-pg-num is-current">1</a>
+            <span class="mem-pg-sep">｜</span>
+            <a href="#" class="mem-pg-num">2</a>
+            <span class="mem-pg-sep">｜</span>
+            <a href="#" class="mem-pg-num">3</a>
+            <span class="mem-pg-sep">｜</span>
+            <a href="#" class="mem-pg-num">4</a>
+            <span class="mem-pg-sep">｜</span>
+            <a href="#" class="mem-pg-num">5</a>
+            <span class="mem-pg-dots">・・・・</span>
+            <a href="#" class="mem-pg-num">10</a>
+          </div>
+          <a href="#" class="mem-pg-next">&gt;</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== FOOTER（管理画面版） ========== -->
+  <footer class="footer mem-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <a href="index.html" class="logo-text logo-text--footer">
+          <img src="images/ft_logo.png" alt="KRIC" class="logo-img logo-img--footer">
+          <span class="logo-ja logo-ja--footer">関西不動産情報センター</span>
+        </a>
+        <div class="footer-address">
+          <p>〒530-0012 大阪市北区芝田2丁目1番18号 西阪急ビル7階</p>
+        </div>
+        <a href="#" class="footer-map-btn">
+          <span class="btn-text">google map</span>
+          <span class="btn-sep">|</span>
+          <span class="btn-arrow">▶</span>
+        </a>
+      </div>
+      <div class="footer-right">
+        <nav class="footer-nav">
+          <div class="footer-nav-cols mem-ft-nav-cols adm-ft-nav">
+            <div class="footer-nav-col">
+              <a href="admin-info.html" class="footer-nav-parent">インフォメーション管理</a>
+            </div>
+            <div class="footer-nav-col">
+              <a href="admin-company.html" class="footer-nav-parent">会社管理</a>
+            </div>
+            <div class="footer-nav-col">
+              <a href="admin-library.html" class="footer-nav-parent">ライブラリ管理</a>
+              <ul>
+                <li><a href="admin-library-category.html">カテゴリ管理</a></li>
+                <li><a href="admin-library.html">ライブラリ管理</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="footer-privacy">
+          <a href="privacy.html">プライバシーポリシー</a>
+        </div>
+        <a href="#" class="page-top mem-page-top" aria-label="ページトップへ">∧</a>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <p>Copyright © KRIC 関西不動産情報センター All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ========== 設定確認モーダル ========== -->
+  <div class="dir-modal-overlay" id="dirModalOverlay">
+    <div class="dir-modal adm-modal">
+      <button class="dir-modal-close adm-modal-close" id="dirModalClose">×</button>
+      <div class="dir-modal-table">
+        <div class="dir-modal-row">
+          <span class="dir-modal-label">ログインID</span>
+          <span class="dir-modal-value">○○○○○○○○○○</span>
+        </div>
+        <div class="dir-modal-row">
+          <span class="dir-modal-label">パスワード</span>
+          <span class="dir-modal-value">○○○○○○○○○○</span>
+        </div>
+        <div class="dir-modal-row">
+          <span class="dir-modal-label">名前</span>
+          <span class="dir-modal-value">○○○○○○○○○○</span>
+        </div>
+        <div class="dir-modal-row">
+          <span class="dir-modal-label">名前カナ</span>
+          <span class="dir-modal-value">○○○○○○○○○○</span>
+        </div>
+        <div class="dir-modal-row">
+          <span class="dir-modal-label">携帯電話1</span>
+          <span class="dir-modal-value">○○○○○○○○○○</span>
+        </div>
+        <div class="dir-modal-row">
+          <span class="dir-modal-label">携帯電話2</span>
+          <span class="dir-modal-value">○○○○○○○○○○</span>
+        </div>
+        <div class="dir-modal-row">
+          <span class="dir-modal-label">メールアドレス1</span>
+          <span class="dir-modal-value">○○○○○○○○○○</span>
+        </div>
+        <div class="dir-modal-row">
+          <span class="dir-modal-label">通知設定</span>
+          <span class="dir-modal-value">○○○○○○○○○○</span>
+        </div>
+        <div class="dir-modal-row">
+          <span class="dir-modal-label">メールアドレス2</span>
+          <span class="dir-modal-value">○○○○○○○○○○</span>
+        </div>
+        <div class="dir-modal-row">
+          <span class="dir-modal-label">通知設定</span>
+          <span class="dir-modal-value">○○○○○○○○○○</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      var overlay = document.getElementById('dirModalOverlay');
+      var closeBtn = document.getElementById('dirModalClose');
+
+      document.querySelectorAll('.js-dir-modal-open').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          overlay.classList.add('is-open');
+        });
+      });
+
+      closeBtn.addEventListener('click', function () {
+        overlay.classList.remove('is-open');
+      });
+
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) {
+          overlay.classList.remove('is-open');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

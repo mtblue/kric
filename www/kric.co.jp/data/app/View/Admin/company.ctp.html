@@ -1,0 +1,108 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; 管理画面 &gt; 会社管理</p>
+
+        <div class="mem-sec-head bd-sec-head">
+          <h2 class="mem-sec-title">─ 会社管理 ─</h2>
+          <a href="/<?php echo APP_NAME; ?>/company_edit/" class="adm-btn-new-company bd-register-btn">
+            <span class="btn-text">新規登録（会社）</span>
+            <span class="btn-sep">|</span>
+            <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+          </a>
+        </div>
+
+        <!-- インデックス -->
+        <?php
+          $indexes = array(
+            'a' => 'あ', 'ka' => 'か', 'sa' => 'さ', 'ta' => 'た', 'na' => 'な',
+            'ha' => 'は', 'ma' => 'ま', 'ya' => 'や', 'ra' => 'ら', 'wa' => 'わ',
+          );
+          $currentName    = isset($tpl_form['Name']) ? $tpl_form['Name'] : '';
+          $currentKeyword = isset($tpl_disp['keyword_filter']) ? $tpl_disp['keyword_filter'] : '';
+        ?>
+        <div class="adm-index">
+          <p class="adm-index-label">インデックス</p>
+          <div class="adm-index-tabs">
+<?php foreach ($indexes as $key => $label): ?>
+            <a href="/<?php echo APP_NAME; ?>/company/Name=<?php echo $key; ?>" class="adm-index-tab<?php echo ($currentKeyword === '' && $currentName === $key) ? ' is-active' : ''; ?>"><?php echo $label; ?> <span class="adm-index-arr">▼</span></a>
+<?php endforeach; ?>
+          </div>
+        </div>
+
+        <div class="adm-search-row">
+          <div class="bd-filter-search">
+            <input type="text" id="company-keyword-input" class="bd-search-input" placeholder="フリーワードで検索" value="<?php echo h($tpl_disp['keyword_filter']); ?>">
+            <span class="bd-search-sep"></span>
+            <button id="company-search-btn" class="bd-search-btn"><img src="/wp-content/themes/default/images/search2.png" alt="検索" class="bd-search-icon"></button>
+          </div>
+        </div>
+        <script>
+        (function() {
+          var btn   = document.getElementById('company-search-btn');
+          var input = document.getElementById('company-keyword-input');
+          function doSearch() {
+            var keyword = input.value.trim();
+            var base    = '/<?php echo APP_NAME; ?>/company';
+            window.location.href = base + (keyword !== '' ? '/keyword=' + encodeURIComponent(keyword) : '');
+          }
+          btn.addEventListener('click', doSearch);
+          input.addEventListener('keydown', function(e) { if (e.key === 'Enter') { doSearch(); } });
+        })();
+        </script>
+
+        <!-- 一覧テーブル -->
+        <div class="adm-table-wrap">
+        <table class="adm-table adm-table--company">
+          <thead>
+            <tr>
+              <th>社名</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+<?php if (count($tpl_disp['main_list']) > 0) { ?>
+<?php foreach ($tpl_disp['main_list'] as $row) { ?>
+            <tr>
+              <td data-label="社名"><?php echo h($row['company_name']); ?></td>
+              <td class="adm-td-actions" data-label="操作">
+                <a href="/<?php echo APP_NAME; ?>/company_edit/id=<?php echo h($row['company_id']); ?>" class="mem-member-edit-btn"><span class="btn-text">修正</span></a>
+                <a href="javascript:void(0);" onclick="return delete_chk(<?php echo h($row['company_id']); ?>)" class="mem-member-del-btn"><span class="btn-text">削除</span></a>
+                <a href="/<?php echo APP_NAME; ?>/member/cid=<?php echo h($row['company_id']); ?>" class="adm-btn-member"><span class="btn-text">メンバー</span></a>
+              </td>
+            </tr>
+<?php } } else { ?>
+            <tr>
+              <td colspan="2">情報は登録されていません。</td>
+            </tr>
+<?php } ?>
+          </tbody>
+        </table>
+        </div>
+
+<?php if (!empty($tpl_disp['navi']['direct_navi'])): ?>
+        <nav class="mem-pagination" aria-label="ページ">
+          <?php echo $tpl_disp['navi']['navigator_before']; ?>
+          <div class="mem-pg-pages">
+            <?php echo $tpl_disp['navi']['direct_navi_first']; ?>
+            <?php echo $tpl_disp['navi']['direct_navi']; ?>
+            <?php echo $tpl_disp['navi']['direct_navi_last']; ?>
+          </div>
+          <?php echo $tpl_disp['navi']['navigator_next']; ?>
+        </nav>
+<?php endif; ?>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+  function delete_chk(id) {
+    if (confirm('削除してもよろしいですか？')) {
+      location.href = '/<?php echo APP_NAME; ?>/company/cmd=delete/id=' + id<?php echo ($currentName != '') ? " + '/Name=" . $currentName . "'" : ''; ?>;
+    }
+    return false;
+  }
+  </script>

@@ -1,0 +1,129 @@
+# Translation of Plugins - Widgets on Pages - Stable (latest release) in Japanese
+# This file is distributed under the same license as the Plugins - Widgets on Pages - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-10-30 05:15:21+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: ja_JP\n"
+"Project-Id-Version: Plugins - Widgets on Pages - Stable (latest release)\n"
+
+#: admin/class-widgets-on-pages-admin.php:385
+msgid "Wide Screen"
+msgstr "ワイドスクリーン"
+
+#: admin/class-widgets-on-pages-admin.php:349
+msgid "Layout Options"
+msgstr "レイアウトオプション"
+
+#: admin/class-widgets-on-pages-admin.php:302
+msgid "Upgrade now"
+msgstr "アップグレードする"
+
+#. Plugin URI of the plugin
+msgid "https://datamad.co.uk/wordpress-plugins/widgets-on-pages/"
+msgstr "https://datamad.co.uk/wordpress-plugins/widgets-on-pages/"
+
+#: admin/class-widgets-on-pages-admin.php:283
+msgid "Upgrade Now"
+msgstr "アップグレードする"
+
+#: admin/class-widgets-on-pages-admin.php:258
+#: admin/class-widgets-on-pages-admin.php:309
+msgid "Auto Insert"
+msgstr "自動追加"
+
+#: admin/class-widgets-on-pages-admin.php:280
+msgid "Insert using the visual editor"
+msgstr "ビジュアルエディタを使用して挿入する"
+
+#: admin/class-widgets-on-pages-admin.php:352
+msgid "Number of widget columms per screen size"
+msgstr "画面サイズごとのウィジェットカラムの数"
+
+#: admin/class-widgets-on-pages-admin.php:338
+msgid "Show on Posts / Pages"
+msgstr "投稿 / 固定ページに表示"
+
+#: admin/class-widgets-on-pages-admin.php:283
+msgid " And you can arrange widgets in columns, too!"
+msgstr "ウィジェットをカラムに配置することもできます"
+
+#: admin/class-widgets-on-pages-admin.php:303
+msgid "Get PRO Features"
+msgstr "プロ版を入手"
+
+#: admin/class-widgets-on-pages-admin.php:281
+msgid "Use the visual editor to add Turbo Sidebars."
+msgstr "Turbo Sidebars でビジュアルエディターを使用する。"
+
+#: admin/class-widgets-on-pages-admin.php:355
+msgid "Small Screen"
+msgstr "Small Screen"
+
+#: admin/class-widgets-on-pages-admin.php:365
+msgid "Medium Screen"
+msgstr "Medium Screen"
+
+#: admin/class-widgets-on-pages-admin.php:375
+msgid "Large Screen"
+msgstr "Large Screen"
+
+#: admin/class-widgets-on-pages-admin.php:302
+msgid "Auto Insert options is a Widgets on Pages PRO feature"
+msgstr "自動追加オプションは Widgets on Pages のプロ版の機能です"
+
+#: admin/class-widgets-on-pages-admin.php:319
+msgid "Position"
+msgstr "位置"
+
+#: admin/class-widgets-on-pages-admin.php:230
+msgid "Shortcode / Template Tag"
+msgstr "ショートコード / テンプレートタグ"
+
+#: admin/class-widgets-on-pages-admin.php:286
+msgid "<h4>Template Tag</h4><p>Use this code to include the sidebar in your theme.</h4>"
+msgstr "<h4>Template Tag</h4><p>Use this code to include the sidebar in your theme.</h4>"
+
+#: admin/class-widgets-on-pages-admin.php:275
+msgid "<h4>Shortcode</h4><p>Use this shortcode in your post/page</h4>"
+msgstr "<h4>ショートコード</h4><p>このショートコードを投稿 / 固定ページで使用してください。</h4>"
+
+#: widgets_on_pages.php:68
+msgid "Thanks for your continuing use of %2$s. Please help us improve it even further by opting-in below.</br>By doing so, some data about your usage of %2$s will be sent to %5$s. If you skip this, that's okay! %2$s will still work just fine."
+msgstr "%2$s をご愛用いただきありがとうございます。以下を有効化していただき、より一層の機能向上にご協力ください。 </br> これにより、あなたの %2$s のご利用データが %5$s へ送信されます。もしあなたがこれをスキップしたとしても大丈夫です！ %2$s はそれでも正しく動作します。"
+
+#: admin/class-widgets-on-pages-admin.php:96
+msgid "Settings"
+msgstr "設定"
+
+#. Plugin Name of the plugin
+msgid "Widgets On Pages"
+msgstr "Widgets On Pages"
+
+#: admin/partials/widgets-on-pages-admin-display.php:40
+msgid "Save Changes"
+msgstr "変更を保存"
+
+#: admin/class-widgets-on-pages-admin.php:131
+msgid "Widgets on Pages"
+msgstr "Widgets on Pages"
+
+#. Author of the plugin
+msgid "Todd Halfpenny"
+msgstr "Todd Halfpenny"
+
+#. Author URI of the plugin
+msgid "http://toddhalfpenny.com/"
+msgstr "http://toddhalfpenny.com/"
+
+#: admin/class-widgets-on-pages-admin.php:130
+msgid "Widgets on Pages Settings"
+msgstr "Widgets on Pages 設定"
+
+#. Description of the plugin
+msgid "The easiest way to Add Widgets or Sidebars to Posts and Pages using shortcodes or template tags."
+msgstr "ウィジェットもしくはサイドバーを投稿や固定ページに追加する最も簡単な方法はショートコードかテンプレートタグを使うことです。"

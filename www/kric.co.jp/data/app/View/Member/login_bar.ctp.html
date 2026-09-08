@@ -1,0 +1,25 @@
+</head>
+<?php if (isset($tpl_disp['sessionInfo']['member_id']) == true) { ?>
+            <p style="padding-top:10px;"><font color="#FFFFFF">こんにちは、<?php print(isset($tpl_disp['sessionInfo']['company_name']) == true ? $tpl_disp['sessionInfo']['company_name'] : ''); ?>　<?php print(isset($tpl_disp['sessionInfo']['name']) == true ? $tpl_disp['sessionInfo']['name'] : ''); ?>様&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;<a href="/iis/logout">ログアウト</a>&nbsp;|&nbsp;<a href="/iis/index">IISトップページ</a>&nbsp;]</font></p>
+<?php } else { ?>
+	<?php
+		if(isset($_COOKIE["KRIC_IIS_Cookie"]) == true) {
+			$uid = $_COOKIE["KRIC_IIS_Cookie"];
+		}
+	?>
+			<img src="/wp-content/themes/default/images/index_login_01.png" width="125" height="18" alt="会員専用ログイン" class="login_icon">
+			<form name="aaa" action="/iis/login/" method="post"><input type="hidden" name="Submit" value="1">
+			<input name="cmd" type="hidden" value="login">
+			<input name="session" type="hidden" value="<?php print(isset($tpl_disp['session']) == true ? $tpl_disp['session'] : ''); ?>" />
+				<dl>
+					<dt>ログインID</dt>
+					<dd><input type="text" name="MailAddress" class="user" value="<?php print(isset($uid) == true ? $uid : ''); ?>"></dd>
+				</dl>
+				<dl>
+					<dt>パスワード</dt>
+					<dd><input type="password" name="Password" class="pass"></dd>
+				</dl>
+				<div class="submit"><input type="image" src="/wp-content/themes/default/images/index_login_02.png" alt="送信する" align="middle" name="login"></div>
+			</form>
+			<div class="forgot"><a href="/iis/login/?forget=1">※パスワードの変更・再発行はこちら</a></div>
+<?php } ?>

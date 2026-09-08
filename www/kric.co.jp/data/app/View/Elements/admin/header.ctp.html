@@ -1,0 +1,21 @@
+	<!-- header start -->   
+    <div id="header">
+      <h1>KRIC ⅡS 管理画面</h1>
+      <img src="/material/admin/images/common/img_header.gif" width="208" height="92" alt="ヘッダーイメージ">
+	<div id="gnavi">
+<?php if (BASE_NAME != 'login') { ?>
+    <ul>
+         <li><a href="/<?php print(APP_NAME); ?>/index" class="gnavi_index">インフォメーション管理</a></li>
+         <li><a href="/<?php print(APP_NAME); ?>/company/Name=a" class="gnavi_company">会社管理</a></li>
+         <!--<li><a href="/<?php print(APP_NAME); ?>/committee" class="gnavi_committee">委員会管理</a></li>-->
+         <li><a href="JavaScript:vold(0);" class="gnavi_library">ライブラリ管理</a>
+           		<ul class="sub">
+                <li><a href="/<?php print(APP_NAME); ?>/category">カテゴリ管理</a></li>
+                <li><a href="/<?php print(APP_NAME); ?>/library">ライブラリ管理</a></li>
+                </ul>
+         </li>
+         <li class="logout">［ <a href="/admin/logout">ログアウト</a> | <a href="/iis/index" target="_blank">IISトップページ</a> ］</li>
+    </ul>
+<?php } ?>
+      <!-- /gnavi --></div>
+  <!-- header end --></div>

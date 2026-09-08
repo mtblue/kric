@@ -1,0 +1,27 @@
+<?php
+
+if (isset($tpl_form['Mode']) == false || (isset($tpl_form['Mode']) == true && $tpl_form['Mode'] == '')) {
+	// 検索トップ
+	include(dirname(__FILE__) . '/top.ctp.html');
+
+} elseif (isset($tpl_form['Mode']) == true && $tpl_form['Mode'] == 'list-name') {
+	// 会員名で検索（五十音検索）
+	include(dirname(__FILE__) . '/name.ctp.html');
+
+} elseif (isset($tpl_form['Mode']) == true && $tpl_form['Mode'] == 'list-area') {
+	// エリアで検索
+	include(dirname(__FILE__) . '/area.ctp.html');
+
+} elseif (isset($tpl_form['Mode']) == true && $tpl_form['Mode'] == 'list-industry') {
+	// 業務種目で検索
+	include(dirname(__FILE__) . '/industry.ctp.html');
+
+} else {
+	// エラー
+	header('Status: 500 Internal Server Error');
+	header('Content-Type: text/plain');
+	print('Failed to open the page.');
+	exit;
+}
+
+?>

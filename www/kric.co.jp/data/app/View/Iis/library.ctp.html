@@ -1,0 +1,52 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; <a href="/iis/index">会員専用ページ</a> &gt; ライブラリ</p>
+
+        <div class="lib-head">
+          <h2 class="mem-sec-title">─ ライブラリ ─</h2>
+          <form class="lib-search" action="/<?php echo APP_NAME; ?>/library_list" method="get">
+            <input type="text" class="lib-search-input" placeholder="フリーワードで検索" name="q">
+            <button type="submit" class="lib-search-btn" aria-label="検索">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="#666">
+                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+
+        <?php
+        /* 改行位置マッピング（DBには触れずビュー側で制御）
+           SP版の改行位置は後続タスクで lib_names_sp を追加して対応予定 */
+        $lib_names_pc = [
+            'お役立ち情報'         => 'お役立ち<br>情報',
+            '地区研修会実施一覧表'  => '地区研修会<br>実施一覧表',
+            'KRICあて各種届出用紙'  => 'KRICあて<br>各種届出用紙',
+            'ＫＲＩＣあて各種届出用紙' => 'ＫＲＩＣあて<br>各種届出用紙',
+            '研修会レジュメ'        => '研修会<br>レジュメ',
+            'KRICパンフレット'      => 'KRIC<br>パンフレット',
+            'ＫＲＩＣパンフレット'  => 'ＫＲＩＣ<br>パンフレット',
+        ];
+        ?>
+        <?php if (!empty($tpl_disp['main_list'])): ?>
+        <div class="lib-grid">
+          <?php foreach ($tpl_disp['main_list'] as $row): ?>
+          <?php
+            $raw = $row['category_name'];
+            $display = isset($lib_names_pc[$raw]) ? $lib_names_pc[$raw] : h($raw);
+          ?>
+          <a href="/<?php echo APP_NAME; ?>/library_list/cg=<?php echo h($row['category_id']); ?>" class="lib-folder-item">
+            <img src="/wp-content/themes/default/images/folder.png" alt="" class="lib-folder-icon">
+            <span class="lib-folder-name"><?php echo $display; ?></span>
+          </a>
+          <?php endforeach; ?>
+        </div>
+        <?php else: ?>
+        <p style="text-align:center; margin:40px 0;">現在、ライブラリ情報はございません。</p>
+        <?php endif; ?>
+
+      </div>
+    </div>
+  </main>

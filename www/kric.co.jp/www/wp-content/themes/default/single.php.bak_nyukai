@@ -1,0 +1,73 @@
+<?php get_header(); ?>
+
+  <!-- ========== ページKV ========== -->
+  <section class="page-kv--bg">
+    <div class="page-kv-placeholder" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/nw_bg.png')"></div>
+    <div class="page-kv-overlay">
+      <h1 class="page-kv-title">NEWS</h1>
+    </div>
+  </section>
+
+  <!-- パンくず -->
+  <div class="page-breadcrumb">
+    <a href="<?php echo esc_url(home_url('/')); ?>">関西不動産情報センター TOP</a>
+    <span class="page-breadcrumb-sep">&gt;</span>
+    <a href="<?php echo esc_url(home_url('/news.html')); ?>">NEWS</a>
+  </div>
+
+  <!-- ========== NEWS詳細 ========== -->
+  <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+  <section class="news-detail-sec">
+    <div class="news-detail-inner">
+
+      <div class="news-detail-meta">
+        <span class="news-detail-date"><?php echo get_the_date('y.m.d'); ?></span>
+      </div>
+      <h2 class="news-detail-title"><?php the_title(); ?></h2>
+      <hr class="news-detail-divider">
+
+      <div class="news-detail-body">
+        <?php the_content(); ?>
+      </div>
+
+      <div class="news-detail-back-wrap">
+        <a href="<?php echo esc_url(home_url('/news.html')); ?>" class="news-detail-back">一覧へ戻る &gt;</a>
+      </div>
+
+    </div>
+  </section>
+  <?php endwhile; endif; ?>
+
+  <!-- ========== お問い合わせ ========== -->
+  <section class="contact-cta" id="contact">
+    <div class="contact-cta-photo">
+      <img src="<?php echo get_template_directory_uri(); ?>/images/ft_contact.png" alt="お問い合わせ">
+      <div class="contact-cta-photo-text">
+        <div class="contact-photo-inner">
+          <p class="contact-photo-label">JOIN</p>
+          <p class="contact-photo-title">入会を<br>お考えの方は<br>こちら</p>
+        </div>
+        <a href="<?php echo esc_url(home_url('/')); ?>nyukai/" class="contact-photo-link">入会案内ページへ <span class="contact-photo-arrow">›</span></a>
+      </div>
+    </div>
+    <div class="contact-cta-inner">
+      <p class="contact-label">CONTACT</p>
+      <h2 class="contact-title">お問い合わせ</h2>
+      <p class="contact-subtitle">KRICについての質問や相談は<br class="contact-subtitle-br">お気軽にお問い合わせください。</p>
+      <hr class="contact-divider">
+      <div class="contact-cols">
+        <div class="contact-col">
+          <p class="contact-col-label">[電話の場合]</p>
+          <p class="contact-col-note">・受付時間／10:00〜16:00</p>
+          <p class="contact-tel"><span class="contact-tel-label">TEL.</span> <a href="tel:0662927791">06-6292-7791</a></p>
+        </div>
+        <div class="contact-col">
+          <p class="contact-col-label">[Webの場合]</p>
+          <p class="contact-col-note">・24時間受付中</p>
+          <a href="<?php echo esc_url(home_url('/contact.html')); ?>" class="btn-contact-form"><span class="btn-text">お問合せフォーム</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<?php get_footer(); ?>

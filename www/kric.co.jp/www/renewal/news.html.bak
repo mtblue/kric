@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEWS | KRIC 関西不動産情報センター</title>
+  <link rel="stylesheet" href="css/style.css?v=17">
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header id="header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <a href="index.html" class="logo-text">
+          <img src="images/hd_logo.png" alt="KRIC" class="logo-img">
+          <span class="logo-ja">関西不動産情報センター</span>
+        </a>
+      </div>
+      <div class="header-right">
+        <div class="header-btns">
+          <a href="nyukai-form.html" class="btn-hd btn-hd--join"><img src="images/hd_join.png" class="btn-hd-icon" alt=""><span class="btn-text">ご入会はこちら</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+          <a href="iis/login.html" class="btn-hd btn-hd--member"><img src="images/hd_login.png" class="btn-hd-icon" alt=""><span class="btn-text">会員専用｜ログイン</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+        </div>
+        <button class="menu-btn" id="menuBtn" aria-label="メニューを開く">
+          <span class="menu-btn-lines">
+            <span></span><span></span><span></span>
+          </span>
+          <span class="menu-btn-label">MENU</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== GLOBAL NAV ========== -->
+  <div class="gnav-overlay" id="gnavOverlay"></div>
+  <nav class="gnav" id="gnav" aria-hidden="true">
+    <div class="gnav-header">
+      <button class="gnav-close" id="gnavClose" aria-label="閉じる">
+        <span class="gnav-close-icon">✕</span>
+        <span class="gnav-close-label">MENU</span>
+      </button>
+    </div>
+    <ul class="gnav-list">
+      <li><a href="index.html">TOP</a></li>
+      <li class="gnav-has-child">
+        <button class="gnav-toggle" aria-expanded="false">KRICについて <span class="gnav-arrow">＋</span></button>
+        <ul class="gnav-child">
+          <li><a href="about.html">設立の目的と社会的使命</a></li>
+          <li><a href="about.html#chairman">理事長あいさつ</a></li>
+        </ul>
+      </li>
+      <li class="gnav-has-child">
+        <button class="gnav-toggle" aria-expanded="false">活動内容 <span class="gnav-arrow">＋</span></button>
+        <ul class="gnav-child">
+          <li><a href="#">協会内の活動</a></li>
+          <li><a href="#">社会的な活動</a></li>
+        </ul>
+      </li>
+      <li class="gnav-has-child">
+        <button class="gnav-toggle" aria-expanded="false">NEWS <span class="gnav-arrow">＋</span></button>
+        <ul class="gnav-child">
+          <li><a href="news.html">新着情報</a></li>
+          <li><a href="news.html#media">KRICメディア</a></li>
+        </ul>
+      </li>
+      <li class="gnav-has-child">
+        <button class="gnav-toggle" aria-expanded="false">会員紹介 <span class="gnav-arrow">＋</span></button>
+        <ul class="gnav-child">
+          <li><a href="kaiin.html#map">マップ検索</a></li>
+          <li><a href="kaiin.html#search">フリーワード検索</a></li>
+        </ul>
+      </li>
+      <li><a href="nyukai.html">入会のご案内 <span class="gnav-arrow-link">＞</span></a></li>
+      <li class="gnav-has-child">
+        <button class="gnav-toggle" aria-expanded="false">団体概要 <span class="gnav-arrow">＋</span></button>
+        <ul class="gnav-child">
+          <li><a href="dandai.html#management">運営団体</a></li>
+          <li><a href="dandai.html#orgchart">組織図</a></li>
+          <li><a href="dandai.html#history">KRICの歴史</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ========== ページKV ========== -->
+  <section class="dandai-kv">
+    <div class="dandai-kv-placeholder"></div>
+    <div class="dandai-kv-overlay">
+      <h1 class="dandai-kv-title">NEWS</h1>
+    </div>
+  </section>
+
+  <!-- パンくず -->
+  <div class="dandai-breadcrumb">
+    <a href="index.html">関西不動産情報センター TOP</a>
+    <span class="dandai-breadcrumb-sep">&gt;</span>
+    NEWS
+  </div>
+
+  <!-- ========== 新着情報 ========== -->
+  <section class="news-sec" id="news">
+    <div class="news-inner">
+
+      <h2 class="news-list-heading">新着情報（事務局からのお知らせ）</h2>
+
+      <ul class="news-list">
+        <li class="news-list-item">
+          <span class="news-list-date">25.00.00</span>
+          <a href="#" class="news-list-title">第620回「歴史(政治を語る前にまず知っておきたい不動産の話」</a>
+          <span class="news-list-arrow">→</span>
+        </li>
+        <li class="news-list-item">
+          <span class="news-list-date">25.00.00</span>
+          <a href="#" class="news-list-title">第620回「歴史(政治を語る前にまず知っておきたい不動産の話」</a>
+          <span class="news-list-arrow">→</span>
+        </li>
+        <li class="news-list-item">
+          <span class="news-list-date">25.00.00</span>
+          <a href="#" class="news-list-title">第620回「歴史(政治を語る前にまず知っておきたい不動産の話」</a>
+          <span class="news-list-arrow">→</span>
+        </li>
+        <li class="news-list-item">
+          <span class="news-list-date">25.00.00</span>
+          <a href="#" class="news-list-title">第620回「歴史(政治を語る前にまず知っておきたい不動産の話」</a>
+          <span class="news-list-arrow">→</span>
+        </li>
+        <li class="news-list-item">
+          <span class="news-list-date">25.00.00</span>
+          <a href="#" class="news-list-title">第620回「歴史(政治を語る前にまず知っておきたい不動産の話」</a>
+          <span class="news-list-arrow">→</span>
+        </li>
+        <li class="news-list-item">
+          <span class="news-list-date">25.00.00</span>
+          <a href="#" class="news-list-title">第620回「歴史(政治を語る前にまず知っておきたい不動産の話」</a>
+          <span class="news-list-arrow">→</span>
+        </li>
+        <li class="news-list-item">
+          <span class="news-list-date">25.00.00</span>
+          <a href="#" class="news-list-title">第620回「歴史(政治を語る前にまず知っておきたい不動産の話」</a>
+          <span class="news-list-arrow">→</span>
+        </li>
+        <li class="news-list-item">
+          <span class="news-list-date">25.00.00</span>
+          <a href="#" class="news-list-title">第620回「歴史(政治を語る前にまず知っておきたい不動産の話」</a>
+          <span class="news-list-arrow">→</span>
+        </li>
+        <li class="news-list-item">
+          <span class="news-list-date">25.00.00</span>
+          <a href="#" class="news-list-title">第620回「歴史(政治を語る前にまず知っておきたい不動産の話」</a>
+          <span class="news-list-arrow">→</span>
+        </li>
+        <li class="news-list-item">
+          <span class="news-list-date">25.00.00</span>
+          <a href="#" class="news-list-title">第620回「歴史(政治を語る前にまず知っておきたい不動産の話」</a>
+          <span class="news-list-arrow">→</span>
+        </li>
+      </ul>
+
+      <nav class="news-pagination">
+        <span class="news-pg-prev">&lt;</span>
+        <a href="#" class="news-pg-num is-active">1</a>
+        <span class="news-pg-sep">|</span>
+        <a href="#" class="news-pg-num">2</a>
+        <span class="news-pg-sep">|</span>
+        <a href="#" class="news-pg-num">3</a>
+        <span class="news-pg-sep">|</span>
+        <a href="#" class="news-pg-num">4</a>
+        <span class="news-pg-sep">|</span>
+        <a href="#" class="news-pg-num">5</a>
+        <span class="news-pg-dots">・・・・</span>
+        <a href="#" class="news-pg-num">10</a>
+        <span class="news-pg-next">&gt;</span>
+      </nav>
+
+    </div>
+  </section>
+
+  <!-- ========== KRICメディア ========== -->
+  <section class="news-media-sec" id="media">
+    <div class="news-media-inner">
+
+      <h2 class="media-heading">― KRICメディア ―</h2>
+
+      <div class="media-fb-row">
+        <a href="#" class="media-fb-btn">Facebook <span class="media-fb-icon">&#x2197;</span></a>
+      </div>
+
+      <!-- アコーディオン -->
+      <div class="media-acc-list">
+
+        <div class="media-acc-item is-open">
+          <button class="media-acc-header js-media-acc">
+            <span>【MBSラジオ】村瀬哲史とKRIC！不動産の時間</span>
+            <span class="media-acc-arrow">▲</span>
+          </button>
+          <div class="media-acc-body">
+            <div class="media-range-grid">
+              <a href="#" class="media-range-item">【第1回〜第13回】<br>2022.10.03〜12.26</a>
+              <a href="#" class="media-range-item">【第14回〜第39回】<br>2023.01.02〜06.26</a>
+              <a href="#" class="media-range-item">【第40回〜第65回】<br>2023.07.03〜12.25</a>
+              <a href="#" class="media-range-item">【第66回〜第91回】<br>2024.01.06〜06.24</a>
+              <a href="#" class="media-range-item">【第92回〜第105回】<br>2024.07.01〜09.30</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="media-acc-item">
+          <button class="media-acc-header js-media-acc">
+            <span>【MBSラジオ】村瀬哲史とKRIC！不動産の時間</span>
+            <span class="media-acc-arrow">▼</span>
+          </button>
+          <div class="media-acc-body" style="display:none;">
+            <div class="media-range-grid">
+              <a href="#" class="media-range-item">【第1回〜第13回】<br>2022.10.03〜12.26</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="media-acc-item">
+          <button class="media-acc-header js-media-acc">
+            <span>【MBSラジオ】村瀬哲史とKRIC！不動産の時間</span>
+            <span class="media-acc-arrow">▼</span>
+          </button>
+          <div class="media-acc-body" style="display:none;">
+            <div class="media-range-grid">
+              <a href="#" class="media-range-item">【第1回〜第13回】<br>2022.10.03〜12.26</a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.media-acc-list -->
+
+      <!-- エピソードカードグリッド -->
+      <div class="media-program-grid">
+        <a href="#" class="media-program-card">
+          <div class="media-program-card-left">最後に<br>聞かせてほしい<br>不動産<br>にまつわる話</div>
+          <div class="media-program-card-right">
+            <p class="media-program-ep">第105回放送</p>
+            <p class="media-program-date">9月30日（月）</p>
+            <hr class="media-program-hr">
+            <p class="media-program-venue">不動産予備校</p>
+          </div>
+        </a>
+        <a href="#" class="media-program-card">
+          <div class="media-program-card-left">最後に<br>聞かせてほしい<br>不動産<br>にまつわる話</div>
+          <div class="media-program-card-right">
+            <p class="media-program-ep">第105回放送</p>
+            <p class="media-program-date">9月30日（月）</p>
+            <hr class="media-program-hr">
+            <p class="media-program-venue">不動産予備校</p>
+          </div>
+        </a>
+        <a href="#" class="media-program-card">
+          <div class="media-program-card-left">最後に<br>聞かせてほしい<br>不動産<br>にまつわる話</div>
+          <div class="media-program-card-right">
+            <p class="media-program-ep">第105回放送</p>
+            <p class="media-program-date">9月30日（月）</p>
+            <hr class="media-program-hr">
+            <p class="media-program-venue">不動産予備校</p>
+          </div>
+        </a>
+        <a href="#" class="media-program-card">
+          <div class="media-program-card-left">最後に<br>聞かせてほしい<br>不動産<br>にまつわる話</div>
+          <div class="media-program-card-right">
+            <p class="media-program-ep">第105回放送</p>
+            <p class="media-program-date">9月30日（月）</p>
+            <hr class="media-program-hr">
+            <p class="media-program-venue">不動産予備校</p>
+          </div>
+        </a>
+        <a href="#" class="media-program-card">
+          <div class="media-program-card-left">最後に<br>聞かせてほしい<br>不動産<br>にまつわる話</div>
+          <div class="media-program-card-right">
+            <p class="media-program-ep">第105回放送</p>
+            <p class="media-program-date">9月30日（月）</p>
+            <hr class="media-program-hr">
+            <p class="media-program-venue">不動産予備校</p>
+          </div>
+        </a>
+        <a href="#" class="media-program-card">
+          <div class="media-program-card-left">最後に<br>聞かせてほしい<br>不動産<br>にまつわる話</div>
+          <div class="media-program-card-right">
+            <p class="media-program-ep">第105回放送</p>
+            <p class="media-program-date">9月30日（月）</p>
+            <hr class="media-program-hr">
+            <p class="media-program-venue">不動産予備校</p>
+          </div>
+        </a>
+      </div><!-- /.media-program-grid -->
+
+      <nav class="news-pagination">
+        <span class="news-pg-prev">&lt;</span>
+        <a href="#" class="news-pg-num is-active">1</a>
+        <span class="news-pg-sep">|</span>
+        <a href="#" class="news-pg-num">2</a>
+        <span class="news-pg-sep">|</span>
+        <a href="#" class="news-pg-num">3</a>
+        <span class="news-pg-sep">|</span>
+        <a href="#" class="news-pg-num">4</a>
+        <span class="news-pg-sep">|</span>
+        <a href="#" class="news-pg-num">5</a>
+        <span class="news-pg-dots">・・・・</span>
+        <a href="#" class="news-pg-num">10</a>
+        <span class="news-pg-next">&gt;</span>
+      </nav>
+
+    </div>
+  </section>
+
+  <!-- ========== お問い合わせ ========== -->
+  <section class="contact-cta" id="contact">
+    <div class="contact-cta-photo">
+      <img src="images/ft_contact.png" alt="お問い合わせ">
+      <div class="contact-cta-photo-text">
+        <div class="contact-photo-inner">
+          <p class="contact-photo-label">JOIN</p>
+          <p class="contact-photo-title">入会を<br>お考えの方は<br>こちら</p>
+        </div>
+        <a href="nyukai.html" class="contact-photo-link">入会のご案内ページへ <span class="contact-photo-arrow">›</span></a>
+      </div>
+    </div>
+    <div class="contact-cta-inner">
+      <p class="contact-label">CONTACT</p>
+      <h2 class="contact-title">お問い合わせ</h2>
+      <p class="contact-subtitle">KRICについてのご質問やご相談は<br class="contact-subtitle-br">お気軽にお問い合わせください。</p>
+      <hr class="contact-divider">
+      <div class="contact-cols">
+        <div class="contact-col">
+          <p class="contact-col-label">[お電話の場合]</p>
+          <p class="contact-col-note">・受付時間／9:10-16:00</p>
+          <p class="contact-tel"><span class="contact-tel-label">TEL.</span> <a href="tel:0662927791">06-6292-7791</a></p>
+        </div>
+        <div class="contact-col">
+          <p class="contact-col-label">[Webの場合]</p>
+          <p class="contact-col-note">・24時間受付中</p>
+          <a href="toiawase.html" class="btn-contact-form"><span class="btn-text">お問合せフォーム</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <a href="index.html" class="logo-text logo-text--footer">
+          <img src="images/ft_logo.png" alt="KRIC" class="logo-img logo-img--footer">
+          <span class="logo-ja logo-ja--footer">関西不動産情報センター</span>
+        </a>
+        <div class="footer-address">
+          <p>〒530-0012 大阪市北区芝田2丁目1番18号 西阪急ビル7階</p>
+        </div>
+        <a href="#" class="footer-map-btn"><span class="btn-text">google map</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+      </div>
+      <div class="footer-right">
+        <nav class="footer-nav">
+          <div class="footer-nav-cols">
+            <div class="footer-nav-col">
+              <a href="index.html" class="footer-nav-parent">TOP</a>
+            </div>
+            <div class="footer-nav-col has-children">
+              <a href="about.html" class="footer-nav-parent">KRICについて</a>
+              <ul>
+                <li class="footer-nav-self"><a href="about.html">KRICについて</a></li>
+                <li><a href="about.html">設立の目的と社会的使命</a></li>
+                <li><a href="about.html#chairman">理事長あいさつ</a></li>
+              </ul>
+            </div>
+            <div class="footer-nav-col has-children">
+              <a href="#" class="footer-nav-parent">活動内容</a>
+              <ul>
+                <li class="footer-nav-self"><a href="#">活動内容</a></li>
+                <li><a href="#">協会内の活動</a></li>
+                <li><a href="#">社会的な活動</a></li>
+              </ul>
+            </div>
+            <div class="footer-nav-col has-children">
+              <a href="news.html" class="footer-nav-parent">NEWS</a>
+              <ul>
+                <li class="footer-nav-self"><a href="news.html">NEWS</a></li>
+                <li><a href="news.html">新着情報</a></li>
+                <li><a href="news.html#media">KRICメディア</a></li>
+              </ul>
+            </div>
+            <div class="footer-nav-col has-children">
+              <a href="kaiin.html" class="footer-nav-parent">会員紹介</a>
+              <ul>
+                <li class="footer-nav-self"><a href="kaiin.html">会員紹介</a></li>
+                <li><a href="kaiin.html#map">マップ検索</a></li>
+                <li><a href="kaiin.html#search">フリーワード検索</a></li>
+              </ul>
+            </div>
+            <div class="footer-nav-col">
+              <a href="nyukai.html" class="footer-nav-parent">入会のご案内</a>
+              <ul>
+                <li><a href="nyukai.html#flow">資格審査の流れ</a></li>
+                <li><a href="nyukai.html#qualification">入会資格</a></li>
+              </ul>
+            </div>
+            <div class="footer-nav-col has-children">
+              <a href="dandai.html" class="footer-nav-parent">団体概要</a>
+              <ul>
+                <li class="footer-nav-self"><a href="dandai.html">団体概要</a></li>
+                <li><a href="dandai.html#management">運営団体</a></li>
+                <li><a href="dandai.html#orgchart">組織図</a></li>
+                <li><a href="dandai.html#history">KRICの歴史</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="footer-privacy">
+          <a href="privacy.html">プライバシーポリシー</a>
+        </div>
+        <a href="#" class="page-top" aria-label="ページトップへ">∧</a>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <p>Copyright © KRIC 関西不動産情報センター All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- SP固定フッターボタン -->
+  <div class="sp-footer-fixed">
+    <a href="nyukai-form.html" class="sp-ft-btn sp-ft-btn--join"><img src="images/hd_join.png" class="btn-hd-icon" alt=""><span class="btn-text">ご入会は<br>こちら</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+    <a href="iis/login.html" class="sp-ft-btn sp-ft-btn--contact"><img src="images/hd_login.png" class="btn-hd-icon" alt=""><span class="btn-text">会員専用｜<br>ログイン</span><span class="btn-sep">|</span><span class="btn-arrow">▶</span></a>
+  </div>
+
+  <script>
+    document.querySelectorAll('.js-media-acc').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.media-acc-item');
+        const body = item.querySelector('.media-acc-body');
+        const arrow = btn.querySelector('.media-acc-arrow');
+        const isOpen = item.classList.toggle('is-open');
+        body.style.display = isOpen ? '' : 'none';
+        arrow.textContent = isOpen ? '▲' : '▼';
+      });
+    });
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>

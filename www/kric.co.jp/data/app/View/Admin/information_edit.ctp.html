@@ -1,0 +1,310 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+<?php if ($tpl_form['cmd'] == 'confirm'): ?>
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; 管理画面 &gt; <a href="/<?php echo APP_NAME; ?>/index">インフォメーション管理</a> &gt; 確認</p>
+
+        <div class="mem-sec-head">
+          <h2 class="mem-sec-title">─ インフォメーション管理 ─</h2>
+        </div>
+
+        <div class="bd-detail">
+          <p class="bd-detail-date"><?php echo h(isset($tpl_disp['info_date']) ? $tpl_disp['info_date'] : ''); ?></p>
+          <h3 class="bd-detail-title"><?php echo h(isset($tpl_disp['title']) ? $tpl_disp['title'] : ''); ?></h3>
+          <hr class="bd-detail-divider">
+
+          <div class="info-detail-body">
+            <?php echo isset($tpl_disp['doc']) ? strip_tags($tpl_disp['doc'], '<br><br />') : ''; ?>
+          </div>
+
+          <?php
+            $isFileDeleted = !empty($tpl_disp['file_delete']);
+            $confirmFile = !empty($tpl_disp['file']) ? $tpl_disp['file'] : (!$isFileDeleted && isset($tpl_disp['org_info']['file']) ? $tpl_disp['org_info']['file'] : '');
+          ?>
+          <?php if ($confirmFile != ''): ?>
+          <?php
+            $cfExt = strtolower(pathinfo($confirmFile, PATHINFO_EXTENSION));
+            $cfIsImage = in_array($cfExt, array('jpg','jpeg','png','gif'));
+            $cfIcon = in_array($cfExt, array('xls','xlsx')) ? 'icon_excel.png' : (in_array($cfExt, array('doc','docx')) ? 'icon_word.png' : 'icon_pdf.png');
+          ?>
+          <div class="bd-detail-attachment">
+            <?php if ($cfIsImage): ?>
+            <div class="bd-detail-thumb">
+              <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($confirmFile); ?>" alt="添付画像" style="max-width:480px;height:auto;">
+            </div>
+            <?php else: ?>
+            <a href="/<?php echo APP_NAME; ?>/file/na=<?php echo h($confirmFile); ?>" target="_blank" class="bd-detail-pdf">
+              <img src="/wp-content/themes/default/images/<?php echo $cfIcon; ?>" alt="" class="bd-detail-pdf-icon">
+              <span class="bd-detail-pdf-name"><?php echo h($confirmFile); ?></span>
+            </a>
+            <?php endif; ?>
+          </div>
+          <?php endif; ?>
+
+          <form action="<?php echo HTTP_TO_SCRIPT_NAME; ?>" method="post">
+            <input type="hidden" name="cmd" value="registration">
+            <input type="hidden" name="id" value="<?php echo h(isset($tpl_form['id']) ? $tpl_form['id'] : ''); ?>">
+            <input type="hidden" name="chkno" value="<?php echo h(isset($tpl_form['chkno']) ? $tpl_form['chkno'] : ''); ?>">
+            <div class="bd-reg-confirm-row">
+              <button type="submit" class="bd-reg-submit-btn">
+                <span class="btn-text">登録</span>
+                <span class="btn-sep">|</span>
+                <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+              </button>
+              <a href="<?php echo HTTP_TO_SCRIPT_NAME; ?><?php echo (isset($tpl_form['id']) && $tpl_form['id'] != '') ? '/id=' . h($tpl_form['id']) : ''; ?>" class="bd-reg-back-btn">
+                <span class="btn-text">戻る</span>
+                <span class="btn-sep">|</span>
+                <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+              </a>
+            </div>
+          </form>
+        </div>
+
+<?php else: ?>
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; 管理画面 &gt; <a href="/<?php echo APP_NAME; ?>/index">インフォメーション管理</a> &gt; <?php echo (isset($tpl_disp['org_info']['information_id']) && $tpl_disp['org_info']['information_id'] != '') ? 'インフォメーション情報修正' : '新規登録'; ?></p>
+
+        <div class="mem-sec-head">
+          <h2 class="mem-sec-title">─ インフォメーション管理 ─</h2>
+        </div>
+
+        <h3 class="bd-reg-title"><?php echo (isset($tpl_disp['org_info']['information_id']) && $tpl_disp['org_info']['information_id'] != '') ? 'インフォメーション情報修正' : '新規登録'; ?></h3>
+        <hr class="bd-reg-divider">
+
+        <?php if (!empty($tpl_errDoc)): ?>
+        <div class="reg-error-box">
+          <?php foreach ($tpl_errDoc as $val): ?><p><?php echo h($val); ?></p><?php endforeach; ?>
+        </div>
+        <?php endif; ?>
+
+        <form action="<?php echo HTTP_TO_SCRIPT_NAME; ?>" method="post" name="form" id="form" enctype="multipart/form-data">
+          <input type="hidden" name="cmd" id="cmd" value="confirm">
+          <input type="hidden" name="id" id="id" value="<?php echo h(isset($tpl_disp['org_info']['information_id']) ? $tpl_disp['org_info']['information_id'] : ''); ?>">
+
+          <div class="reg-form">
+            <div class="reg-table">
+
+              <div class="reg-row">
+                <label class="reg-label">日時</label>
+                <div class="reg-input">
+                  <input type="text" name="info_date" id="info_date" value="<?php echo h(isset($tpl_disp['info_date']) ? $tpl_disp['info_date'] : ''); ?>">
+                </div>
+              </div>
+
+              <div class="reg-row">
+                <label class="reg-label">タイトル</label>
+                <div class="reg-input">
+                  <input type="text" name="title" value="<?php echo h(isset($tpl_disp['title']) ? $tpl_disp['title'] : ''); ?>">
+                </div>
+              </div>
+
+              <div class="reg-row">
+                <label class="reg-label">内容</label>
+                <div class="reg-input">
+                  <textarea name="doc" class="reg-textarea adm-textarea-tall"><?php echo h(isset($tpl_disp['doc']) ? $tpl_disp['doc'] : ''); ?></textarea>
+                </div>
+              </div>
+
+              <div class="reg-row">
+                <label class="reg-label">添付ファイル</label>
+                <div class="reg-input reg-input--photo">
+                  <input type="file" name="file" id="infoFileInput" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;">
+                  <div class="reg-file-row">
+                    <button type="button" class="reg-file-btn" id="infoFileBtn">ファイルを選択</button>
+                  </div>
+                  <p class="reg-hint">※添付可能なファイル形式：jpg・png・pdf・excel・word</p>
+                  <div id="infoNewFilePreview" style="display:none;">
+                    <div class="reg-map-preview adm-file-gap" id="infoImgPreview" style="display:none;">
+                      <div class="reg-map-img">
+                        <img id="infoPreviewImg" src="" alt="プレビュー">
+                      </div>
+                    </div>
+                    <div class="bd-reg-pdf-row adm-file-gap" id="infoPdfPreview" style="display:none;">
+                      <img src="/wp-content/themes/default/images/icon_pdf.png" alt="" class="bd-detail-pdf-icon" id="infoPdfIcon">
+                      <span class="bd-detail-pdf-name" id="infoPdfName"></span>
+                    </div>
+                    <p class="bd-reg-filename" id="infoFileName"></p>
+                    <button type="button" class="reg-delete-btn" id="infoFileClear">削除</button>
+                  </div>
+                  <?php
+                    $currentFile = isset($tpl_disp['org_info']['file']) ? $tpl_disp['org_info']['file'] : '';
+                    $tmpFile = (!empty($tpl_disp['file']) && $tpl_disp['file'] != $currentFile) ? $tpl_disp['file'] : '';
+                    $isFileDeleted = !empty($tpl_disp['file_delete']);
+                    $showExist = ($currentFile != '' && $tmpFile == '' && !$isFileDeleted);
+                  ?>
+                  <?php if ($tmpFile != ''): ?>
+                  <?php
+                    $tmpExt = strtolower(pathinfo($tmpFile, PATHINFO_EXTENSION));
+                    $tmpIsImage = in_array($tmpExt, array('jpg','jpeg','png','gif'));
+                    $tmpIcon = in_array($tmpExt, array('xls','xlsx')) ? 'icon_excel.png' : (in_array($tmpExt, array('doc','docx')) ? 'icon_word.png' : 'icon_pdf.png');
+                  ?>
+                  <div id="tmpFileWrap">
+                    <input type="hidden" name="file_tmp" value="<?php echo h($tmpFile); ?>">
+                    <?php if ($tmpIsImage): ?>
+                    <div class="reg-map-preview adm-file-gap">
+                      <div class="reg-map-img">
+                        <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tmpFile); ?>" alt="アップロード済み画像">
+                      </div>
+                    </div>
+                    <p class="bd-reg-filename"><?php echo h($tmpFile); ?></p>
+                    <?php else: ?>
+                    <div class="bd-reg-pdf-row adm-file-gap">
+                      <img src="/wp-content/themes/default/images/<?php echo $tmpIcon; ?>" alt="" class="bd-detail-pdf-icon">
+                      <span class="bd-detail-pdf-name"><?php echo h($tmpFile); ?></span>
+                    </div>
+                    <?php endif; ?>
+                    <button type="button" class="reg-delete-btn" id="tmpFileClear">削除</button>
+                  </div>
+                  <?php endif; ?>
+                  <?php if ($currentFile != ''): ?>
+                  <?php
+                    $ext = strtolower(pathinfo($tpl_disp['org_info']['file'], PATHINFO_EXTENSION));
+                    $isImage = in_array($ext, array('jpg','jpeg','png','gif'));
+                    $icon = in_array($ext, array('xls','xlsx')) ? 'icon_excel.png' : (in_array($ext, array('doc','docx')) ? 'icon_word.png' : 'icon_pdf.png');
+                  ?>
+                  <div id="existFileWrap"<?php echo $showExist ? '' : ' style="display:none;"'; ?>>
+                  <?php if ($isImage): ?>
+                  <div class="reg-map-preview adm-file-gap">
+                    <div class="reg-map-img">
+                      <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_disp['org_info']['file']); ?>" alt="添付画像">
+                    </div>
+                  </div>
+                  <?php else: ?>
+                  <div class="bd-reg-pdf-row adm-file-gap">
+                    <img src="/wp-content/themes/default/images/<?php echo $icon; ?>" alt="" class="bd-detail-pdf-icon">
+                    <span class="bd-detail-pdf-name"><?php echo h($tpl_disp['org_info']['file']); ?></span>
+                  </div>
+                  <?php endif; ?>
+                  <div class="reg-file-info">
+                    <p class="bd-reg-filename"><?php echo h($tpl_disp['org_info']['file']); ?></p>
+                    <input type="hidden" name="file_delete" value="<?php echo h(!empty($tpl_disp['file_delete']) ? $tpl_disp['file_delete'] : ''); ?>" id="existFileDeleteFlag">
+                    <button type="button" class="reg-delete-btn" id="existFileClear">削除</button>
+                  </div>
+                  </div>
+                  <?php endif; ?>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="reg-submit-row">
+              <button type="submit" class="reg-submit-btn">
+                <span class="btn-text">確認</span>
+                <span class="btn-sep">|</span>
+                <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div class="bd-detail-footer adm-back-footer">
+          <a href="/<?php echo APP_NAME; ?>/index" class="bd-detail-back">一覧へ戻る &gt;</a>
+        </div>
+
+<?php endif; ?>
+
+      </div>
+    </div>
+  </main>
+
+  <link rel="stylesheet" href="/material/datepicker/css/jquery-ui-1.10.3.custom.min.css">
+  <script src="/material/datepicker/js/jquery-ui-1.10.3.custom.min.js"></script>
+  <script src="/material/datepicker/js/jquery-ui-timepicker-addon.js"></script>
+  <script src="/material/datepicker/js/jquery.ui.datepicker-ja.js"></script>
+  <script>
+  (function () {
+    var fileInput = document.getElementById('infoFileInput');
+    if (!fileInput) return;
+    var fileBtn = document.getElementById('infoFileBtn');
+    if (fileBtn) fileBtn.addEventListener('click', function () { fileInput.click(); });
+    var wrap = document.getElementById('infoNewFilePreview');
+    var imgPreview = document.getElementById('infoImgPreview');
+    var previewImg = document.getElementById('infoPreviewImg');
+    var pdfPreview = document.getElementById('infoPdfPreview');
+    var pdfIcon = document.getElementById('infoPdfIcon');
+    var pdfName = document.getElementById('infoPdfName');
+    function attachIconFile(ext) {
+      if (['xls','xlsx'].indexOf(ext) >= 0) return 'icon_excel.png';
+      if (['doc','docx'].indexOf(ext) >= 0) return 'icon_word.png';
+      return 'icon_pdf.png';
+    }
+    var fileName = document.getElementById('infoFileName');
+    var clearBtn = document.getElementById('infoFileClear');
+    var tmpClearBtn = document.getElementById('tmpFileClear');
+    if (tmpClearBtn) {
+      tmpClearBtn.addEventListener('click', function () {
+        var tmpWrap = document.getElementById('tmpFileWrap');
+        if (tmpWrap) tmpWrap.remove();
+      });
+    }
+    var existClearBtn = document.getElementById('existFileClear');
+    var existDeleteFlag = document.getElementById('existFileDeleteFlag');
+    if (existClearBtn) {
+      existClearBtn.addEventListener('click', function () {
+        if (existDeleteFlag) existDeleteFlag.value = 'checked';
+        var parent = existClearBtn.closest('.reg-input--photo');
+        if (parent) {
+          parent.querySelectorAll('.reg-map-preview, .bd-reg-pdf-row, .reg-file-info').forEach(function (el) { el.style.display = 'none'; });
+        }
+      });
+    }
+    var existWrap = document.getElementById('existFileWrap');
+    function clearFile() {
+      fileInput.value = '';
+      if (wrap) wrap.style.display = 'none';
+      if (imgPreview) imgPreview.style.display = 'none';
+      if (pdfPreview) pdfPreview.style.display = 'none';
+    }
+    fileInput.addEventListener('change', function () {
+      var file = this.files[0];
+      if (imgPreview) imgPreview.style.display = 'none';
+      if (pdfPreview) pdfPreview.style.display = 'none';
+      if (!file) { if (wrap) wrap.style.display = 'none'; return; }
+      if (existWrap) existWrap.style.display = 'none';
+      var tmpWrap = document.getElementById('tmpFileWrap');
+      if (tmpWrap) tmpWrap.style.display = 'none';
+      var name = file.name;
+      var ext = name.split('.').pop().toLowerCase();
+      if (wrap) wrap.style.display = '';
+      if (['jpg','jpeg','png','gif'].indexOf(ext) >= 0) {
+        if (fileName) { fileName.textContent = name; fileName.style.display = ''; }
+        var reader = new FileReader();
+        reader.onload = function (e) { previewImg.src = e.target.result; imgPreview.style.display = ''; };
+        reader.readAsDataURL(file);
+      } else {
+        if (fileName) fileName.style.display = 'none';
+        if (pdfName) pdfName.textContent = name;
+        if (pdfIcon) pdfIcon.src = '/wp-content/themes/default/images/' + attachIconFile(ext);
+        if (pdfPreview) pdfPreview.style.display = '';
+      }
+    });
+    if (clearBtn) clearBtn.addEventListener('click', clearFile);
+    window.addEventListener('pageshow', function (e) {
+      if (e.persisted) {
+        if (wrap) wrap.style.display = 'none';
+        if (imgPreview) imgPreview.style.display = 'none';
+        if (pdfPreview) pdfPreview.style.display = 'none';
+        fileInput.value = '';
+        var tmpWrap = document.getElementById('tmpFileWrap');
+        if (!tmpWrap && existWrap) existWrap.style.display = '';
+      }
+    });
+  })();
+  </script>
+  <script>
+  $(function() {
+    $('#info_date').datetimepicker({
+      controlType: 'select',
+      dateFormat: 'yy年m月d日',
+      timeFormat: 'H:mm',
+      currentText: '現在の時間',
+      closeText: 'OK',
+      timeText: '時間',
+      hourText: '時',
+      minuteText: '分',
+    });
+  });
+  </script>

@@ -1,0 +1,560 @@
+<?php if (isset($tpl_form['cmd']) && $tpl_form['cmd'] == 'complete'): ?>
+  <!-- ========== 登録完了 ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card mem-card--complete">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; <a href="/iis/index">会員専用ページ</a> &gt; 登録情報 &gt; 会社概要</p>
+
+        <div class="reg-layout">
+          <div class="reg-content">
+            <div class="mem-sec-head">
+              <h2 class="mem-sec-title">─ 登録情報 ─</h2>
+            </div>
+            <p class="mem-login-msg">登録が完了しました。</p>
+            <hr class="mem-login-divider">
+          </div>
+
+          <nav class="reg-sidenav" aria-label="登録情報メニュー">
+            <ul class="reg-sidenav-list">
+              <li class="reg-sidenav-item is-active"><a href="/<?php echo APP_NAME; ?>/company_edit">会社概要</a></li>
+              <li class="reg-sidenav-item"><a href="#">個別設定</a></li>
+              <li class="reg-sidenav-item"><a href="/<?php echo APP_NAME; ?>/member">メンバー追加／削除</a></li>
+            </ul>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </main>
+<?php else: ?>
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; <a href="/iis/index">会員専用ページ</a> &gt; 登録情報 &gt; 会社概要<?php if ($tpl_form['cmd'] == 'confirm'): ?> &gt; 確認<?php endif; ?></p>
+
+        <div class="reg-layout">
+
+          <!-- メインコンテンツ -->
+          <div class="reg-content">
+
+            <div class="mem-sec-head">
+              <h2 class="mem-sec-title">─ 登録情報 ─</h2>
+            </div>
+
+            <h3 class="reg-subtitle">会社概要</h3>
+
+            <?php if ($tpl_form['cmd'] == ''): ?>
+
+            <?php if (!empty($tpl_errDoc)): ?>
+            <div class="reg-error-box">
+              <?php foreach ($tpl_errDoc as $val): ?><p><?php echo h($val); ?></p><?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+
+            <?php
+              $zip_raw = isset($tpl_disp['zip']) ? preg_replace('/[^0-9]/', '', $tpl_disp['zip']) : '';
+              $zip1_val = substr($zip_raw, 0, 3);
+              $zip2_val = substr($zip_raw, 3, 4);
+            ?>
+
+            <form action="<?php echo HTTP_TO_SCRIPT_NAME; ?>" method="post" enctype="multipart/form-data" class="reg-form" id="companyForm">
+              <input type="hidden" name="cmd" value="confirm">
+              <input type="hidden" name="id" value="<?php echo h(isset($tpl_disp['org_info']['company_id']) ? $tpl_disp['org_info']['company_id'] : ''); ?>">
+              <input type="hidden" name="zip" id="zip" value="<?php echo h(isset($tpl_disp['zip']) ? $tpl_disp['zip'] : ''); ?>">
+              <input type="hidden" name="shozoku" value="<?php echo h(isset($tpl_disp['shozoku']) ? $tpl_disp['shozoku'] : (isset($tpl_disp['org_info']['shozoku']) ? $tpl_disp['org_info']['shozoku'] : '')); ?>">
+
+              <p class="reg-required-note">※は入力必須項目です。</p>
+
+              <div class="reg-table">
+
+                <div class="reg-row">
+                  <label class="reg-label">社名 <span class="reg-required">※</span></label>
+                  <div class="reg-input">
+                    <input type="text" name="company_name" value="<?php echo h(isset($tpl_disp['company_name']) ? $tpl_disp['company_name'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">社名カナ <span class="reg-required">※</span></label>
+                  <div class="reg-input">
+                    <input type="text" name="company_kana" value="<?php echo h(isset($tpl_disp['company_kana']) ? $tpl_disp['company_kana'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">代表者名 <span class="reg-required">※</span></label>
+                  <div class="reg-input">
+                    <input type="text" name="daihyousha" value="<?php echo h(isset($tpl_disp['daihyousha']) ? $tpl_disp['daihyousha'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">免許 <span class="reg-required">※</span></label>
+                  <div class="reg-input">
+                    <input type="text" name="menkyo" value="<?php echo h(isset($tpl_disp['menkyo']) ? $tpl_disp['menkyo'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">郵便番号 <span class="reg-required">※</span></label>
+                  <div class="reg-input reg-input--zip">
+                    <input type="text" name="zip1" id="zip1" class="reg-input-zip" maxlength="3" value="<?php echo h($zip1_val); ?>">
+                    <span class="reg-zip-sep">–</span>
+                    <input type="text" name="zip2" id="zip2" class="reg-input-zip" maxlength="4" value="<?php echo h($zip2_val); ?>">
+                    <button type="button" class="reg-zip-btn" id="zipAutoFill">郵便番号から住所を自動入力</button>
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">都道府県 <span class="reg-required">※</span></label>
+                  <div class="reg-input">
+                    <input type="text" name="ken" id="ken" value="<?php echo h(isset($tpl_disp['ken']) ? $tpl_disp['ken'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">市区町村 <span class="reg-required">※</span></label>
+                  <div class="reg-input">
+                    <input type="text" name="city" id="addrCity" value="<?php echo h(isset($tpl_disp['city']) ? $tpl_disp['city'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">町名番地 <span class="reg-required">※</span></label>
+                  <div class="reg-input">
+                    <input type="text" name="address_town" id="addrTown" value="<?php echo h(isset($tpl_disp['address_town']) ? $tpl_disp['address_town'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">建物名</label>
+                  <div class="reg-input">
+                    <input type="text" name="building" id="addrBuilding" value="<?php echo h(isset($tpl_disp['building']) ? $tpl_disp['building'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">交通 <span class="reg-required">※</span></label>
+                  <div class="reg-input">
+                    <input type="text" name="koutsu" value="<?php echo h(isset($tpl_disp['koutsu']) ? $tpl_disp['koutsu'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">電話番号 <span class="reg-required">※</span></label>
+                  <div class="reg-input">
+                    <input type="tel" name="tel" value="<?php echo h(isset($tpl_disp['tel']) ? $tpl_disp['tel'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">FAX番号</label>
+                  <div class="reg-input">
+                    <input type="tel" name="fax" value="<?php echo h(isset($tpl_disp['fax']) ? $tpl_disp['fax'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">URL</label>
+                  <div class="reg-input">
+                    <input type="url" name="url" value="<?php echo h(isset($tpl_disp['url']) ? $tpl_disp['url'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">メールアドレス</label>
+                  <div class="reg-input">
+                    <input type="email" name="email" value="<?php echo h(isset($tpl_disp['email']) ? $tpl_disp['email'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">事業内容 <span class="reg-required">※</span></label>
+                  <div class="reg-input">
+                    <textarea name="jigyounaiyou" class="reg-textarea"><?php echo h(isset($tpl_disp['jigyounaiyou']) ? $tpl_disp['jigyounaiyou'] : ''); ?></textarea>
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">加盟団体</label>
+                  <div class="reg-input">
+                    <textarea name="kameidantai" class="reg-textarea"><?php echo h(isset($tpl_disp['kameidantai']) ? $tpl_disp['kameidantai'] : ''); ?></textarea>
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">沿革</label>
+                  <div class="reg-input">
+                    <textarea name="enkaku" class="reg-textarea"><?php echo h(isset($tpl_disp['enkaku']) ? $tpl_disp['enkaku'] : ''); ?></textarea>
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">紹介文</label>
+                  <div class="reg-input">
+                    <textarea name="shoukaibun" class="reg-textarea"><?php echo h(isset($tpl_disp['shoukaibun']) ? $tpl_disp['shoukaibun'] : ''); ?></textarea>
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">会社紹介動画URL</label>
+                  <div class="reg-input">
+                    <input type="url" name="pr_video" value="<?php echo h(isset($tpl_disp['pr_video']) ? $tpl_disp['pr_video'] : ''); ?>">
+                    <p class="reg-hint">※YouTubeにアップロードされた動画に限ります。</p>
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">アクセスマップ</label>
+                  <div class="reg-input">
+                    <div class="reg-map-header">
+                      <label class="reg-map-check">
+                        <input type="hidden" name="map_flg" value="0">
+                        <input type="checkbox" name="map_flg" value="1"<?php echo (isset($tpl_disp['map_flg']) && $tpl_disp['map_flg'] == '1') ? ' checked' : ''; ?>> GoogleマップURL
+                      </label>
+                      <a href="#" class="reg-link" id="mapGuideLink">Googleマップのアドレスについて→</a>
+                    </div>
+                    <input type="text" name="google_map" value="<?php echo h(isset($tpl_disp['google_map']) ? $tpl_disp['google_map'] : ''); ?>">
+
+                    <div class="reg-logo-section" style="margin-top:10px;">
+                      <label class="reg-map-check">
+                        <input type="checkbox" name="map_flg" value="2"<?php echo (isset($tpl_disp['map_flg']) && $tpl_disp['map_flg'] == '2') ? ' checked' : ''; ?>> <strong>オリジナル画像</strong>
+                      </label>
+                      <div class="reg-file-row">
+                        <label class="reg-file-btn">
+                          ファイルを選択
+                          <input type="file" name="upload_map" accept="image/jpeg,image/png" class="reg-file-input" id="uploadMapInput">
+                        </label>
+                      </div>
+                      <p class="reg-hint">※添付可能なファイル形式：jpg・png</p>
+                      <div class="reg-map-preview" id="uploadPreview" style="display:none;">
+                        <div class="reg-map-img">
+                          <img id="uploadPreviewImg" src="" alt="プレビュー">
+                        </div>
+                      </div>
+                      <div class="reg-file-info" id="uploadFileInfo" style="display:none;">
+                        <span class="reg-file-name" id="uploadFileName"></span>
+                        <button type="button" class="reg-delete-btn" id="uploadClearBtn">削除</button>
+                      </div>
+                      <?php
+                        $currentImg = isset($tpl_disp['org_info']['upload_map']) ? $tpl_disp['org_info']['upload_map'] : '';
+                        $tmpImg = (!empty($tpl_disp['upload_map']) && $tpl_disp['upload_map'] != $currentImg) ? $tpl_disp['upload_map'] : '';
+                      ?>
+                      <?php if ($tmpImg != ''): ?>
+                      <input type="hidden" name="upload_map_tmp" value="<?php echo h($tmpImg); ?>">
+                      <div class="reg-map-preview">
+                        <div class="reg-map-img">
+                          <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tmpImg); ?>" alt="アップロード画像（保存前）">
+                        </div>
+                      </div>
+                      <p class="reg-hint">※アップロード済み（送信すると保存されます）</p>
+                      <?php elseif ($currentImg != ''): ?>
+                      <div class="reg-map-preview" id="currentPreview">
+                        <div class="reg-map-img">
+                          <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($currentImg); ?>" alt="アクセスマップ画像">
+                        </div>
+                      </div>
+                      <div class="reg-file-info">
+                        <span class="reg-file-name"><?php echo h($currentImg); ?></span>
+                        <button type="button" class="reg-delete-btn" id="deleteCurrentImg"
+                          data-action="<?php echo HTTP_TO_SCRIPT_NAME; ?>"
+                          data-id="<?php echo h(isset($tpl_disp['org_info']['company_id']) ? $tpl_disp['org_info']['company_id'] : ''); ?>">削除</button>
+                      </div>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                </div>
+
+              </div><!-- /.reg-table -->
+
+              <!-- 送信ボタン -->
+              <div class="reg-submit-row">
+                <button type="submit" class="reg-submit-btn">
+                  <span class="btn-text">確認</span>
+                  <span class="btn-sep">|</span>
+                  <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+                </button>
+              </div>
+
+            </form>
+
+            <?php elseif ($tpl_form['cmd'] == 'confirm'): ?>
+
+            <form action="<?php echo HTTP_TO_SCRIPT_NAME; ?>" method="post" class="reg-form">
+              <input type="hidden" name="cmd" value="registration">
+
+              <div class="reg-confirm">
+
+                <!-- 社名ヘッダー -->
+                <div class="reg-confirm-head">(社名) <?php echo h($tpl_disp['company_name']); ?></div>
+
+                <!-- 紹介文 -->
+                <p class="reg-confirm-intro">(紹介文) <?php echo h($tpl_disp['shoukaibun']); ?></p>
+
+                <!-- 基本情報テーブル -->
+                <div class="reg-confirm-table">
+                  <?php
+                    $addr_parts = array_filter(array(
+                      isset($tpl_disp['city'])         ? $tpl_disp['city']         : '',
+                      isset($tpl_disp['address_town']) ? $tpl_disp['address_town'] : '',
+                      isset($tpl_disp['building'])     ? $tpl_disp['building']     : '',
+                    ));
+                    $addr_combined = h(implode(' ', $addr_parts));
+                  ?>
+                  <?php $rows = array(
+                    array('社名カナ',   h($tpl_disp['company_kana'])),
+                    array('代表者名',   h($tpl_disp['daihyousha'])),
+                    array('免許',       h($tpl_disp['menkyo'])),
+                    array('郵便番号',   h($tpl_disp['zip'])),
+                    array('都道府県',   h($tpl_disp['ken'])),
+                    array('住所',       $addr_combined),
+                    array('交通',       h($tpl_disp['koutsu'])),
+                    array('電話番号',   h($tpl_disp['tel'])),
+                    array('FAX番号',    h($tpl_disp['fax'])),
+                  ); foreach ($rows as $r): ?>
+                  <div class="reg-row">
+                    <span class="reg-label"><?php echo $r[0]; ?></span>
+                    <span class="reg-confirm-value"><?php echo $r[1]; ?></span>
+                  </div>
+                  <?php endforeach; ?>
+                  <div class="reg-row">
+                    <span class="reg-label">URL</span>
+                    <span class="reg-confirm-value">
+                      <?php if (!empty($tpl_disp['url'])): ?>
+                      <a href="<?php echo h($tpl_disp['url']); ?>" class="reg-confirm-url" target="_blank" rel="noopener"><?php echo h($tpl_disp['url']); ?>→</a>
+                      <?php endif; ?>
+                    </span>
+                  </div>
+                  <div class="reg-row">
+                    <span class="reg-label">メールアドレス</span>
+                    <span class="reg-confirm-value">
+                      <?php if (!empty($tpl_disp['email'])): ?>
+                      <a href="mailto:<?php echo h($tpl_disp['email']); ?>" class="reg-confirm-url"><?php echo h($tpl_disp['email']); ?>→</a>
+                      <?php endif; ?>
+                    </span>
+                  </div>
+                </div><!-- /.reg-confirm-table -->
+
+                <!-- 事業内容 -->
+                <div class="reg-confirm-section-head">事業内容</div>
+                <p class="reg-confirm-text"><?php echo $tpl_disp['jigyounaiyou']; ?></p>
+
+                <!-- 加盟団体 -->
+                <div class="reg-confirm-section-head">加盟団体</div>
+                <p class="reg-confirm-text reg-confirm-text--half"><?php echo $tpl_disp['kameidantai']; ?></p>
+
+                <!-- 沿革 -->
+                <div class="reg-confirm-section-head">沿革</div>
+                <p class="reg-confirm-text reg-confirm-text--half"><?php echo $tpl_disp['enkaku']; ?></p>
+
+                <!-- アクセスマップ -->
+                <div class="reg-confirm-section-head">アクセスマップ</div>
+                <?php if (!empty($tpl_disp['google_map'])): ?>
+                <p class="reg-confirm-text"><a href="<?php echo h($tpl_disp['google_map']); ?>" class="reg-confirm-url" target="_blank" rel="noopener">(GoogleマップURL)<?php echo h($tpl_disp['google_map']); ?>→</a></p>
+                <?php else: ?>
+                <p class="reg-confirm-text"></p>
+                <?php endif; ?>
+
+                <?php
+                  $confirmImg = !empty($tpl_disp['upload_map']) ? $tpl_disp['upload_map'] : (isset($tpl_disp['org_info']['upload_map']) ? $tpl_disp['org_info']['upload_map'] : '');
+                ?>
+                <?php if ($confirmImg != ''): ?>
+                <div class="reg-map-preview">
+                  <div class="reg-map-img">
+                    <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($confirmImg); ?>" alt="オリジナル画像">
+                  </div>
+                </div>
+                <?php endif; ?>
+
+                <!-- 会社紹介動画 -->
+                <div class="reg-confirm-section-head">会社紹介動画</div>
+                <?php if (!empty($tpl_disp['pr_video'])): ?>
+                <div class="bd-detail-video">
+                  <?php
+                    $ytUrl = $tpl_disp['pr_video'];
+                    preg_match('/(?:youtu\.be\/|[?&]v=)([a-zA-Z0-9_\-]{11})/', $ytUrl, $ytMatch);
+                    $ytId = isset($ytMatch[1]) ? $ytMatch[1] : '';
+                  ?>
+                  <?php if ($ytId != ''): ?>
+                  <iframe src="https://www.youtube.com/embed/<?php echo h($ytId); ?>" frameborder="0" allowfullscreen style="width:100%;height:100%;"></iframe>
+                  <?php else: ?>
+                  <p class="reg-confirm-text"><a href="<?php echo h($ytUrl); ?>" class="reg-confirm-url" target="_blank" rel="noopener"><?php echo h($ytUrl); ?>→</a></p>
+                  <?php endif; ?>
+                </div>
+                <?php else: ?>
+                <p class="reg-confirm-text"></p>
+                <?php endif; ?>
+
+              </div><!-- /.reg-confirm -->
+
+              <div class="bd-reg-confirm-row">
+                <button type="submit" class="bd-reg-submit-btn">
+                  <span class="btn-text">登録</span>
+                  <span class="btn-sep">|</span>
+                  <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+                </button>
+                <a href="<?php echo HTTP_TO_SCRIPT_NAME; ?>" class="bd-reg-back-btn">
+                  <span class="btn-text">戻る</span>
+                  <span class="btn-sep">|</span>
+                  <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+                </a>
+              </div>
+
+              <p class="bd-reg-note">登録完了後、登録後の一覧表が表示されます。<br>登録ボタンを押した後、登録処理に時間がかかる場合がございますので、そのままお待ちください。</p>
+
+            </form>
+
+            <?php endif; ?>
+
+          </div><!-- /.reg-content -->
+
+          <!-- サイドナビ -->
+          <nav class="reg-sidenav" aria-label="登録情報メニュー">
+            <ul class="reg-sidenav-list">
+              <li class="reg-sidenav-item is-active"><a href="/<?php echo APP_NAME; ?>/company_edit">会社概要</a></li>
+              <li class="reg-sidenav-item"><a href="#">個別設定</a></li>
+              <li class="reg-sidenav-item"><a href="/<?php echo APP_NAME; ?>/member">メンバー追加／削除</a></li>
+            </ul>
+          </nav>
+
+        </div><!-- /.reg-layout -->
+
+      </div><!-- /.mem-card -->
+    </div><!-- /.mem-card-wrap -->
+  </main>
+
+  <!-- ========== Googleマップ説明モーダル ========== -->
+  <div class="map-modal-overlay" id="mapModal">
+    <div class="map-modal">
+      <div class="map-modal-step">
+        <div class="map-modal-step-left">
+          <span class="map-modal-num">1</span>
+          <p class="map-modal-text">会社名、住所などで<br>Googleマップで検索</p>
+        </div>
+        <img src="/wp-content/themes/default/images/g_map1.png" alt="" class="map-modal-img">
+      </div>
+      <div class="map-modal-step">
+        <div class="map-modal-step-left">
+          <span class="map-modal-num">2</span>
+          <p class="map-modal-text">共有ボタンをクリック</p>
+        </div>
+        <img src="/wp-content/themes/default/images/g_map2.png" alt="" class="map-modal-img">
+      </div>
+      <div class="map-modal-step">
+        <div class="map-modal-step-left">
+          <span class="map-modal-num">3</span>
+          <p class="map-modal-text">リンクをコピーをクリック</p>
+        </div>
+        <img src="/wp-content/themes/default/images/g_map3.png" alt="" class="map-modal-img">
+      </div>
+      <div class="map-modal-step">
+        <div class="map-modal-step-left">
+          <span class="map-modal-num">4</span>
+          <p class="map-modal-text">コピーしたURLを貼り付け</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var zip1 = document.getElementById('zip1');
+    var zip2 = document.getElementById('zip2');
+    var zipH = document.getElementById('zip');
+    function syncZip() { if (zip1 && zip2 && zipH) zipH.value = zip1.value + '-' + zip2.value; }
+    if (zip1) zip1.addEventListener('input', syncZip);
+    if (zip2) zip2.addEventListener('input', syncZip);
+
+    var zipBtn = document.getElementById('zipAutoFill');
+    if (zipBtn) {
+      zipBtn.addEventListener('click', function () {
+        var code = (zip1 ? zip1.value.trim() : '') + (zip2 ? zip2.value.trim() : '');
+        if (code.length !== 7) { alert('郵便番号を正しく入力してください（例：5300012）'); return; }
+        fetch('https://zipcloud.ibsnet.co.jp/api/search?zipcode=' + code)
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            if (!data.results) { alert('住所が見つかりませんでした。'); return; }
+            var r = data.results[0];
+            var kenEl   = document.getElementById('ken');
+            var cityEl  = document.querySelector('[name=city]');
+            var townEl  = document.querySelector('[name=address_town]');
+            if (kenEl)  kenEl.value  = r.address1 || '';
+            if (cityEl) cityEl.value = r.address2 || '';
+            if (townEl) townEl.value = r.address3 || '';
+          })
+          .catch(function () { alert('住所の自動入力に失敗しました。'); });
+      });
+    }
+
+    var fileInput   = document.getElementById('uploadMapInput');
+    var fileName    = document.getElementById('uploadFileName');
+    var preview     = document.getElementById('uploadPreview');
+    var previewImg  = document.getElementById('uploadPreviewImg');
+    var fileInfo    = document.getElementById('uploadFileInfo');
+    var curPreview  = document.getElementById('currentPreview');
+    var clearBtn    = document.getElementById('uploadClearBtn');
+    function clearFileSelection() {
+      fileInput.value = '';
+      if (fileName) fileName.textContent = '';
+      preview.style.display = 'none';
+      if (fileInfo) fileInfo.style.display = 'none';
+      if (curPreview) curPreview.style.display = '';
+    }
+    if (fileInput) {
+      fileInput.addEventListener('change', function () {
+        var file = fileInput.files[0];
+        if (file) {
+          if (fileName) fileName.textContent = file.name;
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            previewImg.src = e.target.result;
+            preview.style.display = '';
+          };
+          reader.readAsDataURL(file);
+          if (fileInfo) fileInfo.style.display = '';
+          if (curPreview) curPreview.style.display = 'none';
+        } else {
+          clearFileSelection();
+        }
+      });
+    }
+    if (clearBtn) {
+      clearBtn.addEventListener('click', clearFileSelection);
+    }
+
+    var mapLink  = document.getElementById('mapGuideLink');
+    var mapModal = document.getElementById('mapModal');
+    if (mapLink && mapModal) {
+      mapLink.addEventListener('click', function (e) { e.preventDefault(); mapModal.classList.add('is-open'); });
+      mapModal.addEventListener('click', function (e) { if (e.target === mapModal) mapModal.classList.remove('is-open'); });
+    }
+
+    var form = document.getElementById('companyForm');
+    if (form) {
+      form.addEventListener('submit', function () {
+        syncZip();
+      });
+    }
+
+    var delBtn = document.getElementById('deleteCurrentImg');
+    if (delBtn) {
+      delBtn.addEventListener('click', function () {
+        var f = document.createElement('form');
+        f.method = 'post';
+        f.action = delBtn.dataset.action;
+        var cmd = document.createElement('input');
+        cmd.type = 'hidden'; cmd.name = 'cmd'; cmd.value = 'delete_image';
+        var id = document.createElement('input');
+        id.type = 'hidden'; id.name = 'id'; id.value = delBtn.dataset.id;
+        f.appendChild(cmd);
+        f.appendChild(id);
+        document.body.appendChild(f);
+        f.submit();
+      });
+    }
+  })();
+  </script>
+<?php endif; ?>

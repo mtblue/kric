@@ -1,0 +1,46 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card mem-card--complete">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; 会員認証</p>
+
+        <div class="mem-sec-head">
+          <h2 class="mem-sec-title">─ 会員認証 ─</h2>
+        </div>
+
+        <?php $tpl_disp['disp_flag'] = isset($tpl_disp['disp_flag']) ? $tpl_disp['disp_flag'] : ''; ?>
+
+        <?php if ($tpl_disp['disp_flag'] == '1'): ?>
+        <p class="mem-login-msg">認証が完了しました。</p>
+        <hr class="mem-login-divider">
+        <p class="mem-login-msg">初回ログイン用のメールをお送りいたしました。<br>メールに記載のURL・ID・パスワードよりログインしてください。</p>
+
+        <?php elseif ($tpl_disp['disp_flag'] == '2'): ?>
+        <p class="mem-login-msg">認証登録に失敗しました。</p>
+        <hr class="mem-login-divider">
+        <p class="mem-login-msg">お手数ですが、事務局までお問い合わせください。</p>
+
+        <?php elseif ($tpl_disp['disp_flag'] == '3'): ?>
+        <p class="mem-login-msg">既に認証済みか、認証期限が過ぎています。</p>
+        <hr class="mem-login-divider">
+        <p class="mem-login-msg">既にログイン可能な場合は<a href="/<?php echo APP_NAME; ?>/login">ログイン画面</a>よりお進みください。</p>
+
+        <?php else: ?>
+        <p class="mem-login-msg">認証されませんでした。</p>
+        <hr class="mem-login-divider">
+        <p class="mem-login-msg">お手数ですが、事務局までお問い合わせください。</p>
+
+        <?php endif; ?>
+
+        <div class="mem-login-btn-row">
+          <a href="/<?php echo APP_NAME; ?>/login" class="mem-login-btn">
+            <span class="btn-text">ログイン画面へ</span>
+            <span class="btn-sep">|</span>
+            <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>

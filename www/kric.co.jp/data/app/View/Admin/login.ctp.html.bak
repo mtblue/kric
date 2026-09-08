@@ -1,0 +1,26 @@
+<body>
+<div id="wrapper">
+<?php print($this->element('admin/header')); ?>
+<!-- /wrapper --></div>
+<div id="contents02">
+<div class="login">
+<form name="form" action="<?php print(HTTP_TO_SCRIPT_NAME); ?>" method="post">
+<input name="cmd" type="hidden" value="login">
+<input name="session" type="hidden" value="<?php print(isset($tpl_disp['session']) == true ? $tpl_disp['session'] : ''); ?>" />
+<table>
+<tr><td>ID</td><td><input type="text" name="id" id="id" size="40" value="<?php print(isset($tpl_disp['id']) == true ? $tpl_disp['id'] : ''); ?>"></td></tr>
+<tr><td>パスワード</td><td><input type="password" name="pass" id="pass" size="40" value="<?php print(isset($tpl_disp['pass']) == true ? $tpl_disp['pass'] : ''); ?>"></td></tr>
+</table>
+
+<div class="error_box">
+<?php foreach($tpl_errDoc AS $val) { print($val.'<br />'); } ?>
+</div>
+
+<p class="m150-l">
+<input type="image" src="/material/admin/images/login/btn_login.gif" width="268" height="53" alt="ログイン">
+</p>
+</form>
+</div>
+<!-- /contents02 --></div>
+<?php print($this->element('admin/footer')); ?>
+</body>

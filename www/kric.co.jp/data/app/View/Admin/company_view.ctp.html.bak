@@ -1,0 +1,292 @@
+<!--<link rel="stylesheet" href="/wp-content/themes/default/css/common.css" type="text/css" media="screen" />-->
+<link rel="stylesheet" href="/css/format.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/css/iis.css" type="text/css" media="screen" />
+
+<?php
+/*
+if( isset($_POST['map_flg']) == true) {
+	if ($_POST['map_flg'] == '1') {	// googleマップ
+		// URLに全角文字が含まれる場合の対策処理
+		$url = '';
+		$url_arr = array();
+		if (preg_match('/\?/', $_POST['google_map']) == true) {
+			list($h, $p) = explode('?', $_POST['google_map'], 2);
+			$url = $h . '?';
+			$p = preg_replace('/&#38;/', '&', $p);
+			if (preg_match('/[&]/', $p) == true) {
+				$d = explode('&', $p);
+				$prm = '';
+				foreach($d AS $vl) {
+					list($k, $v) = explode('=', $vl, 2);
+					$url_arr[$k] = $v;
+					if ($prm != '') { $prm .= '&amp;'; }
+					$prm .= $k.'='.urlencode($v);
+				}
+				$url .= $prm;
+			} else {
+				$url = '';
+			}
+		} else {
+			$url = '';
+		}
+	}
+}
+*/
+?>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+$(function(){
+});
+function orgMapInitialize() {
+	geocoder = new google.maps.Geocoder();
+	geocoder.geocode({'address':'<?php print($url_arr['q']); ?>'}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			var latlng = results[0].geometry.location;
+			var opts = {
+				zoom: <?php print($url_arr['z']); ?>,
+				center: latlng,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			var map = new google.maps.Map(document.getElementById("orgMap"), opts);
+			var marker1 = new google.maps.Marker({
+				position: latlng,
+				map: map
+			});
+		} else {
+			alert("Geocorder failed due to: " + status);
+		}
+	});
+}
+</script>
+
+<body id="top" onLoad="orgMapInitialize()">
+
+<!--<body id="top">-->
+
+<a id="top" name="top"></a>
+<div id="wrap">
+  <div id="anime_wrap">
+
+<!--==================================ここからヘッダー=========================================-->
+<?php //print($this->element('member/header')); ?>
+<script type="text/javascript">
+$(function(){
+	login_bar();
+});
+function login_bar() {
+	$.get('/member/login_bar', function(data) {
+//alert(data);
+		$("#log_bar").empty().append(data);
+	});
+}
+</script>
+<div class="header_all">
+	<div class="header_login">
+		<div class="header_login_inner_intro" id="log_bar">
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="main_img_inner">
+		<div class="logo"><a href="/"><img src="/wp-content/themes/default/images/index_img_01.png" alt="関西不動産情報センター、KRIC" /></a></div>
+		<img src="/wp-content/themes/default/images/index_img_02.png" width="342" height="92" alt="競い合うことよりも、響き合うこと。それが、メンバーシップの誇り。" class="header_cap" /><img src="/wp-content/themes/default/images/index_img_03.png" width="230" height="85" alt="お問合せ24時間受付中" class="header_tel" usemap="#Map3" border="0" />
+		<map name="Map3" id="Map3">
+			<area shape="rect" coords="0,50,230,85" href="/contact.html" />
+		</map>
+		<img src="/wp-content/themes/default/images/index_img_04.png" width="159" height="154" alt="" class="header_woman"/> </div>
+	</div>
+	<div class="menubox">
+		<div class="mod_Gnavi">
+			<ul class="ex_clearfix">
+				<li><a class="top" href="/"><img src="/wp-content/themes/default/images/index_menu_01.jpg" width="97" height="96" alt="Menu01" /></a></li>
+				<li><a class="kric" href="/kric.html"><img src="/wp-content/themes/default/images/index_menu_02.jpg" width="159" height="96" alt="Menu02" /></a></li>
+				<li><a class="activity" href="/activity.html"><img src="/wp-content/themes/default/images/index_menu_03.jpg" width="151" height="96" alt="Menu03" /></a></li>
+				<li><a class="service" href="/service.html"><img src="/wp-content/themes/default/images/index_menu_04.jpg" width="247" height="96" alt="Menu04" /></a></li>
+				<li><a class="member" href="/member/"><img src="/wp-content/themes/default/images/index_menu_05.jpg" width="123" height="96" alt="Menu05" /></a></li>
+				<li><a class="enter" href="/enter.html"><img src="/wp-content/themes/default/images/index_menu_06.jpg" width="183" height="96" alt="Menu06" /></a></li>
+			</ul>
+		</div><!--mod_Gnavi_end -->
+	</div>
+</div>
+
+
+<!--==================================▲ここまでヘッダー=========================================--> 
+
+
+
+<!--==================================▼ここからぱんくずとSNSボタン=========================================-->
+
+<div class="pankuzu_wrap">
+  <div class="pan_sns">
+    <div class="pankuzu"> <img src="/wp-content/themes/default/images/index_img_05.png" width="12" height="12" alt="" class="img_float" /><h1><!-- Breadcrumb NavXT 3.5.1 --><a href="/">関西不動産情報センター TOP</a>＞<a href="/<?php print(APP_NAME); ?>/index">IISトップ</a>＞会社概要プレビュー</h1></div>
+  </div>
+</div>
+<!--==================================▲ここまでぱんくずとsnsボタン=========================================-->
+<!--==================================▼ここからコンテンツ=========================================-->
+
+<div class="cont_wrap">
+
+	<div class="cont_box">
+		<div class="cont_main">
+			<div class="txt_h2_bg"><div class="txt_h2_in"><h2><div class="txt_h2"><?php print($_POST['company_name'] != '') ? htmlspecialchars($_POST['company_name'], ENT_QUOTES) : '未記入'; ?></div></h2></div></div>
+<div class="clear"></div>
+	<div class="shoukaibun">
+	<?php print($_POST['shoukaibun'] != '') ? nl2br(htmlspecialchars($_POST['shoukaibun'], ENT_QUOTES)) : ''; ?>
+	</div>
+
+<div class="txt_h3_bg"><div class="txt_h3_in"><h3><div class="txt_h3">会社概要</div></h3></div></div>
+<div style="margin: 10px 10px 25px 25px;">
+		<table>
+		<tr><th style="text-align:left; padding-right:10px;">社名</th><td><?php print($_POST['company_name'] != '') ? htmlspecialchars($_POST['company_name'], ENT_QUOTES) : '未記入'; ?></td></tr>
+		<tr><th style="text-align:left; padding-right:10px;">代表者</th><td><?php print($_POST['daihyousha'] != '') ? htmlspecialchars($_POST['daihyousha'], ENT_QUOTES) : '未記入'; ?></td></tr>
+		<tr><th style="text-align:left; padding-right:10px;">免許番号</th><td><?php print($_POST['menkyo'] != '') ? htmlspecialchars($_POST['menkyo'], ENT_QUOTES) : '未記入'; ?></td></tr>
+		<tr><th style="text-align:left; padding-right:10px;" valign="top">所在地</th><td><?php print($_POST['zip'] != '') ? '〒'.htmlspecialchars($_POST['zip'], ENT_QUOTES) : '未記入'; ?><br />
+		<?php print($_POST['ken'] != '') ? $tpl_disp['master_120'][$_POST['ken']] : '未記入'; ?>
+		<?php print($_POST['address'] != '') ? htmlspecialchars($_POST['address'], ENT_QUOTES) : '未記入'; ?>
+		</td></tr>
+		<tr><th style="text-align:left; padding-right:10px;">交通</th><td><?php print($_POST['koutsu'] != '') ? htmlspecialchars($_POST['koutsu'], ENT_QUOTES) : '未記入'; ?></td></tr>
+		<tr><th style="text-align:left; padding-right:10px;">所属エリア</th><td><?php print($_POST['shozoku'] != '') ? $tpl_disp['master_121'][$_POST['shozoku']] : '未記入'; ?></td></tr>
+		<tr><th style="text-align:left; padding-right:10px;">TEL</th><td><?php print($_POST['tel'] != '') ? htmlspecialchars($_POST['tel'], ENT_QUOTES) : '未記入'; ?></td></tr>
+		<tr><th style="text-align:left; padding-right:10px;">FAX</th><td><?php print($_POST['fax'] != '') ? htmlspecialchars($_POST['fax'], ENT_QUOTES) : '未記入'; ?></td></tr>
+		<tr><th style="text-align:left; padding-right:10px;">ホームページ</th><td><?php print($_POST['url'] != '') ? '<a href="'.htmlspecialchars($_POST['url'], ENT_QUOTES).'" target="_blank">'.htmlspecialchars($_POST['url'], ENT_QUOTES).'</a>' : '未記入'; ?></td></tr>
+
+<?php
+/*
+function mail_htmlentities($buf) {
+	return preg_replace_callback( "/(mailto:)?[0-9a-z._\/-]+@[0-9a-z._-]+\.[0-9a-z._-]+/i", "my_htmlentities", $buf);
+}
+function my_htmlentities($matches) {
+	$enc = '';
+	$convmap = array(0x0, 0x2FFFF, 0, 0xFFFF);
+	$arr = str_split($matches[0]);
+	foreach($arr AS $str) {
+		if (mt_rand(0, 5)) { $enc .= mb_encode_numericentity($str, $convmap); }
+		else { $enc .= $str; }
+	}
+	return $enc;
+}
+if (isset($tpl_disp['email']) == true && $tpl_disp['email'] != '') {
+	$email = mail_htmlentities($tpl_disp['email']);
+} else {
+	$email = '';
+}
+*/
+?>
+		<tr><th style="text-align:left; padding-right:10px;">会社代表メール</th><td><a href="<?php print($_POST['email'] != '' ? 'mailto:'. $_POST['email'] : ''); ?>"><?php print($_POST['email'] != '' ? $_POST['email'] : ''); ?></td></tr>
+		<!--<tr><th style="text-align:left; padding-right:10px;">会社代表メール</th><td><?php print($email != '' ? '<a href="mailto:'.$email.'">'.$email.'</a>' : '未記入'); ?></td></tr>-->
+		<tr><th valign="top" style="text-align:left; padding-right:10px;">加盟団体</th><td><?php print($_POST['kameidantai'] != '') ? nl2br(htmlspecialchars($_POST['kameidantai'], ENT_QUOTES)) : '未記入'; ?></td></tr>
+		<tr><th valign="top" style="text-align:left; padding-right:10px;">業種</th><td>
+<?php
+foreach($tpl_disp['master_122'] AS $key => $val) {
+	$chekced = '';
+	if (isset($_POST['gyoushu']) == true && is_array($_POST['gyoushu']) == true && in_array($key, $_POST['gyoushu']) == true) {
+?>
+<?php print($val); ?><br>
+<?php
+	} // if end
+} // foreach end
+?>
+		</td></tr>
+	</table>
+	<div class="clear"></div>
+</div>
+
+	<div class="txt_h3_bg"><div class="txt_h3_in"><h3><div class="txt_h3">事業内容</div></h3></div></div>
+	<div class="jigyounaiyou">
+		<p><?php print($_POST['jigyounaiyou'] != '') ? nl2br(htmlspecialchars($_POST['jigyounaiyou'], ENT_QUOTES)) : '未記入'; ?></p>
+	</div>
+
+	<div class="txt_h3_bg"><div class="txt_h3_in"><h3><div class="txt_h3">会社沿革</div></h3></div></div>
+	<div class="enkaku">
+		<p><?php print($_POST['enkaku'] != '') ? nl2br(htmlspecialchars($_POST['enkaku'], ENT_QUOTES)) : '未記入'; ?></p>
+	</div>
+
+	<div class="txt_h3_bg"><div class="txt_h3_in"><h3><div class="txt_h3">アクセスマップ</div></h3></div></div>
+	<div style="margin:20px;">
+<?php
+	if(isset($_POST['map_flg'])== true) {
+	if ($_POST['map_flg'] == '1') {	// googleマップ
+		if (isset($url) == true) {
+?>
+	<!--<div><?php print(isset($url) == true ? '<a href="'.$url.'" target="_blank">googleマップ</a>' : '未設定'); ?></div>-->
+	<div id="orgMap" style="width:650px;height:300px"></div>
+<?php
+		} else {
+			// 短縮URL等の場合は情報抽出できないためリンク
+?>
+	<?php if($_POST['google_map'] !=''){ ?>
+	<?php $googlemap = '<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="'.$_POST['google_map'].'&output=embed" style="width:650px;height:300px" class="intro_mapw"></iframe>';  ?>
+	<?php print(isset($_POST['google_map']) == true ? $googlemap : ''); ?>
+	<?php //print(isset($_POST['google_map']) == true ? '<a href="'.$_POST['google_map'].'" target="_blank">googleマップ</a>' : '未設定'); ?>
+	<?php } ?>
+<?php
+		}
+?>
+<?php
+	} elseif ($_POST['map_flg'] == '2') {	// オリジナル画像
+		if (isset($tpl_disp['tmpPath']) == true && $tpl_disp['tmpPath'] != '') {
+?>
+<img src="/<?php print(APP_NAME); ?>/file/dir=tmp/na=<?php print($tpl_disp['tmpPath']); ?>" border="0" alt="" style="max-width:650px;" />
+<?php
+		} elseif (isset($tpl_disp['org_info']['upload_map']) == true && $tpl_disp['org_info']['upload_map'] != '') {
+?>
+<img src="/<?php print(APP_NAME); ?>/file/na=<?php print(isset($tpl_disp['org_info']['upload_map']) == true ? $tpl_disp['org_info']['upload_map'] : ''); ?>" border="0" alt="" style="max-width:650px;" />
+<?php
+		} else {
+			print('未設定');
+		}
+	}
+	}
+?>
+	</div>
+
+<br />
+<div style="text-align:right;">>> <a href="/member/">会員紹介のトップへ</a></div>
+
+		</div><!--cont_main-->
+		
+		<div class="cont_sidebox">
+			<div class="side_cap_bg">
+				<div class="side_cap_in">
+					<div class="side_cap_h2"> 会員紹介 </div>
+				</div>
+			</div>
+			<div id="SideNavi">
+				<div class="menu-side-navi1-container">
+					<ul id="menu-side-navi1" class="menu">
+						<li id="menu-item-4791" class="menu-item menu-item-type-post_type menu-item-4791"><a href="/member/?Mode=list-name&Name=a">会員名で検索(五十音検索) </a></li>
+						<li id="menu-item-4793" class="menu-item menu-item-type-post_type menu-item-4793"><a href="/member/?Mode=list-area&Area=100">エリアで検索</a></li>
+						<li id="menu-item-4792" class="menu-item menu-item-type-post_type menu-item-4792"><a href="/member/?Mode=list-industry&Category=100">業務種目で検索</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="mgBottom20"></div>
+			<a href="/enter/guide.html"><img src="/wp-content/themes/default/images/index_img_06.jpg" width="230" height="72" alt="入会のご案内" class="css-hover" /></a>
+			<div class="mgBottom20"></div>
+			<a href="/enter.html"><img src="/wp-content/themes/default/images/index_img_07.jpg" width="230" height="52" alt="会員のメリット" class="side_img css-hover" /></a><br />
+			<ul id="globalnavi">
+				<li id="menu1"><a href="/enter.html#infor">情報交換会</a></li>
+				<li id="menu2"><a href="/enter.html#training">研修会</a></li>
+				<li id="menu3"><a href="/enter.html#friend">親睦活動</a></li>
+				<li id="menu4"><a href="/enter.html#webpage">会員専用ページによる充実した情報交換</a></li>
+				<li id="menu5"><a href="/enter.html#share">各種書類の共有</a></li>
+				<li id="menu6"><a href="/enter.html#magazine">広報誌『ＫＲＩＣかわら版』の発刊</a></li>
+			</ul>
+		</div><!--cont_sidebox--> 
+	</div><!--cont_box--> 
+
+<!-- ここまで追加 -->
+
+</div>
+<!--cont_box--> 
+
+<!--==================▲ここまでコンテンツ=======================-->
+<!--==================▼ここからフッター=======================-->
+<?php print($this->element('member/footer')); ?>
+<!--==================▲ここまでフッター=======================-->
+
+</div><!-- /cont_wrap -->
+<!--Google Analytics-->
+
+</div>
+</div>
+</body>

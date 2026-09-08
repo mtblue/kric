@@ -1,0 +1,233 @@
+<?php if (isset($tpl_form['cmd']) && $tpl_form['cmd'] == 'complete'): ?>
+  <!-- ========== 登録完了 ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card mem-card--complete">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; <a href="/iis/index">会員専用ページ</a> &gt; 登録情報 &gt; メンバー追加／削除</p>
+
+        <div class="reg-layout">
+          <div class="reg-content">
+            <div class="mem-sec-head">
+              <h2 class="mem-sec-title">─ 登録情報 ─</h2>
+            </div>
+            <p class="mem-login-msg">登録が完了しました。</p>
+            <hr class="mem-login-divider">
+          </div>
+
+          <nav class="reg-sidenav" aria-label="登録情報メニュー">
+            <ul class="reg-sidenav-list">
+              <li class="reg-sidenav-item"><a href="/<?php echo APP_NAME; ?>/company_edit">会社概要</a></li>
+              <li class="reg-sidenav-item"><a href="/<?php echo APP_NAME; ?>/member_edit/id=<?php echo isset($tpl_disp['sessionInfo']['member_id']) ? h($tpl_disp['sessionInfo']['member_id']) : ''; ?>">個別設定</a></li>
+              <li class="reg-sidenav-item is-active"><a href="/<?php echo APP_NAME; ?>/member">メンバー追加／削除</a></li>
+            </ul>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </main>
+<?php else: ?>
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; <a href="/iis/index">会員専用ページ</a> &gt; 登録情報 &gt; <a href="/<?php echo APP_NAME; ?>/member">メンバー追加／削除</a> &gt; 追加登録</p>
+
+        <div class="reg-layout">
+
+          <!-- メインコンテンツ -->
+          <div class="reg-content">
+
+            <div class="mem-sec-head">
+              <h2 class="mem-sec-title">─ 登録情報 ─</h2>
+            </div>
+
+            <h3 class="reg-subtitle">メンバー追加登録</h3>
+            <hr class="bd-reg-divider">
+
+            <?php if (!empty($tpl_errDoc)): ?>
+            <div class="reg-error-box">
+              <?php foreach ($tpl_errDoc as $val): ?><p><?php echo h($val); ?></p><?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($tpl_form['cmd'] == ''): ?>
+
+            <!-- ===== 入力フォーム ===== -->
+            <form action="<?php echo HTTP_TO_SCRIPT_NAME; ?>" method="post" class="reg-form">
+              <input type="hidden" name="cmd" value="confirm">
+              <input type="hidden" name="cid" value="<?php echo h(isset($tpl_form['cid']) ? $tpl_form['cid'] : ''); ?>">
+              <input type="hidden" name="authority_id" value="0">
+
+              <div class="reg-table">
+
+                <div class="reg-row">
+                  <span class="reg-label">ログインID</span>
+                  <div class="reg-input">
+                    <span class="reg-auto-text">自動生成</span>
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">パスワード</span>
+                  <div class="reg-input">
+                    <span class="reg-auto-text">自動生成</span>
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">会員名</label>
+                  <div class="reg-input">
+                    <input type="text" name="member_name" value="<?php echo h(isset($tpl_disp['sessionInfo']['company_name']) ? $tpl_disp['sessionInfo']['company_name'] : ''); ?>" readonly>
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">名前</label>
+                  <div class="reg-input">
+                    <input type="text" name="name" value="<?php echo h(isset($tpl_disp['name']) ? $tpl_disp['name'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">名前カナ</label>
+                  <div class="reg-input">
+                    <input type="text" name="kana" value="<?php echo h(isset($tpl_disp['kana']) ? $tpl_disp['kana'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">携帯電話1</label>
+                  <div class="reg-input">
+                    <input type="tel" name="keitai1" value="<?php echo h(isset($tpl_disp['keitai1']) ? $tpl_disp['keitai1'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">携帯電話2</label>
+                  <div class="reg-input">
+                    <input type="tel" name="keitai2" value="<?php echo h(isset($tpl_disp['keitai2']) ? $tpl_disp['keitai2'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">メールアドレス1</label>
+                  <div class="reg-input">
+                    <input type="email" name="email1" value="<?php echo h(isset($tpl_disp['email1']) ? $tpl_disp['email1'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">メールアドレス2</label>
+                  <div class="reg-input">
+                    <input type="email" name="email2" value="<?php echo h(isset($tpl_disp['email2']) ? $tpl_disp['email2'] : ''); ?>">
+                  </div>
+                </div>
+
+              </div><!-- /.reg-table -->
+
+              <div class="reg-submit-row">
+                <button type="submit" class="reg-submit-btn">
+                  <span class="btn-text">確認</span>
+                  <span class="btn-sep">|</span>
+                  <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+                </button>
+              </div>
+
+            </form>
+
+            <?php elseif ($tpl_form['cmd'] == 'confirm'): ?>
+
+            <!-- ===== 確認画面 ===== -->
+            <form action="<?php echo HTTP_TO_SCRIPT_NAME; ?>" method="post" class="reg-form">
+              <input type="hidden" name="cmd" value="registration">
+              <input type="hidden" name="id" value="">
+              <input type="hidden" name="cid" value="<?php echo h(isset($tpl_form['cid']) ? $tpl_form['cid'] : ''); ?>">
+
+              <div class="reg-confirm">
+
+                <div class="reg-row">
+                  <span class="reg-label">ログインID</span>
+                  <span class="reg-confirm-value">自動生成</span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">パスワード</span>
+                  <span class="reg-confirm-value">自動生成</span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">会員名</span>
+                  <span class="reg-confirm-value"><?php echo h(isset($tpl_form['member_name']) ? $tpl_form['member_name'] : (isset($tpl_disp['sessionInfo']['company_name']) ? $tpl_disp['sessionInfo']['company_name'] : '')); ?></span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">名前</span>
+                  <span class="reg-confirm-value"><?php echo h(isset($tpl_disp['name']) ? $tpl_disp['name'] : ''); ?></span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">名前カナ</span>
+                  <span class="reg-confirm-value"><?php echo h(isset($tpl_disp['kana']) ? $tpl_disp['kana'] : ''); ?></span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">携帯電話1</span>
+                  <span class="reg-confirm-value"><?php echo h(isset($tpl_disp['keitai1']) ? $tpl_disp['keitai1'] : ''); ?></span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">携帯電話2</span>
+                  <span class="reg-confirm-value"><?php echo h(isset($tpl_disp['keitai2']) ? $tpl_disp['keitai2'] : ''); ?></span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">メールアドレス1</span>
+                  <span class="reg-confirm-value"><?php echo h(isset($tpl_disp['email1']) ? $tpl_disp['email1'] : ''); ?></span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">メールアドレス2</span>
+                  <span class="reg-confirm-value"><?php echo h(isset($tpl_disp['email2']) ? $tpl_disp['email2'] : ''); ?></span>
+                </div>
+
+              </div><!-- /.reg-confirm -->
+
+              <div class="bd-reg-confirm-row">
+                <button type="submit" class="bd-reg-submit-btn">
+                  <span class="btn-text">登録</span>
+                  <span class="btn-sep">|</span>
+                  <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+                </button>
+                <a href="/<?php echo APP_NAME; ?>/member_new" class="bd-reg-back-btn">
+                  <span class="btn-text">戻る</span>
+                  <span class="btn-sep">|</span>
+                  <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+                </a>
+              </div>
+
+              <p class="bd-reg-note">登録完了後、招待メールが送信されます。<br>登録ボタンを押した後、処理に時間がかかる場合がございますので、そのままお待ちください。</p>
+
+            </form>
+
+            <?php endif; ?>
+
+          </div><!-- /.reg-content -->
+
+          <!-- サイドナビ -->
+          <nav class="reg-sidenav" aria-label="登録情報メニュー">
+            <ul class="reg-sidenav-list">
+              <li class="reg-sidenav-item"><a href="/<?php echo APP_NAME; ?>/company_edit">会社概要</a></li>
+              <li class="reg-sidenav-item"><a href="/<?php echo APP_NAME; ?>/member_edit/id=<?php echo h(isset($tpl_disp['sessionInfo']['member_id']) ? $tpl_disp['sessionInfo']['member_id'] : ''); ?>">個別設定</a></li>
+              <li class="reg-sidenav-item is-active"><a href="/<?php echo APP_NAME; ?>/member">メンバー追加／削除</a></li>
+            </ul>
+          </nav>
+
+        </div><!-- /.reg-layout -->
+
+      </div><!-- /.mem-card -->
+    </div><!-- /.mem-card-wrap -->
+  </main>
+<?php endif; ?>

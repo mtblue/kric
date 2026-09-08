@@ -1,0 +1,439 @@
+<?php if (isset($tpl_form['cmd']) && $tpl_form['cmd'] == 'complete'): ?>
+  <!-- ========== 登録完了 ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card mem-card--complete">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; <a href="/iis/index">会員専用ページ</a> &gt; 登録情報 &gt; 個別設定</p>
+
+        <div class="reg-layout">
+          <div class="reg-content">
+            <div class="mem-sec-head">
+              <h2 class="mem-sec-title">─ 登録情報 ─</h2>
+            </div>
+            <p class="mem-login-msg">登録が完了しました。</p>
+            <hr class="mem-login-divider">
+          </div>
+
+          <nav class="reg-sidenav" aria-label="登録情報メニュー">
+            <ul class="reg-sidenav-list">
+              <li class="reg-sidenav-item"><a href="/<?php echo APP_NAME; ?>/company_edit">会社概要</a></li>
+              <li class="reg-sidenav-item is-active"><a href="/<?php echo APP_NAME; ?>/member_edit/id=<?php echo h($tpl_form['id']); ?>">個別設定</a></li>
+              <li class="reg-sidenav-item"><a href="/<?php echo APP_NAME; ?>/member">メンバー追加／削除</a></li>
+            </ul>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </main>
+<?php else: ?>
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; <a href="/iis/index">会員専用ページ</a> &gt; 登録情報 &gt; 個別設定<?php if ($tpl_form['cmd'] == 'confirm'): ?> &gt; 確認<?php endif; ?></p>
+
+        <div class="reg-layout">
+
+          <!-- メインコンテンツ -->
+          <div class="reg-content">
+
+            <div class="mem-sec-head">
+              <h2 class="mem-sec-title">─ 登録情報 ─</h2>
+            </div>
+
+            <h3 class="reg-subtitle">個別設定</h3>
+
+            <?php if (!empty($tpl_errDoc)): ?>
+            <div class="reg-error-box">
+              <?php foreach ($tpl_errDoc as $val): ?><p><?php echo h($val); ?></p><?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if (isset($_GET['up'])): ?>
+            <p style="color:#2a7a00; font-weight:bold; margin-bottom:1rem;">登録しました。</p>
+            <?php endif; ?>
+
+            <?php if ($tpl_form['cmd'] == ''): ?>
+
+            <!-- ===== 入力フォーム ===== -->
+            <form action="<?php echo HTTP_TO_SCRIPT_NAME; ?>" method="post" enctype="multipart/form-data" class="reg-form" id="memberEditForm">
+              <input type="hidden" name="cmd" value="confirm">
+              <input type="hidden" name="id" value="<?php echo h(isset($tpl_disp['org_info']['member_id']) ? $tpl_disp['org_info']['member_id'] : ''); ?>">
+              <input type="hidden" name="cid" value="<?php echo h(isset($tpl_form['cid']) ? $tpl_form['cid'] : ''); ?>">
+
+              <input type="hidden" name="authority_id" value="<?php echo h(isset($tpl_disp['org_info']['authority_id']) ? $tpl_disp['org_info']['authority_id'] : ''); ?>">
+
+              <input type="hidden" name="kyaria1" value="<?php echo h(isset($tpl_disp['kyaria1']) ? $tpl_disp['kyaria1'] : (isset($tpl_disp['org_info']['kyaria1']) ? $tpl_disp['org_info']['kyaria1'] : '')); ?>">
+              <input type="hidden" name="koukai1" value="<?php echo h(isset($tpl_disp['koukai1']) ? $tpl_disp['koukai1'] : (isset($tpl_disp['org_info']['koukai1']) ? $tpl_disp['org_info']['koukai1'] : '')); ?>">
+              <input type="hidden" name="kyaria2" value="<?php echo h(isset($tpl_disp['kyaria2']) ? $tpl_disp['kyaria2'] : (isset($tpl_disp['org_info']['kyaria2']) ? $tpl_disp['org_info']['kyaria2'] : '')); ?>">
+              <input type="hidden" name="koukai2" value="<?php echo h(isset($tpl_disp['koukai2']) ? $tpl_disp['koukai2'] : (isset($tpl_disp['org_info']['koukai2']) ? $tpl_disp['org_info']['koukai2'] : '')); ?>">
+              <input type="hidden" name="email3" value="<?php echo h(isset($tpl_disp['email3']) ? $tpl_disp['email3'] : (isset($tpl_disp['org_info']['email3']) ? $tpl_disp['org_info']['email3'] : '')); ?>">
+              <?php
+                $tsuchi3_arr = isset($tpl_disp['tsuchi3']) ? $tpl_disp['tsuchi3'] : (isset($tpl_disp['org_info']['tsuchi3']) ? $tpl_disp['org_info']['tsuchi3'] : array());
+                if (!is_array($tsuchi3_arr)) { $tsuchi3_arr = ($tsuchi3_arr !== '') ? array($tsuchi3_arr) : array(); }
+              ?>
+              <?php foreach ($tsuchi3_arr as $t3v): ?>
+              <input type="hidden" name="tsuchi3[]" value="<?php echo h($t3v); ?>">
+              <?php endforeach; ?>
+
+              <p class="reg-required-note">※は入力必須項目です。</p>
+
+              <div class="reg-table">
+
+                <div class="reg-row">
+                  <label class="reg-label">ログインID <span class="reg-required">※</span></label>
+                  <div class="reg-input">
+                    <input type="text" name="login_id" value="<?php echo h(isset($tpl_disp['login_id']) ? $tpl_disp['login_id'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">パスワード <span class="reg-required">※</span></label>
+                  <div class="reg-input">
+                    <input type="password" name="pass" value="<?php echo h(isset($tpl_disp['pass']) ? $tpl_disp['pass'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">名前 <span class="reg-required">※</span></label>
+                  <div class="reg-input">
+                    <input type="text" name="name" value="<?php echo h(isset($tpl_disp['name']) ? $tpl_disp['name'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">名前カナ</label>
+                  <div class="reg-input">
+                    <input type="text" name="kana" value="<?php echo h(isset($tpl_disp['kana']) ? $tpl_disp['kana'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">携帯電話1</label>
+                  <div class="reg-input">
+                    <input type="tel" name="keitai1" value="<?php echo h(isset($tpl_disp['keitai1']) ? $tpl_disp['keitai1'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">携帯電話2</label>
+                  <div class="reg-input">
+                    <input type="tel" name="keitai2" value="<?php echo h(isset($tpl_disp['keitai2']) ? $tpl_disp['keitai2'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">メールアドレス1 <span class="reg-required">※</span></label>
+                  <div class="reg-input">
+                    <input type="email" name="email1" value="<?php echo h(isset($tpl_disp['email1']) ? $tpl_disp['email1'] : ''); ?>">
+                    <p class="reg-hint">※登録者名簿に表示されます。</p>
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">通知設定</label>
+                  <div class="reg-input">
+                    <?php
+                      $t1_info = array(); $t1_bd = array();
+                      foreach ($tpl_disp['master_143'] as $k => $v) {
+                        $chk = isset($tpl_disp['tsuchi1']) && ((is_array($tpl_disp['tsuchi1']) && in_array($k, $tpl_disp['tsuchi1'])) || (!is_array($tpl_disp['tsuchi1']) && $tpl_disp['tsuchi1'] == $k));
+                        if ($k < 2) { $t1_info[] = array($k, $v, $chk); } else { $t1_bd[] = array($k, $v, $chk); }
+                      }
+                    ?>
+                    <div class="reg-notify-group">
+                      <?php foreach ($t1_info as $item): ?>
+                      <label class="reg-map-check"><input type="checkbox" name="tsuchi1[]" value="<?php echo h($item[0]); ?>"<?php echo $item[2] ? ' checked' : ''; ?>> <?php echo h($item[1]); ?></label>
+                      <?php endforeach; ?>
+                      <?php if (!empty($t1_bd)): ?>
+                      <p class="reg-notify-label">[ビジネスダイレクト]</p>
+                      <div class="reg-notify-checks">
+                        <?php foreach ($t1_bd as $item): ?>
+                        <label class="reg-map-check"><input type="checkbox" name="tsuchi1[]" value="<?php echo h($item[0]); ?>"<?php echo $item[2] ? ' checked' : ''; ?>> <?php echo h($item[1]); ?></label>
+                        <?php endforeach; ?>
+                      </div>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">メールアドレス2</label>
+                  <div class="reg-input">
+                    <input type="email" name="email2" value="<?php echo h(isset($tpl_disp['email2']) ? $tpl_disp['email2'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">通知設定</label>
+                  <div class="reg-input">
+                    <?php
+                      $t2_info = array(); $t2_bd = array();
+                      foreach ($tpl_disp['master_144'] as $k => $v) {
+                        $chk = isset($tpl_disp['tsuchi2']) && ((is_array($tpl_disp['tsuchi2']) && in_array($k, $tpl_disp['tsuchi2'])) || (!is_array($tpl_disp['tsuchi2']) && $tpl_disp['tsuchi2'] == $k));
+                        if ($k < 2) { $t2_info[] = array($k, $v, $chk); } else { $t2_bd[] = array($k, $v, $chk); }
+                      }
+                    ?>
+                    <div class="reg-notify-group">
+                      <?php foreach ($t2_info as $item): ?>
+                      <label class="reg-map-check"><input type="checkbox" name="tsuchi2[]" value="<?php echo h($item[0]); ?>"<?php echo $item[2] ? ' checked' : ''; ?>> <?php echo h($item[1]); ?></label>
+                      <?php endforeach; ?>
+                      <?php if (!empty($t2_bd)): ?>
+                      <p class="reg-notify-label">[ビジネスダイレクト]</p>
+                      <div class="reg-notify-checks">
+                        <?php foreach ($t2_bd as $item): ?>
+                        <label class="reg-map-check"><input type="checkbox" name="tsuchi2[]" value="<?php echo h($item[0]); ?>"<?php echo $item[2] ? ' checked' : ''; ?>> <?php echo h($item[1]); ?></label>
+                        <?php endforeach; ?>
+                      </div>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">自由投稿欄</label>
+                  <div class="reg-input">
+                    <textarea name="jiyuu_toukou" class="reg-textarea"><?php echo h(isset($tpl_disp['jiyuu_toukou']) ? $tpl_disp['jiyuu_toukou'] : ''); ?></textarea>
+                  </div>
+                </div>
+
+                <div class="reg-row">
+                  <label class="reg-label">顔写真</label>
+                  <div class="reg-input reg-input--photo">
+                    <div class="reg-file-row">
+                      <label class="reg-file-btn">
+                        ファイルを選択
+                        <input type="file" name="upload_photo" accept="image/jpeg,image/png" class="reg-file-input" id="photoFileInput">
+                      </label>
+                    </div>
+                    <div class="reg-member-photo" id="photoPreview" style="display:none;">
+                      <img id="photoPreviewImg" src="" alt="顔写真プレビュー">
+                    </div>
+                    <div class="reg-file-info" id="photoFileInfo" style="display:none;">
+                      <span class="reg-file-name" id="photoFileName"></span>
+                    </div>
+                    <p class="reg-hint">※添付可能なファイル形式：jpg・png</p>
+                    <?php
+                      $currentPhoto = isset($tpl_disp['org_info']['upload_photo']) ? $tpl_disp['org_info']['upload_photo'] : '';
+                      $tmpPhoto = (!empty($tpl_disp['upload_photo']) && $tpl_disp['upload_photo'] != $currentPhoto) ? $tpl_disp['upload_photo'] : '';
+                      $isPhotoDeleted = !empty($tpl_disp['upload_photo_delete']);
+                    ?>
+                    <?php if ($currentPhoto != ''): ?>
+                    <input type="hidden" name="upload_photo_delete" value="<?php echo h(!empty($tpl_disp['upload_photo_delete']) ? $tpl_disp['upload_photo_delete'] : ''); ?>" id="photoDeleteFlag">
+                    <?php endif; ?>
+                    <?php if ($tmpPhoto != ''): ?>
+                    <input type="hidden" name="upload_photo_tmp" value="<?php echo h($tmpPhoto); ?>">
+                    <div class="reg-member-photo">
+                      <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tmpPhoto); ?>" alt="顔写真（アップロード済み）">
+                    </div>
+                    <p class="reg-hint">※アップロード済み（送信すると保存されます）</p>
+                    <?php elseif ($currentPhoto != '' && !$isPhotoDeleted): ?>
+                    <div class="reg-member-photo">
+                      <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($currentPhoto); ?>" alt="顔写真">
+                    </div>
+                    <p class="reg-file-current"><?php echo h($currentPhoto); ?></p>
+                    <button type="button" class="reg-delete-btn" id="photoDeleteBtn">削除</button>
+                    <?php endif; ?>
+                  </div>
+                </div>
+
+              </div><!-- /.reg-table -->
+
+              <!-- 送信ボタン -->
+              <div class="reg-submit-row">
+                <button type="submit" class="reg-submit-btn">
+                  <span class="btn-text">確認</span>
+                  <span class="btn-sep">|</span>
+                  <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+                </button>
+              </div>
+
+            </form>
+
+            <?php elseif ($tpl_form['cmd'] == 'confirm'): ?>
+
+            <!-- ===== 確認画面 ===== -->
+            <form action="<?php echo HTTP_TO_SCRIPT_NAME; ?>" method="post" class="reg-form" id="memberConfirmForm">
+              <input type="hidden" name="cmd" value="registration">
+              <input type="hidden" name="id" value="<?php echo h(isset($tpl_disp['org_info']['member_id']) ? $tpl_disp['org_info']['member_id'] : ''); ?>">
+              <input type="hidden" name="cid" value="<?php echo h(isset($tpl_form['cid']) ? $tpl_form['cid'] : ''); ?>">
+              <input type="hidden" name="authority_id" value="<?php echo h(isset($tpl_disp['org_info']['authority_id']) ? $tpl_disp['org_info']['authority_id'] : ''); ?>">
+              <input type="hidden" name="update" value="OK">
+
+              <div class="reg-confirm">
+
+                <div class="reg-row">
+                  <span class="reg-label">ログインID</span>
+                  <span class="reg-confirm-value"><?php echo h(isset($tpl_disp['login_id']) ? $tpl_disp['login_id'] : ''); ?></span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">パスワード</span>
+                  <span class="reg-confirm-value"><?php echo str_repeat('●', mb_strlen(isset($tpl_disp['pass']) ? $tpl_disp['pass'] : '', 'UTF-8')); ?></span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">会員名</span>
+                  <span class="reg-confirm-value"><?php echo h(isset($tpl_disp['sessionInfo']['company_name']) ? $tpl_disp['sessionInfo']['company_name'] : ''); ?></span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">名前</span>
+                  <span class="reg-confirm-value"><?php echo h(isset($tpl_disp['name']) ? $tpl_disp['name'] : ''); ?></span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">名前カナ</span>
+                  <span class="reg-confirm-value"><?php echo h(isset($tpl_disp['kana']) ? $tpl_disp['kana'] : ''); ?></span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">携帯電話1</span>
+                  <span class="reg-confirm-value"><?php echo h(isset($tpl_disp['keitai1']) ? $tpl_disp['keitai1'] : ''); ?></span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">携帯電話2</span>
+                  <span class="reg-confirm-value"><?php echo h(isset($tpl_disp['keitai2']) ? $tpl_disp['keitai2'] : ''); ?></span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">メールアドレス1</span>
+                  <span class="reg-confirm-value"><?php echo h(isset($tpl_disp['email1']) ? $tpl_disp['email1'] : ''); ?></span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">通知設定</span>
+                  <span class="reg-confirm-value">
+                    <?php
+                      $bdShown = false;
+                      foreach ($tpl_disp['master_143'] as $key => $val) {
+                        $sel = isset($tpl_disp['tsuchi1']) && ((is_array($tpl_disp['tsuchi1']) && in_array($key, $tpl_disp['tsuchi1'])) || (!is_array($tpl_disp['tsuchi1']) && $tpl_disp['tsuchi1'] == $key));
+                        if ($sel) {
+                          if ($key > 1 && !$bdShown) { echo '[ビジネスダイレクト]<br>'; $bdShown = true; }
+                          echo h($val) . '<br>';
+                        }
+                      }
+                    ?>
+                  </span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">メールアドレス2</span>
+                  <span class="reg-confirm-value"><?php echo h(isset($tpl_disp['email2']) ? $tpl_disp['email2'] : ''); ?></span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">通知設定</span>
+                  <span class="reg-confirm-value">
+                    <?php
+                      $bdShown = false;
+                      foreach ($tpl_disp['master_144'] as $key => $val) {
+                        $sel = isset($tpl_disp['tsuchi2']) && ((is_array($tpl_disp['tsuchi2']) && in_array($key, $tpl_disp['tsuchi2'])) || (!is_array($tpl_disp['tsuchi2']) && $tpl_disp['tsuchi2'] == $key));
+                        if ($sel) {
+                          if ($key > 1 && !$bdShown) { echo '[ビジネスダイレクト]<br>'; $bdShown = true; }
+                          echo h($val) . '<br>';
+                        }
+                      }
+                    ?>
+                  </span>
+                </div>
+
+                <div class="reg-row">
+                  <span class="reg-label">自由投稿欄</span>
+                  <span class="reg-confirm-value"><?php echo isset($tpl_disp['jiyuu_toukou']) ? $tpl_disp['jiyuu_toukou'] : ''; ?></span>
+                </div>
+
+                <?php
+                  $isPhotoDeleted = !empty($tpl_disp['upload_photo_delete']);
+                  $confirmPhoto = !empty($tpl_disp['upload_photo'])
+                    ? $tpl_disp['upload_photo']
+                    : (!$isPhotoDeleted && isset($tpl_disp['org_info']['upload_photo']) ? $tpl_disp['org_info']['upload_photo'] : '');
+                ?>
+                <div class="reg-row">
+                  <span class="reg-label">顔写真</span>
+                  <div class="reg-member-photo">
+                    <?php if ($confirmPhoto != ''): ?>
+                    <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($confirmPhoto); ?>" alt="顔写真">
+                    <?php endif; ?>
+                  </div>
+                </div>
+
+              </div><!-- /.reg-confirm -->
+
+              <div class="bd-reg-confirm-row">
+                <button type="submit" class="bd-reg-submit-btn">
+                  <span class="btn-text">登録</span>
+                  <span class="btn-sep">|</span>
+                  <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+                </button>
+                <a href="/<?php echo APP_NAME; ?>/member_edit/id=<?php echo h(isset($tpl_disp['org_info']['member_id']) ? $tpl_disp['org_info']['member_id'] : ''); ?>" class="bd-reg-back-btn">
+                  <span class="btn-text">戻る</span>
+                  <span class="btn-sep">|</span>
+                  <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+                </a>
+              </div>
+
+              <p class="bd-reg-note">登録完了後、登録後の画面が表示されます。<br>登録ボタンを押した後、登録処理に時間がかかる場合がございますので、そのままお待ちください。</p>
+
+            </form>
+
+            <?php endif; ?>
+
+          </div><!-- /.reg-content -->
+
+          <!-- サイドナビ -->
+          <nav class="reg-sidenav" aria-label="登録情報メニュー">
+            <ul class="reg-sidenav-list">
+              <li class="reg-sidenav-item"><a href="/<?php echo APP_NAME; ?>/company_edit">会社概要</a></li>
+              <li class="reg-sidenav-item is-active"><a href="#">個別設定</a></li>
+              <li class="reg-sidenav-item"><a href="/<?php echo APP_NAME; ?>/member">メンバー追加／削除</a></li>
+            </ul>
+          </nav>
+
+        </div><!-- /.reg-layout -->
+
+      </div><!-- /.mem-card -->
+    </div><!-- /.mem-card-wrap -->
+  </main>
+
+  <script>
+  (function () {
+    var fileInput   = document.getElementById('photoFileInput');
+    var fileName    = document.getElementById('photoFileName');
+    var preview     = document.getElementById('photoPreview');
+    var previewImg  = document.getElementById('photoPreviewImg');
+    var fileInfo    = document.getElementById('photoFileInfo');
+    if (fileInput) {
+      fileInput.addEventListener('change', function () {
+        var file = fileInput.files[0];
+        if (file) {
+          if (fileName) fileName.textContent = file.name;
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            previewImg.src = e.target.result;
+            preview.style.display = '';
+          };
+          reader.readAsDataURL(file);
+          if (fileInfo) fileInfo.style.display = '';
+        } else {
+          preview.style.display = 'none';
+          if (fileInfo) fileInfo.style.display = 'none';
+        }
+      });
+    }
+    var deleteBtn  = document.getElementById('photoDeleteBtn');
+    var deleteFlag = document.getElementById('photoDeleteFlag');
+    if (deleteBtn && deleteFlag) {
+      deleteBtn.addEventListener('click', function () {
+        deleteFlag.value = '1';
+        deleteBtn.closest('.reg-input--photo').querySelector('.reg-member-photo').style.display = 'none';
+        deleteBtn.closest('.reg-input--photo').querySelector('.reg-file-current').style.display = 'none';
+        deleteBtn.style.display = 'none';
+      });
+    }
+  })();
+  </script>
+<?php endif; ?>

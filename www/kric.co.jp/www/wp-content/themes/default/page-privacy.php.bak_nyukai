@@ -1,0 +1,97 @@
+<?php
+/*
+ * Template Name: プライバシーポリシー
+ */
+?>
+<?php get_header(); ?>
+
+  <!-- ========== ページKV ========== -->
+  <section class="page-kv--bg">
+    <div class="page-kv-placeholder" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/pp_bg.png')"></div>
+    <div class="page-kv-overlay">
+      <h1 class="page-kv-title">プライバシーポリシー</h1>
+    </div>
+  </section>
+
+  <!-- パンくず -->
+  <div class="page-breadcrumb">
+    <a href="<?php echo esc_url(home_url('/')); ?>">関西不動産情報センター TOP</a>
+    <span class="page-breadcrumb-sep">&gt;</span>
+    プライバシーポリシー
+  </div>
+
+  <!-- ========== プライバシーポリシー本文 ========== -->
+  <section class="privacy-sec">
+    <div class="privacy-inner">
+
+      <h2 class="privacy-main-heading">お客様個人情報の取扱いについて</h2>
+
+      <!-- 1 -->
+      <div class="privacy-block">
+        <h3 class="privacy-section-heading">1. 個人情報の取扱いについて</h3>
+        <div class="privacy-body">
+          <p>関西不動産情報センター(KRIC)では、お客様からのご質問やご要望に対応するために、ご面倒でもお名前・電話番号・E-mailアドレス等の個人情報を送信していただいております。送信していただきました個人情報は、以下の目的においてのみ使用し、KRICと無関係な第三者に開示することはありません。また、お客様の承諾なしにダイレクトメール等をお送りすることもありません。</p>
+          <p class="privacy-item">（1）お客様よりご質問やご要望いただきました内容に対応するためにKRIC会員に必要な範囲内で開示、提供する場合</p>
+          <p class="privacy-item">（2）KRIC、KRIC会員、お客様と第三者との紛争により、KRIC、KRIC会員に損害が生じる可能性がある場合</p>
+          <p class="privacy-item">（3）法令に基づき裁判所、その他司法機関または行政機関からお客様に関係する情報開示を要求された場合</p>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="privacy-block">
+        <h3 class="privacy-section-heading">2. サーバーへの不正アクセスについて</h3>
+        <div class="privacy-body">
+          <p>当サイトではサーバーへの不正アクセスを防ぐために万全を尽くし、最善の処置をとっています。</p>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="privacy-block">
+        <h3 class="privacy-section-heading">3. お問合せ</h3>
+        <div class="privacy-body">
+          <p>個人情報の取扱いに関してのご意見やご質問等ございましたら、下記連絡先までお問合せください。</p>
+          <div class="privacy-contact-box">
+            <p class="privacy-contact-label">【お問合せ先】</p>
+            <p>KRIC事務局</p>
+            <p>TEL：06-6292-7791（代）</p>
+            <p>E-mail：<a href="mailto:info@kric.co.jp">info@kric.co.jp</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== お問い合わせ ========== -->
+  <section class="contact-cta" id="contact">
+    <div class="contact-cta-photo">
+      <img src="<?php echo get_template_directory_uri(); ?>/images/ft_contact.png" alt="お問い合わせ">
+      <div class="contact-cta-photo-text">
+        <div class="contact-photo-inner">
+          <p class="contact-photo-label">JOIN</p>
+          <p class="contact-photo-title">入会を<br>お考えの方は<br>こちら</p>
+        </div>
+        <a href="<?php echo esc_url(home_url('/')); ?>nyukai/" class="contact-photo-link">入会案内ページへ <span class="contact-photo-arrow">›</span></a>
+      </div>
+    </div>
+    <div class="contact-cta-inner">
+      <p class="contact-label">CONTACT</p>
+      <h2 class="contact-title">お問い合わせ</h2>
+      <p class="contact-subtitle">KRICについての質問や相談は<br class="contact-subtitle-br">お気軽にお問い合わせください。</p>
+      <hr class="contact-divider">
+      <div class="contact-cols">
+        <div class="contact-col">
+          <p class="contact-col-label">[電話の場合]</p>
+          <p class="contact-col-note">・受付時間／10:00〜16:00</p>
+          <p class="contact-tel"><span class="contact-tel-label">TEL.</span> <a href="tel:0662927791">06-6292-7791</a></p>
+        </div>
+        <div class="contact-col">
+          <p class="contact-col-label">[Webの場合]</p>
+          <p class="contact-col-note">・24時間受付中</p>
+          <a href="<?php echo esc_url(home_url('/contact.html')); ?>" class="btn-contact-form"><span class="btn-text">お問合せフォーム</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<?php get_footer(); ?>

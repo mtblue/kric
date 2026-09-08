@@ -1,0 +1,619 @@
+  <?php
+    $is_add     = isset($tpl_form['addid']) && $tpl_form['addid'] != '';
+    $is_edit    = !$is_add && isset($tpl_form['id']) && $tpl_form['id'] != '';
+    $is_new     = !$is_add && !$is_edit;
+    $is_confirm = isset($tpl_form['cmd']) && $tpl_form['cmd'] == 'confirm';
+
+    $zo      = isset($tpl_form['zo']) ? (int)$tpl_form['zo'] : 1;
+    $zo_labels = array(1 => '売りたい', 2 => '買いたい', 3 => '貸したい', 4 => '借りたい');
+    $zo_paths  = array(1 => 'bd',       2 => 'bd02',     3 => 'bd03',     4 => 'bd04');
+    $tab_label = isset($zo_labels[$zo]) ? $zo_labels[$zo] : '売りたい';
+    $tab_path  = isset($zo_paths[$zo])  ? $zo_paths[$zo]  : 'bd';
+    $shubetsu_options = array('土地', '一戸建', 'マンション', '住宅以外の建物（全部）', '住宅以外の建物（一部）', 'その他');
+
+    if ($is_add) {
+      $page_label = $is_confirm ? '追記確認' : '追記登録';
+    } elseif ($is_edit) {
+      $page_label = '編集';
+    } else {
+      $page_label = $is_confirm ? '確認' : '新規登録';
+    }
+  ?>
+
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc">
+          <a href="/">関西不動産情報センターTOP</a> &gt;
+          <a href="/iis/index">会員専用ページ</a> &gt;
+          <a href="/<?php echo APP_NAME; ?>/<?php echo $tab_path; ?>">ビジネスダイレクト</a> &gt;
+          <?php echo $page_label; ?>
+        </p>
+
+        <div class="mem-sec-head bd-sec-head">
+          <h2 class="mem-sec-title">─ ビジネスダイレクト ─</h2>
+        </div>
+
+        <form action="<?php echo HTTP_TO_SCRIPT_NAME; ?>" method="post" enctype="multipart/form-data">
+          <input name="id"    type="hidden" value="<?php echo h(isset($tpl_form['id'])    ? $tpl_form['id']    : ''); ?>">
+          <input name="zo"    type="hidden" value="<?php echo h($zo); ?>">
+          <input name="chkno" type="hidden" value="<?php echo h(isset($tpl_form['chkno']) ? $tpl_form['chkno'] : ''); ?>">
+
+<?php /* ================================================================
+       追記モード
+       ================================================================ */ ?>
+<?php if ($is_add): ?>
+          <input name="member_id"  type="hidden" value="<?php echo h(isset($tpl_disp['sessionInfo']['member_id'])                ? $tpl_disp['sessionInfo']['member_id']                : ''); ?>">
+          <input name="zokusei"    type="hidden" value="<?php echo h(isset($tpl_disp['opener_info']['zokusei'])                  ? $tpl_disp['opener_info']['zokusei']                  : ''); ?>">
+          <input name="shubetsu"   type="hidden" value="<?php echo h(isset($tpl_disp['opener_info']['shubetsu'])                 ? $tpl_disp['opener_info']['shubetsu']                 : ''); ?>">
+          <input name="syozaichi"  type="hidden" value="<?php echo h(isset($tpl_disp['opener_info']['syozaichi'])                ? $tpl_disp['opener_info']['syozaichi']                : ''); ?>">
+          <input name="kiji_flg"   type="hidden" value="1">
+          <input name="opener_id"  type="hidden" value="<?php echo h(isset($tpl_disp['opener_info']['business_direct_id'])       ? $tpl_disp['opener_info']['business_direct_id']       : ''); ?>">
+          <input name="addid"      type="hidden" value="<?php echo h(isset($tpl_form['addid']) ? $tpl_form['addid'] : ''); ?>">
+          <input name="title"      type="hidden" value="追記">
+
+          <div class="bd-reg">
+            <h3 class="bd-reg-title"><?php echo $page_label; ?></h3>
+            <hr class="bd-reg-divider">
+
+<?php if (!empty($tpl_errDoc)): ?>
+            <div class="bd-reg-errors"><?php foreach ($tpl_errDoc as $err) { echo h($err) . '<br>'; } ?></div>
+<?php endif; ?>
+
+<?php if (!$is_confirm): ?>
+            <div class="bd-reg-form">
+              <div class="bd-reg-table">
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•元記事タイトル</span>
+                  <span class="bd-reg-input"><?php echo h(isset($tpl_disp['opener_info']['title']) ? $tpl_disp['opener_info']['title'] : ''); ?></span>
+                </div>
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•追記内容</span>
+                  <div class="bd-reg-input">
+                    <textarea name="doc" class="bd-reg-textarea"><?php echo isset($tpl_disp['doc']) ? h($tpl_disp['doc']) : ''; ?></textarea>
+                  </div>
+                </div>
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•添付ファイル</span>
+                  <div class="bd-reg-input">
+                    <input type="file" name="file1" id="file1" class="reg-file-input">
+                    <input type="file" name="file2" id="file2" class="reg-file-input">
+                    <input type="file" name="file3" id="file3" class="reg-file-input">
+                    <?php for ($fi = 1; $fi <= 3; $fi++): if (empty($tpl_form['file'.$fi])) continue; ?>
+                    <input type="hidden" name="file<?php echo $fi; ?>" id="file<?php echo $fi; ?>-keep" value="<?php echo h($tpl_form['file'.$fi]); ?>">
+                    <?php endfor; ?>
+                    <button type="button" class="reg-file-btn" id="bd-file-trigger">ファイルを選択</button>
+                    <p class="bd-reg-hint">※添付可能なファイル形式:jpg・png・pdf・xls・xlsx・doc・docx</p>
+                    <div id="bd-file-list">
+                    <?php for ($fi = 1; $fi <= 3; $fi++): if (empty($tpl_form['file'.$fi])) continue; ?>
+                    <?php $bf_ext = strtolower(pathinfo($tpl_form['file'.$fi], PATHINFO_EXTENSION)); ?>
+                    <div class="bd-file-item" id="bd-file-item-<?php echo $fi; ?>">
+                      <?php if (in_array($bf_ext, ['jpg','jpeg','jpe','png','gif'])): ?>
+                      <div class="bd-reg-thumb"><img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_form['file'.$fi]); ?>" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                      <p class="bd-reg-filename"><?php echo h($tpl_form['file'.$fi]); ?></p>
+                      <?php else: ?>
+                      <?php
+                        if ($bf_ext === 'pdf')                        { $bf_icon = 'icon_pdf.png'; }
+                        elseif (in_array($bf_ext, ['xls','xlsx']))    { $bf_icon = 'icon_excel.png'; }
+                        elseif (in_array($bf_ext, ['doc','docx']))    { $bf_icon = 'icon_word.png'; }
+                        else                                          { $bf_icon = ''; }
+                      ?>
+                      <div class="bd-reg-pdf-row">
+                        <?php if ($bf_icon): ?><img src="/wp-content/themes/default/images/<?php echo $bf_icon; ?>" alt="" class="bd-detail-pdf-icon"><?php endif; ?>
+                        <span class="bd-reg-pdf-name"><?php echo h($tpl_form['file'.$fi]); ?></span>
+                      </div>
+                      <?php endif; ?>
+                      <button type="button" class="reg-delete-btn" onclick="bdRemoveFile(<?php echo $fi; ?>)">削除</button>
+                    </div>
+                    <?php endfor; ?>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bd-reg-submit-row">
+                <button type="submit" name="cmd" value="confirm" class="bd-reg-submit-btn"><span class="btn-text">確認</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></button>
+              </div>
+            </div>
+<?php else: ?>
+            <input name="cmd"  type="hidden" value="registration">
+            <input name="doc" type="hidden" value="<?php echo h(isset($tpl_disp['doc']) ? $tpl_disp['doc'] : ''); ?>">
+            <?php for ($i = 1; $i <= 3; $i++): ?>
+            <input name="file<?php echo $i; ?>" type="hidden" value="<?php echo h(isset($tpl_disp['file'.$i]) ? $tpl_disp['file'.$i] : ''); ?>">
+            <?php endfor; ?>
+            <div class="bd-detail">
+              <div class="bd-detail-table">
+                <div class="bd-detail-row">
+                  <span class="bd-detail-label">•追記内容</span>
+                  <span class="bd-detail-value"><?php echo isset($tpl_disp['doc']) ? nl2br(h($tpl_disp['doc'])) : ''; ?></span>
+                </div>
+                <?php for ($i = 1; $i <= 3; $i++): if (empty($tpl_disp['file'.$i])) continue; ?>
+                <?php $cf_ext = strtolower(pathinfo($tpl_disp['file'.$i], PATHINFO_EXTENSION)); ?>
+                <div class="bd-detail-row">
+                  <span class="bd-detail-label">•添付ファイル<?php echo $i; ?></span>
+                  <div class="bd-detail-value">
+                    <div class="bd-file-item">
+                      <?php if (in_array($cf_ext, ['jpg','jpeg','jpe','png','gif'])): ?>
+                      <div class="bd-reg-thumb"><img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_disp['file'.$i]); ?>" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                      <p class="bd-reg-filename"><?php echo h($tpl_disp['file'.$i]); ?></p>
+                      <?php else: ?>
+                      <?php
+                        if ($cf_ext === 'pdf')                        { $cf_icon = 'icon_pdf.png'; }
+                        elseif (in_array($cf_ext, ['xls','xlsx']))    { $cf_icon = 'icon_excel.png'; }
+                        elseif (in_array($cf_ext, ['doc','docx']))    { $cf_icon = 'icon_word.png'; }
+                        else                                          { $cf_icon = ''; }
+                      ?>
+                      <div class="bd-reg-pdf-row">
+                        <?php if ($cf_icon): ?><img src="/wp-content/themes/default/images/<?php echo $cf_icon; ?>" alt="" class="bd-detail-pdf-icon"><?php endif; ?>
+                        <span class="bd-reg-pdf-name"><?php echo h($tpl_disp['file'.$i]); ?></span>
+                      </div>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                </div>
+                <?php endfor; ?>
+              </div>
+              <div class="bd-reg-confirm-row">
+                <button type="submit" id="btn-reg" class="bd-reg-submit-btn"><span class="btn-text">登録</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></button>
+                <button type="submit" name="button_back" value="戻る" class="bd-reg-back-btn"><span class="btn-text">戻る</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></button>
+              </div>
+              <p class="bd-reg-note">登録完了後、登録後の一覧表が表示されます。<br>登録ボタンを押した後、登録処理に時間がかかる場合がございますので、そのままお待ちください。</p>
+            </div>
+<?php endif; ?>
+          </div>
+
+<?php /* ================================================================
+       新規登録モード
+       ================================================================ */ ?>
+<?php elseif ($is_new): ?>
+          <input name="member_id" type="hidden" value="<?php echo h(isset($tpl_disp['sessionInfo']['member_id']) ? $tpl_disp['sessionInfo']['member_id'] : ''); ?>">
+          <input name="kiji_flg"  type="hidden" value="0">
+          <input name="opener_id" type="hidden" value="">
+
+<?php if (!$is_confirm): ?>
+          <div class="bd-reg">
+            <h3 class="bd-reg-title">新規登録</h3>
+            <hr class="bd-reg-divider">
+
+<?php if (!empty($tpl_errDoc)): ?>
+            <div class="bd-reg-errors"><?php foreach ($tpl_errDoc as $err) { echo h($err) . '<br>'; } ?></div>
+<?php endif; ?>
+
+            <div class="bd-reg-form">
+              <div class="bd-reg-table">
+
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•投稿タイトル</span>
+                  <div class="bd-reg-input">
+                    <input type="text" name="title" class="bd-reg-text" value="<?php echo h(isset($tpl_disp['title']) ? $tpl_disp['title'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•売買賃借</span>
+                  <div class="bd-reg-input">
+                    <select name="zokusei" class="bd-reg-select">
+                      <option value="">選択してください</option>
+                      <?php foreach ($zo_labels as $v => $l): ?>
+                      <option value="<?php echo $v; ?>"<?php echo (isset($tpl_disp['zokusei']) && (int)$tpl_disp['zokusei'] === $v) ? ' selected' : ''; ?>><?php echo h($l); ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•種別</span>
+                  <div class="bd-reg-input">
+                    <select name="shubetsu" class="bd-reg-select">
+                      <option value="">選択してください</option>
+                      <?php foreach ($shubetsu_options as $opt): ?>
+                      <option value="<?php echo h($opt); ?>"<?php echo (isset($tpl_disp['shubetsu']) && $tpl_disp['shubetsu'] === $opt) ? ' selected' : ''; ?>><?php echo h($opt); ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•所在地</span>
+                  <div class="bd-reg-input">
+                    <input type="text" name="syozaichi" class="bd-reg-text" value="<?php echo h(isset($tpl_disp['syozaichi']) ? $tpl_disp['syozaichi'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•備考</span>
+                  <div class="bd-reg-input">
+                    <textarea name="doc" class="bd-reg-textarea"><?php echo isset($tpl_disp['doc']) ? h($tpl_disp['doc']) : ''; ?></textarea>
+                  </div>
+                </div>
+
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•動画URL</span>
+                  <div class="bd-reg-input">
+                    <input type="url" name="video_url" class="bd-reg-text" value="<?php echo h(isset($tpl_disp['video_url']) ? $tpl_disp['video_url'] : ''); ?>">
+                    <p class="bd-reg-hint">※YouTube動画のみ掲載可能</p>
+                  </div>
+                </div>
+
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•添付ファイル</span>
+                  <div class="bd-reg-input">
+                    <input type="file" name="file1" id="file1" class="reg-file-input">
+                    <input type="file" name="file2" id="file2" class="reg-file-input">
+                    <input type="file" name="file3" id="file3" class="reg-file-input">
+                    <?php for ($fi = 1; $fi <= 3; $fi++): if (empty($tpl_form['file'.$fi])) continue; ?>
+                    <input type="hidden" name="file<?php echo $fi; ?>" id="file<?php echo $fi; ?>-keep" value="<?php echo h($tpl_form['file'.$fi]); ?>">
+                    <?php endfor; ?>
+                    <button type="button" class="reg-file-btn" id="bd-file-trigger">ファイルを選択</button>
+                    <p class="bd-reg-hint">※添付可能なファイル形式:jpg・png・pdf・xls・xlsx・doc・docx</p>
+                    <div id="bd-file-list">
+                    <?php for ($fi = 1; $fi <= 3; $fi++): if (empty($tpl_form['file'.$fi])) continue; ?>
+                    <?php $bf_ext = strtolower(pathinfo($tpl_form['file'.$fi], PATHINFO_EXTENSION)); ?>
+                    <div class="bd-file-item" id="bd-file-item-<?php echo $fi; ?>">
+                      <?php if (in_array($bf_ext, ['jpg','jpeg','jpe','png','gif'])): ?>
+                      <div class="bd-reg-thumb"><img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_form['file'.$fi]); ?>" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                      <p class="bd-reg-filename"><?php echo h($tpl_form['file'.$fi]); ?></p>
+                      <?php else: ?>
+                      <?php
+                        if ($bf_ext === 'pdf')                        { $bf_icon = 'icon_pdf.png'; }
+                        elseif (in_array($bf_ext, ['xls','xlsx']))    { $bf_icon = 'icon_excel.png'; }
+                        elseif (in_array($bf_ext, ['doc','docx']))    { $bf_icon = 'icon_word.png'; }
+                        else                                          { $bf_icon = ''; }
+                      ?>
+                      <div class="bd-reg-pdf-row">
+                        <?php if ($bf_icon): ?><img src="/wp-content/themes/default/images/<?php echo $bf_icon; ?>" alt="" class="bd-detail-pdf-icon"><?php endif; ?>
+                        <span class="bd-reg-pdf-name"><?php echo h($tpl_form['file'.$fi]); ?></span>
+                      </div>
+                      <?php endif; ?>
+                      <button type="button" class="reg-delete-btn" onclick="bdRemoveFile(<?php echo $fi; ?>)">削除</button>
+                    </div>
+                    <?php endfor; ?>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•登録者情報(会社)</span>
+                  <div class="bd-reg-input">
+                    <?php $def_company = isset($tpl_disp['poster_company']) && $tpl_disp['poster_company'] != '' ? $tpl_disp['poster_company'] : (isset($tpl_disp['sessionInfo']['company_name']) ? $tpl_disp['sessionInfo']['company_name'] : ''); ?>
+                    <input type="text" name="poster_company" class="bd-reg-text" value="<?php echo h($def_company); ?>">
+                  </div>
+                </div>
+
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•登録者情報(氏名)</span>
+                  <div class="bd-reg-input">
+                    <?php $def_name = isset($tpl_disp['poster_name']) && $tpl_disp['poster_name'] != '' ? $tpl_disp['poster_name'] : (isset($tpl_disp['sessionInfo']['name']) ? $tpl_disp['sessionInfo']['name'] : ''); ?>
+                    <input type="text" name="poster_name" class="bd-reg-text" value="<?php echo h($def_name); ?>">
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="bd-reg-submit-row">
+                <button type="submit" name="cmd" value="confirm" class="bd-reg-submit-btn"><span class="btn-text">確認</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></button>
+              </div>
+              <p class="bd-reg-note">登録完了後、登録後の一覧表が表示されます。<br>登録ボタンを押した後、登録処理に時間がかかる場合がございますので、そのままお待ちください。</p>
+            </div>
+          </div>
+
+<?php else: /* 確認画面 */ ?>
+          <input name="cmd"            type="hidden" value="registration">
+          <input name="zokusei"        type="hidden" value="<?php echo h(isset($tpl_disp['zokusei'])        ? $tpl_disp['zokusei']        : $zo); ?>">
+          <input name="title"          type="hidden" value="<?php echo h(isset($tpl_disp['title'])          ? $tpl_disp['title']          : ''); ?>">
+          <input name="doc"            type="hidden" value="<?php echo h(isset($tpl_disp['doc'])            ? $tpl_disp['doc']            : ''); ?>">
+          <input name="shubetsu"       type="hidden" value="<?php echo h(isset($tpl_disp['shubetsu'])       ? $tpl_disp['shubetsu']       : ''); ?>">
+          <input name="syozaichi"      type="hidden" value="<?php echo h(isset($tpl_disp['syozaichi'])      ? $tpl_disp['syozaichi']      : ''); ?>">
+          <input name="video_url"      type="hidden" value="<?php echo h(isset($tpl_disp['video_url'])      ? $tpl_disp['video_url']      : ''); ?>">
+          <input name="poster_company" type="hidden" value="<?php echo h(isset($tpl_disp['poster_company']) ? $tpl_disp['poster_company'] : ''); ?>">
+          <input name="poster_name"    type="hidden" value="<?php echo h(isset($tpl_disp['poster_name'])    ? $tpl_disp['poster_name']    : ''); ?>">
+          <?php for ($i = 1; $i <= 3; $i++): ?>
+          <input name="file<?php echo $i; ?>" type="hidden" value="<?php echo h(isset($tpl_disp['file'.$i]) ? $tpl_disp['file'.$i] : ''); ?>">
+          <?php endfor; ?>
+
+          <div class="bd-detail">
+            <h3 class="bd-detail-title"><?php echo h(isset($tpl_disp['title']) ? $tpl_disp['title'] : ''); ?></h3>
+            <hr class="bd-detail-divider">
+            <div class="bd-detail-table">
+
+              <div class="bd-detail-row">
+                <span class="bd-detail-label">•売買賃借</span>
+                <span class="bd-detail-value"><?php $z = isset($tpl_disp['zokusei']) ? (int)$tpl_disp['zokusei'] : $zo; echo h(isset($zo_labels[$z]) ? $zo_labels[$z] : ''); ?></span>
+              </div>
+
+              <div class="bd-detail-row">
+                <span class="bd-detail-label">•種別</span>
+                <span class="bd-detail-value"><?php echo h(isset($tpl_disp['shubetsu']) ? $tpl_disp['shubetsu'] : ''); ?></span>
+              </div>
+
+              <div class="bd-detail-row">
+                <span class="bd-detail-label">•所在地</span>
+                <span class="bd-detail-value"><?php echo h(isset($tpl_disp['syozaichi']) ? $tpl_disp['syozaichi'] : ''); ?></span>
+              </div>
+
+<?php if (!empty($tpl_disp['doc'])): ?>
+              <div class="bd-detail-row">
+                <span class="bd-detail-label">•備考</span>
+                <span class="bd-detail-value"><?php echo nl2br(h(isset($tpl_disp['doc']) ? $tpl_disp['doc'] : '')); ?></span>
+              </div>
+<?php endif; ?>
+
+<?php if (!empty($tpl_disp['video_url'])): ?>
+<?php
+  $yt_id = '';
+  if (preg_match('/(?:youtube\.com\/watch\?.*v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([a-zA-Z0-9_\-]{11})/', $tpl_disp['video_url'], $yt_m)) {
+    $yt_id = $yt_m[1];
+  }
+?>
+              <div class="bd-detail-row">
+                <span class="bd-detail-label">•動画URL</span>
+                <div class="bd-detail-value">
+                  <?php if ($yt_id): ?>
+                  <a href="<?php echo h($tpl_disp['video_url']); ?>" target="_blank" rel="noopener" class="bd-yt-link">
+                    <img src="https://img.youtube.com/vi/<?php echo h($yt_id); ?>/hqdefault.jpg"
+                         alt="動画サムネイル" class="bd-yt-thumb"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+                    <span class="bd-yt-error" style="display:none;">動画が見つかりません</span>
+                  </a>
+                  <?php else: ?>
+                  <a href="<?php echo h($tpl_disp['video_url']); ?>" target="_blank" rel="noopener"><?php echo h($tpl_disp['video_url']); ?></a>
+                  <?php endif; ?>
+                </div>
+              </div>
+<?php endif; ?>
+
+              <?php $has_file = false; for ($i=1;$i<=3;$i++) { if (!empty($tpl_disp['file'.$i])) { $has_file=true; break; } } ?>
+              <?php if ($has_file): ?>
+              <div class="bd-detail-row">
+                <span class="bd-detail-label">•添付ファイル</span>
+                <div class="bd-detail-value">
+                  <?php for ($i = 1; $i <= 3; $i++): if (empty($tpl_disp['file'.$i])) continue; ?>
+                  <?php $cf_ext = strtolower(pathinfo($tpl_disp['file'.$i], PATHINFO_EXTENSION)); ?>
+                  <div class="bd-file-item">
+                    <?php if (in_array($cf_ext, ['jpg','jpeg','jpe','png','gif'])): ?>
+                    <div class="bd-reg-thumb"><img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_disp['file'.$i]); ?>" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <p class="bd-reg-filename"><?php echo h($tpl_disp['file'.$i]); ?></p>
+                    <?php else: ?>
+                    <?php
+                      if ($cf_ext === 'pdf')                        { $cf_icon = 'icon_pdf.png'; }
+                      elseif (in_array($cf_ext, ['xls','xlsx']))    { $cf_icon = 'icon_excel.png'; }
+                      elseif (in_array($cf_ext, ['doc','docx']))    { $cf_icon = 'icon_word.png'; }
+                      else                                          { $cf_icon = ''; }
+                    ?>
+                    <div class="bd-reg-pdf-row">
+                      <?php if ($cf_icon): ?><img src="/wp-content/themes/default/images/<?php echo $cf_icon; ?>" alt="" class="bd-detail-pdf-icon"><?php endif; ?>
+                      <span class="bd-reg-pdf-name"><?php echo h($tpl_disp['file'.$i]); ?></span>
+                    </div>
+                    <?php endif; ?>
+                  </div>
+                  <?php endfor; ?>
+                </div>
+              </div>
+              <?php endif; ?>
+
+            </div>
+
+            <div class="bd-detail-author">
+              <p class="bd-detail-company"><?php echo h(isset($tpl_disp['poster_company']) && $tpl_disp['poster_company'] != '' ? $tpl_disp['poster_company'] : (isset($tpl_disp['sessionInfo']['company_name']) ? $tpl_disp['sessionInfo']['company_name'] : '')); ?></p>
+              <p class="bd-detail-person"><?php echo h(isset($tpl_disp['poster_name'])    && $tpl_disp['poster_name']    != '' ? $tpl_disp['poster_name']    : (isset($tpl_disp['sessionInfo']['name'])         ? $tpl_disp['sessionInfo']['name']         : '')); ?></p>
+            </div>
+
+            <div class="bd-reg-confirm-row">
+              <button type="submit" id="btn-reg" class="bd-reg-submit-btn"><span class="btn-text">登録</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></button>
+              <button type="submit" name="button_back" value="戻る" class="bd-reg-back-btn"><span class="btn-text">戻る</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></button>
+            </div>
+            <p class="bd-reg-note">登録完了後、登録後の一覧表が表示されます。<br>登録ボタンを押した後、登録処理に時間がかかる場合がございますので、そのままお待ちください。</p>
+          </div>
+<?php endif; ?>
+
+<?php /* ================================================================
+       編集モード
+       ================================================================ */ ?>
+<?php else: ?>
+          <input name="member_id"  type="hidden" value="<?php echo h(isset($tpl_disp['org_info']['member_id'])  ? $tpl_disp['org_info']['member_id']  : ''); ?>">
+          <input name="zokusei"    type="hidden" value="<?php echo h(isset($tpl_disp['org_info']['zokusei'])    ? $tpl_disp['org_info']['zokusei']    : ''); ?>">
+          <input name="kiji_flg"   type="hidden" value="<?php echo h(isset($tpl_disp['org_info']['kiji_flg'])   ? $tpl_disp['org_info']['kiji_flg']   : ''); ?>">
+          <input name="opener_id"  type="hidden" value="<?php echo h(isset($tpl_disp['org_info']['opener_id'])  ? $tpl_disp['org_info']['opener_id']  : ''); ?>">
+          <input name="chkno"      type="hidden" value="<?php echo h(isset($tpl_form['chkno']) ? $tpl_form['chkno'] : ''); ?>">
+
+          <div class="bd-reg">
+            <h3 class="bd-reg-title">編集</h3>
+            <hr class="bd-reg-divider">
+
+<?php if (!empty($tpl_errDoc)): ?>
+            <div class="bd-reg-errors"><?php foreach ($tpl_errDoc as $err) { echo h($err) . '<br>'; } ?></div>
+<?php endif; ?>
+
+            <div class="bd-reg-form">
+              <div class="bd-reg-table">
+
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•投稿タイトル</span>
+                  <div class="bd-reg-input">
+                    <input type="text" name="title" class="bd-reg-text" value="<?php echo h(isset($tpl_disp['title']) ? $tpl_disp['title'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•種別</span>
+                  <div class="bd-reg-input">
+                    <select name="shubetsu" class="bd-reg-select">
+                      <option value="">選択してください</option>
+                      <?php foreach ($shubetsu_options as $opt): ?>
+                      <option value="<?php echo h($opt); ?>"<?php echo (isset($tpl_disp['shubetsu']) && $tpl_disp['shubetsu'] === $opt) ? ' selected' : ''; ?>><?php echo h($opt); ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•所在地</span>
+                  <div class="bd-reg-input">
+                    <input type="text" name="syozaichi" class="bd-reg-text" value="<?php echo h(isset($tpl_disp['syozaichi']) ? $tpl_disp['syozaichi'] : ''); ?>">
+                  </div>
+                </div>
+
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•備考</span>
+                  <div class="bd-reg-input">
+                    <textarea name="doc" class="bd-reg-textarea"><?php echo isset($tpl_disp['doc']) ? h($tpl_disp['doc']) : ''; ?></textarea>
+                  </div>
+                </div>
+
+                <?php for ($i = 1; $i <= 3; $i++): ?>
+                <div class="bd-reg-row">
+                  <span class="bd-reg-label">•添付ファイル<?php echo $i; ?></span>
+                  <div class="bd-reg-input">
+                    <label class="reg-file-btn" for="file<?php echo $i; ?>">ファイルを選択</label>
+                    <input type="file" name="file<?php echo $i; ?>" id="file<?php echo $i; ?>" class="reg-file-input">
+                    <span class="reg-file-name" id="bd-filename<?php echo $i; ?>"></span>
+                    <?php if (!empty($tpl_disp['org_info']['file'.$i])): ?>
+                    <p class="reg-file-current">現在: <a href="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_disp['org_info']['file'.$i]); ?>" target="_blank"><?php echo h($tpl_disp['org_info']['file'.$i]); ?></a></p>
+                    <label><input type="checkbox" name="file<?php echo $i; ?>_delete" value="checked"> 削除</label>
+                    <?php endif; ?>
+                    <p class="bd-reg-hint">※添付可能なファイル形式:jpg・png・pdf・xls・xlsx・doc・docx</p>
+                  </div>
+                </div>
+                <?php endfor; ?>
+
+              </div>
+
+              <div class="bd-reg-submit-row">
+                <button type="submit" name="cmd" value="registration" class="bd-reg-submit-btn"><span class="btn-text">登録</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></button>
+              </div>
+            </div>
+          </div>
+<?php endif; ?>
+
+        </form>
+
+        <div style="text-align:right; margin-top:12px;">
+          <a href="<?php echo h(isset($tpl_disp['back_url']) ? $tpl_disp['back_url'] : '/' . APP_NAME . '/' . $tab_path); ?>" class="bd-detail-back">一覧へ戻る &gt;</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+  (function() {
+    var slots = [
+      { n: 1, filled: <?php echo !empty($tpl_form['file1']) ? 'true' : 'false'; ?> },
+      { n: 2, filled: <?php echo !empty($tpl_form['file2']) ? 'true' : 'false'; ?> },
+      { n: 3, filled: <?php echo !empty($tpl_form['file3']) ? 'true' : 'false'; ?> }
+    ];
+
+    var trigger = document.getElementById('bd-file-trigger');
+    var list    = document.getElementById('bd-file-list');
+
+    if (trigger) {
+      trigger.addEventListener('click', function() {
+        for (var i = 0; i < slots.length; i++) {
+          if (!slots[i].filled) {
+            document.getElementById('file' + slots[i].n).click();
+            break;
+          }
+        }
+      });
+    }
+
+    var imageExts = ['jpg', 'jpeg', 'jpe', 'png', 'gif'];
+
+    for (var i = 0; i < slots.length; i++) {
+      (function(slot) {
+        var inp = document.getElementById('file' + slot.n);
+        if (!inp) return;
+        inp.addEventListener('change', function() {
+          if (!this.files || !this.files[0]) return;
+          var file = this.files[0];
+          var name = file.name;
+          var ext  = name.split('.').pop().toLowerCase();
+          var isImage = imageExts.indexOf(ext) !== -1;
+          slot.filled = true;
+
+          if (list) {
+            var item = document.createElement('div');
+            item.className = 'bd-file-item';
+            item.id = 'bd-file-item-' + slot.n;
+
+            var delBtn = document.createElement('button');
+            delBtn.type = 'button';
+            delBtn.className = 'reg-delete-btn';
+            delBtn.textContent = '削除';
+            (function(s) {
+              delBtn.addEventListener('click', function() { bdRemoveFile(s.n); });
+            })(slot);
+
+            if (isImage) {
+              var thumb = document.createElement('div');
+              thumb.className = 'bd-reg-thumb';
+              var img = document.createElement('img');
+              img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+              var reader = new FileReader();
+              reader.onload = function(e) { img.src = e.target.result; };
+              reader.readAsDataURL(file);
+              thumb.appendChild(img);
+              var fnP = document.createElement('p');
+              fnP.className = 'bd-reg-filename';
+              fnP.textContent = name;
+              item.appendChild(thumb);
+              item.appendChild(fnP);
+            } else {
+              var pdfRow = document.createElement('div');
+              pdfRow.className = 'bd-reg-pdf-row';
+              var fileExt = name.split('.').pop().toLowerCase();
+              var iconFile = fileExt === 'pdf' ? 'icon_pdf.png'
+                           : (fileExt === 'xls' || fileExt === 'xlsx') ? 'icon_excel.png'
+                           : (fileExt === 'doc' || fileExt === 'docx') ? 'icon_word.png'
+                           : '';
+              if (iconFile) {
+                var pdfIcon = document.createElement('img');
+                pdfIcon.src = '/wp-content/themes/default/images/' + iconFile;
+                pdfIcon.alt = '';
+                pdfIcon.className = 'bd-detail-pdf-icon';
+                pdfRow.appendChild(pdfIcon);
+              }
+              var pdfName = document.createElement('span');
+              pdfName.className = 'bd-reg-pdf-name';
+              pdfName.textContent = name;
+              pdfRow.appendChild(pdfName);
+              item.appendChild(pdfRow);
+            }
+
+            item.appendChild(delBtn);
+            list.appendChild(item);
+          }
+          updateTrigger();
+        });
+      })(slots[i]);
+    }
+
+    window.bdRemoveFile = function(n) {
+      var inp = document.getElementById('file' + n);
+      if (inp) inp.value = '';
+      var keepInp = document.getElementById('file' + n + '-keep');
+      if (keepInp) keepInp.value = '';
+      for (var i = 0; i < slots.length; i++) {
+        if (slots[i].n === n) { slots[i].filled = false; break; }
+      }
+      var item = document.getElementById('bd-file-item-' + n);
+      if (item) item.parentNode.removeChild(item);
+      updateTrigger();
+    };
+
+    function updateTrigger() {
+      if (!trigger) return;
+      var allFilled = slots.every(function(s) { return s.filled; });
+      trigger.style.display = allFilled ? 'none' : '';
+    }
+
+    var btnReg = document.getElementById('btn-reg');
+    if (btnReg) {
+      btnReg.addEventListener('click', function() {
+        this.disabled = true;
+        this.closest('form').submit();
+      });
+    }
+  })();
+  </script>

@@ -1,0 +1,105 @@
+<?php
+/*
+ * Template Name: 入会案内
+ */
+?>
+<?php get_header(); ?>
+
+  <!-- ========== ページKV ========== -->
+  <section class="page-kv--bg">
+    <div class="page-kv-placeholder" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/fm_bg.png')"></div>
+    <div class="page-kv-overlay">
+      <h1 class="page-kv-title">入会案内</h1>
+    </div>
+  </section>
+
+  <!-- パンくず -->
+  <div class="page-breadcrumb">
+    <a href="<?php echo esc_url(home_url('/')); ?>">関西不動産情報センター TOP</a>
+    <span class="page-breadcrumb-sep">&gt;</span>
+    入会案内
+  </div>
+
+  <!-- ========== 入会審査の流れ ========== -->
+  <section class="nyukai-sec nyukai-sec--alt" id="flow">
+    <div class="nyukai-inner">
+      <div class="nyukai-2col">
+        <div class="nyukai-col-text">
+          <h2 class="nyukai-sec-heading">入会審査の流れ</h2>
+          <p class="nyukai-p">所属する地区において承認を得るための審査をはじめ、入会審査委員会の面接による部会審査の承認後、運営委員会及び理事長の承認を得て会員資格が与えられます。</p>
+        </div>
+        <div class="nyukai-col-side" style="height:auto; background:none;">
+          <div class="nyukai-flow">
+            <div class="nyukai-flow-pre">
+              <div class="nyukai-flow-pre-item">会員2名以上の推薦</div>
+              <div class="nyukai-flow-pre-item">業歴5年以上の経験年数</div>
+            </div>
+            <div class="nyukai-flow-step nyukai-flow-step--main">1.地区審査</div>
+            <div class="nyukai-flow-step nyukai-flow-step--main">2.部会入会審査</div>
+            <div class="nyukai-flow-step nyukai-flow-step--main">3.運営委員会入会可否決定</div>
+            <div class="nyukai-flow-step nyukai-flow-step--main">4.理事長承認</div>
+            <div class="nyukai-flow-step nyukai-flow-step--goal">KRIC入会</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 入会資格 ========== -->
+  <section class="nyukai-sec" id="qualification">
+    <div class="nyukai-inner">
+      <div class="nyukai-2col">
+        <div class="nyukai-col-text">
+          <h2 class="nyukai-sec-heading">入会資格</h2>
+          <p class="nyukai-p">関西不動産情報センター会員となっていただく基本要件です。入会申し込み手続きにつきましては、関西不動産情報センター事務局までお問合せください。</p>
+        </div>
+        <div class="nyukai-col-side" style="height:auto;">
+          <div class="nyukai-req-box">
+            <ul class="nyukai-req-list">
+              <li><span class="nyukai-req-bullet">●</span><span>宅地建物取引業者であること。</span></li>
+              <li><span class="nyukai-req-bullet">●</span><span>営業店舗を備えていること。</span></li>
+              <li><span class="nyukai-req-bullet">●</span><span>従業員2名以上を有すること。</span></li>
+              <li><span class="nyukai-req-bullet">●</span><span>経験年数5年以上を有すること。</span></li>
+              <li><span class="nyukai-req-bullet">●</span><span>現会員2名以上の紹介人を得ること。</span></li>
+              <li><span class="nyukai-req-bullet">●</span><span>関西不動産情報センターが指定する<br>設備を設置できること。</span></li>
+              <li><span class="nyukai-req-bullet">●</span><span>過去に宅地建物取引業法等の<br>違反による処分等の前歴がないこと。</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== お問い合わせ ========== -->
+  <section class="contact-cta" id="contact">
+    <div class="contact-cta-photo">
+      <img src="<?php echo get_template_directory_uri(); ?>/images/ft_contact.png" alt="お問い合わせ">
+      <div class="contact-cta-photo-text">
+        <div class="contact-photo-inner">
+          <p class="contact-photo-label">JOIN</p>
+          <p class="contact-photo-title">入会を<br>お考えの方は<br>こちら</p>
+        </div>
+        <a href="<?php echo esc_url(home_url('/nyukai.html')); ?>" class="contact-photo-link">入会案内ページへ <span class="contact-photo-arrow">›</span></a>
+      </div>
+    </div>
+    <div class="contact-cta-inner">
+      <p class="contact-label">CONTACT</p>
+      <h2 class="contact-title">お問い合わせ</h2>
+      <p class="contact-subtitle">KRICについての質問や相談は<br class="contact-subtitle-br">お気軽にお問い合わせください。</p>
+      <hr class="contact-divider">
+      <div class="contact-cols">
+        <div class="contact-col">
+          <p class="contact-col-label">[電話の場合]</p>
+          <p class="contact-col-note">・受付時間／10:00〜16:00</p>
+          <p class="contact-tel"><span class="contact-tel-label">TEL.</span> <a href="tel:0662927791">06-6292-7791</a></p>
+        </div>
+        <div class="contact-col">
+          <p class="contact-col-label">[Webの場合]</p>
+          <p class="contact-col-note">・24時間受付中</p>
+          <a href="<?php echo esc_url(home_url('/contact.html')); ?>" class="btn-contact-form"><span class="btn-text">お問合せフォーム</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<?php get_footer(); ?>

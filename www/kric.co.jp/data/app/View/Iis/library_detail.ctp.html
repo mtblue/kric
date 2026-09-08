@@ -1,0 +1,67 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <?php
+          $openerName = isset($tpl_disp['opener_name']) ? $tpl_disp['opener_name'] : '';
+          $openerId   = isset($tpl_disp['opener_id'])   ? $tpl_disp['opener_id']   : '';
+        ?>
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; <a href="/iis/index">会員専用ページ</a> &gt; <a href="/<?php echo APP_NAME; ?>/library">ライブラリ</a><?php if ($openerName != ''): ?> &gt; <a href="/<?php echo APP_NAME; ?>/library_list/cg=<?php echo h($openerId); ?>"><?php echo h($openerName); ?></a><?php endif; ?> &gt; <?php echo h($tpl_disp['title']); ?></p>
+
+        <div class="lib-head">
+          <h2 class="mem-sec-title">─ ライブラリ ─</h2>
+          <form class="lib-search" action="/<?php echo APP_NAME; ?>/library_list<?php echo $openerId != '' ? '/cg=' . h($openerId) : ''; ?>" method="get">
+            <input type="text" class="lib-search-input" placeholder="フリーワードで検索" name="q">
+            <button type="submit" class="lib-search-btn" aria-label="検索">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="#666">
+                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+
+        <div class="lib-detail">
+
+          <?php if (isset($tpl_disp['update_date']) && $tpl_disp['update_date'] != ''): ?>
+          <p class="lib-detail-date"><?php echo date('y.m.d', strtotime($tpl_disp['update_date'])); ?></p>
+          <?php endif; ?>
+
+          <h2 class="lib-detail-title"><?php echo h($tpl_disp['title']); ?></h2>
+
+          <hr class="lib-detail-divider">
+
+          <?php if (!empty($tpl_disp['doc'])): ?>
+          <div class="lib-detail-body">
+            <?php echo nl2br(strip_tags($tpl_disp['doc'], '<br><a>')); ?>
+          </div>
+          <?php endif; ?>
+
+          <?php
+            $imageExts = array('jpg', 'jpeg', 'png', 'gif');
+            for ($i = 1; $i <= 3; $i++):
+              if (empty($tpl_disp['file' . $i])) continue;
+              $fname = $tpl_disp['file' . $i];
+              $ext = strtolower(pathinfo($fname, PATHINFO_EXTENSION));
+              $isImage = in_array($ext, $imageExts);
+          ?>
+          <?php if ($isImage): ?>
+          <div class="lib-detail-img-wrap">
+            <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($fname); ?>" alt="<?php echo h($fname); ?>" class="lib-detail-img">
+          </div>
+          <?php else: ?>
+          <a href="/<?php echo APP_NAME; ?>/file/na=<?php echo h($fname); ?>" target="_blank" class="lib-detail-file">
+            <img src="/wp-content/themes/default/images/file.png" alt="" class="lib-detail-file-icon">
+            <?php echo h($fname); ?>
+          </a>
+          <?php endif; ?>
+          <?php endfor; ?>
+
+          <p class="lib-back"><a href="<?php echo h(isset($tpl_disp['back_url']) ? $tpl_disp['back_url'] : '/' . APP_NAME . '/library'); ?>">一覧へ戻る &gt;</a></p>
+
+        </div>
+
+      </div>
+    </div>
+  </main>

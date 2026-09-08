@@ -3,7 +3,7 @@
 deploy_config.sh
 
 # 旧サイト参照コピー（会員データ含む可能性）
-kric.co.jp/
+/kric.co.jp/
 
 # DB バックアップ・個人情報含む可能性のあるファイル
 Database/

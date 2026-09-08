@@ -1,0 +1,40 @@
+<script type="text/javascript">
+$(function(){
+	login_bar();
+});
+function login_bar() {
+	$.get('/member/login_bar', function(data) {
+//alert(data);
+		$("#log_bar").empty().append(data);
+	});
+}
+</script>
+<div class="header_all">
+	<div class="header_login">
+		<div class="header_login_inner_intro" id="log_bar">
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="main_img_inner">
+    	<div class="logo"><a href="/"><p><img src="/wp-content/themes/default/images/index_img_01.png" alt="関西不動産情報センター、KRIC" width="176" height="79" /></p><span><img src="/images/index_img_01_sp.jpg" alt="関西不動産情報センター、KRIC" /></span></a></div>
+    
+		<img src="/wp-content/themes/default/images/index_img_02.png" width="342" height="92" alt="競い合うことよりも、響き合うこと。それが、メンバーシップの誇り。" class="header_cap" /><img src="/images/index_img_02_sp.gif" alt="競い合うことよりも、響き合うこと。それが、メンバーシップの誇り。" class="header_cap_sp" /><img src="/wp-content/themes/default/images/index_img_03.png" width="230" height="85" alt="お問合せ24時間受付中" class="header_tel" usemap="#Map3" border="0" />
+		<map name="Map3" id="Map3">
+			<area shape="rect" coords="0,50,230,85" href="/contact.html" />
+		</map>
+		<img src="/wp-content/themes/default/images/index_img_04.png" width="159" height="154" alt="" class="header_woman"/> </div>
+	</div>
+	<div class="menubox">
+		<div class="mod_Gnavi">
+			<ul class="ex_clearfix">
+				<li><a class="top" href="/"><img src="/wp-content/themes/default/images/index_menu_01.jpg" width="97" height="96" alt="Menu01" /></a></li>
+				<li><a class="kric" href="/kric.html"><img src="/wp-content/themes/default/images/index_menu_02.jpg" width="159" height="96" alt="Menu02" /></a></li>
+				<li><a class="activity" href="/activity.html"><img src="/wp-content/themes/default/images/index_menu_03.jpg" width="151" height="96" alt="Menu03" /></a></li>
+				<li><a class="service" href="/service.html"><img src="/wp-content/themes/default/images/index_menu_04.jpg" width="247" height="96" alt="Menu04" /></a></li>
+				<li><a class="member" href="/member/"><img src="/wp-content/themes/default/images/index_menu_05.jpg" width="123" height="96" alt="Menu05" /></a></li>
+				<li><a class="enter" href="/enter.html"><img src="/wp-content/themes/default/images/index_menu_06.jpg" width="183" height="96" alt="Menu06" /></a></li>
+			</ul>
+		</div><!--mod_Gnavi_end -->
+	</div>
+</div>
+

@@ -1,0 +1,48 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; 管理画面 ログイン</p>
+
+        <?php if (!empty($tpl_errDoc)): ?>
+        <div class="reg-error-box">
+          <?php foreach ($tpl_errDoc as $val): ?><p><?php echo h($val); ?></p><?php endforeach; ?>
+        </div>
+        <?php endif; ?>
+
+        <form class="mem-login-form" action="<?php echo HTTP_TO_SCRIPT_NAME; ?>" method="post" name="form">
+          <input type="hidden" name="cmd" value="login">
+          <input type="hidden" name="session" value="<?php echo isset($tpl_disp['session']) ? h($tpl_disp['session']) : ''; ?>">
+
+          <div class="reg-table">
+
+            <div class="reg-row">
+              <label class="reg-label" for="id">ログインID</label>
+              <div class="reg-input">
+                <input type="text" id="id" name="id" value="<?php echo isset($tpl_disp['id']) ? h($tpl_disp['id']) : ''; ?>">
+              </div>
+            </div>
+
+            <div class="reg-row">
+              <label class="reg-label" for="pass">パスワード</label>
+              <div class="reg-input">
+                <input type="password" id="pass" name="pass">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="mem-login-btn-row">
+            <button type="submit" class="mem-login-btn">
+              <span class="btn-text">ログイン</span>
+              <span class="btn-sep">|</span>
+              <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </main>

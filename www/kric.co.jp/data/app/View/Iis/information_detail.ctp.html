@@ -1,0 +1,32 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; <a href="/iis/index">会員専用ページ</a> &gt; <a href="/iis/index">インフォメーション</a> &gt; 詳細</p>
+
+        <div class="info-detail">
+
+          <p class="info-detail-date"><?php echo h(isset($tpl_disp['info_date']) ? $tpl_disp['info_date'] : ''); ?></p>
+          <h2 class="info-detail-title"><?php echo h(isset($tpl_disp['title']) ? $tpl_disp['title'] : ''); ?></h2>
+
+          <hr class="info-detail-divider">
+
+          <div class="info-detail-body">
+<?php if (isset($tpl_disp['doc']) && $tpl_disp['doc'] != ''): ?>
+            <p><?php echo nl2br(strip_tags($tpl_disp['doc'], '<br><br />')); ?></p>
+<?php endif; ?>
+<?php if (isset($tpl_disp['file']) && $tpl_disp['file'] != ''): ?>
+            <p><a href="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_disp['file']); ?>"><?php echo h($tpl_disp['file']); ?></a></p>
+<?php endif; ?>
+          </div>
+
+          <div class="info-detail-footer">
+            <a href="<?php echo h(isset($tpl_disp['back_url']) ? $tpl_disp['back_url'] : '/iis/index'); ?>" class="info-detail-back">一覧へ戻る &gt;</a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>

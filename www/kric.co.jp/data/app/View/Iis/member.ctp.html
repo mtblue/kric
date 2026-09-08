@@ -1,0 +1,118 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; <a href="/iis/index">会員専用ページ</a> &gt; 登録情報 &gt; メンバー追加／削除</p>
+
+        <div class="reg-layout">
+
+          <!-- メインコンテンツ -->
+          <div class="reg-content">
+
+            <div class="mem-sec-head">
+              <h2 class="mem-sec-title">─ 登録情報 ─</h2>
+            </div>
+
+            <h3 class="reg-subtitle">メンバー追加／削除</h3>
+            <hr class="bd-reg-divider">
+
+            <div class="mem-member-add-row">
+              <a href="/<?php echo APP_NAME; ?>/member_new" class="mem-member-add-btn">
+                <span class="btn-text">メンバー追加登録</span>
+                <span class="btn-sep">|</span>
+                <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+              </a>
+            </div>
+
+            <div class="mem-member-table-wrap">
+              <table class="mem-member-table">
+                <thead>
+                  <tr>
+                    <th>名　前</th>
+                    <th>メールアドレス</th>
+                    <th>修正／削除</th>
+                    <th>承　認</th>
+                  </tr>
+                </thead>
+                <tbody>
+<?php if (count($tpl_disp['main_list']) > 0): ?>
+<?php foreach ($tpl_disp['main_list'] as $row): ?>
+                  <tr>
+                    <td data-label="名　前" class="mem-member-name-cell">
+                      <span class="mem-cell-text"><?php echo h($row['name']); ?><?php if ($row['login_flg'] == '0'): ?>&nbsp;<span style="color:red; font-size:0.75rem;">招待中</span><?php endif; ?></span>
+                    </td>
+                    <td data-label="メールアドレス" class="mem-member-email-cell">
+                      <span class="mem-cell-text"><?php echo h($row['email1']); ?></span>
+                    </td>
+                    <td data-label="修正／削除" class="mem-member-btn-cell">
+                      <a href="/<?php echo APP_NAME; ?>/member_edit/id=<?php echo h($row['member_id']); ?>" class="mem-member-edit-btn">
+                        <span class="btn-text">修正</span>
+                      </a>
+                      <a href="#" class="mem-member-del-btn"
+                         data-id="<?php echo h($row['member_id']); ?>"
+                         data-name="<?php echo h($row['name']); ?>">
+                        <span class="btn-text">削除</span>
+                      </a>
+                    </td>
+                    <td data-label="承認" class="mem-member-btn-cell">
+                      <?php if ($row['login_flg'] == '0'): ?>
+                      <a href="#" class="mem-member-approve-btn"
+                         data-id="<?php echo h($row['member_id']); ?>"
+                         data-name="<?php echo h($row['name']); ?>">
+                        <span class="btn-text">承認</span>
+                      </a>
+                      <?php endif; ?>
+                    </td>
+                  </tr>
+<?php endforeach; ?>
+<?php else: ?>
+                  <tr>
+                    <td colspan="4" style="text-align:center;">情報は登録されていません。</td>
+                  </tr>
+<?php endif; ?>
+                </tbody>
+              </table>
+            </div>
+
+          </div><!-- /.reg-content -->
+
+          <!-- サイドナビ -->
+          <nav class="reg-sidenav" aria-label="登録情報メニュー">
+            <ul class="reg-sidenav-list">
+              <li class="reg-sidenav-item"><a href="/<?php echo APP_NAME; ?>/company_edit">会社概要</a></li>
+              <li class="reg-sidenav-item"><a href="/<?php echo APP_NAME; ?>/member_edit/id=<?php echo isset($tpl_disp['sessionInfo']['member_id']) ? h($tpl_disp['sessionInfo']['member_id']) : ''; ?>">個別設定</a></li>
+              <li class="reg-sidenav-item is-active"><a href="/<?php echo APP_NAME; ?>/member">メンバー追加／削除</a></li>
+            </ul>
+          </nav>
+
+        </div><!-- /.reg-layout -->
+
+      </div><!-- /.mem-card -->
+    </div><!-- /.mem-card-wrap -->
+  </main>
+
+  <script>
+  (function () {
+    document.querySelectorAll('.mem-member-del-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var name = btn.getAttribute('data-name') || '';
+        var id   = btn.getAttribute('data-id');
+        if (confirm((name ? '「' + name + '」を' : '') + '削除してもよろしいですか？')) {
+          window.location.href = '/<?php echo APP_NAME; ?>/member/cmd=delete/id=' + id;
+        }
+      });
+    });
+    document.querySelectorAll('.mem-member-approve-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var name = btn.getAttribute('data-name') || '';
+        var id   = btn.getAttribute('data-id');
+        if (confirm((name ? '「' + name + '」を' : '') + '承認してもよろしいですか？')) {
+          window.location.href = '/<?php echo APP_NAME; ?>/member/cmd=approve/id=' + id;
+        }
+      });
+    });
+  })();
+  </script>

@@ -1,0 +1,343 @@
+<body id="top">
+<a id="top" name="top"></a>
+<div id="wrap">
+  <div id="anime_wrap">
+
+<!--==================================ここからヘッダー=========================================-->
+<?php print($this->element('iis/header')); ?>
+<!--==================================▲ここまでヘッダー=========================================--> 
+
+
+
+<!--==================================▼ここからぱんくずとSNSボタン=========================================-->
+
+<div class="pankuzu_wrap">
+  <div class="pan_sns">
+    <div class="pankuzu"> <img src="/wp-content/themes/default/images/index_img_05.png" width="12" height="12" alt="" class="img_float" /><h1><!-- Breadcrumb NavXT 3.5.1 --><a href="/">関西不動産情報センター TOP</a>＞<a href="/<?php print(APP_NAME); ?>/index">IISトップ</a>＞<a href="/<?php print(APP_NAME); ?>/bd">ビジネスダイレクト</a>＞<?php if ($tpl_form['zo'] == 1) { ?>売りたい<?php } elseif ($tpl_form['zo'] == 2) { ?>買いたい<?php } elseif ($tpl_form['zo'] == 3) { ?>貸したい<?php } elseif ($tpl_form['zo'] == 4) { ?>借りたい<?php } ?></h1></div>
+  </div>
+</div>
+<!--==================================▲ここまでぱんくずとsnsボタン=========================================-->
+<!--==================================▼ここからコンテンツ=========================================-->
+<div class="cont_wrap">
+<div class="cont_box">
+
+
+<!-- ここから追加 -->
+
+
+<div id="contents">
+    <div id="bd"><span><img src="/images/iis/bd_icon.png" /></span>
+      <h2>ビジネスダイレクト</h2></div>
+      
+
+<div class="tab">
+    <ul class="tablist">
+        <li class="sell"><?php if ($tpl_form['zo'] == 1) { ?><p><?php } else { ?><a href="/<?php print(APP_NAME); ?>/bd"><?php } ?>売りたい<?php if ($tpl_form['zo'] == 1) { ?></p><?php } else { ?></a><?php } ?></li>
+        <li class="buy"><?php if ($tpl_form['zo'] == 2) { ?><p><?php } else { ?><a href="/<?php print(APP_NAME); ?>/bd02"><?php } ?>買いたい<?php if ($tpl_form['zo'] == 2) { ?></p><?php } else { ?></a><?php } ?></li>
+        <li class="rentout"><?php if ($tpl_form['zo'] == 3) { ?><p><?php } else { ?><a href="/<?php print(APP_NAME); ?>/bd03"><?php } ?>貸したい<?php if ($tpl_form['zo'] == 3) { ?></p><?php } else { ?></a><?php } ?></li>
+        <li class="rent"><?php if ($tpl_form['zo'] == 4) { ?><p><?php } else { ?><a href="/<?php print(APP_NAME); ?>/bd04"><?php } ?>借りたい<?php if ($tpl_form['zo'] == 4) { ?></p><?php } else { ?></a><?php } ?></li>
+    </ul>
+	<div class="tabArea">
+	<div class="sp_title"><?php if ($tpl_form['zo'] == 1) { ?>売りたい<?php } elseif ($tpl_form['zo'] == 2) { ?>買いたい<?php } elseif ($tpl_form['zo'] == 3) { ?>貸したい<?php } elseif ($tpl_form['zo'] == 4) { ?>借りたい<?php } ?></div>
+<div class="">
+<div id="detail04">
+<form action="<?php print(HTTP_TO_SCRIPT_NAME); ?>" method="post" name="form" id="form" enctype="multipart/form-data">
+<input name="cmd" type="hidden" id="cmd" value="registration" />
+<input name="id" type="hidden" id="id" value="<?php print(isset($tpl_form['id']) == true ? $tpl_form['id'] : ''); ?>" />
+<input name="zo" type="hidden" id="zo" value="<?php print(isset($tpl_form['zo']) == true ? $tpl_form['zo'] : ''); ?>" />
+<script type="text/javascript" src="/js/jquery.upload.js"></script>
+<script type="text/javascript">
+<!--
+//    function uploadFile() {
+//        $('#upload').upload(
+//            '/iis/bd_fileup.php', 
+//            {now:'2010/10/08'},
+//            function (res) {
+//                $("#result").html(res);
+//            },
+//            'text'
+//        );
+//    }
+-->
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script>
+	jQuery(function($){
+		jQuery(window).load(function($) {
+			jQuery('.button_back').css("display", "none");
+			jQuery('.button_check').css("display", "inline");
+			jQuery('.button_next').css("display", "none");
+		});
+		jQuery('.button_check').click(function($) {
+			h3txt= jQuery('#name02 h3').text();
+			err_txt ='';
+			if(h3txt == '新規登録'){
+				if(jQuery('#ttitle').val() == '') { err_txt = 'タイトルが入力されていません<br />'; }
+			}
+			if(jQuery('#tdoc').val() == '') { err_txt = err_txt + '説明が入力されていません'; }
+			jQuery('.error_box').html(err_txt);
+			if(err_txt != ''){ return; }
+			jQuery('.button_back').css("display", "inline");
+			jQuery('.button_check').css("display", "none");
+			jQuery('.button_next').css("display", "inline");
+			jQuery('#name02 h3').text(h3txt + "の事前確認");
+			jQuery('#ttitle').css("display", "none");
+			jQuery('#ttitle_check').css("display", "block");
+			jQuery('#ttitle_check').text(jQuery('#ttitle').val());
+			jQuery('#tdoc').css("display", "none");
+			var txtVal = jQuery('#tdoc').val();
+			txtVal = txtVal.replace(/\r\n/g, "<br />");
+			txtVal = txtVal.replace(/(\n|\r)/g, "<br />");
+			jQuery('#tdoc_check').html(txtVal);
+			jQuery('#tdoc_check').css("display", "block");
+			jQuery('#tfile1').css("display", "none");
+			//var file1 = document.getElementById('tfile1').files[0];
+			var file1 = jQuery('#tfile1').prop('files');
+			//var file1 = jQuery('#tfile1').prop('files')[0];
+			if(file1 != ''){
+		        jQuery('#tfile1').upload(
+		            '/iis/bd_fileup1.php', 
+		            {now:'2010/10/08'},
+		            function (res) {
+		                jQuery("#tfile1_check").html('<a href="/iis/file/na=' + res +'">'+res+'</a><input type="hidden" id="tfile1name" name="tfile1name" value="'+res+'" />');
+		            },
+		            'text'
+				);
+//				jQuery.ajax({
+//					url:'/iis/bd_fileup1.php',
+//					type:'POST',
+//					data:{ 'file1': jQuery('#tfile1').val()},
+//					contentType: false,
+//					processData: false
+//				}).done(function( data ) {
+//					jQuery("#tfile1_check").html('<a href="/iis/file/na=' + data.name +'">'+data.name+'</a><input type="hidden" id="tfile1name" name="tfile1name" value="'+data+'" />');
+//				});
+
+			}
+			jQuery('#tfile1_check').css("display", "block");
+			jQuery('#tfile2').css("display", "none");
+			var file2 = jQuery('#tfile2').prop('files');
+			//var file2 = jQuery('#tfile2').prop('files')[0];
+			if(file2 != ''){
+		        jQuery('#tfile2').upload(
+		            '/iis/bd_fileup2.php', 
+		            {now:'2010/10/08'},
+		            function (res) {
+		                jQuery("#tfile2_check").html('<a href="/iis/file/na=' + res +'">'+res+'</a><input type="hidden" id="tfile2name" name="tfile2name" value="'+res+'" />');
+		            },
+		            'text'
+		        );
+			}
+			jQuery('#tfile2_check').css("display", "block");
+			jQuery('#tfile3').css("display", "none");
+			var file3 = jQuery('#tfile3').prop('files');
+			//var file3 = jQuery('#tfile3').prop('files')[0];
+			if(file3 != ''){
+//		        jQuery('#tfile3').upload(
+//		            '/iis/bd_fileup3.php', 
+//		            {now:'2010/10/08'},
+//		            function (res) {
+//		                jQuery("#tfile3_check").html('<a href="/iis/file/na=' + res +'">'+res+'</a><input type="hidden" id="tfile3name" name="tfile3name" value="'+res+'" />');
+//		            },
+//		            'text'
+//		        );
+			}
+			jQuery('#tfile3_check').css("display", "block");
+		});
+		jQuery('.button_back').click(function($) {
+			jQuery('#tfile1_check').prepend("");
+			jQuery('.button_back').css("display", "none");
+			jQuery('.button_check').css("display", "inline");
+			jQuery('.button_next').css("display", "none");
+			jQuery('#ttitle').css("display", "block");
+			jQuery('#ttitle_check').css("display", "none");
+			jQuery('#tdoc').css("display", "block");
+			jQuery('#tdoc_check').css("display", "none");
+			jQuery('#tfile1').css("display", "block");
+			jQuery('#tfile1_check').css("display", "none");
+			jQuery('#tfile2').css("display", "block");
+			jQuery('#tfile2_check').css("display", "none");
+			jQuery('#tfile3').css("display", "block");
+			jQuery('#tfile3_check').css("display", "none");
+			h3txt= jQuery('#name02 h3').text();
+			jQuery('#name02 h3').text(h3txt.replace(/の事前確認/g,''));
+			jQuery('.error_box').html('');
+		});
+	});
+
+</script>
+
+
+<?php
+if (isset($tpl_form['addid']) == true) {
+	// 追記の場合
+?>
+
+<input name="member_id" type="hidden" id="member_id" value="<?php print(isset($tpl_disp['sessionInfo']['member_id']) == true ? $tpl_disp['sessionInfo']['member_id'] : ''); ?>" />
+<input name="zokusei" type="hidden" id="zokusei" value="<?php print(isset($tpl_disp['opener_info']['zokusei']) == true ? $tpl_disp['opener_info']['zokusei'] : ''); ?>" />
+<input name="kiji_flg" type="hidden" id="kiji_flg" value="1" />
+<input name="opener_id" type="hidden" id="opener_id" value="<?php print(isset($tpl_disp['opener_info']['business_direct_id']) == true ? $tpl_disp['opener_info']['business_direct_id'] : ''); ?>" />
+
+<input name="addid" type="hidden" id="addid" value="<?php print(isset($tpl_form['addid']) == true ? $tpl_form['addid'] : ''); ?>" />
+<input name="title" type="hidden" class="text" value="追記" />
+
+     <div id="name02"><h3>追記登録</h3></div>
+        <div id="information">
+
+<div class="error_box">
+<?php foreach($tpl_errDoc AS $val) { print($val.'<br />'); } ?>
+</div>
+
+        <table>
+        <tr><th>タイトル</th><td colspan="2"><?php print($tpl_disp['opener_info']['title']); ?></td></tr>
+        <tr><th>掲載内容の説明</th><td colspan="2"><?php print(isset($tpl_disp['opener_info']['doc']) == true ? nl2br(chop($tpl_disp['opener_info']['doc'])) : ''); ?></td></tr>
+        <tr><th>ファイル</th><td colspan="2">
+<?php
+for($i=1; $i<=3; $i++) {
+	if (isset($tpl_disp['opener_info']['file'.$i]) == false || $tpl_disp['opener_info']['file'.$i] == '') { continue; }
+		if ($i > 1) { print('<br />'); }
+?>
+            <a href="/<?php print(APP_NAME); ?>/file/na=<?php print(isset($tpl_disp['opener_info']['file'.$i]) == true ? $tpl_disp['opener_info']['file'.$i] : ''); ?>" target="_blank"><?php print($tpl_disp['opener_info']['file'.$i]); ?></a>
+<?php
+}
+?>
+		</td></tr>
+<?php if (count($tpl_disp['bd_list']) > 0) { ?>
+        <tr><th>&nbsp;</th><td colspan="2">&nbsp;</td></tr>
+<?php } ?>
+
+<?php foreach($tpl_disp['bd_list'] AS $inc => $row) { ?>
+        <tr><th>&nbsp;</th><td colspan="2"><?php //print($row['title']); ?><?php if (isset($row['create_date']) == true) { print(date('Y.m.d追記です。', strtotime($row['create_date']))); } ?></td></tr>
+        <tr><th>&nbsp;</th><td colspan="2">
+		<?php print(nl2br(chop($row['doc']))); ?>
+<?php
+for($i=1; $i<=3; $i++) {
+	if (isset($row['file'.$i]) == false || $row['file'.$i] == '') { continue; }
+?>
+            <br />
+			<a href="/<?php print(APP_NAME); ?>/file/na=<?php print(isset($row['file'.$i]) == true ? $row['file'.$i] : ''); ?>" target="_blank"><?php print($row['file'.$i]); ?></a>
+<?php
+}
+?>
+		</td></tr>
+        <tr><th>&nbsp;</th><td colspan="2">&nbsp;</td></tr>
+<?php } ?>
+
+        <tr><th>追記</th><td colspan="2"><textarea cols="45" rows="10" name="doc" id="tdoc" class="s50"><?php print(isset($tpl_disp['doc']) == true ? $tpl_disp['doc'] : ''); ?></textarea><div id="tdoc_check"><div></td></tr>
+        <tr><th rowspan="3">ファイル</th><td colspan="2">
+<input name="file1" type="file" id="tfile1" size="50" /><div id="tfile1_check"><div>
+<?php if (isset($tpl_disp['org_info']['file1']) == true && $tpl_disp['org_info']['file1'] != '') { ?>
+<br /><a href="/<?php print(APP_NAME); ?>/file/na=<?php print(isset($tpl_disp['org_info']['file1']) == true ? $tpl_disp['org_info']['file1'] : ''); ?>" target="_blank"><?php print(isset($tpl_disp['org_info']['file1']) == true ? $tpl_disp['org_info']['file1'] : '-'); ?></a>
+<br /><input name="file1_delete" type="checkbox" value="checked" />削除
+<?php } ?>
+		</td></tr>
+        <tr><td colspan="2">
+<input name="file2" type="file" id="tfile2" size="50" /><div id="tfile2_check"><div>
+<?php if (isset($tpl_disp['org_info']['file2']) == true && $tpl_disp['org_info']['file2'] != '') { ?>
+<br /><a href="/<?php print(APP_NAME); ?>/file/na=<?php print(isset($tpl_disp['org_info']['file2']) == true ? $tpl_disp['org_info']['file2'] : ''); ?>" target="_blank"><?php print(isset($tpl_disp['org_info']['file2']) == true ? $tpl_disp['org_info']['file2'] : '-'); ?></a>
+<br /><input name="file2_delete" type="checkbox" value="checked" />削除
+<?php } ?>
+		</td></tr>
+        <tr><td colspan="2">
+<input name="file3" type="file" id="tfile3" size="50" /><div id="tfile3_check"><div>
+<?php if (isset($tpl_disp['org_info']['file3']) == true && $tpl_disp['org_info']['file3'] != '') { ?>
+<br /><a href="/<?php print(APP_NAME); ?>/file/na=<?php print(isset($tpl_disp['org_info']['file3']) == true ? $tpl_disp['org_info']['file3'] : ''); ?>" target="_blank"><?php print(isset($tpl_disp['org_info']['file3']) == true ? $tpl_disp['org_info']['file3'] : '-'); ?></a>
+<br /><input name="file3_delete" type="checkbox" value="checked" />削除
+<?php } ?>
+		</td></tr>
+        </table>
+        <div align="center"><input name="送信" type="button" value="戻る" class="button_back" style="padding:10px 20px; margin-top:20px;" /><input name="送信" type="button" value="確認画面へ" class="button_check" style="padding:10px 20px; margin-top:20px;" /><input name="送信" type="submit" class="button_next" value="登録" style="padding:10px 20px; margin-top:20px;" /></div>    
+        <div id="list_btn03"><a href="/<?php print(APP_NAME); ?>/bd_detail/id=<?php print(isset($tpl_form['addid']) == true ? $tpl_form['addid'] : ''); ?>">前頁に戻る</a></div>
+        
+     </div>
+<?php
+} else {
+	if (isset($tpl_form['zo']) == true && (isset($tpl_form['id']) == false || (isset($tpl_form['id']) == true && $tpl_form['id'] == '')) && isset($tpl_form['addid']) == false) {
+		// 新規の場合
+		$title = '新規登録';
+?>
+<input name="member_id" type="hidden" id="member_id" value="<?php print(isset($tpl_disp['sessionInfo']['member_id']) == true ? $tpl_disp['sessionInfo']['member_id'] : ''); ?>" />
+<input name="zokusei" type="hidden" id="zokusei" value="<?php print(isset($tpl_form['zo']) == true ? $tpl_form['zo'] : ''); ?>" />
+<input name="kiji_flg" type="hidden" id="kiji_flg" value="0" />
+<input name="opener_id" type="hidden" id="opener_id" value="" />
+
+<?php
+	} elseif (isset($tpl_form['id']) == true) {
+		// 編集の場合
+		$title = '編集';
+?>
+<input name="member_id" type="hidden" id="member_id" value="<?php print(isset($tpl_disp['org_info']['member_id']) == true ? $tpl_disp['org_info']['member_id'] : ''); ?>" />
+<input name="zokusei" type="hidden" id="zokusei" value="<?php print(isset($tpl_disp['org_info']['zokusei']) == true ? $tpl_disp['org_info']['zokusei'] : ''); ?>" />
+<input name="kiji_flg" type="hidden" id="kiji_flg" value="<?php print(isset($tpl_disp['org_info']['kiji_flg']) == true ? $tpl_disp['org_info']['kiji_flg'] : ''); ?>" />
+<input name="opener_id" type="hidden" id="opener_id" value="<?php print(isset($tpl_disp['org_info']['opener_id']) == true ? $tpl_disp['org_info']['opener_id'] : ''); ?>" />
+<?php
+	}
+?>
+     <div id="name02"><h3><?php print($title); ?></h3></div>
+        <div id="information">
+
+<div class="error_box">
+<?php foreach($tpl_errDoc AS $val) { print($val.'<br />'); } ?>
+</div>
+
+        <table>
+        <tr><th>投稿タイトル</th><td colspan="2"><input type="text" name="title" id="ttitle" size="50" value="<?php print(isset($tpl_disp['title']) == true ? $tpl_disp['title'] : ''); ?>" class="s50"><div id="ttitle_check"><div></td></tr>
+        <tr><th>投稿内容の説明</th><td colspan="2"><textarea cols="45" rows="10" name="doc" id="tdoc" class="s50"><?php print(isset($tpl_disp['doc']) == true ? $tpl_disp['doc'] : ''); ?></textarea><div id="tdoc_check"><div></td></tr>
+        <tr><th rowspan="3">ファイル</th><td colspan="2">
+<input name="file1" type="file" id="tfile1" size="50" /><div id="tfile1_check"><div>
+<?php if (isset($tpl_disp['org_info']['file1']) == true && $tpl_disp['org_info']['file1'] != '') { ?>
+<br /><a href="/<?php print(APP_NAME); ?>/file/na=<?php print(isset($tpl_disp['org_info']['file1']) == true ? $tpl_disp['org_info']['file1'] : ''); ?>" target="_blank"><?php print(isset($tpl_disp['org_info']['file1']) == true ? $tpl_disp['org_info']['file1'] : '-'); ?></a>
+<br /><input name="file1_delete" type="checkbox" value="checked" />削除
+<?php } ?>
+		</td></tr>
+        <tr><td colspan="2">
+<input name="file2" type="file" id="tfile2" size="50" /><div id="tfile2_check"><div>
+<?php if (isset($tpl_disp['org_info']['file2']) == true && $tpl_disp['org_info']['file2'] != '') { ?>
+<br /><a href="/<?php print(APP_NAME); ?>/file/na=<?php print(isset($tpl_disp['org_info']['file2']) == true ? $tpl_disp['org_info']['file2'] : ''); ?>" target="_blank"><?php print(isset($tpl_disp['org_info']['file2']) == true ? $tpl_disp['org_info']['file2'] : '-'); ?></a>
+<br /><input name="file2_delete" type="checkbox" value="checked" />削除
+<?php } ?>
+		</td></tr>
+        <tr><td colspan="2">
+<input name="file3" type="file" id="tfile3" size="50" /><div id="tfile3_check"><div>
+<?php if (isset($tpl_disp['org_info']['file3']) == true && $tpl_disp['org_info']['file3'] != '') { ?>
+<br /><a href="/<?php print(APP_NAME); ?>/file/na=<?php print(isset($tpl_disp['org_info']['file3']) == true ? $tpl_disp['org_info']['file3'] : ''); ?>" target="_blank"><?php print(isset($tpl_disp['org_info']['file3']) == true ? $tpl_disp['org_info']['file3'] : '-'); ?></a>
+<br /><input name="file3_delete" type="checkbox" value="checked" />削除
+<?php } ?>
+		</td></tr>
+        </table>
+        <div align="center"><input name="送信" type="button" value="戻る" class="button_back" style="padding:10px 20px; margin-top:20px;" /><input name="送信" type="button" value="確認画面へ" class="button_check" style="padding:10px 20px; margin-top:20px;" /><input name="送信" type="submit" class="button_next" value="登録" style="padding:10px 20px; margin-top:20px;" /></div>    
+        <div id="list_btn03"><a href="<?php print(isset($tpl_disp['back_url']) == true ? $tpl_disp['back_url'] : ''); ?>">一覧に戻る</a></div>
+        
+     </div>
+<?php
+} // if end
+?>
+</form>
+</div>
+</div>
+    </div>
+
+
+</div>
+</div>
+
+<?php print($this->element('iis/right_menu')); ?>
+
+
+
+<!-- ここまで追加 -->
+
+</div>
+<!--cont_box--> 
+
+<!--==================▲ここまでコンテンツ=======================-->
+<!--==================▼ここからフッター=======================-->
+<?php print($this->element('iis/footer')); ?>
+<!--==================▲ここまでフッター=======================-->
+
+</div><!-- /cont_wrap -->
+<!--Google Analytics-->
+
+</div>
+</div>
+</body>

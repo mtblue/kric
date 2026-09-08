@@ -1,0 +1,331 @@
+/* =============================================================================
+   管理画面 固有CSS (admin.css)
+   style.css + member.css をベースに、管理画面固有のスタイルのみ定義
+   ============================================================================= */
+
+/* --- 管理テーブル（一覧） mem-member-table準拠 --- */
+.adm-table-wrap { max-width: 1000px; width: 100%; margin: 0 auto; overflow: hidden; }
+.adm-table {
+  width: calc(100% + 30px); margin: 0 -15px;
+  border-collapse: separate; border-spacing: 15px 0;
+}
+.adm-table th {
+  background: var(--navy); color: #fff;
+  font-size: 0.833rem; font-weight: bold;
+  padding: 0 16px; height: 30px; text-align: center; border: none;
+}
+.adm-table td {
+  font-size: 0.833rem; color: #000;
+  padding: 20px 16px; border: none;
+  position: relative; vertical-align: middle;
+}
+.adm-table tbody tr td::after {
+  content: ''; position: absolute;
+  bottom: 0; left: -15px; right: -15px;
+  height: 1px; background: var(--gray-line);
+}
+.adm-table td:first-child { text-align: left; }
+.adm-table .adm-td-actions { white-space: nowrap; text-align: center; }
+.adm-table .adm-link { color: var(--navy); text-decoration: none; }
+.adm-table .adm-link:hover { text-decoration: underline; }
+
+/* テーブル列幅: インフォメーション管理 (日時|タイトル|操作) */
+.adm-table--info th:nth-child(1) { width: 160px; }
+.adm-table--info th:nth-child(3) { width: 100px; }
+
+/* テーブル列幅: 会社管理 (社名|操作) */
+.adm-table--company th:nth-child(2) { width: 220px; }
+
+/* テーブル列幅: メンバー一覧 (名前|メール|ステータス|操作|最終更新日時) */
+.adm-table--member th:nth-child(1) { width: 160px; }
+.adm-table--member th:nth-child(3) { width: 100px; }
+.adm-table--member th:nth-child(4) { width: 130px; }
+.adm-table--member th:nth-child(5) { width: 160px; }
+
+/* テーブル列幅: ライブラリ管理 (子カテゴリ名|タイトル|操作|最終更新日時) */
+.adm-table--library th:nth-child(1) { width: 160px; }
+.adm-table--library th:nth-child(3) { width: 140px; }
+.adm-table--library th:nth-child(4) { width: 160px; }
+
+/* テーブル列幅: 親カテゴリ一覧 (親カテゴリー名|操作|最終更新日時) */
+.adm-table--cat-parent th:nth-child(2) { width: 220px; }
+.adm-table--cat-parent th:nth-child(3) { width: 160px; }
+
+/* テーブル列幅: 子カテゴリ一覧 (子カテゴリ名|操作|最終更新日時) */
+.adm-table--cat-child th:nth-child(2) { width: 140px; }
+.adm-table--cat-child th:nth-child(3) { width: 160px; }
+
+/* --- メンバーボタン（navy outline） --- */
+.adm-btn-member {
+  display: inline-flex; align-items: center; overflow: hidden;
+  font-size: 0.778rem; border-radius: 6px;
+  min-width: 72px; height: 28px; padding: 0 10px;
+  cursor: pointer; text-decoration: none; transition: opacity 0.2s;
+  margin: 0 2px; justify-content: center;
+  background: #fff; color: var(--navy); border: 1px solid var(--navy);
+}
+.adm-btn-member:hover { opacity: 0.75; }
+
+/* --- 新規登録ボタン --- */
+.adm-btn-new {
+  display: inline-flex; align-items: center; overflow: hidden;
+  background: #c0ad5e; color: #fff;
+  font-size: 0.833rem; font-weight: bold;
+  border-radius: 10px; min-width: 180px; height: 40px;
+  text-decoration: none; transition: opacity 0.2s;
+}
+.adm-btn-new:hover { opacity: 0.85; color: #fff; }
+.adm-btn-new .btn-text { padding-left: 20px; flex: 1; text-align: center; }
+
+/* --- 新規登録ボタン（会社管理用） --- */
+.adm-btn-new-company {
+  display: inline-flex; align-items: center; overflow: hidden;
+  background: #c0ad5e; color: #fff;
+  font-size: 0.833rem; font-weight: bold;
+  border-radius: 10px; width: 200px; height: 40px;
+  text-decoration: none; transition: opacity 0.2s;
+}
+.adm-btn-new-company:hover { opacity: 0.85; color: #fff; }
+.adm-btn-new-company .btn-text { padding: 0 5px 0 20px; flex: 1; text-align: center; }
+.adm-btn-new-company .btn-sep { width: 1px; align-self: stretch; background: rgba(255,255,255,0.5); flex-shrink: 0; }
+.adm-btn-new-company .btn-arrow { padding: 0 10px; font-size: 0.7rem; }
+
+/* --- 新規登録ボタン（メンバー用） --- */
+.adm-btn-new-member {
+  display: inline-flex; align-items: center; overflow: hidden;
+  background: #c0ad5e; color: #fff;
+  font-size: 0.833rem; font-weight: bold;
+  border-radius: 10px; width: 200px; height: 40px;
+  text-decoration: none; transition: opacity 0.2s;
+}
+.adm-btn-new-member:hover { opacity: 0.85; color: #fff; }
+.adm-btn-new-member .btn-text { padding: 2px 5px 0 16px; flex: 1; text-align: center;  font-size: 0.7rem;}
+.adm-btn-new-member .btn-sep { width: 1px; align-self: stretch; background: rgba(255,255,255,0.5); flex-shrink: 0; }
+.adm-btn-new-member .btn-arrow { padding: 0 10px 0 4px; font-size: 0.7rem; }
+
+/* --- bd-reg-divider 管理画面上書き --- */
+.bd-reg-divider { margin-bottom: 10px; }
+
+/* --- reg-confirm 管理画面は左寄せ --- */
+.reg-confirm.reg-confirm-table { margin-left: 0; margin-right: auto; }
+
+/* --- ステータスバッジ --- */
+.adm-status {
+  display: inline-block; padding: 2px 12px; border-radius: 4px;
+  font-size: 0.722rem; font-weight: bold; white-space: nowrap;
+}
+.adm-status--active { background: #fff; color: var(--navy); border: 1px solid var(--navy); }
+.adm-status--pending { background: var(--navy); color: #fff; border: 1px solid var(--navy); }
+.adm-approved-label { font-size: 0.75rem; color: #999; }
+
+/* --- 設定確認モーダル --- */
+.adm-modal { padding: 40px 60px; width: 760px; }
+.adm-modal .dir-modal-table { margin: 50px auto; padding: 0 100px; width: fit-content; }
+.adm-modal .dir-modal-row { grid-template-columns: 120px 1fr; }
+.adm-modal .dir-modal-label::before { content: '・'; }
+.adm-modal-close {
+  display: block; position: absolute; top: 12px; right: 16px;
+  background: none; border: none; font-size: 1.2rem; cursor: pointer;
+  color: #000; line-height: 1; padding: 4px 6px;
+}
+.adm-modal-close:hover { opacity: 0.6; }
+
+/* --- インデックスフィルター --- */
+.adm-index { width: 100%; max-width: 1000px; margin: 0 auto 40px; text-align: center; }
+.adm-index-label { font-size: 0.889rem; color: var(--navy); font-weight: bold; margin-bottom: 14px; }
+.adm-index-tabs { display: flex; gap: 4px; justify-content: center; }
+.adm-index-tab {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 4px;
+  padding: 8px 0; background: #ebebec; color: #000;
+  font-size: 0.889rem; font-weight: bold; border: none;
+  cursor: pointer; transition: background 0.2s, color 0.2s; text-decoration: none;
+}
+.adm-index-tab.is-active { background: #c0ad5e; color: #fff; }
+.adm-index-tab:not(.is-active):hover { background: #c0ad5e; color: #fff; }
+.adm-index-arr { font-size: 0.55rem; opacity: 0.8; }
+
+/* --- フッターナビ（管理画面共通） --- */
+.adm-ft-nav { grid-template-columns: 180px 100px 150px; justify-content: end; }
+
+/* --- 会社名表示 --- */
+.adm-company-name { font-size: 0.889rem; font-weight: bold; color: #000; margin: 10px auto 24px; max-width: 1000px; }
+
+/* --- 戻るリンク上マージン --- */
+.adm-back-footer { margin-top: 16px; }
+
+/* --- カテゴリ新規追加行 --- */
+.adm-add-row { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; max-width: 1000px; margin-left: auto; margin-right: auto; }
+.adm-add-label { font-size: 0.889rem; color: #000; white-space: nowrap; }
+.adm-add-input { padding: 4px 8px; font-size: 0.778rem; border: 1px solid #ccc; width: 200px; }
+.adm-add-btn { margin-top: 0; }
+
+/* --- セレクト（管理画面用） --- */
+.adm-select { padding: 4px 8px; font-size: 0.778rem; border: 1px solid #ccc; min-width: 240px; }
+
+/* --- プレースホルダー画像 --- */
+.adm-placeholder { width: 450px; height: 250px; background: #ddd; }
+.adm-placeholder--map { background: #dde8d0; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #666; }
+
+/* --- PDFファイル名 太字 --- */
+.bd-detail-pdf-name { font-weight: bold; }
+
+/* --- ファイルプレビュー間隔 --- */
+.adm-file-gap { margin-top: 16px; }
+
+/* --- テーブルtdセンタリング --- */
+.adm-td-center { text-align: center; color: var(--navy); }
+
+/* --- textarea高さ上書き --- */
+.adm-textarea-tall { height: 180px; }
+
+/* --- 確認画面 動画プレビュー大 --- */
+.adm-video-lg { width: 400px; height: 225px; }
+
+/* --- Googleマップヘッダー上書き --- */
+.adm-map-header { flex-wrap: nowrap; }
+.adm-map-header .reg-map-check { white-space: nowrap; }
+.adm-map-header .reg-link { width: auto; margin-left: auto; white-space: nowrap; }
+
+/* --- フリーワード検索行（見出しとインデックスの間・右寄せ） --- */
+.adm-search-row { display: flex; justify-content: flex-end; width: 100%; max-width: 1000px; margin: 0 auto 24px; }
+
+/* --- 親カテゴリ選択エリア --- */
+.adm-category-filter {
+  display: flex; align-items: center; gap: 16px;
+  padding-bottom: 24px; margin-bottom: 32px; max-width: 1000px;
+  margin-left: auto; margin-right: auto; border-bottom: 1px solid var(--gray-line);
+}
+.adm-category-label { font-size: 1.111rem; font-weight: bold; color: var(--navy); white-space: nowrap; }
+
+/* =============================================================================
+   SP レスポンシブ (max-width: 768px)
+   ============================================================================= */
+@media (max-width: 1035px) {
+
+  /* --- タイトル＋ボタン行 --- */
+  .bd-sec-head { flex-direction: column; gap: 16px; width: 100%; }
+  .bd-sec-head .bd-register-btn,
+  .bd-sec-head .adm-btn-new,
+  .bd-sec-head .adm-btn-new-company,
+  .bd-sec-head .adm-btn-new-member { position: static; }
+  .adm-search-row { width: 100%; }
+  .adm-search-row .bd-filter-search { width: 100%; }
+  .adm-search-row .bd-search-input { flex: 1; width: auto; }
+
+  /* --- インデックスフィルター --- */
+  .adm-index { width: 100%; }
+  .adm-index-tabs { flex-wrap: wrap; }
+  .adm-index-tab { flex: 0 0 calc(20% - 4px); }
+
+  /* --- 親カテゴリ選択 --- */
+  .adm-category-filter { flex-direction: column; align-items: flex-start; }
+
+  /* --- 新規登録ボタン（会社管理用）SP --- */
+  .adm-btn-new-company { width: 220px; }
+  .adm-btn-new-company .btn-text { padding-left: 5px; }
+  .adm-btn-new-company .btn-sep { margin: -20px 2px; }
+  .adm-btn-new-company .btn-arrow { padding: 0 8px; }
+
+  /* --- 新規登録ボタン（メンバー用）SP --- */
+  .adm-btn-new-member { width: 240px; }
+  .adm-btn-new-member .btn-text { padding: 0 5px 0 12px; }
+  .adm-btn-new-member .btn-sep { margin: -20px 2px; }
+  .adm-btn-new-member .btn-arrow { padding: 0 8px; }
+
+  /* --- カテゴリ追加行 --- */
+  .adm-add-row { flex-wrap: wrap; gap: 6px; }
+  .adm-add-label { width: 100%; }
+
+  /* --- プレースホルダー画像 --- */
+  .adm-placeholder { width: 100%; height: auto; aspect-ratio: 4/3; }
+
+  /* --- モーダル --- */
+  .adm-modal { width: 90%; padding: 30px 20px; }
+  .adm-modal .dir-modal-table { padding: 0 20px; margin: 30px auto; }
+
+  /* --- 確認画面 動画 --- */
+  .adm-video-lg { width: 100%; height: auto; aspect-ratio: 16/9; }
+
+  /* --- フォーム縦積み（member.css SP上書き補完） --- */
+  .reg-form { width: 100%; }
+  .reg-form .reg-row { grid-template-columns: 1fr; }
+  .reg-form .reg-label { padding-bottom: 0; }
+
+  /* --- 確認テーブル --- */
+  .reg-confirm.reg-confirm-table { width: 100%; }
+  .reg-confirm.reg-confirm-table .reg-row { grid-template-columns: 1fr; }
+
+  /* --- テーブル共通: カード化（インフォ以外） --- */
+  .adm-table:not(.adm-table--info) { display: block; width: 100%; margin: 0; border-spacing: 0; }
+  .adm-table:not(.adm-table--info) thead { display: none; }
+  .adm-table:not(.adm-table--info) tbody { display: block; }
+  .adm-table:not(.adm-table--info) tr { display: block; padding-bottom: 12px; margin-bottom: 15px; border-bottom: 1px solid var(--gray-line); }
+  .adm-table:not(.adm-table--info) td { display: block; text-align: left; padding: 8px 16px; border: none; position: static; }
+  .adm-table:not(.adm-table--info) td::after { display: none; }
+  .adm-table:not(.adm-table--info) td::before {
+    content: attr(data-label);
+    display: block; background: var(--navy); color: #fff;
+    font-weight: bold; font-size: 0.778rem;
+    padding: 6px 16px; margin: 0 -16px 15px; text-align: center;
+  }
+  .adm-table:not(.adm-table--info) td:first-child::before { background: var(--navy); }
+  .adm-table:not(.adm-table--info) .adm-td-actions { text-align: left; }
+
+  /* --- インフォテーブル: コンパクト維持 --- */
+  .adm-table--info { width: 100%; margin: 0; }
+  .adm-table--info td { padding: 12px 8px; font-size: 0.778rem; }
+  .adm-table--info th { padding: 8px; font-size: 0.778rem; }
+
+  /* --- テーブル列幅リセット（SP） --- */
+  .adm-table--info th:nth-child(1) { width: 120px; }
+  .adm-table--info th:nth-child(3) { width: 60px; }
+
+  /* --- bd-reg-divider SP --- */
+  .bd-reg-divider { margin-bottom: 50px; }
+  .bd-reg-divider:has(+ .adm-add-row) { margin-bottom: 20px; }
+
+  /* --- reg-input 入力フィールドテキストサイズ SP --- */
+  .reg-input input,
+  .reg-input input[type="text"],
+  .reg-input textarea,
+  .reg-input select { font-size: 0.778rem; }
+
+  /* --- reg-required 位置固定 SP --- */
+  .reg-required { margin-left: 0; position: absolute; left: 100px; }
+  .reg-label { position: relative; }
+
+  /* --- info-detail-body SP --- */
+  .info-detail-body { font-size: 0.889rem; }
+
+  /* --- bd-detail-divider SP --- */
+  .bd-detail-divider { margin-bottom: 30px; }
+
+  /* --- 確認画面 map/動画/画像 全幅 --- */
+  .reg-map-preview { width: 100%; }
+  .reg-map-img { width: 100%; }
+  .bd-detail-thumb { max-width: 100%; height: 240px; }
+  .bd-detail-video { width: 200px; height: auto; aspect-ratio: 16/9; }
+  .reg-confirm { width: 100%; }
+  .reg-confirm .reg-confirm-table { width: 100%; }
+  .reg-confirm-section-head { margin-left: 0; margin-right: 0; }
+
+  /* --- セレクト全幅 --- */
+  .adm-select { min-width: 0; width: 60%; }
+
+  /* --- Googleマップヘッダー折り返し許可 --- */
+  .adm-map-header { flex-wrap: wrap; }
+
+  /* --- 郵便番号行折り返し --- */
+  .reg-input--zip { flex-wrap: wrap; }
+
+}
+
+/* =============================================================================
+   インフォメーション管理テーブル 横スクロール (max-width: 750px)
+   ============================================================================= */
+@media (max-width: 750px) {
+  .adm-table-wrap { overflow-x: auto; }
+  .adm-table--info { width: auto; min-width: 100%; }
+  .adm-table--info th,
+  .adm-table--info td { white-space: nowrap; }
+}

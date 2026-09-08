@@ -1,0 +1,73 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; 管理画面 &gt; インフォメーション管理</p>
+
+        <div class="bd-sec-head">
+          <h2 class="mem-sec-title">─ インフォメーション管理 ─</h2>
+          <a href="/<?php echo APP_NAME; ?>/information_edit/" class="adm-btn-new bd-register-btn">
+            <span class="btn-text">新規登録</span>
+            <span class="btn-sep">|</span>
+            <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+          </a>
+        </div>
+
+        <div class="adm-table-wrap">
+        <table class="adm-table adm-table--info">
+          <thead>
+            <tr>
+              <th>日時</th>
+              <th>タイトル</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+<?php if (count($tpl_disp['main_list']) > 0) { ?>
+<?php foreach($tpl_disp['main_list'] as $row) { ?>
+            <tr>
+              <td><?php
+                $d = $row['info_date'];
+                if (preg_match('/(\d{4})年(\d{1,2})月(\d{1,2})日\s*(\d{1,2}):(\d{2})/', $d, $m)) {
+                  echo sprintf('%02d.%02d.%02d', $m[1] % 100, $m[2], $m[3]) . '　' . sprintf('%d:%02d', $m[4], $m[5]);
+                } else {
+                  echo h($d);
+                }
+              ?></td>
+              <td><a href="/<?php echo APP_NAME; ?>/information_edit/id=<?php echo h($row['information_id']); ?>" class="adm-link"><?php echo h($row['title']); ?></a></td>
+              <td class="adm-td-actions"><a href="JavaScript:void(0);" onclick="return delete_chk(<?php echo h($row['information_id']); ?>)" class="mem-member-del-btn"><span class="btn-text">削除</span></a></td>
+            </tr>
+<?php } } else { ?>
+            <tr>
+              <td colspan="3">情報は登録されていません。</td>
+            </tr>
+<?php } ?>
+          </tbody>
+        </table>
+        </div>
+
+<?php if (!empty($tpl_disp['navi']['direct_navi'])): ?>
+        <nav class="mem-pagination" aria-label="ページ">
+          <?php echo $tpl_disp['navi']['navigator_before']; ?>
+          <div class="mem-pg-pages">
+            <?php echo $tpl_disp['navi']['direct_navi_first']; ?>
+            <?php echo $tpl_disp['navi']['direct_navi']; ?>
+            <?php echo $tpl_disp['navi']['direct_navi_last']; ?>
+          </div>
+          <?php echo $tpl_disp['navi']['navigator_next']; ?>
+        </nav>
+<?php endif; ?>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+  function delete_chk(id) {
+    if (confirm('削除してもよろしいですか？')) {
+      location.href = '/<?php echo APP_NAME; ?>/index/cmd=delete/id=' + id;
+    }
+    return false;
+  }
+  </script>

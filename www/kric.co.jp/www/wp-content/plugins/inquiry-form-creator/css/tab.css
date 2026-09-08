@@ -1,0 +1,56 @@
+@charset "utf-8";
+/* ===================================================================
+CSS information
+
+ File Name  : contents.css
+ Author     : MIYA
+ Style Info : コンテンツ内のスタイル
+=================================================================== */
+
+/*contents
+----------------------------------------------------------- */
+.tabNav	{
+	width: 100%;
+	
+}
+.tabNav li	{
+	float: left;
+	margin: 0 5px -1px;
+	font-weight: bold;
+	text-align: center;
+}
+.tabNav a	{
+	display: block;
+	/*width: 80px;*/
+	padding: 5px 10px;
+	border-top: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+	border-left: 1px solid #CCC;
+	color: #333;
+}
+.tabNav a.active	{
+	border-bottom: 1px solid #FFF;
+}
+.tabContents	{
+	clear: both;
+	padding: 10px;
+	border: 1px solid #CCC;
+	margin-bottom: 30px;
+}
+.tabContents dl	{
+	margin-bottom: 15px;
+}
+.tabContents dt	{
+	background: url(../image/q.gif) no-repeat 5px 8px;
+	padding: 8px 5px 8px 30px;
+	font-weight: bold;
+}
+.tabContents dd	{
+	background: url(../image/a.gif) no-repeat 5px 8px;
+	padding: 8px 5px 8px 30px;
+	margin-bottom: 5px;
+	border-bottom: 1px dotted #CCC;
+}
+
+
+

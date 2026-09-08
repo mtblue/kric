@@ -1,0 +1,284 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+<?php if ($tpl_form['cmd'] == 'confirm'): ?>
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; 管理画面 &gt; <a href="/<?php echo APP_NAME; ?>/library">ライブラリ管理</a> &gt; 確認</p>
+
+        <div class="mem-sec-head">
+          <h2 class="mem-sec-title">─ ライブラリ管理 ─</h2>
+        </div>
+
+        <div class="bd-detail">
+          <h3 class="bd-detail-title"><?php echo h(isset($tpl_disp['title']) ? $tpl_disp['title'] : ''); ?></h3>
+          <hr class="bd-detail-divider">
+
+          <div class="info-detail-body">
+            <?php echo isset($tpl_disp['doc']) ? strip_tags($tpl_disp['doc'], '<br><a>') : ''; ?>
+          </div>
+
+          <div class="bd-detail-attachment">
+<?php for ($i = 1; $i <= 3; $i++):
+  $cfDeleted = !empty($tpl_disp['file'.$i.'_delete']);
+  $cf = !empty($tpl_disp['file'.$i]) ? $tpl_disp['file'.$i] : (!$cfDeleted && isset($tpl_disp['org_info']['file'.$i]) ? $tpl_disp['org_info']['file'.$i] : '');
+  if ($cf == '') continue;
+  $cfExt = strtolower(pathinfo($cf, PATHINFO_EXTENSION));
+  $cfIsImage = in_array($cfExt, array('jpg','jpeg','png','gif'));
+  $cfIcon = in_array($cfExt, array('xls','xlsx')) ? 'icon_excel.png' : (in_array($cfExt, array('doc','docx')) ? 'icon_word.png' : 'icon_pdf.png');
+?>
+            <?php if ($cfIsImage): ?>
+            <div class="bd-detail-thumb">
+              <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($cf); ?>" alt="添付画像" style="max-width:480px;height:auto;">
+            </div>
+            <p class="bd-reg-filename"><?php echo h($cf); ?></p>
+            <?php else: ?>
+            <a href="/<?php echo APP_NAME; ?>/file/na=<?php echo h($cf); ?>" target="_blank" class="bd-detail-pdf">
+              <img src="/wp-content/themes/default/images/<?php echo $cfIcon; ?>" alt="" class="bd-detail-pdf-icon">
+              <span class="bd-detail-pdf-name"><?php echo h($cf); ?></span>
+            </a>
+            <?php endif; ?>
+<?php endfor; ?>
+          </div>
+
+          <form action="<?php echo HTTP_TO_SCRIPT_NAME; ?>" method="post">
+            <input type="hidden" name="cmd" value="registration">
+            <input type="hidden" name="id" value="<?php echo h(isset($tpl_form['id']) ? $tpl_form['id'] : ''); ?>">
+            <input type="hidden" name="chkno" value="<?php echo h(isset($tpl_form['chkno']) ? $tpl_form['chkno'] : ''); ?>">
+            <div class="bd-reg-confirm-row">
+              <button type="submit" class="bd-reg-submit-btn">
+                <span class="btn-text">登録</span>
+                <span class="btn-sep">|</span>
+                <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+              </button>
+              <a href="<?php echo HTTP_TO_SCRIPT_NAME; ?><?php echo (isset($tpl_form['id']) && $tpl_form['id'] != '') ? '/id=' . h($tpl_form['id']) : ''; ?>" class="bd-reg-back-btn">
+                <span class="btn-text">戻る</span>
+                <span class="btn-sep">|</span>
+                <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+              </a>
+            </div>
+          </form>
+        </div>
+
+<?php else: ?>
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; 管理画面 &gt; <a href="/<?php echo APP_NAME; ?>/library">ライブラリ管理</a> &gt; <?php echo (isset($tpl_disp['org_info']['library_id']) && $tpl_disp['org_info']['library_id'] != '') ? 'ライブラリ情報修正' : '新規登録'; ?></p>
+
+        <div class="mem-sec-head">
+          <h2 class="mem-sec-title">─ ライブラリ管理 ─</h2>
+        </div>
+
+        <h3 class="bd-reg-title"><?php echo (isset($tpl_disp['org_info']['library_id']) && $tpl_disp['org_info']['library_id'] != '') ? 'ライブラリ情報修正' : '新規登録'; ?></h3>
+        <hr class="bd-reg-divider">
+
+        <?php if (!empty($tpl_errDoc)): ?>
+        <div class="reg-error-box">
+          <?php foreach ($tpl_errDoc as $val): ?><p><?php echo h($val); ?></p><?php endforeach; ?>
+        </div>
+        <?php endif; ?>
+
+        <form action="<?php echo HTTP_TO_SCRIPT_NAME; ?>" method="post" name="form" id="form" enctype="multipart/form-data">
+          <input type="hidden" name="cmd" value="confirm">
+          <input type="hidden" name="id" value="<?php echo h(isset($tpl_disp['org_info']['library_id']) ? $tpl_disp['org_info']['library_id'] : ''); ?>">
+
+          <div class="reg-form">
+            <div class="reg-table">
+
+              <div class="reg-row">
+                <label class="reg-label">親カテゴリ</label>
+                <div class="reg-input">
+                  <select name="opener_id" id="opener_id" class="adm-select">
+<?php foreach ($tpl_disp['opener_category_list'] as $key => $val): ?>
+                    <option value="<?php echo h($key); ?>"<?php echo (isset($tpl_disp['opener_id']) && $tpl_disp['opener_id'] == $key) ? ' selected' : ''; ?>><?php echo h($val); ?></option>
+<?php endforeach; ?>
+                  </select>
+                </div>
+              </div>
+
+              <div class="reg-row">
+                <label class="reg-label">子カテゴリ</label>
+                <div class="reg-input">
+                  <select name="category_id" id="category_id" class="adm-select">
+                    <option value=""></option>
+<?php if (!empty($tpl_disp['child_category_list'])): ?>
+<?php foreach ($tpl_disp['child_category_list'] as $key => $val): ?>
+                    <option value="<?php echo h($key); ?>"<?php echo (isset($tpl_disp['category_id']) && $tpl_disp['category_id'] == $key) ? ' selected' : ''; ?>><?php echo h($val); ?></option>
+<?php endforeach; ?>
+<?php endif; ?>
+                  </select>
+                </div>
+              </div>
+
+              <div class="reg-row">
+                <label class="reg-label">タイトル</label>
+                <div class="reg-input">
+                  <input type="text" name="title" value="<?php echo h(isset($tpl_disp['title']) ? $tpl_disp['title'] : ''); ?>">
+                </div>
+              </div>
+
+              <div class="reg-row">
+                <label class="reg-label">内容</label>
+                <div class="reg-input">
+                  <textarea name="doc" class="reg-textarea adm-textarea-tall"><?php echo h(html_entity_decode(isset($tpl_disp['doc']) ? $tpl_disp['doc'] : '', ENT_QUOTES, 'UTF-8')); ?></textarea>
+                </div>
+              </div>
+
+<?php for ($i = 1; $i <= 3; $i++): ?>
+              <div class="reg-row">
+                <label class="reg-label">添付ファイル<?php echo $i; ?></label>
+                <div class="reg-input reg-input--photo">
+                  <input type="file" name="file<?php echo $i; ?>" id="libFile<?php echo $i; ?>" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;">
+                  <div class="reg-file-row">
+                    <button type="button" class="reg-file-btn" onclick="document.getElementById('libFile<?php echo $i; ?>').click();">ファイルを選択</button>
+                  </div>
+                  <p class="reg-hint">※添付可能なファイル形式：jpg・png・pdf・excel・word</p>
+                  <div id="libNewPreview<?php echo $i; ?>" style="display:none;">
+                    <div class="reg-map-preview adm-file-gap" id="libImgPv<?php echo $i; ?>" style="display:none;">
+                      <div class="reg-map-img"><img id="libPvImg<?php echo $i; ?>" src="" alt="プレビュー"></div>
+                    </div>
+                    <div class="bd-reg-pdf-row adm-file-gap" id="libPdfPv<?php echo $i; ?>" style="display:none;">
+                      <img src="/wp-content/themes/default/images/icon_pdf.png" alt="" class="bd-detail-pdf-icon" id="libPdfIcon<?php echo $i; ?>">
+                      <span class="bd-detail-pdf-name" id="libPdfName<?php echo $i; ?>"></span>
+                    </div>
+                    <p class="bd-reg-filename" id="libFileName<?php echo $i; ?>"></p>
+                    <button type="button" class="reg-delete-btn" onclick="clearLibFile(<?php echo $i; ?>);">削除</button>
+                  </div>
+<?php
+  $curFile = isset($tpl_disp['org_info']['file'.$i]) ? $tpl_disp['org_info']['file'.$i] : '';
+  $tmpFile = (!empty($tpl_disp['file'.$i]) && $tpl_disp['file'.$i] != $curFile) ? $tpl_disp['file'.$i] : '';
+  $isDeleted = !empty($tpl_disp['file'.$i.'_delete']);
+?>
+                  <input type="hidden" name="file<?php echo $i; ?>_delete" value="<?php echo $isDeleted ? 'checked' : ''; ?>" id="libDelFlag<?php echo $i; ?>">
+<?php if ($tmpFile != ''): ?>
+                  <div id="libTmpWrap<?php echo $i; ?>">
+                    <input type="hidden" name="file<?php echo $i; ?>_tmp" value="<?php echo h($tmpFile); ?>">
+<?php $te = strtolower(pathinfo($tmpFile, PATHINFO_EXTENSION)); ?>
+<?php if (in_array($te, array('jpg','jpeg','png','gif'))): ?>
+                    <div class="reg-map-preview adm-file-gap">
+                      <div class="reg-map-img"><img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tmpFile); ?>" alt="アップロード済み"></div>
+                    </div>
+                    <p class="bd-reg-filename"><?php echo h($tmpFile); ?></p>
+<?php else: ?>
+<?php $teIcon = in_array($te, array('xls','xlsx')) ? 'icon_excel.png' : (in_array($te, array('doc','docx')) ? 'icon_word.png' : 'icon_pdf.png'); ?>
+                    <div class="bd-reg-pdf-row adm-file-gap">
+                      <img src="/wp-content/themes/default/images/<?php echo $teIcon; ?>" alt="" class="bd-detail-pdf-icon">
+                      <span class="bd-detail-pdf-name"><?php echo h($tmpFile); ?></span>
+                    </div>
+<?php endif; ?>
+                    <button type="button" class="reg-delete-btn" onclick="document.getElementById('libTmpWrap<?php echo $i; ?>').remove();">削除</button>
+                  </div>
+<?php elseif ($curFile != '' && !$isDeleted): ?>
+<?php $ce = strtolower(pathinfo($curFile, PATHINFO_EXTENSION)); ?>
+                  <div id="libCurWrap<?php echo $i; ?>">
+<?php if (in_array($ce, array('jpg','jpeg','png','gif'))): ?>
+                    <div class="reg-map-preview adm-file-gap">
+                      <div class="reg-map-img"><img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($curFile); ?>" alt="添付画像"></div>
+                    </div>
+<?php else: ?>
+<?php $ceIcon = in_array($ce, array('xls','xlsx')) ? 'icon_excel.png' : (in_array($ce, array('doc','docx')) ? 'icon_word.png' : 'icon_pdf.png'); ?>
+                    <div class="bd-reg-pdf-row adm-file-gap">
+                      <img src="/wp-content/themes/default/images/<?php echo $ceIcon; ?>" alt="" class="bd-detail-pdf-icon">
+                      <span class="bd-detail-pdf-name"><?php echo h($curFile); ?></span>
+                    </div>
+<?php endif; ?>
+                    <div class="reg-file-info">
+                      <button type="button" class="reg-delete-btn" onclick="document.getElementById('libDelFlag<?php echo $i; ?>').value='checked'; document.getElementById('libCurWrap<?php echo $i; ?>').style.display='none';">削除</button>
+                    </div>
+                  </div>
+<?php endif; ?>
+                </div>
+              </div>
+<?php endfor; ?>
+
+            </div>
+
+            <div class="reg-submit-row">
+              <button type="submit" class="reg-submit-btn">
+                <span class="btn-text">確認</span>
+                <span class="btn-sep">|</span>
+                <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div class="bd-detail-footer adm-back-footer">
+          <a href="/<?php echo APP_NAME; ?>/library" class="bd-detail-back">一覧へ戻る &gt;</a>
+        </div>
+
+<?php endif; ?>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+  function clearLibFile(n) {
+    var inp = document.getElementById('libFile' + n);
+    if (inp) inp.value = '';
+    var wrap = document.getElementById('libNewPreview' + n);
+    if (wrap) wrap.style.display = 'none';
+    var img = document.getElementById('libImgPv' + n);
+    if (img) img.style.display = 'none';
+    var pdf = document.getElementById('libPdfPv' + n);
+    if (pdf) pdf.style.display = 'none';
+  }
+  function libAttachIconFile(ext) {
+    if (['xls','xlsx'].indexOf(ext) >= 0) return 'icon_excel.png';
+    if (['doc','docx'].indexOf(ext) >= 0) return 'icon_word.png';
+    return 'icon_pdf.png';
+  }
+  (function () {
+    for (var n = 1; n <= 3; n++) {
+      (function (i) {
+        var inp = document.getElementById('libFile' + i);
+        if (!inp) return;
+        inp.addEventListener('change', function () {
+          var file = this.files[0];
+          var wrap = document.getElementById('libNewPreview' + i);
+          var imgPv = document.getElementById('libImgPv' + i);
+          var pdfPv = document.getElementById('libPdfPv' + i);
+          var pdfIcon = document.getElementById('libPdfIcon' + i);
+          var pdfName = document.getElementById('libPdfName' + i);
+          var fileName = document.getElementById('libFileName' + i);
+          if (imgPv) imgPv.style.display = 'none';
+          if (pdfPv) pdfPv.style.display = 'none';
+          if (!file) { if (wrap) wrap.style.display = 'none'; return; }
+          var name = file.name;
+          var ext = name.split('.').pop().toLowerCase();
+          if (wrap) wrap.style.display = '';
+          if (['jpg','jpeg','png','gif'].indexOf(ext) >= 0) {
+            if (fileName) { fileName.textContent = name; fileName.style.display = ''; }
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              document.getElementById('libPvImg' + i).src = e.target.result;
+              imgPv.style.display = '';
+            };
+            reader.readAsDataURL(file);
+          } else {
+            if (fileName) fileName.style.display = 'none';
+            if (pdfName) pdfName.textContent = name;
+            if (pdfIcon) pdfIcon.src = '/wp-content/themes/default/images/' + libAttachIconFile(ext);
+            if (pdfPv) pdfPv.style.display = '';
+          }
+        });
+      })(n);
+    }
+
+    // 親カテゴリ変更で子カテゴリを動的取得
+    var openerSel = document.getElementById('opener_id');
+    if (openerSel) {
+      openerSel.addEventListener('change', function () {
+        var id = this.value;
+        var catSel = document.getElementById('category_id');
+        if (!catSel) return;
+        fetch('/<?php echo APP_NAME; ?>/library_edit/cmd=get_child/id=' + id)
+          .then(function (r) { return r.text(); })
+          .then(function (html) {
+            catSel.innerHTML = '<option value=""></option>' + html;
+          });
+      });
+    }
+  })();
+  </script>

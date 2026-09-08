@@ -1,0 +1,90 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; 管理画面 &gt; ライブラリ管理</p>
+
+        <div class="bd-sec-head">
+          <h2 class="mem-sec-title">─ ライブラリ管理 ─</h2>
+          <a href="/<?php echo APP_NAME; ?>/library_edit" class="adm-btn-new bd-register-btn">
+            <span class="btn-text">新規登録</span>
+            <span class="btn-sep">|</span>
+            <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+          </a>
+        </div>
+
+        <!-- 親カテゴリ選択 -->
+        <div class="adm-category-filter">
+          <span class="adm-category-label">親カテゴリー名</span>
+          <select class="adm-select" id="openerSelect">
+<?php foreach ($tpl_disp['opener_category_list'] as $key => $val): ?>
+            <option value="<?php echo h($key); ?>"<?php echo (isset($tpl_form['cg']) && $tpl_form['cg'] == $key) ? ' selected' : ''; ?>><?php echo h($val); ?></option>
+<?php endforeach; ?>
+          </select>
+        </div>
+
+        <!-- 一覧テーブル -->
+        <div class="adm-table-wrap">
+        <table class="adm-table adm-table--library">
+          <thead>
+            <tr>
+              <th>子カテゴリ名</th>
+              <th>タイトル</th>
+              <th>操作</th>
+              <th>最終更新日時</th>
+            </tr>
+          </thead>
+          <tbody>
+<?php if (count($tpl_disp['main_list']) > 0) { ?>
+<?php foreach ($tpl_disp['main_list'] as $row) { ?>
+            <tr>
+              <td class="adm-td-center" data-label="子カテゴリ名"><?php echo h($row['category_name']); ?></td>
+              <td data-label="タイトル"><a href="/<?php echo APP_NAME; ?>/library_edit/id=<?php echo h($row['library_id']); ?>" class="adm-link"><?php echo h($row['title']); ?></a></td>
+              <td class="adm-td-actions" data-label="操作">
+                <a href="/<?php echo APP_NAME; ?>/library_edit/id=<?php echo h($row['library_id']); ?>" class="mem-member-edit-btn"><span class="btn-text">修正</span></a>
+                <a href="JavaScript:void(0);" onclick="return delete_chk(<?php echo h($row['library_id']); ?>)" class="mem-member-del-btn"><span class="btn-text">削除</span></a>
+              </td>
+              <td data-label="最終更新日時"><?php
+                if (!empty($row['update_date']) && $row['update_date'] != '0000-00-00 00:00:00') {
+                  echo date('y.m.d', strtotime($row['update_date'])) . '　' . date('H:i', strtotime($row['update_date']));
+                }
+              ?></td>
+            </tr>
+<?php } } else { ?>
+            <tr>
+              <td colspan="4">情報は登録されていません。</td>
+            </tr>
+<?php } ?>
+          </tbody>
+        </table>
+        </div>
+
+<?php if (!empty($tpl_disp['navi']['direct_navi'])): ?>
+        <nav class="mem-pagination" aria-label="ページ">
+          <?php echo $tpl_disp['navi']['navigator_before']; ?>
+          <div class="mem-pg-pages">
+            <?php echo $tpl_disp['navi']['direct_navi_first']; ?>
+            <?php echo $tpl_disp['navi']['direct_navi']; ?>
+            <?php echo $tpl_disp['navi']['direct_navi_last']; ?>
+          </div>
+          <?php echo $tpl_disp['navi']['navigator_next']; ?>
+        </nav>
+<?php endif; ?>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+  function delete_chk(id) {
+    if (confirm('削除してもよろしいですか？')) {
+      location.href = '/<?php echo APP_NAME; ?>/library/cmd=delete/id=' + id;
+    }
+    return false;
+  }
+  document.getElementById('openerSelect').addEventListener('change', function () {
+    var id = this.value;
+    if (id > 0) location.href = '/<?php echo APP_NAME; ?>/library/cg=' + id;
+  });
+  </script>

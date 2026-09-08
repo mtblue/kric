@@ -1,0 +1,447 @@
+<?php
+/*
+ * Template Name: 会員紹介
+ */
+$is_detail  = isset($_GET['c']) && $_GET['c'] !== '' && ctype_digit($_GET['c']);
+$company_id = $is_detail ? intval($_GET['c']) : -1;
+?>
+<?php get_header(); ?>
+
+  <!-- ========== ページKV ========== -->
+  <section class="page-kv--bg">
+    <div class="page-kv-placeholder" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/fm_bg.png')"></div>
+    <div class="page-kv-overlay">
+      <h1 class="page-kv-title">会員紹介</h1>
+    </div>
+  </section>
+
+  <!-- パンくず -->
+  <div class="page-breadcrumb">
+    <a href="<?php echo esc_url(home_url('/')); ?>">関西不動産情報センター TOP</a>
+    <span class="page-breadcrumb-sep">&gt;</span>
+    <?php if ($is_detail): ?>
+      <a href="/kaiin.html">会員紹介</a>
+      <span class="page-breadcrumb-sep">&gt;</span>
+      会社詳細
+    <?php else: ?>
+      会員紹介
+    <?php endif; ?>
+  </div>
+
+  <!-- ========== 会社詳細ビュー ========== -->
+  <div id="kaiinDetail" style="<?php echo $is_detail ? '' : 'display:none;'; ?>">
+    <section class="kaiin-detail-sec">
+      <div class="kaiin-detail-inner">
+        <div id="kaiinDetailContent">
+          <p class="kaiin-loading">読み込み中...</p>
+        </div>
+        <div class="kaiin-detail-back-wrap">
+          <a href="/kaiin.html" class="info-detail-back">一覧へ戻る &gt;</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== 一覧ビュー ========== -->
+  <div id="kaiinListView" style="<?php echo $is_detail ? 'display:none;' : ''; ?>">
+
+    <!-- 概要テキスト -->
+    <div class="kaiin-intro">
+      <div class="kaiin-intro-inner">
+        <p class="kaiin-intro-lead">大阪を中心に関西一円にございます。</p>
+        <p class="kaiin-intro-text">関西不動産情報センターは、大阪・兵庫・京都の各部会に属する会員企業で構成されております。信託銀行・都市銀行・大手私鉄・商社・生保・建設会社などの直系不動産会社、そして由緒ある老舗など優良不動産業者を中心に、信用と実績を誇る企業が加盟しております。</p>
+      </div>
+    </div>
+
+    <!-- マップ検索 -->
+    <section class="kaiin-map-sec" id="map">
+      <h2 class="kaiin-sec-heading">- マップ検索 -</h2>
+      <div class="kaiin-map-inner">
+        <div class="kaiin-map-wrap" id="kaiinMap"></div>
+      </div>
+    </section>
+
+    <!-- フリーワード検索 -->
+    <section class="kaiin-search-sec" id="search">
+      <div class="member-search-card">
+        <p class="member-search-title">- フリーワード検索 -</p>
+        <form class="member-search-form" id="kaiinSearchForm">
+          <div class="member-search-inputs">
+            <input type="text" class="member-search-input" id="kaiinKeyword" placeholder="会社名">
+            <input type="text" class="member-search-input" id="kaiinArea" placeholder="エリア・駅">
+          </div>
+          <div class="member-search-btn-row">
+            <button type="submit" class="member-search-btn"><span class="btn-text">検索</span><span class="btn-sep">|</span><img src="<?php echo get_template_directory_uri(); ?>/images/search.png" class="search-icon" alt="検索"></button>
+          </div>
+        </form>
+        <p class="kaiin-search-note">（会員を表示（五十音順））</p>
+      </div>
+    </section>
+
+    <!-- 会員リスト -->
+    <section class="kaiin-list-sec">
+      <div class="kaiin-list-inner" id="kaiinListInner">
+
+        <!-- 五十音インデックス -->
+        <div class="kaiin-abc" id="kaiinAbc">
+          <button type="button" class="kaiin-abc-btn is-active" data-index="1">あ <span class="kaiin-abc-arr">▼</span></button>
+          <button type="button" class="kaiin-abc-btn" data-index="2">か <span class="kaiin-abc-arr">▼</span></button>
+          <button type="button" class="kaiin-abc-btn" data-index="3">さ <span class="kaiin-abc-arr">▼</span></button>
+          <button type="button" class="kaiin-abc-btn" data-index="4">た <span class="kaiin-abc-arr">▼</span></button>
+          <button type="button" class="kaiin-abc-btn" data-index="5">な <span class="kaiin-abc-arr">▼</span></button>
+          <button type="button" class="kaiin-abc-btn" data-index="6">は <span class="kaiin-abc-arr">▼</span></button>
+          <button type="button" class="kaiin-abc-btn" data-index="7">ま <span class="kaiin-abc-arr">▼</span></button>
+          <button type="button" class="kaiin-abc-btn" data-index="8">や <span class="kaiin-abc-arr">▼</span></button>
+          <button type="button" class="kaiin-abc-btn" data-index="9">ら <span class="kaiin-abc-arr">▼</span></button>
+          <button type="button" class="kaiin-abc-btn" data-index="10">わ <span class="kaiin-abc-arr">▼</span></button>
+        </div>
+
+        <!-- 会員リスト（JS動的生成） -->
+        <div id="kaiinList">
+          <p class="kaiin-loading">読み込み中...</p>
+        </div>
+
+      </div>
+    </section>
+
+  </div><!-- /#kaiinListView -->
+
+  <!-- ========== お問い合わせ ========== -->
+  <section class="contact-cta" id="contact">
+    <div class="contact-cta-photo">
+      <img src="<?php echo get_template_directory_uri(); ?>/images/ft_contact.png" alt="お問い合わせ">
+      <div class="contact-cta-photo-text">
+        <div class="contact-photo-inner">
+          <p class="contact-photo-label">JOIN</p>
+          <p class="contact-photo-title">入会を<br>お考えの方は<br>こちら</p>
+        </div>
+        <a href="<?php echo esc_url(home_url('/')); ?>nyukai/" class="contact-photo-link">入会案内ページへ <span class="contact-photo-arrow">›</span></a>
+      </div>
+    </div>
+    <div class="contact-cta-inner">
+      <p class="contact-label">CONTACT</p>
+      <h2 class="contact-title">お問い合わせ</h2>
+      <p class="contact-subtitle">KRICについての質問や相談は<br class="contact-subtitle-br">お気軽にお問い合わせください。</p>
+      <hr class="contact-divider">
+      <div class="contact-cols">
+        <div class="contact-col">
+          <p class="contact-col-label">[電話の場合]</p>
+          <p class="contact-col-note">・受付時間／10:00〜16:00</p>
+          <p class="contact-tel"><span class="contact-tel-label">TEL.</span> <a href="tel:0662927791">06-6292-7791</a></p>
+        </div>
+        <div class="contact-col">
+          <p class="contact-col-label">[Webの場合]</p>
+          <p class="contact-col-note">・24時間受付中</p>
+          <a href="<?php echo esc_url(home_url('/contact.html')); ?>" class="btn-contact-form"><span class="btn-text">お問合せフォーム</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+(function () {
+  var urlParams  = new URLSearchParams(window.location.search);
+  var _cParam    = urlParams.get('c');
+  var companyId  = (_cParam !== null && /^\d+$/.test(_cParam)) ? _cParam : null;
+
+  function escHtml(s) {
+    if (s == null) { return ''; }
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ================================================================
+  // 詳細モード
+  // ================================================================
+  if (companyId) {
+    var detailContent = document.getElementById('kaiinDetailContent');
+
+    fetch('/intro/detail_json?c=' + encodeURIComponent(companyId))
+      .then(function(r) { return r.json(); })
+      .then(function(company) {
+        if (company.error) {
+          detailContent.innerHTML = '<p class="kaiin-no-result">会社情報が見つかりませんでした。</p>';
+          return;
+        }
+        detailContent.innerHTML = renderDetail(company);
+      })
+      .catch(function() {
+        detailContent.innerHTML = '<p class="kaiin-no-result">データを取得できませんでした。</p>';
+      });
+
+    function renderDetail(c) {
+      // 住所を3行に分割
+      var addrJusho = (c.city || '') + (c.address_town || '') + (c.building || '');
+
+      var rows = [
+        ['代表者名', c.daihyousha],
+        ['免許',     c.menkyo],
+        ['郵便番号', c.zip ? '〒' + c.zip : ''],
+        ['都道府県', c.ken],
+        ['住所',     addrJusho],
+        ['交通',     c.koutsu],
+        ['電話番号', c.tel],
+        ['FAX番号',  c.fax],
+      ];
+      var rowsHtml = '';
+      rows.forEach(function(r) {
+        if (!r[1]) { return; }
+        rowsHtml += '<div class="reg-row">'
+                  + '<span class="reg-label">' + escHtml(r[0]) + '</span>'
+                  + '<span class="reg-confirm-value">' + escHtml(r[1]) + '</span>'
+                  + '</div>';
+      });
+      if (c.url) {
+        rowsHtml += '<div class="reg-row">'
+                  + '<span class="reg-label">URL</span>'
+                  + '<span class="reg-confirm-value"><a href="' + escHtml(c.url) + '" target="_blank" rel="noopener" class="reg-confirm-url">' + escHtml(c.url) + ' →</a></span>'
+                  + '</div>';
+      }
+      if (c.email) {
+        rowsHtml += '<div class="reg-row">'
+                  + '<span class="reg-label">メールアドレス</span>'
+                  + '<span class="reg-confirm-value"><a href="mailto:' + escHtml(c.email) + '" class="reg-confirm-url">' + escHtml(c.email) + ' →</a></span>'
+                  + '</div>';
+      }
+
+      var sectionsHtml = '';
+      if (c.jigyounaiyou) {
+        sectionsHtml += '<div class="reg-confirm-section-head">事業内容</div>'
+                      + '<p class="reg-confirm-text">' + escHtml(c.jigyounaiyou).replace(/\n/g,'<br>') + '</p>';
+      }
+      if (c.kameidantai) {
+        sectionsHtml += '<div class="reg-confirm-section-head">加盟団体</div>'
+                      + '<p class="reg-confirm-text">' + escHtml(c.kameidantai).replace(/\n/g,'<br>') + '</p>';
+      }
+      if (c.enkaku) {
+        sectionsHtml += '<div class="reg-confirm-section-head">沿革</div>'
+                      + '<p class="reg-confirm-text">' + escHtml(c.enkaku).replace(/\n/g,'<br>') + '</p>';
+      }
+
+      // アクセスマップ
+      var mapHtml = '';
+      var hasGoogleMap = (c.map_flg & 1) && c.google_map;
+      var hasUploadMap = (c.map_flg & 2) && c.upload_map;
+      if (hasGoogleMap || hasUploadMap) {
+        mapHtml += '<div class="reg-confirm-section-head">アクセスマップ</div>'
+                 + '<div class="kaiin-detail-map">';
+        if (hasGoogleMap) {
+          // 緯度経度があれば座標で embed、なければ住所文字列で embed
+          var embedUrl;
+          if (c.lat != null && c.lng != null) {
+            embedUrl = 'https://maps.google.com/maps?q=' + encodeURIComponent(c.lat + ',' + c.lng) + '&z=16&output=embed';
+          } else {
+            // 住所文字列を組み立ててフォールバック（短縮URLは embed 不可のため）
+            var addrQ = (c.ken || '') + (c.city || '') + (c.address_town || '') + (c.building || '');
+            embedUrl = 'https://maps.google.com/maps?q=' + encodeURIComponent(addrQ) + '&output=embed';
+          }
+          mapHtml += '<iframe src="' + escHtml(embedUrl) + '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"'
+                   + ' style="width:100%;height:300px;display:block;" allowfullscreen loading="lazy"></iframe>';
+        }
+        if (hasUploadMap) {
+          mapHtml += '<img src="/intro/file/na=' + escHtml(c.upload_map) + '" alt="" style="max-width:100%;display:block;margin-top:10px;">';
+        }
+        mapHtml += '</div>';
+      }
+
+      // YouTube PR動画
+      var videoHtml = '';
+      if (c.pr_video) {
+        var ytMatch = c.pr_video.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+        if (ytMatch) {
+          var ytId = ytMatch[1];
+          videoHtml += '<div class="reg-confirm-section-head">会社紹介動画</div>'
+                     + '<div class="kaiin-detail-video">'
+                     + '<iframe src="https://www.youtube.com/embed/' + escHtml(ytId) + '"'
+                     + ' width="560" height="315" frameborder="0"'
+                     + ' allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"'
+                     + ' allowfullscreen style="max-width:100%;display:block;"></iframe>'
+                     + '</div>';
+        }
+      }
+
+      return '<div class="reg-confirm-card">'
+           + '<div class="reg-confirm-head">(社名) ' + escHtml(c.company_name) + '</div>'
+           + (c.shoukaibun ? '<p class="reg-confirm-intro"><span class="reg-intro-label">(紹介文)</span> ' + escHtml(c.shoukaibun).replace(/\n/g,'<br>') + '</p>' : '')
+           + '<div class="reg-confirm-table">' + rowsHtml + '</div>'
+           + sectionsHtml
+           + mapHtml
+           + videoHtml
+           + '</div>';
+    }
+
+    return; // 詳細モードはここで終了
+  }
+
+  // ================================================================
+  // 一覧モード
+  // ================================================================
+  var listEl    = document.getElementById('kaiinList');
+  var abcEl     = document.getElementById('kaiinAbc');
+  var form      = document.getElementById('kaiinSearchForm');
+  var kwInput   = document.getElementById('kaiinKeyword');
+  var areaInput = document.getElementById('kaiinArea');
+
+  // ---- Google Maps ----
+  var gmap = null;
+  var markers = [];
+  var infoWindow = null;
+  var pendingMarkerData = null;
+  /* fetchList が Maps API より先に呼ばれた場合のフラグ。
+     initKaiinMap がデフォルト全件 fetch を二重に走らせないようにする。 */
+  var searchPending = false;
+
+  window.initKaiinMap = function() {
+    gmap = new google.maps.Map(document.getElementById('kaiinMap'), {
+      center: { lat: 34.70, lng: 135.50 },
+      zoom: 10,
+    });
+    infoWindow = new google.maps.InfoWindow();
+
+    if (pendingMarkerData !== null) {
+      /* fetchList が Maps より先に resolve した場合 → 保存済みデータを使用 */
+      updateMarkers(pendingMarkerData);
+      pendingMarkerData = null;
+    } else if (!searchPending) {
+      /* fetchList が一度も呼ばれていない場合のみ全件 fetch */
+      fetch('/intro/dir_json?all=1')
+        .then(function(r) { return r.json(); })
+        .then(function(data) { updateMarkers(data); })
+        .catch(function() {});
+    }
+    /* searchPending && pendingMarkerData===null のとき:
+       fetchList の fetch がまだ in-flight → resolve 時に updateMarkers が呼ばれる */
+  };
+
+  function updateMarkers(data) {
+    markers.forEach(function(m) { m.setMap(null); });
+    markers = [];
+    if (!gmap) { pendingMarkerData = data; return; }
+    data.forEach(function(item) {
+      if (item.lat == null || item.lng == null) { return; }
+      var svgIcon = {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+          '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="42" viewBox="0 0 30 42">' +
+          '<path fill-rule="evenodd" fill="#b8954a" stroke="#ffffff" stroke-width="2" ' +
+          'd="M15 0C6.716 0 0 6.716 0 15c0 10.5 15 27 15 27S30 25.5 30 15C30 6.716 23.284 0 15 0Z ' +
+          'M15 15m-6 0a6 6 0 1 0 12 0a6 6 0 1 0-12 0"/>' +
+          '</svg>'
+        ),
+        scaledSize: new google.maps.Size(30, 42),
+        anchor: new google.maps.Point(15, 42),
+      };
+      var marker = new google.maps.Marker({
+        position: { lat: item.lat, lng: item.lng },
+        map: gmap,
+        title: item.name,
+        icon: svgIcon,
+      });
+      marker.addListener('click', function() {
+        var content = '<div style="font-size:13px;line-height:1.6;">'
+          + '<strong>' + escHtml(item.name) + '</strong>'
+          + '</div>';
+        infoWindow.setContent(content);
+        infoWindow.open(gmap, marker);
+        syncListToMarker(item);
+      });
+      markers.push(marker);
+    });
+  }
+
+  // ---- List ----
+  function fetchList(params) {
+    if (!gmap) { searchPending = true; }
+    var qs = Object.keys(params).map(function(k) {
+      return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
+    }).join('&');
+    listEl.innerHTML = '<p class="kaiin-loading">読み込み中...</p>';
+    fetch('/intro/dir_json?' + qs)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        renderList(data);
+        updateMarkers(data);
+      })
+      .catch(function() {
+        listEl.innerHTML = '<p class="kaiin-no-result">データを取得できませんでした。</p>';
+      });
+  }
+
+  function renderList(data) {
+    if (!data || data.length === 0) {
+      listEl.innerHTML = '<p class="kaiin-no-result">該当する会員が見つかりませんでした。</p>';
+      return;
+    }
+    var html = '';
+    data.forEach(function(item) {
+      var addrHtml = '';
+      if (item.addr) {
+        var m = item.addr.match(/^(〒[\d-]+)(.+)$/);
+        if (m) {
+          addrHtml = '<p class="kaiin-company-addr">' + escHtml(m[1]) + '<br>' + escHtml(m[2].trim()) + '</p>';
+        } else {
+          addrHtml = '<p class="kaiin-company-addr">' + escHtml(item.addr) + '</p>';
+        }
+      }
+      html += '<div class="kaiin-list-item" data-id="' + item.id + '">'
+            + '<p class="kaiin-company-name"><a href="?c=' + item.id + '" class="kaiin-company-link">' + escHtml(item.name) + '</a></p>'
+            + addrHtml
+            + '</div>';
+    });
+    listEl.innerHTML = html;
+  }
+
+  function syncListToMarker(item) {
+    abcEl.querySelectorAll('.kaiin-abc-btn').forEach(function(b) { b.classList.remove('is-active'); });
+    kwInput.value = '';
+    areaInput.value = '';
+    renderList([item]);
+  }
+
+  // 五十音ボタン
+  abcEl.addEventListener('click', function(e) {
+    var btn = e.target.closest('.kaiin-abc-btn');
+    if (!btn) { return; }
+    abcEl.querySelectorAll('.kaiin-abc-btn').forEach(function(b) { b.classList.remove('is-active'); });
+    btn.classList.add('is-active');
+    kwInput.value = '';
+    areaInput.value = '';
+    fetchList({ index: btn.dataset.index });
+  });
+
+  // 検索フォーム
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var kw   = kwInput.value.trim();
+    var area = areaInput.value.trim();
+    abcEl.querySelectorAll('.kaiin-abc-btn').forEach(function(b) { b.classList.remove('is-active'); });
+    if (!kw && !area) {
+      fetchList({ index: '1' });
+    } else {
+      var params = {};
+      if (kw)   { params.keyword = kw; }
+      if (area) { params.area    = area; }
+      fetchList(params);
+    }
+  });
+
+  // TOPページ検索フォームからのリダイレクト時は URL パラメータで自動検索
+  var initKw   = urlParams.get('keyword') || '';
+  var initArea = urlParams.get('area')    || '';
+  if (initKw || initArea) {
+    kwInput.value   = initKw;
+    areaInput.value = initArea;
+    abcEl.querySelectorAll('.kaiin-abc-btn').forEach(function (b) { b.classList.remove('is-active'); });
+    var params = {};
+    if (initKw)   { params.keyword = initKw; }
+    if (initArea) { params.area    = initArea; }
+    fetchList(params);
+  } else {
+    fetchList({ index: '1' });
+  }
+})();
+</script>
+
+<?php if (!$is_detail): ?>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKNRY5M-4TUVJ29xeO6rTfObogadC6o9Q&callback=initKaiinMap" async defer></script>
+<?php endif; ?>
+
+<?php get_footer(); ?>

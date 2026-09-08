@@ -1,0 +1,181 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <?php
+          $zokusei_labels = array(1 => '売りたい', 2 => '買いたい', 3 => '貸したい', 4 => '借りたい');
+          $zokusei_paths  = array(1 => 'bd',        2 => 'bd02',     3 => 'bd03',     4 => 'bd04');
+          $zokusei      = isset($tpl_disp['zokusei']) ? (int)$tpl_disp['zokusei'] : 1;
+          $tab_label    = isset($zokusei_labels[$zokusei]) ? $zokusei_labels[$zokusei] : '売りたい';
+          $tab_path     = isset($zokusei_paths[$zokusei])  ? $zokusei_paths[$zokusei]  : 'bd';
+        ?>
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; <a href="/iis/index">会員専用ページ</a> &gt; ビジネスダイレクト &gt; <a href="/<?php echo APP_NAME; ?>/<?php echo $tab_path; ?>"><?php echo $tab_label; ?></a> &gt; 詳細</p>
+
+        <div class="mem-sec-head bd-sec-head">
+          <h2 class="mem-sec-title">─ ビジネスダイレクト ─</h2>
+          <a href="/<?php echo APP_NAME; ?>/bd_edit/zo=1" class="bd-register-btn"><span class="btn-text">新規登録</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></a>
+        </div>
+
+        <div class="bd-subtabs">
+          <a href="/<?php echo APP_NAME; ?>/bd"   class="bd-subtab<?php echo ($zokusei == 1) ? ' is-active' : ''; ?>">売りたい <span class="bd-subtab-arr">▼</span></a>
+          <a href="/<?php echo APP_NAME; ?>/bd02" class="bd-subtab<?php echo ($zokusei == 2) ? ' is-active' : ''; ?>">買いたい <span class="bd-subtab-arr">▼</span></a>
+          <a href="/<?php echo APP_NAME; ?>/bd03" class="bd-subtab<?php echo ($zokusei == 3) ? ' is-active' : ''; ?>">貸したい <span class="bd-subtab-arr">▼</span></a>
+          <a href="/<?php echo APP_NAME; ?>/bd04" class="bd-subtab<?php echo ($zokusei == 4) ? ' is-active' : ''; ?>">借りたい <span class="bd-subtab-arr">▼</span></a>
+        </div>
+
+        <div class="bd-detail">
+
+          <p class="bd-detail-date"><?php echo isset($tpl_disp['update_date']) && $tpl_disp['update_date'] ? h(date('y.m.d', strtotime($tpl_disp['update_date']))) : ''; ?></p>
+          <h3 class="bd-detail-title"><?php echo h(isset($tpl_disp['title']) ? $tpl_disp['title'] : ''); ?></h3>
+
+          <hr class="bd-detail-divider">
+
+          <div class="bd-detail-table">
+
+            <div class="bd-detail-row">
+              <span class="bd-detail-label">•種別</span>
+              <span class="bd-detail-value"><?php echo h(isset($tpl_disp['shubetsu']) ? $tpl_disp['shubetsu'] : ''); ?></span>
+            </div>
+
+            <div class="bd-detail-row">
+              <span class="bd-detail-label">•所在地</span>
+              <span class="bd-detail-value"><?php echo h(isset($tpl_disp['syozaichi']) ? $tpl_disp['syozaichi'] : ''); ?></span>
+            </div>
+
+<?php if (!empty($tpl_disp['doc'])): ?>
+            <div class="bd-detail-row">
+              <span class="bd-detail-label">•備考</span>
+              <span class="bd-detail-value"><?php echo isset($tpl_disp['doc']) ? strip_tags(chop($tpl_disp['doc']), '<br><br />') : ''; ?></span>
+            </div>
+<?php endif; ?>
+
+<?php if (!empty($tpl_disp['video_url'])): ?>
+<?php
+  $yt_id = '';
+  if (preg_match('/(?:youtube\.com\/watch\?.*v=|youtu\.be\/|youtube\.com\/shorts\/)([a-zA-Z0-9_\-]{11})/', $tpl_disp['video_url'], $yt_m)) {
+    $yt_id = $yt_m[1];
+  } elseif (preg_match('/youtube\.com\/embed\/([a-zA-Z0-9_\-]{11})/', $tpl_disp['video_url'], $yt_m)) {
+    $yt_id = $yt_m[1];
+  }
+?>
+            <div class="bd-detail-row">
+              <span class="bd-detail-label">•動画URL</span>
+              <div class="bd-detail-value">
+                <?php if ($yt_id): ?>
+                <a href="<?php echo h($tpl_disp['video_url']); ?>" target="_blank" rel="noopener" class="bd-yt-link">
+                  <img src="https://img.youtube.com/vi/<?php echo h($yt_id); ?>/hqdefault.jpg"
+                       alt="動画サムネイル" class="bd-yt-thumb"
+                       onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+                  <span class="bd-yt-error" style="display:none;">動画が見つかりません</span>
+                </a>
+                <?php else: ?>
+                <a href="<?php echo h($tpl_disp['video_url']); ?>" target="_blank" rel="noopener"><?php echo h($tpl_disp['video_url']); ?></a>
+                <?php endif; ?>
+              </div>
+            </div>
+<?php endif; ?>
+
+<?php
+  $has_file = false;
+  for ($i = 1; $i <= 3; $i++) {
+    if (!empty($tpl_disp['file' . $i])) { $has_file = true; break; }
+  }
+  if ($has_file):
+?>
+            <div class="bd-detail-row">
+              <span class="bd-detail-label">•添付ファイル</span>
+              <div class="bd-detail-value">
+<?php for ($i = 1; $i <= 3; $i++): ?>
+<?php if (!empty($tpl_disp['file' . $i])): ?>
+<?php $det_ext = strtolower(pathinfo($tpl_disp['file' . $i], PATHINFO_EXTENSION)); ?>
+                <div class="bd-detail-attachment">
+                  <?php if (in_array($det_ext, ['jpg','jpeg','jpe','png','gif'])): ?>
+                  <a href="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_disp['file' . $i]); ?>" target="_blank">
+                    <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_disp['file' . $i]); ?>" alt="" class="bd-detail-thumb">
+                  </a>
+                  <?php else: ?>
+<?php
+  if ($det_ext === 'pdf')                          { $det_icon = 'icon_pdf.png'; }
+  elseif (in_array($det_ext, ['xls','xlsx']))      { $det_icon = 'icon_excel.png'; }
+  elseif (in_array($det_ext, ['doc','docx']))      { $det_icon = 'icon_word.png'; }
+  else                                             { $det_icon = ''; }
+?>
+                  <a href="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_disp['file' . $i]); ?>" target="_blank" class="bd-detail-pdf">
+                    <?php if ($det_icon): ?><img src="/wp-content/themes/default/images/<?php echo $det_icon; ?>" alt="" class="bd-detail-pdf-icon"><?php endif; ?>
+                    <span class="bd-detail-pdf-name"><?php echo h($tpl_disp['file' . $i]); ?></span>
+                  </a>
+                  <?php endif; ?>
+                </div>
+<?php endif; ?>
+<?php endfor; ?>
+              </div>
+            </div>
+<?php endif; ?>
+
+          </div>
+
+<?php if (!empty($tpl_disp['bd_list'])): ?>
+          <div class="bd-detail-addons">
+<?php foreach ($tpl_disp['bd_list'] as $row): ?>
+            <div class="bd-detail-addon">
+              <p class="bd-detail-addon-date"><?php echo isset($row['create_date']) ? h(date('Y.m.d', strtotime($row['create_date']))) . '追記' : ''; ?></p>
+              <div class="bd-detail-addon-body"><?php echo isset($row['doc']) ? chop($row['doc']) : ''; ?></div>
+<?php for ($i = 1; $i <= 3; $i++): ?>
+<?php if (!empty($row['file' . $i])): ?>
+<?php $addon_ext = strtolower(pathinfo($row['file' . $i], PATHINFO_EXTENSION)); ?>
+              <?php if (in_array($addon_ext, ['jpg','jpeg','jpe','png','gif'])): ?>
+              <a href="/<?php echo APP_NAME; ?>/file/na=<?php echo h($row['file' . $i]); ?>" target="_blank">
+                <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($row['file' . $i]); ?>" alt="" class="bd-detail-thumb">
+              </a>
+              <?php else: ?>
+<?php
+  if ($addon_ext === 'pdf')                          { $addon_icon = 'icon_pdf.png'; }
+  elseif (in_array($addon_ext, ['xls','xlsx']))      { $addon_icon = 'icon_excel.png'; }
+  elseif (in_array($addon_ext, ['doc','docx']))      { $addon_icon = 'icon_word.png'; }
+  else                                               { $addon_icon = ''; }
+?>
+              <a href="/<?php echo APP_NAME; ?>/file/na=<?php echo h($row['file' . $i]); ?>" target="_blank" class="bd-detail-pdf">
+                <?php if ($addon_icon): ?><img src="/wp-content/themes/default/images/<?php echo $addon_icon; ?>" alt="" class="bd-detail-pdf-icon"><?php endif; ?>
+                <span class="bd-detail-pdf-name"><?php echo h($row['file' . $i]); ?></span>
+              </a>
+              <?php endif; ?>
+<?php endif; ?>
+<?php endfor; ?>
+            </div>
+<?php endforeach; ?>
+          </div>
+<?php endif; ?>
+
+          <div class="bd-detail-author">
+            <p class="bd-detail-company"><?php echo h(isset($tpl_disp['poster_company']) && $tpl_disp['poster_company'] != '' ? $tpl_disp['poster_company'] : (isset($tpl_disp['company_name']) ? $tpl_disp['company_name'] : '')); ?></p>
+            <p class="bd-detail-person"><?php echo h(isset($tpl_disp['poster_name']) && $tpl_disp['poster_name'] != '' ? $tpl_disp['poster_name'] : (isset($tpl_disp['member_name']) ? $tpl_disp['member_name'] : '')); ?></p>
+            <a href="/<?php echo APP_NAME; ?>/linghtbox/id=<?php echo h($tpl_disp['member_id']); ?>/" class="bd-detail-member js-lightbox-link">＜登録者情報を見る＞</a>
+          </div>
+
+<?php
+if (isset($tpl_disp['sessionInfo']['member_id']) && isset($tpl_disp['member_id'])
+    && $tpl_disp['sessionInfo']['member_id'] == $tpl_disp['member_id']):
+?>
+          <div class="bd-detail-actions">
+            <a href="javascript:void(0);" onclick="
+              if(confirm('この記事に追記しますか？')){
+                location.href='/<?php echo APP_NAME; ?>/bd_edit/addid=<?php echo h($tpl_disp['business_direct_id']); ?>';
+              }" class="bd-detail-add-btn"><span class="btn-text">追記</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></a>
+            <a href="javascript:void(0);" onclick="
+              if(confirm('この記事を削除してもよろしいですか？')){
+                location.href='/<?php echo ROOT_TO_PATH; ?>/cmd=delete/id=<?php echo h($tpl_disp['business_direct_id']); ?>';
+              }" class="bd-detail-del-btn"><span class="btn-text">削除</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></a>
+          </div>
+<?php endif; ?>
+
+          <div class="bd-detail-footer">
+            <a href="<?php echo h(isset($tpl_disp['back_url']) ? $tpl_disp['back_url'] : '/' . APP_NAME . '/' . $tab_path); ?>" class="bd-detail-back">一覧へ戻る &gt;</a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>

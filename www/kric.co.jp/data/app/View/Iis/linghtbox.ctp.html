@@ -1,0 +1,51 @@
+<div class="dir-modal-inner">
+  <div class="dir-modal-left">
+    <p class="dir-modal-name"><?php echo h(isset($tpl_disp['member_name']) ? $tpl_disp['member_name'] : ''); ?></p>
+    <p class="dir-modal-kana"><?php echo h(isset($tpl_disp['member_namekana']) ? $tpl_disp['member_namekana'] : ''); ?></p>
+    <hr class="dir-modal-divider">
+    <div class="dir-modal-table">
+      <div class="dir-modal-row">
+        <span class="dir-modal-label">会社名</span>
+        <span class="dir-modal-value"><?php echo h(isset($tpl_disp['company_name']) ? $tpl_disp['company_name'] : ''); ?></span>
+      </div>
+      <div class="dir-modal-row">
+        <span class="dir-modal-label">会社カナ</span>
+        <span class="dir-modal-value"><?php echo h(isset($tpl_disp['company_kana']) ? $tpl_disp['company_kana'] : ''); ?></span>
+      </div>
+      <div class="dir-modal-row">
+        <span class="dir-modal-label">会社電話番号</span>
+        <span class="dir-modal-value"><?php echo h(isset($tpl_disp['company_tel']) ? $tpl_disp['company_tel'] : ''); ?></span>
+      </div>
+      <div class="dir-modal-row">
+        <span class="dir-modal-label">携帯電話番号1</span>
+        <span class="dir-modal-value"><?php echo h(isset($tpl_disp['member_keitai1']) ? $tpl_disp['member_keitai1'] : ''); ?><?php
+          if (isset($tpl_disp['member_kyaria1']) && $tpl_disp['member_kyaria1'] != '' && isset($tpl_disp['master_142'])) {
+            foreach ($tpl_disp['master_142'] as $key => $val) {
+              if ($tpl_disp['member_kyaria1'] == $key) { echo '&nbsp;&nbsp;' . h($val); }
+            }
+          }
+        ?></span>
+      </div>
+      <div class="dir-modal-row">
+        <span class="dir-modal-label">携帯電話番号2</span>
+        <span class="dir-modal-value"><?php echo h(isset($tpl_disp['member_keitai2']) ? $tpl_disp['member_keitai2'] : ''); ?><?php
+          if (isset($tpl_disp['member_kyaria2']) && $tpl_disp['member_kyaria2'] != '' && isset($tpl_disp['master_142'])) {
+            foreach ($tpl_disp['master_142'] as $key => $val) {
+              if ($tpl_disp['member_kyaria2'] == $key) { echo '&nbsp;&nbsp;' . h($val); }
+            }
+          }
+        ?></span>
+      </div>
+      <div class="dir-modal-row">
+        <span class="dir-modal-label">メールアドレス1</span>
+        <span class="dir-modal-value"><?php echo h(isset($tpl_disp['member_email']) ? $tpl_disp['member_email'] : ''); ?></span>
+      </div>
+    </div>
+  </div>
+  <?php $photoFile = isset($tpl_disp['member_photo']) ? $tpl_disp['member_photo'] : ''; ?>
+  <?php if ($photoFile != ''): ?>
+  <div class="dir-modal-photo">
+    <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($photoFile); ?>" alt="顔写真" class="dir-modal-photo-img">
+  </div>
+  <?php endif; ?>
+</div>

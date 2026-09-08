@@ -1,0 +1,404 @@
+<?php
+/*
+ * Template Name: NEWS
+ */
+
+// ページネーション設定
+$paged    = get_query_var('paged') ? get_query_var('paged') : 1;
+$per_page = 10;
+$news_query = new WP_Query(array(
+  'post_type'      => 'post',
+  'post_status'    => 'publish',
+  'posts_per_page' => $per_page,
+  'paged'          => $paged,
+  'orderby'        => 'date',
+  'order'          => 'DESC',
+));
+$total_pages = $news_query->max_num_pages;
+
+// ---- KRICメディア: DBから全件取得・チャンネル別振り分け（会員ページと同設計）----
+// kindメタでチャンネル分類、range_labelメタで範囲グループ表示
+$kind_to_ch = [
+  'MBSラジオ 村瀬哲史とKRIC！不動産の時間'         => 'kric',
+  'MBSラジオ 予備校講師 村瀬哲史のナニワ地理学' => 'mnc',
+  'YouTube ナニワの地理学スピンオフ'              => 'yt',
+];
+
+$media_channels = [
+  'kric' => ['label' => '【MBSラジオ】<br>村瀬哲史とKRIC!<br>不動産の時間',         'items' => [], 'range_map' => []],
+  'mnc'  => ['label' => '【MBSラジオ】<br>予備校講師<br>村瀬哲史のナニワ地理学', 'items' => [], 'range_map' => []],
+  'yt'   => ['label' => '【YouTube】<br>ナニワの地理学<br>スピンオフ',              'items' => [], 'range_map' => []],
+];
+
+$media_all = get_posts([
+  'post_type'      => 'kric-media',
+  'post_status'    => 'publish',
+  'numberposts'    => -1,
+  'meta_key'       => 'orderView',
+  'orderby'        => 'meta_value_num',
+  'order'          => 'DESC',
+]);
+
+foreach ($media_all as $_mp) {
+  $kind        = get_post_meta($_mp->ID, 'kind',        true);
+  $range_label = get_post_meta($_mp->ID, 'range_label', true);
+  $gen_url     = get_post_meta($_mp->ID, 'GeneralURL',  true);
+  $yt_id       = get_post_meta($_mp->ID, 'YouTubeURL',  true);
+  $img_id      = get_post_meta($_mp->ID, 'mediaimg',    true);
+
+  // チャンネル判定（kindが未設定の旧データはkric扱い）
+  $ch_key = isset($kind_to_ch[$kind]) ? $kind_to_ch[$kind] : '';
+  if ($ch_key === '' && empty($kind)) { $ch_key = 'kric'; }
+  if (!isset($media_channels[$ch_key])) { continue; }
+
+  if ($img_id) {
+    $img = wp_get_attachment_url((int)$img_id) ?: '';
+  } elseif ($yt_id) {
+    $img = 'https://img.youtube.com/vi/' . esc_attr($yt_id) . '/mqdefault.jpg';
+  } else {
+    $img = '';
+  }
+
+  if ($gen_url) {
+    $url = $gen_url;
+  } elseif ($yt_id) {
+    $url = 'https://www.youtube.com/watch?v=' . $yt_id;
+  } else {
+    $url = '#';
+  }
+
+  $_item = [
+    'title' => get_the_title($_mp),
+    'url'   => $url,
+    'img'   => $img,
+  ];
+
+  $media_channels[$ch_key]['items'][] = $_item;
+
+  if (!empty($range_label)) {
+    $media_channels[$ch_key]['range_map'][$range_label][] = $_item;
+  }
+}
+wp_reset_postdata();
+
+// JS用データ整形（range_label DESC順でソート）
+$media_js = [];
+foreach ($media_channels as $ch_key => $ch) {
+  $ranges = [];
+  foreach ($ch['range_map'] as $rl => $r_items) {
+    $ranges[] = ['key' => $rl, 'label' => $rl, 'items' => $r_items];
+  }
+  usort($ranges, function($a, $b) {
+    // "第14回～..." から先頭の回数を数値で取り出して降順ソート
+    // （文字列比較だと「第1回」>「第14回」になり順番が崩れる）
+    preg_match('/第(\d+)回/', $a['key'], $ma);
+    preg_match('/第(\d+)回/', $b['key'], $mb);
+    $na = isset($ma[1]) ? (int)$ma[1] : 0;
+    $nb = isset($mb[1]) ? (int)$mb[1] : 0;
+    return $nb - $na; // 降順（新しい＝回数大 が左）
+  });
+  $media_js[$ch_key] = [
+    'label'  => $ch['label'],
+    'ranges' => $ranges,
+    'items'  => $ch['items'],
+  ];
+}
+?>
+<?php get_header(); ?>
+
+  <!-- ========== ページKV ========== -->
+  <section class="page-kv--bg">
+    <div class="page-kv-placeholder" style="background-image: url('<?php echo get_template_directory_uri(); ?>/images/nw_bg.png')"></div>
+    <div class="page-kv-overlay">
+      <h1 class="page-kv-title">NEWS</h1>
+    </div>
+  </section>
+
+  <!-- パンくず -->
+  <div class="page-breadcrumb">
+    <a href="<?php echo esc_url(home_url('/')); ?>">関西不動産情報センター TOP</a>
+    <span class="page-breadcrumb-sep">&gt;</span>
+    NEWS
+  </div>
+
+  <!-- ========== 新着情報 ========== -->
+  <section class="news-sec" id="news">
+    <div class="news-inner">
+
+      <h2 class="news-list-heading">新着情報（事務局からのお知らせ）</h2>
+
+      <ul class="news-list">
+        <?php if ($news_query->have_posts()) : while ($news_query->have_posts()) : $news_query->the_post(); ?>
+        <li class="news-list-item">
+          <span class="news-list-date"><?php echo get_the_date('y.m.d'); ?></span>
+          <a href="<?php the_permalink(); ?>" class="news-list-title"><?php the_title(); ?></a>
+          <span class="news-list-arrow">→</span>
+        </li>
+        <?php endwhile; wp_reset_postdata(); else : ?>
+        <li class="news-list-item"><span class="news-list-title">新着情報はありません。</span></li>
+        <?php endif; ?>
+      </ul>
+
+      <?php if ($total_pages > 1) : ?>
+      <nav class="news-pagination">
+        <a href="<?php echo $paged > 1 ? esc_url(get_pagenum_link($paged - 1)) : '#'; ?>" class="news-pg-prev">&lt;</a>
+        <div class="news-pg-pages">
+          <?php
+          $range   = 2;
+          $show_to = min($total_pages, 5);
+          for ($i = 1; $i <= $total_pages; $i++) :
+            if ($i === 1 || $i === $total_pages || abs($i - $paged) <= $range) :
+              if ($i > 1) echo '<span class="news-pg-sep">｜</span>';
+          ?>
+              <a href="<?php echo esc_url(get_pagenum_link($i)); ?>" class="news-pg-num<?php echo $i === $paged ? ' is-active' : ''; ?>"><?php echo $i; ?></a>
+          <?php
+            elseif ($i === $paged - $range - 1 || $i === $paged + $range + 1) :
+              echo '<span class="news-pg-dots">・・・・</span>';
+            endif;
+          endfor;
+          ?>
+        </div>
+        <a href="<?php echo $paged < $total_pages ? esc_url(get_pagenum_link($paged + 1)) : '#'; ?>" class="news-pg-next">&gt;</a>
+      </nav>
+      <?php endif; ?>
+
+    </div>
+  </section>
+
+  <!-- ========== KRICメディア ========== -->
+  <section class="news-media-sec" id="media">
+    <div class="news-media-inner">
+
+      <div class="media-heading-row">
+        <h2 class="media-heading">KRICメディア</h2>
+        <a href="https://www.facebook.com/p/%E9%96%A2%E8%A5%BF%E4%B8%8D%E5%8B%95%E7%94%A3%E6%83%85%E5%A0%B1%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC-100064836692406/?locale=ja_JP" target="_blank" rel="noopener" class="media-fb-btn">
+          <span class="btn-text">Facebook</span>
+          <span class="btn-sep"></span>
+          <img src="<?php echo get_template_directory_uri(); ?>/images/link.png" alt="" class="media-fb-icon">
+        </a>
+      </div>
+
+      <!-- アコーディオン（横並びタブ） -->
+      <div class="media-acc-list">
+        <div class="media-acc-tabs" id="mediaAccTabs">
+          <div class="media-acc-item is-open" data-ch="kric">
+            <button class="media-acc-header js-media-acc" type="button">
+              <span>【MBSラジオ】<br>村瀬哲史とKRIC!<br>不動産の時間</span>
+              <span class="media-acc-arrow">▲</span>
+            </button>
+          </div>
+          <div class="media-acc-item" data-ch="mnc">
+            <button class="media-acc-header js-media-acc" type="button">
+              <span>【MBSラジオ】<br>予備校講師<br>村瀬哲史のナニワ地理学</span>
+              <span class="media-acc-arrow">▼</span>
+            </button>
+          </div>
+          <div class="media-acc-item" data-ch="yt">
+            <button class="media-acc-header js-media-acc" type="button">
+              <span>【YouTube】<br>ナニワの地理学<br>スピンオフ</span>
+              <span class="media-acc-arrow">▼</span>
+            </button>
+          </div>
+          <div class="media-acc-body" id="mediaAccBody">
+            <div class="media-range-grid" id="mediaRangeGrid">
+              <!-- JSが動的生成 -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- エピソードカードグリッド（JS動的生成） -->
+      <div class="media-program-grid" id="mediaProgramGrid"></div>
+
+      <nav class="news-pagination" id="mediaPagination" style="max-width:none;display:none;"></nav>
+
+    </div>
+  </section>
+
+  <!-- ========== お問い合わせ ========== -->
+  <section class="contact-cta" id="contact">
+    <div class="contact-cta-photo">
+      <img src="<?php echo get_template_directory_uri(); ?>/images/ft_contact.png" alt="お問い合わせ">
+      <div class="contact-cta-photo-text">
+        <div class="contact-photo-inner">
+          <p class="contact-photo-label">JOIN</p>
+          <p class="contact-photo-title">入会を<br>お考えの方は<br>こちら</p>
+        </div>
+        <a href="<?php echo esc_url(home_url('/nyukai.html')); ?>" class="contact-photo-link">入会案内ページへ <span class="contact-photo-arrow">›</span></a>
+      </div>
+    </div>
+    <div class="contact-cta-inner">
+      <p class="contact-label">CONTACT</p>
+      <h2 class="contact-title">お問い合わせ</h2>
+      <p class="contact-subtitle">KRICについての質問や相談は<br class="contact-subtitle-br">お気軽にお問い合わせください。</p>
+      <hr class="contact-divider">
+      <div class="contact-cols">
+        <div class="contact-col">
+          <p class="contact-col-label">[電話の場合]</p>
+          <p class="contact-col-note">・受付時間／10:00〜16:00</p>
+          <p class="contact-tel"><span class="contact-tel-label">TEL.</span> <a href="tel:0662927791">06-6292-7791</a></p>
+        </div>
+        <div class="contact-col">
+          <p class="contact-col-label">[Webの場合]</p>
+          <p class="contact-col-note">・24時間受付中</p>
+          <a href="<?php echo esc_url(home_url('/contact.html')); ?>" class="btn-contact-form"><span class="btn-text">お問合せフォーム</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+(function () {
+  var mediaData = <?php echo wp_json_encode($media_js); ?>;
+  var PER_PAGE  = 6;
+  var state     = { ch: 'kric', rangeKey: null, page: 1 };
+
+  var accTabs   = document.getElementById('mediaAccTabs');
+  var accBody   = document.getElementById('mediaAccBody');
+  var rangeGrid = document.getElementById('mediaRangeGrid');
+  var progGrid  = document.getElementById('mediaProgramGrid');
+  var paginav   = document.getElementById('mediaPagination');
+  var chItems   = Array.prototype.slice.call(accTabs.querySelectorAll('.media-acc-item[data-ch]'));
+  var SP_BREAK  = 768;
+
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function getItems() {
+    var ch = mediaData[state.ch];
+    if (!state.rangeKey) { return ch.items; }
+    for (var i = 0; i < ch.ranges.length; i++) {
+      if (ch.ranges[i].key === state.rangeKey) { return ch.ranges[i].items; }
+    }
+    return ch.items;
+  }
+
+  function renderRanges() {
+    var ranges = mediaData[state.ch].ranges;
+    if (!ranges || ranges.length === 0) { rangeGrid.innerHTML = ''; return; }
+    var html = '';
+    ranges.forEach(function(r) {
+      var cls = r.key === state.rangeKey ? ' is-active' : '';
+      html += '<a href="#" class="media-range-item' + cls + '" data-range="' + esc(r.key) + '">'
+            + esc(r.label) + '</a>';
+    });
+    rangeGrid.innerHTML = html;
+  }
+
+  function renderEpisodes() {
+    var items = getItems();
+    var total = items.length;
+    var maxPg = Math.max(1, Math.ceil(total / PER_PAGE));
+    if (state.page > maxPg) { state.page = maxPg; }
+    var start = (state.page - 1) * PER_PAGE;
+    var slice = items.slice(start, start + PER_PAGE);
+    var html = '';
+    slice.forEach(function(item) {
+      html += '<a href="' + esc(item.url) + '" class="media-program-card" target="_blank" rel="noopener">';
+      if (item.img) {
+        html += '<img src="' + esc(item.img) + '" alt="' + esc(item.title) + '" class="media-program-img">';
+      }
+      html += '</a>';
+    });
+    progGrid.innerHTML = html;
+    renderPagination(total);
+  }
+
+  function renderPagination(total) {
+    var totalPgs = Math.ceil(total / PER_PAGE);
+    if (totalPgs <= 1) { paginav.style.display = 'none'; return; }
+    paginav.style.display = '';
+    var html = '<a href="#" class="news-pg-prev js-mpg" data-pg="prev">&lt;</a>';
+    html += '<div class="news-pg-pages">';
+    var range = 2;
+    var prev = false;
+    for (var i = 1; i <= totalPgs; i++) {
+      var inRange = (i === 1 || i === totalPgs || Math.abs(i - state.page) <= range);
+      if (inRange) {
+        if (prev !== false && i > prev + 1) {
+          html += '<span class="news-pg-sep">｜</span><span class="news-pg-dots">・・・</span>';
+        } else if (prev !== false) {
+          html += '<span class="news-pg-sep">｜</span>';
+        }
+        html += '<a href="#" class="news-pg-num js-mpg' + (i === state.page ? ' is-active' : '') + '" data-pg="' + i + '">' + i + '</a>';
+        prev = i;
+      }
+    }
+    html += '</div>';
+    html += '<a href="#" class="news-pg-next js-mpg" data-pg="next">&gt;</a>';
+    paginav.innerHTML = html;
+    paginav.querySelectorAll('.js-mpg').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var pg = this.dataset.pg;
+        var maxPg = Math.ceil(getItems().length / PER_PAGE);
+        if (pg === 'prev')      { state.page = Math.max(1, state.page - 1); }
+        else if (pg === 'next') { state.page = Math.min(maxPg, state.page + 1); }
+        else                    { state.page = parseInt(pg, 10); }
+        renderEpisodes();
+      });
+    });
+  }
+
+  function isSP() { return window.innerWidth <= SP_BREAK; }
+
+  function updateOrder() {
+    if (!isSP()) {
+      chItems.forEach(function(el) { el.style.order = ''; });
+      accBody.style.order = '';
+      return;
+    }
+    var idx = 0;
+    chItems.forEach(function(el, i) { if (el.dataset.ch === state.ch) { idx = i; } });
+    chItems.forEach(function(el, i) { el.style.order = (i <= idx ? i + 1 : i + 2).toString(); });
+    accBody.style.order = (idx + 2).toString();
+  }
+
+  function render() {
+    chItems.forEach(function(item) {
+      var arrow = item.querySelector('.media-acc-arrow');
+      if (item.dataset.ch === state.ch) {
+        item.classList.add('is-open');
+        if (arrow) { arrow.textContent = '▲'; }
+      } else {
+        item.classList.remove('is-open');
+        if (arrow) { arrow.textContent = '▼'; }
+      }
+    });
+    accBody.style.display = '';
+    renderRanges();
+    renderEpisodes();
+  }
+
+  // タブ切り替え
+  accTabs.querySelectorAll('.js-media-acc').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var ch = this.closest('.media-acc-item').dataset.ch;
+      if (state.ch === ch) { return; }
+      state.ch = ch; state.rangeKey = null; state.page = 1;
+      updateOrder();
+      render();
+    });
+  });
+
+  // 日付範囲クリック（委任）
+  rangeGrid.addEventListener('click', function(e) {
+    var a = e.target.closest('.media-range-item');
+    if (!a) { return; }
+    e.preventDefault();
+    var rk = a.dataset.range;
+    state.rangeKey = (state.rangeKey === rk) ? null : rk;
+    state.page = 1;
+    renderRanges();
+    renderEpisodes();
+  });
+
+  window.addEventListener('resize', updateOrder);
+
+  render();
+  updateOrder();
+})();
+</script>
+
+<?php get_footer(); ?>

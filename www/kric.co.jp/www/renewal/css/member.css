@@ -1,0 +1,4116 @@
+/* =============================================   KRIC 莨壼藤繧ｨ繝ｪ繧｢ - member.css   ============================================= */
+/* ----- 繝輔か繝ｳ繝亥渕貅厄ｼ・8px・・----- */
+html {
+  font-size: 18px;
+  font-variant-emoji: text;
+}
+
+/* ----- 繝ｭ繧ｴ・・ase 18px 縺ｧ縺ｮ繧ｵ繧､繧ｺ陬懈ｭ｣・・----- */
+.logo-ja {
+  font-size: 1.222rem;
+}
+
+/* ----- 繝倥ャ繝繝ｼ・井ｼ壼藤繝壹・繧ｸ縺ｯ蟶ｸ譎ゅた繝ｪ繝・ラ繝ｻ鬮倥＆100px・・----- */
+.is-member #header {
+  background: #00214c;
+}
+
+/* ----- 繧ｰ繝ｭ繝ｼ繝舌Ν繝翫ン・井ｼ壼藤迚茨ｼ壹た繝ｪ繝・ラ閭梧勹繝ｻclose繝懊ち繝ｳ陦ｨ遉ｺ・・----- */
+.is-member .gnav {
+  background: rgba(8, 20, 44, 0.82);
+  justify-content: flex-start;
+  padding-top: 0;
+}
+
+.is-member .gnav-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 16px;
+  flex-shrink: 0;
+}
+
+.is-member .gnav-close {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  color: var(--white);
+  background: #000;
+}
+
+.is-member .gnav-list {
+  padding-bottom: 60px;
+}
+
+/* ----- 繝上Φ繝舌・繧ｬ繝ｼ繝｡繝九Η繝ｼ・井ｼ壼藤迚茨ｼ夐ｻ定レ譎ｯ繝ｻ逋ｽ邱壹・MENU髱櫁｡ｨ遉ｺ・・----- */
+.is-member .menu-btn {
+  background: #000;
+  width: 100px;
+  padding: 0;
+  margin: -25px 0 -25px 25px;
+}
+
+.is-member .menu-btn-lines {
+  gap: 6px;
+}
+
+.is-member .menu-btn-lines span {
+  background: var(--white);
+  width: 40px;
+}
+
+.is-member .menu-btn-label {
+  display: none;
+}
+
+.is-member .menu-btn.is-open .menu-btn-lines span:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.is-member .menu-btn.is-open .menu-btn-lines span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+/* =============================================   莨壼藤繝壹・繧ｸ繧ｿ繧､繝医Ν繝舌・   ============================================= */
+.mem-page-bar {
+  padding-top: 100px;
+  /* fixed header・・00px・牙・縺ｮ繧ｪ繝輔そ繝・ヨ */
+  background: #f0ece3;
+}
+
+.mem-page-bar-inner {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 100px 0 40px 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.mem-page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--navy);
+  font-family: "Yu Mincho", "貂ｸ譏取悃", YuMincho, serif;
+}
+
+.mem-page-user {
+  font-size: 1rem;
+  color: #000;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* =============================================   莨壼藤繝翫ン繧ｿ繝・   ============================================= */
+.mem-nav {
+  background: #f0ece3;
+  padding-bottom: 0;
+}
+
+.mem-nav-inner {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.mem-nav-list {
+  display: flex;
+  gap: 2px;
+  list-style: none;
+}
+
+.mem-nav-item {
+  flex: 1;
+}
+
+.mem-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 6px;
+  background: #2a2a2a;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  transition: background 0.2s;
+  background: #898989;
+}
+
+.mem-nav-item.is-active .mem-nav-link {
+  background: #c0ad5e;
+}
+
+.mem-nav-item:not(.is-active) .mem-nav-link:hover {
+  background: #c0ad5e;
+  color: var(--white);
+}
+
+.mem-nav-arr {
+  font-size: 0.65rem;
+  opacity: 0.8;
+}
+
+/* ドロップダウンサブメニュー */
+.mem-nav-item.has-sub {
+  position: relative;
+}
+
+.mem-nav-sub {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  list-style: none;
+  background: #faf8f0;
+  z-index: 200;
+  padding: 0;
+}
+
+.mem-nav-item.has-sub:hover .mem-nav-sub {
+  display: block;
+}
+
+.mem-nav-sub li a {
+  display: block;
+  padding: 5px 12px;
+  color: var(--black);
+  font-size: 0.833rem;
+  font-weight: bold;
+  white-space: nowrap;
+  text-align: center;
+  transition: background 0.2s;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mem-nav-sub li a:hover {
+  color: #c0ad5e;
+}
+
+.mem-nav-sub li.is-active a {
+  color: #c0ad5e;
+}
+/* =============================================   繝｡繧､繝ｳ繧ｳ繝ｳ繝・Φ繝・   ============================================= */
+.mem-main {
+  background: #f0ece3;
+  min-height: 400px;
+  padding: 0 0 150px;
+}
+
+.mem-card-wrap {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.mem-card {
+  background: var(--white);
+  padding: 15px 100px 100px;
+}
+
+/* =============================================   繧ｫ繝ｼ繝牙・蜈ｱ騾夊ｦ∫ｴ   ============================================= */
+/* 繝代Φ縺上★ */
+.mem-breadcrumb.mem-breadcrumb--sp {
+  display: none;
+}
+
+.mem-breadcrumb {
+  font-size: 0.72rem;
+  color: #000;
+  margin-bottom: 60px;
+}
+
+/* 繧ｻ繧ｯ繧ｷ繝ｧ繝ｳ隕句・縺・*/
+.mem-sec-head {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.mem-sec-title {
+  font-size: 1.556rem;
+  font-weight: normal;
+  color: var(--navy);
+  letter-spacing: 0.12em;
+}
+
+.mem-sec-sub {
+  font-size: 1rem;
+  color: #000;
+  margin-top: 6px;
+}
+
+/* 蛹ｺ蛻・ｊ邱・*/
+.mem-divider {
+  border: none;
+  border-top: 1px solid var(--gray-line);
+  margin: 50px auto;
+  width: 1000px;
+}
+
+.mem-divider--no-bottom {
+  margin-bottom: 0;
+}
+
+/* =============================================   繧､繝ｳ繝輔か繝｡繝ｼ繧ｷ繝ｧ繝ｳ荳隕ｧ   ============================================= */
+.info-list {
+  list-style: none;
+  padding: 0;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-item-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-date {
+  font-size: 0.8rem;
+  color: #000;
+}
+
+.info-title {
+  font-size: 1rem;
+  color: #00214c;
+  transition: opacity 0.2s;
+}
+
+.info-title:hover {
+  opacity: 0.75;
+}
+
+.info-arrow {
+  font-size: 0.95rem;
+  color: #000;
+  flex-shrink: 0;
+  margin-left: 24px;
+}
+
+/* =============================================   繝壹・繧ｸ繝阪・繧ｷ繝ｧ繝ｳ   ============================================= */
+.mem-pagination {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding-top: 8px;
+  font-size: 0.889rem;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.mem-pg-prev {
+  justify-self: start;
+}
+
+.mem-pg-next {
+  justify-self: end;
+}
+
+.mem-pg-prev,
+.mem-pg-next {
+  color: #000;
+  padding: 4px 10px;
+  transition: color 0.2s;
+}
+
+.mem-pg-prev:hover,
+.mem-pg-next:hover {
+  color: var(--gold);
+}
+
+.mem-pg-pages {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.mem-pg-num {
+  color: #000;
+  padding: 2px 6px;
+  transition: color 0.2s;
+}
+
+.mem-pg-num:hover,
+.mem-pg-num.is-current {
+  color: var(--gold);
+  font-weight: bold;
+}
+
+.mem-pg-sep {
+  color: #ccc;
+}
+
+.mem-pg-disabled {
+  color: #ccc;
+  cursor: default;
+  pointer-events: none;
+}
+
+.mem-pg-dots {
+  color: #000;
+  letter-spacing: -0.05em;
+  padding: 0 4px;
+}
+
+/* =============================================   繧､繝ｳ繝輔か繝｡繝ｼ繧ｷ繝ｧ繝ｳ 隧ｳ邏ｰ   ============================================= */
+.info-detail {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.info-detail-date {
+  font-size: 0.833rem;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.info-detail-title {
+  font-size: 1.278rem;
+  font-weight: bold;
+  color: #00214C;
+  margin-bottom: 16px;
+}
+
+.info-detail-divider {
+  border: none;
+  border-top: 1px solid var(--gray-line);
+  margin-bottom: 24px;
+}
+
+.info-detail-body {
+  font-size: 0.889rem;
+  color: #000;
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info-detail-footer {
+  margin-top: 60px;
+  text-align: right;
+}
+
+.info-detail-back {
+  font-size: 0.889rem;
+  color: var(--navy);
+  transition: opacity 0.2s;
+}
+
+.info-detail-back:hover {
+  opacity: 0.7;
+}
+
+/* =============================================   繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝・   ============================================= */
+/* 繧ｻ繧ｯ繧ｷ繝ｧ繝ｳ隕句・縺暦ｼ医ち繧､繝医Ν・狗匳骭ｲ繝懊ち繝ｳ讓ｪ荳ｦ縺ｳ・・*/
+.bd-sec-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bd-sec-head .bd-register-btn {
+  position: absolute;
+  right: 0;
+}
+
+.bd-register-btn {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  background: #c0ad5e;
+  color: var(--white);
+  font-size: 0.889rem;
+  font-weight: bold;
+  white-space: nowrap;
+  border-radius: 10px;
+  width: 180px;
+  height: 40px;
+  transition: opacity 0.2s;
+}
+
+.bd-register-btn:hover {
+  opacity: 0.85;
+  color: var(--white);
+}
+
+.bd-register-btn .btn-text {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+/* 繧ｵ繝悶ち繝・*/
+.bd-subtabs {
+  display: flex;
+  gap: 2px;
+  margin: 20px auto;
+  width: 1000px;
+}
+
+.bd-subtab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 6px;
+  background: #ebebec;
+  color: #000;
+  font-size: 0.889rem;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.bd-subtab.is-active {
+  background: #c0ad5e;
+  color: var(--white);
+}
+
+.bd-subtab:not(.is-active):hover {
+  background: #c0ad5e;
+  color: var(--white);
+}
+
+.bd-subtab-arr {
+  font-size: 0.6rem;
+  opacity: 0.8;
+}
+
+/* 繝輔ぅ繝ｫ繧ｿ繝ｼ繝舌・ */
+.bd-filter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 30px;
+  margin: 20px auto;
+  width: 1000px;
+}
+
+.bd-filter-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.bd-filter-label {
+  font-size: 0.778rem;
+  color: #000;
+  white-space: nowrap;
+}
+
+.bd-filter-selects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  flex: 1;
+}
+
+.bd-filter-btn {
+  padding: 4px 14px;
+  font-size: 0.778rem;
+  border: 1px solid #000;
+  border-radius: 10px;
+  background: var(--white);
+  color: #000;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.bd-filter-btn:hover {
+  border-color: #c0ad5e;
+  color: #c0ad5e;
+}
+
+.bd-filter-btn.is-active {
+  background: #00214c;
+  border-color: #00214c;
+  color: var(--white);
+}
+
+.bd-filter-search {
+  display: inline-flex;
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  height: 40px;
+  align-self: flex-end;
+}
+
+.bd-search-input {
+  padding: 4px 10px;
+  font-size: 0.778rem;
+  border: none;
+  width: 160px;
+  background: var(--white);
+  color: #000;
+  outline: none;
+}
+
+.bd-search-sep {
+  display: inline-block;
+  width: 1px;
+  background: #ccc;
+  align-self: stretch;
+}
+
+.bd-search-btn {
+  padding: 0 12px;
+  background: var(--white);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+
+.bd-search-btn:hover {
+  opacity: 0.7;
+}
+
+.bd-search-icon {
+  height: 18px;
+  width: auto;
+  display: block;
+}
+
+/* 迚ｩ莉ｶ繧ｫ繝ｼ繝峨げ繝ｪ繝・ラ */
+.bd-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+  margin: 20px auto;
+  width: 1000px;
+}
+
+.bd-card {
+  border: 1px solid var(--gray-line);
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.bd-card-head {
+  display: flex;
+  align-items: center;
+  background: #00214c;
+  padding: 6px 10px;
+  gap: 8px;
+}
+
+.bd-badge-label {
+  display: inline-block;
+  background: var(--white);
+  color: #00214c;
+  font-size: 0.667rem;
+  padding: 1px 15px;
+  font-weight: bold;
+  white-space: nowrap;
+  border-radius: 5px;
+}
+
+.bd-badge-value {
+  font-size: 0.722rem;
+  font-weight: bold;
+  color: var(--white);
+}
+
+.bd-card-info {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 10px 6px 20px;
+}
+
+.bd-card-meta {
+  font-size: 0.667rem;
+  color: #000;
+}
+
+.bd-card-member {
+  font-size: 0.667rem;
+  font-weight: bold;
+  color: #00214c;
+  transition: opacity 0.2s;
+  position: relative;
+  z-index: 1;
+}
+
+.bd-card-member:hover {
+  opacity: 0.7;
+}
+
+.bd-card-title {
+  font-size: 0.888rem;
+  font-weight: bold;
+  color: #000;
+  line-height: 1.5;
+  padding: 8px 0;
+  border-top: 1px solid var(--gray-line);
+  border-bottom: 1px solid var(--gray-line);
+  margin: 10px 20px;
+}
+
+.bd-card-row {
+  font-size: 0.833rem;
+  color: #000;
+  line-height: 1.5;
+  padding: 8px 38px 6px 20px;
+  text-align: justify;
+}
+
+.bd-card-row+.bd-card-row {
+  padding-bottom: 6px;
+}
+
+.bd-card-label {
+  display: block;
+  font-weight: bold;
+}
+
+.bd-card-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  font-size: 1.2rem;
+  align-self: flex-end;
+  margin: 8px 15px 5px;
+  transition: opacity 0.2s;
+}
+
+.bd-card-more::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.bd-card-more:hover {
+  opacity: 0.7;
+}
+
+/* =============================================   繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝・隧ｳ邏ｰ   ============================================= */
+.bd-detail {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.bd-detail-date {
+  font-size: 1rem;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.bd-detail-title {
+  font-size: 1.278rem;
+  font-weight: bold;
+  color: #00214c;
+  margin-bottom: 20px;
+}
+
+.bd-detail-divider {
+  border: none;
+  border-top: 1px solid var(--gray-line);
+  margin: 0 0 24px;
+}
+
+/* 隧ｳ邏ｰ繝輔ぅ繝ｼ繝ｫ繝峨ユ繝ｼ繝悶Ν */
+.bd-detail-table {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.bd-detail-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 0 16px;
+  font-size: 0.778rem;
+  color: #000;
+  align-items: start;
+}
+
+.bd-detail-label {
+  font-weight: bold;
+  color: #00214c;
+  white-space: nowrap;
+}
+
+.bd-detail-value {
+  font-size: 0.833rem;
+  line-height: 1.6;
+}
+
+/* 蜍慕判繧ｵ繝繝阪う繝ｫ */
+.bd-detail-video {
+  width: 180px;
+  height: 120px;
+  background: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.bd-detail-play {
+  color: var(--white);
+  font-size: 1.8rem;
+  opacity: 0.9;
+}
+
+.reg-confirm .bd-detail-video {
+  width: 400px;
+  height: 225px;
+}
+
+/* 豺ｻ莉倥ヵ繧｡繧､繝ｫ */
+.bd-detail-thumb {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.bd-detail-attachment {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.bd-detail-thumb {
+  width: 240px;
+  height: 160px;
+  background: #ccc;
+}
+
+.bd-detail-pdf {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.778rem;
+  color: #00214c;
+  transition: opacity 0.2s;
+}
+
+.bd-detail-pdf:hover {
+  opacity: 0.7;
+}
+
+.bd-detail-pdf-icon {
+  font-size: 1rem;
+  color: #c00;
+}
+
+.bd-detail-pdf-name {
+  text-decoration: underline;
+}
+
+/* 謚慕ｨｿ閠・ュ蝣ｱ */
+.bd-detail-author {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bd-detail-company {
+  font-size: 0.778rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.bd-detail-person {
+  font-size: 0.778rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.bd-detail-member {
+  font-size: 0.778rem;
+  font-weight: bold;
+  color: #00214c;
+  transition: opacity 0.2s;
+}
+
+.bd-detail-member:hover {
+  opacity: 0.7;
+}
+
+/* 霑ｽ險倥お繝ｪ繧｢ */
+.bd-detail-addons {
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bd-detail-addon {
+  padding: 16px;
+  background: #f8f7f3;
+  border-left: 3px solid var(--gold);
+}
+
+.bd-detail-addon-date {
+  font-size: 0.722rem;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+.bd-detail-addon-body {
+  font-size: 0.833rem;
+  line-height: 1.7;
+}
+
+/* 霑ｽ險倥・蜑企勁繝懊ち繝ｳ */
+.bd-detail-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+  margin-bottom: 24px;
+}
+
+.bd-detail-add-btn,
+.bd-detail-del-btn {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  width: 180px;
+  height: 40px;
+  font-size: 0.889rem;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, opacity 0.2s;
+}
+
+.bd-detail-add-btn {
+  background: #c0ad5e;
+  color: var(--white);
+  border: none;
+  font-weight: bold;
+}
+
+.bd-detail-add-btn:hover {
+  opacity: 0.85;
+}
+
+.bd-detail-del-btn {
+  background: var(--white);
+  color: var(--navy);
+  border: 1px solid var(--navy);
+  font-weight: normal;
+}
+
+.bd-detail-del-btn:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.bd-detail-add-btn .btn-text,
+.bd-detail-del-btn .btn-text {
+  flex: 1;
+  text-align: center;
+}
+
+.bd-detail-add-btn .btn-sep,
+.bd-detail-del-btn .btn-sep {
+  width: 1px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 0 2px;
+}
+
+.bd-detail-del-btn .btn-sep {
+  background: var(--navy);
+}
+
+.bd-detail-add-btn .btn-arrow,
+.bd-detail-del-btn .btn-arrow {
+  padding: 0 10px;
+  font-size: 0.7rem;
+}
+
+/* 謌ｻ繧九Μ繝ｳ繧ｯ */
+.bd-detail-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bd-detail-back {
+  font-size: 0.778rem;
+  color: #000;
+  transition: color 0.2s;
+}
+
+.bd-detail-back:hover {
+  color: var(--gold);
+}
+
+/* =============================================   繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝・譁ｰ隕冗匳骭ｲ   ============================================= */
+.bd-reg {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.bd-reg-errors {
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  background: #fff0f0;
+  border: 1px solid #e88;
+  color: #c00;
+  font-size: 0.833rem;
+  line-height: 1.8;
+}
+
+.bd-reg-title {
+  font-size: 1.278rem;
+  font-weight: normal;
+  color: #00214D;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid var(--gray-line);
+}
+
+.bd-reg-divider {
+  border: none;
+  margin-bottom: 48px;
+}
+
+.bd-reg-form {
+  width: 700px;
+  margin: 0 auto;
+}
+
+.bd-reg-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 40px;
+}
+
+.bd-reg-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 0;
+  align-items: start;
+}
+
+.bd-reg-row:has(.reg-file-btn) {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.bd-reg-label {
+  font-size: 0.778rem;
+  color: var(--navy);
+  font-weight: bold;
+  padding: 6px 10px 6px 0;
+  display: flex;
+  align-items: flex-start;
+  white-space: nowrap;
+}
+
+.bd-reg-input {
+  padding: 4px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.bd-reg-text {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 0.778rem;
+  border: 1px solid #ccc;
+  background: var(--white);
+  color: #000;
+}
+
+.bd-reg-select {
+  width: 50%;
+  padding: 6px 8px;
+  font-size: 0.778rem;
+  border: 1px solid #ccc;
+  background: var(--white);
+  color: #000;
+}
+
+.bd-reg-textarea {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 0.778rem;
+  border: 1px solid #ccc;
+  background: var(--white);
+  color: #000;
+  height: 100px;
+  resize: vertical;
+}
+
+.bd-reg-hint {
+  font-size: 0.667rem;
+  color: #000;
+}
+
+.bd-reg-thumb {
+  width: 450px;
+}
+
+.bd-reg-filename {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.bd-reg-pdf-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.bd-reg-pdf-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--navy);
+  text-decoration: underline;
+}
+
+.bd-yt-link {
+  display: inline-block;
+}
+
+.bd-yt-thumb {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.bd-yt-error {
+  color: #c00;
+  font-size: 0.9rem;
+}
+
+.bd-reg-submit-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.bd-reg-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--white);
+  color: #000;
+  font-size: 0.889rem;
+  border: 1px solid #000;
+  border-radius: 10px;
+  width: 180px;
+  height: 40px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, opacity 0.2s;
+}
+
+.bd-reg-submit-btn:hover {
+  opacity: 1;
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+
+.bd-reg-submit-btn .btn-text {
+  flex: 1;
+  text-align: center;
+  font-weight: normal;
+}
+
+.bd-reg-note {
+  font-size: 0.778rem;
+  color: #000;
+  line-height: 1.8;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.bd-reg-note.bd-reg-note--member-add {
+  max-width: 660px;
+  width: 100%;
+}
+
+/* 遒ｺ隱阪・繝ｼ繧ｸ 繝懊ち繝ｳ陦・*/
+.bd-reg-confirm-row .bd-reg-submit-btn {
+  background: #c0ad5e;
+  color: var(--white);
+  border: none;
+  font-weight: bold;
+  transition: opacity 0.2s;
+}
+
+.bd-reg-confirm-row .bd-reg-submit-btn:hover {
+  opacity: 0.85;
+  background: #c0ad5e;
+  color: var(--white);
+  border-color: transparent;
+}
+
+.bd-reg-confirm-row .bd-reg-submit-btn .btn-text {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+}
+
+.bd-reg-confirm-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
+
+.bd-reg-back-btn {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--white);
+  color: #000;
+  font-size: 0.889rem;
+  border: 1px solid #000;
+  border-radius: 10px;
+  width: 180px;
+  height: 40px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, opacity 0.2s;
+}
+
+.bd-reg-back-btn:hover {
+  opacity: 1;
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+
+.bd-reg-back-btn .btn-text {
+  flex: 1;
+  text-align: center;
+  font-weight: normal;
+}
+
+/* 莨夂､ｾ讎りｦ∫｢ｺ隱阪・繝ｼ繧ｸ 陦ｨ遉ｺ */
+.reg-confirm {
+  width: 700px;
+  margin: 30px auto;
+}
+
+.reg-confirm.reg-confirm-table {
+  width: 700px;
+  padding-left: 30px;
+}
+
+.reg-confirm.reg-confirm-table.reg-confirm--member-add {
+  width: 660px;
+}
+
+.reg-confirm-head {
+  background: #00214c;
+  color: var(--white);
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.reg-confirm-intro {
+  font-size: 0.889rem;
+  color: #000;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  overflow-wrap: break-word;
+  word-break: break-all;
+}
+
+.reg-confirm-table {
+  margin-bottom: 10px;
+}
+
+.reg-confirm .reg-confirm-table {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #00214c;
+}
+
+.reg-confirm-value {
+  font-size: 0.889rem;
+  color: #000;
+}
+
+.reg-confirm-url {
+  color: var(--navy);
+}
+
+.reg-confirm-section-head {
+  background: var(--navy);
+  color: var(--white);
+  padding: 6px 16px;
+  font-size: 0.889rem;
+  font-weight: bold;
+  margin: 24px 0 12px 0;
+}
+
+.reg-confirm-text {
+  font-size: 0.889rem;
+  color: #000;
+  line-height: 1.8;
+  margin-bottom: 12px;
+  overflow-wrap: break-word;
+}
+
+.reg-confirm-text--half {
+  width: 50%;
+}
+
+.reg-input.reg-input--photo {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.reg-member-photo {
+  position: relative;
+  display: inline-block;
+}
+
+.reg-confirm .reg-member-photo {
+  margin-top: 50px;
+}
+
+.reg-confirm .reg-label {
+  padding: 0;
+}
+
+.reg-member-photo img {
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.reg-member-photo-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 33, 76, 0.7);
+  color: var(--white);
+  font-size: 0.667rem;
+  text-align: center;
+  padding: 3px 0;
+}
+
+/* 騾夂衍險ｭ螳壹メ繧ｧ繝・け繝懊ャ繧ｯ繧ｹ繧ｰ繝ｫ繝ｼ繝・*/
+.reg-notify-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.reg-notify-group .reg-map-check {
+  font-weight: normal;
+}
+
+.reg-notify-label {
+  font-size: 0.778rem;
+  color: #000;
+  margin-top: 2px;
+}
+
+.reg-notify-checks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 24px;
+}
+
+/* =============================================   Google繝槭ャ繝苓ｪｬ譏弱Δ繝ｼ繝繝ｫ   ============================================= */
+.map-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-modal-overlay.is-open {
+  display: flex;
+}
+
+.map-modal {
+  background: var(--white);
+  width: 1015px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 150px 170px;
+}
+
+.map-modal-step {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 24px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.map-modal-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-90%);
+  width: 0;
+  height: 0;
+  border-left: 13px solid transparent;
+  border-right: 13px solid transparent;
+  border-top: 16px solid #c0ad5e;
+}
+
+.map-modal-step-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding-bottom: 16px;
+  width: 265px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--navy);
+}
+
+.map-modal-num {
+  width: 18px;
+  height: 18px;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.667rem;
+  font-weight: bold;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.map-modal-text {
+  font-size: 1.111rem;
+  font-weight: bold;
+  color: var(--navy);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.map-modal-img {
+  flex-shrink: 0;
+  display: block;
+}
+
+/* =============================================   逋ｻ骭ｲ諠・ｱ繝輔か繝ｼ繝   ============================================= */
+/* 蜈ｨ菴薙Ξ繧､繧｢繧ｦ繝茨ｼ医ヵ繧ｩ繝ｼ繝・九し繧､繝峨リ繝難ｼ・*/
+.reg-layout {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.reg-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 繧ｵ繧､繝峨リ繝難ｼ医ラ繝ｭ繝・・繝繧ｦ繝ｳ縺ｫ遘ｻ陦後・縺溘ａ髱櫁｡ｨ遉ｺ・・*/
+.reg-sidenav {
+  display: none;
+}
+
+.reg-sidenav-list {
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid var(--gray-line);
+}
+
+.reg-sidenav-item a {
+  display: block;
+  padding: 8px 0;
+  font-size: 0.722rem;
+  color: #000;
+  border-bottom: 1px solid var(--gray-line);
+  transition: color 0.2s;
+}
+
+.reg-sidenav-item a:hover {
+  color: var(--gold);
+}
+
+.reg-sidenav-item.is-active a {
+  color: #c0ad5e;
+  font-weight: bold;
+}
+
+/* 繧ｵ繝悶ち繧､繝医Ν */
+.reg-subtitle {
+  font-size: 1.278rem;
+  font-weight: normal;
+  color: #00214c;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid var(--gray-line);
+}
+
+/* 繝輔か繝ｼ繝 */
+.reg-form {
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reg-form--member-add {
+  width: 660px;
+}
+
+.reg-required-note {
+  font-size: 0.667rem;
+  color: #c0ad5e;
+  margin-top: 40px;
+  margin-bottom: 5px;
+}
+
+.reg-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.reg-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 0;
+  align-items: start;
+}
+
+.reg-label {
+  font-size: 0.778rem;
+  color: #00214c;
+  font-weight: bold;
+  padding: 10px 10px 10px 0;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.reg-label::before {
+  content: "・";
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+
+.reg-required {
+  font-size: 0.667rem;
+  color: #c0ad5e;
+  font-weight: bold;
+  margin-left: auto;
+  padding-left: 8px;
+}
+
+.reg-input {
+  padding: 8px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.reg-input input[type="text"],
+.reg-input input[type="tel"],
+.reg-input input[type="url"],
+.reg-input input[type="email"],
+.reg-input input[type="password"] {
+  width: 100%;
+  padding: 4px 8px;
+  font-size: 0.778rem;
+  border: 1px solid #ccc;
+  background: var(--white);
+  color: #000;
+}
+
+.reg-input-short {
+  width: 120px !important;
+}
+
+.reg-select-btn {
+  padding: 4px 12px;
+  font-size: 0.667rem;
+  background: #c0ad5e;
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.reg-select-btn:hover {
+  opacity: 0.85;
+}
+
+.reg-input--zip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+
+.reg-input-zip {
+  width: 70px !important;
+  padding: 6px 8px;
+  font-size: 0.778rem;
+  border: 1px solid #ccc;
+  flex-shrink: 0;
+}
+
+.reg-zip-sep {
+  font-size: 0.889rem;
+  color: #000;
+}
+
+.reg-zip-btn {
+  padding: 6px 14px;
+  font-size: 0.667rem;
+  background: #c0ad5e;
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.reg-zip-btn:hover {
+  opacity: 0.85;
+}
+
+.reg-textarea {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 0.778rem;
+  border: 1px solid #ccc;
+  background: var(--white);
+  color: #000;
+  height: 80px;
+  resize: vertical;
+}
+
+.reg-textarea--tall {
+  height: 120px;
+}
+
+.reg-row:has(.reg-textarea--tall) {
+  padding-bottom: 30px;
+}
+
+.reg-row:has(.reg-notify-group) {
+  padding-bottom: 20px;
+}
+
+.reg-hint {
+  font-size: 0.667rem;
+  color: #000;
+  width: 100%;
+}
+
+.reg-link {
+  font-size: 0.778rem;
+  color: #00214c;
+  text-decoration: underline;
+}
+
+/* 繝ｭ繧ｴ逕ｻ蜒上そ繧ｯ繧ｷ繝ｧ繝ｳ */
+.reg-map-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.reg-map-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.778rem;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+}
+
+.reg-logo-section {
+  margin-bottom: 30px;
+}
+
+.reg-logo-title {
+  font-size: 0.778rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.reg-file-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 3px;
+}
+
+.reg-file-btn {
+  display: inline-block;
+  padding: 5px 35px;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 0.778rem;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.reg-file-btn:hover {
+  opacity: 0.85;
+}
+
+.reg-file-input {
+  display: none;
+}
+
+.bd-file-slot {
+  margin-bottom: 10px;
+}
+
+.bd-file-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.bd-file-add-btn {
+  display: inline-block;
+  font-size: 0.778rem;
+  padding: 5px 20px;
+  background: transparent;
+  border: 1px solid var(--navy);
+  color: var(--navy);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-top: 4px;
+}
+
+.bd-file-add-btn:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.bd-file-item {
+  margin-top: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.reg-file-name {
+  font-size: 0.722rem;
+  color: #000;
+}
+
+.reg-map-preview {
+  margin-bottom: 8px;
+}
+
+.reg-map-img {
+  width: 451px;
+}
+
+.reg-map-label {
+  font-size: 0.889rem;
+  color: var(--white);
+  font-weight: bold;
+}
+
+.reg-file-current {
+  font-size: 0.778rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.reg-delete-btn {
+  padding: 4px 14px;
+  font-size: 0.778rem;
+  background: #c0ad5e;
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-top: 10px;
+}
+
+.reg-delete-btn:hover {
+  opacity: 0.8;
+}
+
+/* 閾ｪ蜍慕函謌舌ユ繧ｭ繧ｹ繝・*/
+.reg-auto-text {
+  font-size: 0.778rem;
+  color: #000;
+}
+
+/* 騾∽ｿ｡繝懊ち繝ｳ */
+.reg-submit-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.reg-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--white);
+  color: #000;
+  font-size: 0.889rem;
+  border: 1px solid #000;
+  border-radius: 10px;
+  width: 180px;
+  height: 40px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, opacity 0.2s;
+}
+
+.reg-submit-btn:hover {
+  opacity: 1;
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+
+.reg-submit-btn .btn-text {
+  padding-left: 30px;
+  padding-right: 30px;
+  flex: 1;
+  text-align: center;
+  font-weight: normal;
+}
+
+/* =============================================   繝｡繝ｳ繝舌・霑ｽ蜉・丞炎髯､ 荳隕ｧ   ============================================= */
+.mem-member-add-row {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto 40px;
+}
+
+.mem-member-add-btn {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  background: #c0ad5e;
+  color: var(--white);
+  font-size: 0.833rem;
+  border: none;
+  border-radius: 10px;
+  width: 200px;
+  height: 40px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.mem-member-add-btn:hover {
+  opacity: 0.8;
+  color: var(--white);
+}
+
+.mem-member-add-btn .btn-text {
+  padding-left: 20px;
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+}
+
+.mem-member-table-wrap {
+  max-width: 660px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.mem-member-table {
+  width: calc(100% + 30px);
+  margin: 0 -15px;
+  border-collapse: separate;
+  border-spacing: 15px 0;
+}
+
+.mem-member-table th {
+  background: var(--navy);
+  color: var(--white);
+  font-size: 0.833rem;
+  font-weight: bold;
+  padding: 0 16px;
+  height: 30px;
+  text-align: center;
+  border: none;
+}
+
+.mem-member-table td {
+  font-size: 0.833rem;
+  color: #000;
+  padding: 20px 16px;
+  border: none;
+  position: relative;
+  vertical-align: middle;
+}
+
+.mem-member-table tbody tr td::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -15px;
+  right: -15px;
+  height: 1px;
+  background: var(--gray-line);
+}
+
+.mem-member-table td:last-child {
+  white-space: nowrap;
+  text-align: center;
+}
+
+.mem-member-edit-btn,
+.mem-member-del-btn {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  font-size: 0.778rem;
+  border-radius: 6px;
+  width: 60px;
+  height: 28px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  margin: 0 2px;
+}
+
+.mem-member-edit-btn {
+  background: var(--white);
+  color: #c0ad5e;
+  border: 1px solid #c0ad5e;
+}
+
+.mem-member-del-btn {
+  background: #c0ad5e;
+  color: var(--white);
+  border: none;
+}
+
+.mem-member-edit-btn:hover,
+.mem-member-del-btn:hover {
+  opacity: 0.75;
+}
+
+.mem-member-edit-btn .btn-text,
+.mem-member-del-btn .btn-text {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* =============================================   繝輔ャ繧ｿ繝ｼ・井ｼ壼藤迚医ム繝ｼ繧ｯ・・   ============================================= */
+.mem-footer {
+  background: var(--white);
+  color: var(--text);
+}
+
+.mem-footer .footer-inner {
+  gap: 15px;
+}
+
+.mem-footer .logo-ja--footer {
+  color: #000;
+  font-size: 1.222rem;
+}
+
+.mem-footer .footer-address {
+  color: #000;
+  font-size: 0.833rem;
+}
+
+.mem-footer .footer-address p {
+  color: #000;
+}
+
+.mem-footer .footer-map-btn {
+  background: #000;
+  border-color: #000;
+  color: var(--white);
+}
+
+.mem-footer .footer-map-btn:hover {
+  background: #333;
+  border-color: #333;
+  color: var(--white);
+}
+
+/* 繝輔ャ繧ｿ繝ｼ繝翫ン・・蛻暦ｼ・*/
+.mem-ft-nav-cols {
+  grid-template-columns: 130px 130px 100px 120px 120px 150px;
+  margin-top: 30px;
+}
+
+.mem-footer .footer-nav-col {
+  min-width: 0;
+}
+
+.mem-footer .footer-nav-parent {
+  color: var(--text);
+  border-bottom-color: var(--gray-line);
+  white-space: normal;
+  word-break: break-all;
+}
+
+.mem-footer .footer-nav-col ul {
+  margin-top: 8px;
+}
+
+.mem-footer .footer-nav-col ul li {
+  margin-bottom: 0;
+}
+
+.mem-footer .footer-nav-col ul li a {
+  font-size: 0.778rem;
+  color: #000;
+  transition: color 0.2s;
+  white-space: normal;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+.mem-footer .footer-nav-col ul li a:hover {
+  color: var(--gold);
+}
+
+.mem-footer .footer-privacy a {
+  color: #000;
+  font-size: 0.8rem;
+}
+
+.mem-footer .footer-privacy a:hover {
+  color: var(--text);
+}
+
+/* 繝壹・繧ｸ繝医ャ繝励・繧ｿ繝ｳ・井ｼ壼藤迚茨ｼ・*/
+.mem-page-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: var(--white);
+  font-size: 1.2rem;
+  transition: background 0.2s;
+}
+
+.mem-page-top:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* 繧ｳ繝斐・繝ｩ繧､繝・*/
+.mem-footer .footer-copy {}
+
+.mem-footer .footer-copy p {
+  color: #000;
+  font-size: 0.75rem;
+}
+
+/* 繝壹・繧ｸ繝医ャ繝暦ｼ医ム繝ｼ繧ｯ閭梧勹逕ｨ・・*/
+.mem-footer .page-top {
+  border-color: var(--gray-line);
+  color: var(--text);
+}
+
+.mem-footer .page-top:hover {
+  background: var(--gray-bg);
+  color: var(--text);
+}
+
+/* =============================================   登録完了ページ   ============================================= */
+.mem-card--complete { padding-bottom: 400px; }
+
+/* =============================================   逋ｻ骭ｲ閠・錐邁ｿ   ============================================= */
+.dir-sec-head .bd-filter-search {
+  position: absolute;
+  right: 0;
+}
+
+.dir-index {
+  width: 1000px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.dir-index-label {
+  font-size: 0.889rem;
+  color: var(--navy);
+  font-weight: bold;
+  margin-bottom: 14px;
+}
+
+.dir-index-tabs {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.dir-index-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 0;
+  background: #ebebec;
+  color: #000;
+  font-size: 0.889rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.dir-index-tab.is-active {
+  background: #c0ad5e;
+  color: var(--white);
+}
+
+.dir-index-tab:not(.is-active):hover {
+  background: #c0ad5e;
+  color: var(--white);
+}
+
+.dir-index-arr {
+  font-size: 0.55rem;
+  opacity: 0.8;
+}
+
+.dir-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.dir-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--gray-line);
+  background: var(--white);
+  transition: opacity 0.2s;
+}
+
+.dir-card:hover {
+  opacity: 0.75;
+}
+
+.dir-card-body {
+  padding: 25px 25px 0;
+  flex: 1;
+}
+
+.dir-card-name {
+  font-size: 0.944rem;
+  font-weight: bold;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.dir-card-company {
+  font-size: 0.889rem;
+  font-weight: bold;
+  color: #000;
+  border-top: 1px solid var(--gray-line);
+  padding-top: 8px;
+}
+
+.dir-card-footer {
+  padding: 6px 25px;
+  text-align: right;
+}
+
+.dir-card-arrow {
+  font-size: 0.778rem;
+  color: #000;
+}
+
+/* =============================================   逋ｻ骭ｲ閠・錐邁ｿ 隧ｳ邏ｰ繝｢繝ｼ繝繝ｫ   ============================================= */
+.dir-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.dir-modal-overlay.is-open {
+  display: flex;
+}
+
+.dir-modal {
+  background: var(--white);
+  width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 36px 100px;
+  position: relative;
+}
+
+.dir-modal-close {
+  display: none;
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #000;
+  line-height: 1;
+  padding: 4px 6px;
+}
+
+.dir-modal-close:hover {
+  opacity: 0.6;
+}
+
+.dir-modal-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.dir-modal-left {
+  min-width: 0;
+  font-weight: bold;
+  padding-top: 40px;
+}
+
+.dir-modal-name {
+  font-size: 1.278rem;
+  font-weight: bold;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.dir-modal-kana {
+  font-size: 0.667rem;
+  color: #000;
+  margin-bottom: 14px;
+}
+
+.dir-modal-divider {
+  border: none;
+  border-top: 1px solid var(--gray-line);
+  margin: 0 0 16px;
+  width: 100%;
+  grid-column: 1 / -1;
+}
+
+.dir-modal-table {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  grid-column: 1 / -1;
+}
+
+.dir-modal-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 0 8px;
+  font-size: 0.7rem;
+}
+
+.dir-modal-label {
+  font-weight: bold;
+  color: var(--navy);
+  white-space: nowrap;
+}
+
+.dir-modal-value {
+  color: #000;
+  word-break: break-all;
+}
+
+.dir-modal-photo {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.dir-modal-photo-img {
+  width: 110px;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+}
+
+.dir-modal-photo-label {
+  display: none;
+}
+
+/* =============================================
+   ログイン / パスワード再発行
+   ============================================= */
+.mem-login-msg {
+  font-size: 1.111rem;
+  color: var(--navy);
+  font-weight: bold;
+  max-width: 1000px;
+  width: 100%;
+  margin: 40px auto 20px;
+}
+
+.mem-login-divider {
+  border: none;
+  border-top: 1px solid var(--gray-line);
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.mem-login-form {
+  max-width: 650px;
+  width: 100%;
+  margin: 50px auto 0;
+}
+
+.mem-login-intro {
+  font-size: 0.778rem;
+  font-weight: bold;
+  color: #000;
+  max-width: 1000px;
+  width: 100%;
+  margin: 10px auto;
+}
+
+.mem-login-pw-hint {
+  font-size: 0.667rem;
+  color: #000;
+  line-height: 1.6;
+  margin-top: 4px;
+  width: 100%;
+}
+
+.mem-login-pw-link {
+  max-width: 700px;
+  width: 100%;
+  margin: 10px auto 0;
+  font-size: 0.778rem;
+  font-weight: bold;
+}
+
+.mem-login-pw-link a {
+  color: #c0ad5e;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.mem-login-pw-link a:hover {
+  opacity: 0.8;
+}
+
+.mem-login-note {
+  font-size: 0.667rem;
+  color: #000;
+  line-height: 1.8;
+  max-width: 700px;
+  width: 100%;
+  margin: 20px auto 0;
+}
+
+.mem-login-btn-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+
+.mem-login-btn {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  background: #c0ad5e;
+  color: var(--white);
+  font-size: 0.889rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  width: 200px;
+  height: 40px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.mem-login-btn:hover {
+  opacity: 0.8;
+  color: var(--white);
+}
+
+.mem-login-btn .btn-text {
+  padding-left: 20px;
+  flex: 1;
+  text-align: center;
+}
+
+.mem-login-btn .btn-sep {
+  width: 1px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 0 2px;
+}
+
+.mem-login-btn .btn-arrow {
+  padding: 0 10px;
+  font-size: 0.7rem;
+}
+
+/* =============================================
+   KRICメディア
+   ============================================= */
+.kric-media-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  min-height: 36px;
+  max-width: 1000px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.kric-media-fb-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  width: 200px;
+  height: 30px;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 0.722rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: opacity 0.2s;
+}
+
+.kric-media-fb-btn .btn-text {
+  flex: 1;
+  text-align: center;
+}
+
+.kric-media-fb-btn .btn-sep {
+  width: 1px;
+  align-self: stretch;
+  background: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+}
+
+.kric-media-fb-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin: 0 12px 0 4px;
+}
+
+.kric-media-fb-btn:hover {
+  opacity: 0.85;
+  color: var(--white);
+}
+
+.kric-media-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 50px;
+  margin-bottom: 0;
+  max-width: 1000px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.kric-media-tab {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  order: 1;
+  padding: 5px 14px;
+  text-decoration: none;
+  background: #ebebec;
+  color: #000;
+  border-left: 1px solid #fff;
+  transition: background 0.2s, color 0.2s;
+}
+
+.kric-media-tab:hover {
+  background: #e8e0cc;
+  color: #000;
+}
+
+.kric-media-tab.is-active {
+  background: #c0ad5e;
+  color: var(--white);
+  border-color: #c0ad5e;
+}
+
+.kric-media-tab-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kric-media-tab-label {
+  font-size: 1rem;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+}
+
+.kric-media-tab-name {
+  font-size: 1rem;
+  font-weight: bold;
+  display: block;
+  line-height: 1.2;
+  text-align: center;
+  white-space: normal;
+}
+
+.kric-media-tab-arr {
+  font-size: 0.6rem;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+/* サブタブ行 */
+.kric-media-subtabs {
+  display: flex;
+  order: 2;
+  grid-column: 1 / -1;
+  border-top: 1px solid #e0d8c4;
+}
+
+.kric-media-subtab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 6px;
+  text-decoration: none;
+  color: #000;
+  background: #faf8f0;
+  transition: background 0.2s;
+  text-align: center;
+}
+
+.kric-media-subtab:last-child {
+  border-right: none;
+}
+
+.kric-media-subtab:hover {
+  background: #f0e8d0;
+}
+
+.kric-media-subtab.is-active {
+  background: #faf8f0;
+}
+
+.kric-media-subtab-range {
+  font-size: 0.611rem;
+  font-weight: bold;
+  display: block;
+  color: var(--navy);
+}
+
+.kric-media-subtab-date {
+  font-size: 0.556rem;
+  font-weight: bold;
+  display: block;
+  color: var(--navy);
+}
+
+.kric-media-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  max-width: 1000px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ラジオカード（画像型） */
+.kric-media-card {
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+  transition: opacity 0.2s;
+}
+
+.kric-media-card:hover {
+  opacity: 0.8;
+}
+
+.kric-media-card-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 地理学カード（ゴールドサムネイル型） */
+.kric-media-card--geo {
+  background: #b89a30;
+  border-color: #b89a30;
+  padding: 0;
+  overflow: hidden;
+}
+
+.kric-media-card--geo .kric-media-card-thumb {
+  background: #a08820;
+  aspect-ratio: 16 / 9;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.kric-media-card--geo .kric-media-card-thumb-text {
+  font-size: 0.611rem;
+  color: var(--white);
+  line-height: 1.6;
+  font-weight: bold;
+}
+
+.kric-media-card--geo .kric-media-card-cta {
+  font-size: 0.667rem;
+  font-weight: bold;
+  color: var(--white);
+  text-align: center;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* YouTubeカード（動画サムネイル型） */
+.kric-media-card--yt {
+  border: none;
+  padding: 0;
+  overflow: hidden;
+  background: #222;
+}
+
+.kric-media-card--yt .kric-media-card-thumb {
+  aspect-ratio: 16 / 9;
+  background: #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.kric-media-card--yt .kric-media-card-play {
+  width: 44px;
+  height: 44px;
+  background: rgba(180, 0, 0, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 1rem;
+  padding-left: 4px;
+}
+
+/* =============================================
+   ライブラリ
+   ============================================= */
+.lib-head {
+  position: relative;
+  text-align: center;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1000px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lib-search {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  height: 40px;
+  border: 1px solid #231815;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.lib-search-input {
+  border: none;
+  padding: 6px 12px;
+  font-size: 0.722rem;
+  width: 160px;
+  outline: none;
+  background: var(--white);
+}
+
+.lib-search-input::placeholder {
+  color: #d3d3d4;
+}
+
+.lib-search-btn {
+  background: var(--white);
+  border: none;
+  border-left: 1px solid #231815;
+  height: 40px;
+  padding: 6px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.lib-search-btn:hover {
+  background: #f0ece3;
+}
+
+/* フォルダグリッド（トップ） */
+.lib-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px 20px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 70px 0 40px;
+}
+
+.lib-folder-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  cursor: pointer;
+}
+
+.lib-folder-item:hover {
+  opacity: 0.75;
+}
+
+.lib-folder-icon {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+.lib-folder-name {
+  font-size: 0.722rem;
+  font-weight: bold;
+  color: #00214C;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* フォルダ内ページ: 現在フォルダ表示 */
+.lib-current-folder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+
+.lib-current-folder .lib-folder-name {
+  font-size: 0.889rem;
+  font-weight: bold;
+}
+
+/* サブタブ */
+.lib-subtabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #231815;
+  background: #faf9f4;
+  padding: 14px 24px;
+  margin: 0 30px 50px;
+  height: 80px;
+}
+
+.lib-subtab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #7D7D7D;
+  font-size: 0.722rem;
+  font-weight: bold;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 0 20px;
+  transition: color 0.2s;
+}
+
+.lib-subtab:first-child {
+  padding-left: 0;
+}
+
+.lib-subtab:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.lib-subtab:hover {
+  color: var(--navy);
+}
+
+.lib-subtab.is-active {
+  color: var(--navy);
+  font-weight: bold;
+}
+
+.lib-subtab-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* 記事カードグリッド */
+.lib-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin: 0 30px 50px;
+}
+
+.lib-card {
+  border: 1px solid var(--gray-line);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  background: var(--white);
+}
+
+.lib-card:hover {
+  opacity: 0.8;
+}
+
+.lib-card-date {
+  font-size: 0.611rem;
+  color: #666;
+}
+
+.lib-card-title {
+  font-size: 0.722rem;
+  font-weight: bold;
+  color: #00214c;
+  border-bottom: 1px solid #231815;
+  line-height: 1.5;
+  padding-bottom: 10px;
+}
+
+.lib-card-body {
+  font-size: 0.667rem;
+  color: #000;
+  line-height: 1.7;
+  flex: 1;
+  padding-top: 10px;
+}
+
+.lib-card-arrow {
+  text-align: right;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+/* 一覧へ戻る */
+.lib-back {
+  text-align: right;
+  font-size: 0.778rem;
+  margin: 20px 30px;
+}
+
+.lib-back a {
+  color: #000;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.lib-back a:hover {
+  color: var(--navy);
+}
+
+/* 詳細ページ */
+.lib-detail {
+  max-width: 1000px;
+  margin: 100px auto 0;
+}
+
+.lib-detail-date {
+  font-size: 0.722rem;
+  color: #000;
+  margin-bottom: 6px;
+}
+
+.lib-detail-title {
+  font-size: 1.111rem;
+  font-weight: bold;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.lib-detail-divider {
+  border: none;
+  border-top: 1px solid #231815;
+  margin-bottom: 30px;
+}
+
+.lib-detail-body {
+  font-size: 0.778rem;
+  color: #000;
+  line-height: 1.9;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.lib-detail-file {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.722rem;
+  font-weight: bold;
+  color: var(--navy);
+  text-decoration: underline;
+  padding: 6px 12px;
+  background-color: #ecf0f5;
+  transition: opacity 0.2s;
+  margin-bottom: 100px;
+}
+
+.lib-detail-file:hover {
+  opacity: 0.8;
+}
+
+.lib-detail-file-icon {
+  flex-shrink: 0;
+}
+
+/* =============================================   繧ｿ繝悶Ξ繝・ヨ・・024px莉･荳具ｼ・   ============================================= */
+@media (max-width: 1024px) {
+  .mem-page-bar-inner {
+    padding-top: 50px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mem-main {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mem-nav-inner {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mem-card-wrap {
+    max-width: 1024px;
+  }
+
+  .mem-divider {
+    width: 100%;
+  }
+
+  .is-member .menu-btn {
+    width: 60px;
+    margin: -10px 0 -10px 16px;
+  }
+
+  .is-member .menu-btn-lines span {
+    width: 30px;
+    height: 2.5px;
+  }
+
+  .is-member .menu-btn.is-open .menu-btn-lines span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .is-member .menu-btn.is-open .menu-btn-lines span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  .is-member .btn-hd--member {
+    height: 35px;
+  }
+
+  .is-member .logo-ja {
+    font-size: 98%;
+  }
+
+  .mem-nav-link {
+    font-size: 85%;
+  }
+
+  .mem-pagination {
+    width: 100%;
+  }
+
+  /* 逋ｻ骭ｲ諠・ｱ繝輔か繝ｼ繝 */
+  .reg-subtitle {
+    width: 100%;
+  }
+
+  /* 繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝・*/
+  .bd-sec-head {
+    width: auto;
+  }
+
+  .bd-subtabs {
+    width: auto;
+  }
+
+  .bd-filter {
+    width: auto;
+  }
+
+  .bd-grid {
+    width: auto;
+  }
+
+  /* 繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝・譁ｰ隕冗匳骭ｲ */
+  .bd-reg {
+    width: auto;
+  }
+
+  .bd-detail {
+    width: 100%;
+  }
+
+  /* 逋ｻ骭ｲ閠・錐邁ｿ 繧ｿ繝悶Ξ繝・ヨ */
+  .dir-index {
+    width: 100%;
+  }
+
+  .dir-grid {
+    width: 100%;
+  }
+
+  /* Google繝槭ャ繝励Δ繝ｼ繝繝ｫ 繧ｿ繝悶Ξ繝・ヨ */
+  .map-modal {
+    width: 90vw;
+    padding: 40px 74px;
+  }
+}
+
+/* =============================================   繝｢繝舌う繝ｫ・・68px莉･荳具ｼ・   ============================================= */
+@media (max-width: 768px) {
+
+  /* 繝倥ャ繝繝ｼ・壹Ο繧ｰ繧｢繧ｦ繝医・繧ｿ繝ｳ繧定｡ｨ遉ｺ */
+  .is-member .header-btns {
+    display: flex;
+  }
+
+  .is-member .btn-hd--member {
+    height: 35px;
+  }
+
+  .is-member .btn-hd--member .btn-text {
+    font-size: 0.778rem;
+    padding: 0 5px;
+  }
+
+  .is-member .btn-hd--member .btn-arrow {
+    min-width: auto;
+    padding: 0 6px 0 3px;
+    text-align: center;
+    font-size: 0.778rem;
+  }
+
+  .is-member .logo-ja:not(.logo-ja--footer) {
+    display: none;
+  }
+
+  .mem-footer .logo-ja--footer {
+    display: block;
+    color: #000;
+  }
+
+  .is-member .menu-btn {
+    width: 56px;
+    height: 56px;
+    margin: 0;
+    background: #000;
+  }
+
+  .is-member .menu-btn-lines {
+    gap: 5px;
+    margin-bottom: 0;
+  }
+
+  .is-member .menu-btn-lines span {
+    width: 25px;
+  }
+
+  .is-member .menu-btn.is-open .menu-btn-lines span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .is-member .menu-btn.is-open .menu-btn-lines span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* 繝壹・繧ｸ繧ｿ繧､繝医Ν繝舌・ */
+  .mem-page-bar {
+    padding-top: 56px;
+  }
+
+  .mem-page-bar-inner {
+    padding: 16px 16px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mem-page-title {
+    font-size: 1.111rem;
+  }
+
+  .mem-page-user {
+    font-size: clamp(0.833rem, 4.8vw, 1rem);
+    white-space: normal;
+  }
+
+  /* 繧ｿ繝悶リ繝難ｼ夐撼陦ｨ遉ｺ */
+  .mem-nav {
+    display: none;
+  }
+
+  /* 繝｡繧､繝ｳ繧ｳ繝ｳ繝・Φ繝・*/
+  .mem-main {
+    padding: 0 0 60px;
+  }
+
+  .mem-card-wrap {
+    padding: 0 16px;
+  }
+
+  .mem-card {
+    padding: 60px 40px;
+  }
+
+  /* 繝代Φ縺上★ */
+  .mem-breadcrumb.mem-breadcrumb--pc {
+    display: none;
+  }
+
+  .mem-breadcrumb.mem-breadcrumb--sp {
+    display: block;
+    padding: 8px 16px;
+    margin-bottom: 10px;
+  }
+
+  /* 繧ｻ繧ｯ繧ｷ繝ｧ繝ｳ隕句・縺・*/
+  .mem-sec-title {
+    font-size: 1.111rem;
+  }
+
+  .mem-sec-sub {
+    font-size: 0.667rem;
+  }
+
+  /* 蛹ｺ蛻・ｊ邱・*/
+  .mem-divider {
+    width: auto;
+    margin: 24px auto;
+  }
+
+  /* 繧､繝ｳ繝輔か繝｡繝ｼ繧ｷ繝ｧ繝ｳ荳隕ｧ */
+  .info-list {
+    width: auto;
+  }
+
+  .info-detail,
+  .info-detail-date,
+  .info-detail-title,
+  .info-detail-divider,
+  .info-detail-body,
+  .info-detail-footer {
+    width: 100%;
+  }
+
+  .info-detail-date {
+    font-size: 0.667rem;
+  }
+
+  .info-detail-body {
+    font-size: 0.667rem;
+  }
+
+  .info-detail-title {
+    font-size: 0.944rem;
+  }
+
+  .info-detail-back {
+    font-size: 0.667rem;
+  }
+
+  .info-date {
+    font-size: 0.625rem;
+  }
+
+  .info-title {
+    font-size: 0.667rem;
+  }
+
+  /* 繝壹・繧ｸ繝阪・繧ｷ繝ｧ繝ｳ */
+  .mem-pagination {
+    width: auto;
+    font-size: 0.778rem;
+  }
+
+  /* 繝輔ャ繧ｿ繝ｼ */
+  .mem-footer .footer-address {
+    font-size: 0.778rem;
+  }
+
+  .mem-footer .footer-inner {
+    flex-direction: column;
+    gap: 24px;
+    padding: 40px 24px 32px;
+  }
+
+  .mem-footer .footer-left {
+    width: 100%;
+  }
+
+  .mem-footer .footer-right {
+    width: 100%;
+  }
+
+  .mem-ft-nav-cols {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* 繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝・*/
+  .bd-sec-head {
+    width: auto;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+
+  .bd-sec-head .bd-register-btn {
+    position: static;
+    width: 180px;
+    align-self: flex-end;
+    padding: 0 5px;
+  }
+
+  .bd-register-btn {
+    width: 135px;
+    height: 40px;
+    font-size: 0.889rem;
+    justify-content: center;
+  }
+
+  .bd-register-btn .btn-text {
+    flex: 1;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 0.889rem;
+  }
+
+  .bd-subtabs {
+    width: auto;
+    margin-left: -40px;
+    margin-right: -40px;
+  }
+
+  .bd-subtab {
+    font-size: 0.889rem;
+    padding: 10px 4px;
+  }
+
+  .bd-filter {
+    width: auto;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 16px;
+    margin: 16px auto;
+  }
+
+  .bd-filter-label {
+    font-size: 0.667rem;
+  }
+
+  .bd-filter-btn {
+    font-size: 0.694rem;
+    padding: 6px 12px;
+  }
+
+  .bd-filter-search {
+    margin-top: 0;
+    height: 30px;
+    align-self: flex-start;
+  }
+
+  .bd-search-input {
+    width: 120px;
+    font-size: 0.667rem;
+  }
+
+  .bd-search-btn {
+    padding: 0 16px;
+    flex-shrink: 0;
+  }
+
+  .bd-register-btn .btn-arrow {
+    font-size: 0.667rem;
+  }
+
+  .bd-search-icon {
+    height: 12px;
+  }
+
+  .bd-grid {
+    grid-template-columns: 1fr;
+    width: auto;
+    gap: 12px;
+  }
+
+  .bd-badge-label {
+    font-size: 0.639rem;
+    padding: 2px 12px;
+  }
+
+  .bd-badge-value {
+    font-size: 0.806rem;
+  }
+
+  .bd-card-info {
+    padding-left: 40px;
+    padding-right: 40px;
+    line-height: 1.3;
+  }
+
+  .bd-card-meta,
+  .bd-card-member {
+    font-size: 0.806rem;
+  }
+
+  .bd-card-title {
+    font-size: 0.861rem;
+    margin: 10px 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .bd-card-row {
+    font-size: 0.833rem;
+    padding: 8px 40px 6px 40px;
+  }
+
+  .bd-card-more {
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    margin: 8px 40px 8px 8px;
+  }
+
+  /* 繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝郁ｩｳ邏ｰ */
+  .bd-detail {
+    width: auto;
+    padding: 20px 0 40px;
+  }
+
+  .bd-detail-date {
+    font-size: 0.667rem;
+  }
+
+  .bd-detail-title {
+    font-size: 0.944rem;
+  }
+
+  .bd-detail-divider {
+    margin: 16px 0 20px;
+  }
+
+  .bd-detail-table {
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+
+  .bd-detail-row {
+    display: block;
+    font-size: 0.667rem;
+  }
+
+  .bd-detail-label {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .bd-detail-value {
+    display: block;
+    font-size: 0.667rem;
+  }
+
+  .bd-detail-thumb {
+    width: 100%;
+    height: 240px;
+  }
+
+  .bd-detail-company,
+  .bd-detail-person,
+  .bd-detail-member {
+    font-size: 0.667rem;
+  }
+
+  .bd-detail-author {
+    margin-bottom: 30px;
+  }
+
+  .bd-detail-back {
+    font-size: 0.667rem;
+  }
+
+  /* 遒ｺ隱阪・繝ｼ繧ｸ SP */
+  .bd-detail-video {
+    width: 200px;
+    height: 133px;
+  }
+
+  .bd-reg-confirm-row {
+    gap: 30px;
+    margin-top: 30px;
+  }
+
+  .bd-reg-back-btn {
+    width: 180px;
+    height: 40px;
+    font-size: 0.889rem;
+  }
+
+  .bd-reg-back-btn .btn-text {
+    flex: 1;
+    text-align: center;
+  }
+
+  /* 莨夂､ｾ讎りｦ∫｢ｺ隱・SP */
+  .reg-confirm,
+  .reg-confirm.reg-confirm-table {
+    width: 100%;
+  }
+
+  .reg-confirm.reg-confirm-table .reg-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 12px;
+    align-items: baseline;
+    padding: 6px 0;
+  }
+
+  .reg-confirm.reg-confirm-table .reg-label {
+    width: auto;
+    padding-bottom: 0;
+    font-size: 0.667rem;
+  }
+
+  .reg-confirm.reg-confirm-table .reg-confirm-value {
+    font-size: 0.667rem;
+  }
+
+  .reg-confirm .reg-member-photo {
+    margin-top: 0;
+  }
+
+  .reg-confirm .bd-detail-video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .reg-confirm-head {
+    font-size: 0.889rem;
+    padding: 8px 12px;
+  }
+
+  .reg-confirm-intro {
+    font-size: 0.778rem;
+  }
+
+  .reg-confirm-value {
+    font-size: 0.778rem;
+  }
+
+  .reg-confirm-section-head {
+    font-size: 0.778rem;
+    margin: 16px 0 8px 0;
+    padding: 6px 12px;
+  }
+
+  .reg-confirm-text {
+    font-size: 0.778rem;
+  }
+
+  /* 逋ｻ骭ｲ諠・ｱ繝輔か繝ｼ繝 */
+  .reg-layout {
+    flex-direction: column;
+  }
+
+  .reg-content {
+    width: 100%;
+  }
+
+  .reg-sidenav {
+    display: none;
+  }
+
+  .reg-subtitle {
+    font-size: 0.944rem;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .reg-form {
+    width: 100%;
+  }
+
+  .reg-required-note {
+    font-size: 0.667rem;
+  }
+
+  .reg-row {
+    display: block;
+    padding: 12px 0;
+  }
+
+  .reg-label {
+    display: flex;
+    font-size: 0.667rem;
+    padding: 0 0 6px 0;
+    white-space: normal;
+    width: auto;
+  }
+
+  .reg-auto-text {
+    padding: 0 0 0 8px;
+  }
+
+  .reg-input {
+    padding: 0;
+  }
+
+  .reg-input input[type="text"],
+  .reg-input input[type="tel"],
+  .reg-input input[type="url"],
+  .reg-input input[type="email"],
+  .reg-input input[type="password"] {
+    font-size: 1rem;
+    padding: 8px;
+  }
+
+  .reg-input--zip {
+    flex-wrap: wrap;
+  }
+
+  .reg-input-zip {
+    width: 70px !important;
+  }
+
+  .reg-select-btn {
+    font-size: 0.889rem;
+    padding: 8px 14px;
+  }
+
+  .reg-textarea {
+    font-size: 1rem;
+    padding: 8px;
+    height: 100px;
+  }
+
+  .reg-hint {
+    font-size: 0.667rem;
+  }
+
+  .reg-map-check {
+    font-size: 0.667rem;
+  }
+
+  .reg-link {
+    font-size: 0.667rem;
+  }
+
+  .reg-logo-title {
+    font-size: 0.667rem;
+  }
+
+  .reg-file-btn {
+    font-size: 0.667rem;
+    padding: 8px 16px;
+  }
+
+  .reg-file-name {
+    font-size: 0.667rem;
+  }
+
+  .reg-map-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .reg-file-current {
+    font-size: 0.667rem;
+  }
+
+  .reg-delete-btn {
+    font-size: 0.667rem;
+    padding: 6px 16px;
+  }
+
+  .reg-map-header {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .reg-submit-row {
+    margin-top: 30px;
+  }
+
+  .reg-submit-btn {
+    width: 180px;
+    height: 40px;
+    font-size: 0.833rem;
+  }
+
+  .reg-submit-btn .btn-text {
+    flex: 1;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .reg-notify-label {
+    font-size: 0.667rem;
+  }
+
+  .reg-member-photo img {
+    width: 100px;
+    height: 125px;
+  }
+
+  /* 繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝・譁ｰ隕冗匳骭ｲ */
+  .bd-reg {
+    width: auto;
+    padding: 20px 0 40px;
+  }
+
+  .bd-reg-title {
+    font-size: 0.944rem;
+    width: 100%;
+  }
+
+  .bd-reg-form {
+    width: 100%;
+  }
+
+  .bd-reg-row {
+    display: block;
+    padding: 16px 0;
+  }
+
+  .bd-reg-label {
+    font-size: 0.667rem;
+    padding: 0 0 8px 0;
+  }
+
+  .bd-reg-text,
+  .bd-reg-textarea {
+    font-size: 1rem;
+    padding: 10px 8px;
+  }
+
+  .bd-reg-select {
+    font-size: 0.667rem;
+    padding: 10px 8px;
+  }
+
+  .bd-reg-hint {
+    font-size: 0.667rem;
+  }
+
+  .bd-reg-filename,
+  .bd-reg-pdf-name {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .bd-reg-note {
+    font-size: 0.667rem;
+    width: 100%;
+  }
+
+  .bd-reg-input .reg-file-btn {
+    font-size: 0.667rem;
+    padding: 8px 16px;
+  }
+
+  .bd-reg-thumb {
+    width: 100%;
+  }
+
+  .bd-reg-filename {
+    color: var(--navy);
+    text-decoration: underline;
+    font-size: 0.889rem;
+  }
+
+  .bd-reg-pdf-name {
+    font-size: 0.889rem;
+  }
+
+  .bd-reg-submit-btn {
+    width: 180px;
+    height: 40px;
+    font-size: 0.889rem;
+  }
+
+  /* 逋ｻ骭ｲ閠・錐邁ｿ繝｢繝ｼ繝繝ｫ SP */
+  .dir-modal {
+    width: 88vw;
+    padding: 40px 24px 30px;
+  }
+
+  .dir-modal-close {
+    display: block;
+  }
+
+  .dir-modal-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .dir-modal-photo {
+    order: 4;
+  }
+
+  .dir-modal-left {
+    padding-top: 0;
+  }
+
+  .dir-modal-photo-img {
+    width: 150px;
+    height: 190px;
+  }
+
+  .dir-modal-row {
+    grid-template-columns: 100px 1fr;
+  }
+
+  /* 逋ｻ骭ｲ閠・錐邁ｿ SP */
+  .dir-sec-head {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .dir-sec-head .bd-filter-search {
+    position: static;
+    align-self: flex-end;
+  }
+
+  .dir-index {
+    width: 100%;
+  }
+
+  .dir-index-tabs {
+    flex-wrap: wrap;
+  }
+
+  .dir-index-tab {
+    flex: 0 0 calc(20% - 3.2px);
+    padding: 10px 0;
+    font-size: 0.889rem;
+  }
+
+  .dir-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+    gap: 16px;
+  }
+
+  .dir-card {
+    width: 66%;
+    margin: 0 auto;
+  }
+
+  /* Google繝槭ャ繝励Δ繝ｼ繝繝ｫ SP */
+  .map-modal {
+    width: 90vw;
+    padding: 40px 74px;
+  }
+
+  .map-modal-step {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .map-modal-step:not(:last-child)::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .map-modal-step-left {
+    width: 50%;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .map-modal-text {
+    white-space: nowrap;
+  }
+
+  .map-modal-img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* 繝｡繝ｳ繝舌・霑ｽ蜉・丞炎髯､ 荳隕ｧ SP */
+  .mem-member-table-wrap {
+    overflow: visible;
+  }
+
+  .mem-member-table {
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
+
+  .mem-member-table tbody tr td::after {
+    display: none;
+  }
+
+  .mem-member-table thead {
+    display: none;
+  }
+
+  .mem-member-table tbody {
+    display: block;
+  }
+
+  .mem-member-table tr {
+    display: block;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--gray-line);
+  }
+
+  .mem-member-table tr:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .mem-member-table td {
+    display: block;
+    border: none;
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  .mem-member-table td::before {
+    content: attr(data-label);
+    display: block;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 0.889rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 4px;
+    margin-bottom: 24px;
+  }
+
+  .mem-member-table td:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  .mem-member-table td:last-child {
+    text-align: left;
+    white-space: normal;
+  }
+
+  .mem-member-table .mem-member-name-cell,
+  .mem-member-table .mem-member-email-cell {
+    font-size: 0.889rem;
+    color: #000;
+    padding: 10px 0;
+  }
+
+  .mem-member-table .mem-member-name-cell .mem-cell-text,
+  .mem-member-table .mem-member-email-cell .mem-cell-text {
+    display: inline-block;
+    padding-left: 16px;
+  }
+
+  .mem-member-table .mem-member-btn-cell {
+    padding: 10px 0;
+  }
+
+  .mem-member-table .mem-member-btn-cell .mem-member-edit-btn {
+    margin-left: 16px;
+  }
+
+  /* ログイン / パスワード再発行 SP */
+  .mem-login-pw-link,
+  .mem-login-note {
+    padding-left: 0;
+  }
+
+  .mem-login-msg {
+    font-size: 1.333rem;
+    margin-top: 10px;
+    margin-bottom: 16px;
+  }
+
+  .mem-login-divider {
+    margin-bottom: 30px;
+  }
+
+  .mem-login-form {
+    max-width: 100%;
+  }
+
+  .mem-login-btn-row {
+    margin-top: 40px;
+  }
+
+  .mem-login-btn {
+    width: 280px;
+  }
+
+  /* KRICメディア SP */
+  .kric-media-head {
+    flex-direction: column;
+    width: auto;
+    min-height: auto;
+    gap: 12px;
+    margin-bottom: 0;
+  }
+
+  .kric-media-fb-btn {
+    position: static;
+    width: 150px;
+    height: 36px;
+    transform: none;
+    align-self: flex-end;
+  }
+
+  .kric-media-tab-name br {
+    display: none;
+  }
+
+  .kric-media-tabs {
+    grid-template-columns: 1fr;
+    gap: 2px;
+    width: auto;
+    margin-top: 20px;
+  }
+
+  .kric-media-tab {
+    padding: 10px 14px;
+  }
+
+  .kric-media-tab-label {
+    font-size: 0.611rem;
+    text-align: left;
+  }
+
+  .kric-media-tab-name {
+    font-size: 0.722rem;
+    text-align: left;
+  }
+
+  .kric-media-tab-body {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .kric-media-tab {
+    order: unset;
+  }
+
+  .kric-media-subtabs {
+    flex-wrap: wrap;
+    width: auto;
+    order: unset;
+    grid-column: unset;
+    border: none;
+    background: #faf8f0;
+  }
+
+  .kric-media-subtab {
+    flex: 0 0 50%;
+    box-sizing: border-box;
+    border: none;
+  }
+
+  .kric-media-grid {
+    grid-template-columns: repeat(2, 1fr);
+    width: auto;
+    gap: 8px;
+  }
+
+
+  /* ライブラリ SP */
+  .lib-head {
+    flex-direction: column;
+    gap: 16px;
+    min-height: auto;
+    width: auto;
+  }
+
+  .lib-search {
+    position: static;
+    transform: none;
+    width: auto;
+    align-self: flex-end;
+  }
+
+  .lib-search-input {
+    width: 160px;
+  }
+
+  .lib-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 100%;
+    gap: 24px 12px;
+    padding: 50px 0 0;
+  }
+
+  .lib-folder-icon {
+    content: url('../images/folder2.png');
+    width: 72px;
+    height: 72px;
+  }
+
+  .lib-folder-name {
+    font-size: 0.778rem;
+  }
+
+  .lib-subtabs {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    height: auto;
+    padding: 0;
+    gap: 0;
+    margin: 0 0 30px;
+  }
+
+  .lib-subtab {
+    justify-content: flex-start;
+    padding: 12px 16px;
+    font-size: 0.778rem;
+    border-right: none;
+    white-space: normal;
+  }
+
+  .lib-subtab:first-child {
+    padding-left: 16px;
+  }
+
+  .lib-subtab:last-child {
+    border-bottom: none;
+    padding-right: 16px;
+  }
+
+  .lib-card-grid {
+    grid-template-columns: 1fr;
+  }
+}

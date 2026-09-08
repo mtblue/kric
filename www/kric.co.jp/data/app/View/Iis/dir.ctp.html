@@ -1,0 +1,179 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; <a href="/iis/index">会員専用ページ</a> &gt; 登録者名簿</p>
+
+        <div class="mem-sec-head bd-sec-head dir-sec-head">
+          <h2 class="mem-sec-title">─ 登録者名簿 ─</h2>
+          <div class="bd-filter-search">
+            <input type="text" id="dir-keyword-input" class="bd-search-input" placeholder="フリーワードで検索" value="<?php echo h($tpl_disp['keyword_filter']); ?>">
+            <span class="bd-search-sep"></span>
+            <button id="dir-search-btn" class="bd-search-btn"><img src="/wp-content/themes/default/images/search2.png" alt="検索" class="bd-search-icon"></button>
+          </div>
+        </div>
+        <script>
+        (function() {
+          var btn   = document.getElementById('dir-search-btn');
+          var input = document.getElementById('dir-keyword-input');
+          function doSearch() {
+            var keyword = input.value.trim();
+            var base    = '/<?php echo APP_NAME; ?>/dir';
+            window.location.href = base + (keyword !== '' ? '/keyword=' + encodeURIComponent(keyword) : '');
+          }
+          btn.addEventListener('click', doSearch);
+          input.addEventListener('keydown', function(e) { if (e.key === 'Enter') { doSearch(); } });
+        })();
+        </script>
+
+        <?php
+          $index_labels  = array('1'=>'あ','2'=>'か','3'=>'さ','4'=>'た','5'=>'な','6'=>'は','7'=>'ま','8'=>'や','9'=>'ら','10'=>'わ');
+          $current_index   = isset($tpl_disp['current_index'])  ? $tpl_disp['current_index']  : '1';
+          $current_keyword = isset($tpl_disp['keyword_filter']) ? $tpl_disp['keyword_filter'] : '';
+        ?>
+        <div class="dir-index">
+          <p class="dir-index-label">インデックス</p>
+          <div class="dir-index-tabs">
+<?php foreach ($index_labels as $idx => $label): ?>
+            <a href="/<?php echo APP_NAME; ?>/dir/index=<?php echo $idx; ?>" class="dir-index-tab<?php echo ($current_keyword === '' && (string)$current_index === (string)$idx) ? ' is-active' : ''; ?>"><?php echo $label; ?> <span class="dir-index-arr">▼</span></a>
+<?php endforeach; ?>
+          </div>
+        </div>
+
+<?php if (count($tpl_disp['main_list']) > 0): ?>
+        <div class="dir-grid">
+<?php foreach ($tpl_disp['main_list'] as $row): ?>
+          <a href="#" class="dir-card"
+             data-member-id="<?php echo h(isset($row['member_id'])     ? $row['member_id']     : ''); ?>"
+             data-name="<?php echo h(isset($row['member_name'])   ? $row['member_name']   : ''); ?>"
+             data-kana="<?php echo h(isset($row['member_kana'])   ? $row['member_kana']   : ''); ?>"
+             data-company="<?php echo h(isset($row['company_name'])  ? $row['company_name']  : ''); ?>"
+             data-company-kana="<?php echo h(isset($row['company_kana'])  ? $row['company_kana']  : ''); ?>"
+             data-company-tel="<?php echo h(isset($row['company_tel'])   ? $row['company_tel']   : ''); ?>"
+             data-keitai1="<?php echo h(isset($row['member_keitai1']) ? $row['member_keitai1'] : ''); ?>"
+             data-keitai2="<?php echo h(isset($row['member_keitai2']) ? $row['member_keitai2'] : ''); ?>"
+             data-email="<?php echo h(isset($row['member_email'])  ? $row['member_email']  : ''); ?>"
+             data-photo="<?php echo h(isset($row['member_photo'])  ? $row['member_photo']  : ''); ?>"
+             data-jiyuu="<?php echo h(isset($row['member_jiyuu'])  ? $row['member_jiyuu']  : ''); ?>">
+            <div class="dir-card-body">
+              <p class="dir-card-name"><?php echo h(isset($row['member_name']) ? $row['member_name'] : ''); ?></p>
+              <p class="dir-card-company"><?php echo h(isset($row['company_name']) ? $row['company_name'] : ''); ?></p>
+            </div>
+            <div class="dir-card-footer">
+              <span class="dir-card-arrow">→</span>
+            </div>
+          </a>
+<?php endforeach; ?>
+        </div>
+<?php else: ?>
+        <p style="text-align:center;">現在、情報はございません。</p>
+<?php endif; ?>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== 登録者名簿 詳細モーダル ========== -->
+  <div class="dir-modal-overlay" id="dirModalOverlay">
+    <div class="dir-modal">
+      <button class="dir-modal-close" id="dirModalClose">×</button>
+      <div class="dir-modal-inner">
+        <div class="dir-modal-left">
+          <p class="dir-modal-name" id="dirModalName"></p>
+          <p class="dir-modal-kana" id="dirModalKana"></p>
+        </div>
+        <hr class="dir-modal-divider">
+        <div class="dir-modal-table">
+          <div class="dir-modal-row">
+            <span class="dir-modal-label">会社名</span>
+            <span class="dir-modal-value" id="dirModalCompany"></span>
+          </div>
+          <div class="dir-modal-row">
+            <span class="dir-modal-label">会社カナ</span>
+            <span class="dir-modal-value" id="dirModalCompanyKana"></span>
+          </div>
+          <div class="dir-modal-row">
+            <span class="dir-modal-label">会社電話番号</span>
+            <span class="dir-modal-value" id="dirModalCompanyTel"></span>
+          </div>
+          <div class="dir-modal-row">
+            <span class="dir-modal-label">携帯電話番号1</span>
+            <span class="dir-modal-value" id="dirModalKeitai1"></span>
+          </div>
+          <div class="dir-modal-row" id="dirModalKeitai2Row">
+            <span class="dir-modal-label">携帯電話番号2</span>
+            <span class="dir-modal-value" id="dirModalKeitai2"></span>
+          </div>
+          <div class="dir-modal-row">
+            <span class="dir-modal-label">メールアドレス1</span>
+            <span class="dir-modal-value" id="dirModalEmail"></span>
+          </div>
+          <div class="dir-modal-row" id="dirModalJiyuuRow">
+            <span class="dir-modal-label">自由投稿欄</span>
+            <span class="dir-modal-value dir-modal-value--pre" id="dirModalJiyuu"></span>
+          </div>
+        </div>
+        <div class="dir-modal-photo" id="dirModalPhotoWrap" style="display:none;">
+          <img src="" alt="顔写真" class="dir-modal-photo-img" id="dirModalPhoto">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var overlay  = document.getElementById('dirModalOverlay');
+    var closeBtn = document.getElementById('dirModalClose');
+    var photoImg  = document.getElementById('dirModalPhoto');
+    var photoWrap = document.getElementById('dirModalPhotoWrap');
+
+    function openModal(card) {
+      document.getElementById('dirModalName').textContent        = card.dataset.name        || '';
+      document.getElementById('dirModalKana').textContent        = card.dataset.kana        || '';
+      document.getElementById('dirModalCompany').textContent     = card.dataset.company     || '';
+      document.getElementById('dirModalCompanyKana').textContent = card.dataset.companyKana || '';
+      document.getElementById('dirModalCompanyTel').textContent  = card.dataset.companyTel  || '';
+      document.getElementById('dirModalKeitai1').textContent     = card.dataset.keitai1     || '';
+      document.getElementById('dirModalKeitai2').textContent     = card.dataset.keitai2     || '';
+      document.getElementById('dirModalKeitai2Row').style.display = card.dataset.keitai2 ? '' : 'none';
+      document.getElementById('dirModalEmail').textContent       = card.dataset.email       || '';
+      var jiyuu = card.dataset.jiyuu || '';
+      document.getElementById('dirModalJiyuu').textContent       = jiyuu;
+      document.getElementById('dirModalJiyuuRow').style.display  = jiyuu ? '' : 'none';
+      if (card.dataset.photo) {
+        photoImg.src = '/<?php echo APP_NAME; ?>/file/na=' + encodeURIComponent(card.dataset.photo);
+        photoWrap.style.display = '';
+      } else {
+        photoImg.src = '';
+        photoWrap.style.display = 'none';
+      }
+      overlay.classList.add('is-open');
+    }
+
+    document.querySelectorAll('.dir-card').forEach(function (card) {
+      card.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal(card);
+      });
+    });
+
+    closeBtn.addEventListener('click', function () {
+      overlay.classList.remove('is-open');
+    });
+
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) {
+        overlay.classList.remove('is-open');
+      }
+    });
+
+    <?php if (!empty($tpl_disp['open_member_id'])): ?>
+    var openId = '<?php echo (int)$tpl_disp['open_member_id']; ?>';
+    var targetCard = document.querySelector('.dir-card[data-member-id="' + openId + '"]');
+    if (targetCard) {
+      openModal(targetCard);
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    <?php endif; ?>
+  })();
+  </script>

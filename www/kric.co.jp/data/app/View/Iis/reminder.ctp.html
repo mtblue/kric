@@ -1,0 +1,66 @@
+  <!-- ========== メインコンテンツ ========== -->
+  <main class="mem-main">
+    <div class="mem-card-wrap">
+      <div class="mem-card">
+
+        <p class="mem-breadcrumb mem-breadcrumb--pc"><a href="/">関西不動産情報センターTOP</a> &gt; <a href="/<?php echo APP_NAME; ?>/login">会員専用ページ ログイン</a></p>
+
+        <p class="mem-login-msg">パスワードの再発行</p>
+        <hr class="mem-login-divider">
+
+        <?php if (isset($tpl_form['cmd']) && $tpl_form['cmd'] == 'reminder_input'): ?>
+
+          <p class="mem-login-intro">ご登録いただいているメールアドレスを入力して「送信」ボタンを押してください。</p>
+
+          <?php if (!empty($tpl_errDoc)): ?>
+          <p class="mem-login-msg mem-login-msg--error"><?php foreach ($tpl_errDoc as $val) { echo h($val); } ?></p>
+          <?php endif; ?>
+
+          <form class="mem-login-form" action="<?php echo HTTP_TO_SCRIPT_NAME; ?>" method="post">
+            <input type="hidden" name="cmd" value="reminder_send">
+            <input type="hidden" name="session" value="<?php echo isset($tpl_disp['session']) ? h($tpl_disp['session']) : ''; ?>">
+
+            <div class="reg-table">
+              <div class="reg-row">
+                <label class="reg-label" for="email">メールアドレス</label>
+                <div class="reg-input">
+                  <input type="email" id="email" name="email" value="<?php echo isset($tpl_disp['email']) ? h($tpl_disp['email']) : ''; ?>">
+                </div>
+              </div>
+            </div>
+
+            <p class="mem-login-note">※ご登録のメールアドレス宛にパスワード再発行用のURLを記載したメールが送信されます。<br>
+            ※URLの有効期限は1時間です。1時間以内にアクセスいただけなかった場合は、再度お手続きをお願いいたします。</p>
+
+            <div class="mem-login-btn-row">
+              <button type="submit" class="mem-login-btn">
+                <span class="btn-text">送信</span>
+                <span class="btn-sep">|</span>
+                <span class="btn-arrow">&#x25B6;&#xFE0E;</span>
+              </button>
+            </div>
+          </form>
+
+        <?php elseif (isset($tpl_form['cmd']) && $tpl_form['cmd'] == 'reminder_send'): ?>
+
+          <p class="mem-login-intro">ご入力いただいたメールアドレス宛に再発行用のURLを送信いたしました。</p>
+
+        <?php elseif (isset($tpl_form['code']) && $tpl_form['code'] != ''): ?>
+
+          <?php $dispFlag = isset($tpl_disp['disp_flag']) ? $tpl_disp['disp_flag'] : ''; ?>
+          <?php if ($dispFlag == '1'): ?>
+          <p class="mem-login-intro">ご登録のメールアドレス宛に新しいパスワードを送信いたしました。</p>
+          <?php elseif ($dispFlag == '2'): ?>
+          <p class="mem-login-intro">再発行登録に失敗しました。</p>
+          <?php elseif ($dispFlag == '3'): ?>
+          <p class="mem-login-intro">再発行期限が過ぎています。<br>
+          恐れ入りますが、<a href="/<?php echo APP_NAME; ?>/reminder">こちら</a>より再度発行手続きを行ってください。</p>
+          <?php else: ?>
+          <p class="mem-login-intro">再発行できませんでした。</p>
+          <?php endif; ?>
+
+        <?php endif; ?>
+
+      </div>
+    </div>
+  </main>
