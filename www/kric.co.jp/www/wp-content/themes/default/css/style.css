@@ -1780,6 +1780,7 @@ body:not(.is-member) .btn-hd--member .btn-sep { margin-left: auto; }
 @media (max-width: 480px) {
   .page-kv-label { font-size: 1.8rem; }
   .about-chairman-body { font-size: 1.125rem; }
+  .concept-ja { font-size: 1.125rem; }
   .concept-desc { font-size: clamp(0.6rem, 2.4vw, 1.0rem); }
 }
 
@@ -2914,6 +2915,16 @@ body:not(.is-member) .btn-hd--member .btn-sep { margin-left: auto; }
   .toiawase-phone-right { padding: 16px 10%; }
   .toiawase-phone-tel { font-size: 2rem; }
   .toiawase-phone-hours { font-size: 0.8125rem; }
+  .toiawase-phone-logo-kric { height: 44px; }
+  .toiawase-phone-org { font-size: 1.125rem; }
+}
+
+/* SP: ロゴ・組織名・電話番号の折り返し回避（375px 実測ベース） */
+@media (max-width: 480px) {
+  .toiawase-phone-logo-kric { height: 28px; }
+  .toiawase-phone-org { font-size: 0.9375rem; }
+  .toiawase-phone-tel { font-size: 1.5rem; }
+  .toiawase-phone-tel-label { font-size: 1.3125rem; }
 }
 
 /* 送信完了 */

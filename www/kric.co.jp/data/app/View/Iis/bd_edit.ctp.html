@@ -91,7 +91,7 @@
                     <?php $bf_ext = strtolower(pathinfo($tpl_form['file'.$fi], PATHINFO_EXTENSION)); ?>
                     <div class="bd-file-item" id="bd-file-item-<?php echo $fi; ?>">
                       <?php if (in_array($bf_ext, ['jpg','jpeg','jpe','png','gif'])): ?>
-                      <div class="bd-reg-thumb"><img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_form['file'.$fi]); ?>" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                      <div class="bd-reg-thumb"><img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_form['file'.$fi]); ?>"></div>
                       <p class="bd-reg-filename"><?php echo h($tpl_form['file'.$fi]); ?></p>
                       <?php else: ?>
                       <?php
@@ -135,7 +135,7 @@
                   <div class="bd-detail-value">
                     <div class="bd-file-item">
                       <?php if (in_array($cf_ext, ['jpg','jpeg','jpe','png','gif'])): ?>
-                      <div class="bd-reg-thumb"><img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_disp['file'.$i]); ?>" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                      <div class="bd-reg-thumb"><img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_disp['file'.$i]); ?>"></div>
                       <p class="bd-reg-filename"><?php echo h($tpl_disp['file'.$i]); ?></p>
                       <?php else: ?>
                       <?php
@@ -252,7 +252,7 @@
                     <?php $bf_ext = strtolower(pathinfo($tpl_form['file'.$fi], PATHINFO_EXTENSION)); ?>
                     <div class="bd-file-item" id="bd-file-item-<?php echo $fi; ?>">
                       <?php if (in_array($bf_ext, ['jpg','jpeg','jpe','png','gif'])): ?>
-                      <div class="bd-reg-thumb"><img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_form['file'.$fi]); ?>" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                      <div class="bd-reg-thumb"><img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_form['file'.$fi]); ?>"></div>
                       <p class="bd-reg-filename"><?php echo h($tpl_form['file'.$fi]); ?></p>
                       <?php else: ?>
                       <?php
@@ -372,7 +372,7 @@
                   <?php $cf_ext = strtolower(pathinfo($tpl_disp['file'.$i], PATHINFO_EXTENSION)); ?>
                   <div class="bd-file-item">
                     <?php if (in_array($cf_ext, ['jpg','jpeg','jpe','png','gif'])): ?>
-                    <div class="bd-reg-thumb"><img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_disp['file'.$i]); ?>" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <div class="bd-reg-thumb"><img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($tpl_disp['file'.$i]); ?>"></div>
                     <p class="bd-reg-filename"><?php echo h($tpl_disp['file'.$i]); ?></p>
                     <?php else: ?>
                     <?php
@@ -549,7 +549,6 @@
               var thumb = document.createElement('div');
               thumb.className = 'bd-reg-thumb';
               var img = document.createElement('img');
-              img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
               var reader = new FileReader();
               reader.onload = function(e) { img.src = e.target.result; };
               reader.readAsDataURL(file);

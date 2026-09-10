@@ -1,4 +1,4 @@
-/* =============================================   KRIC 莨壼藤繧ｨ繝ｪ繧｢ - member.css   ============================================= */
+/* =============================================   KRIC 会員エリア - member.css   ============================================= */
 /* ----- 繝輔か繝ｳ繝亥渕貅厄ｼ・8px・・----- */
 html {
   font-size: 18px;
@@ -94,7 +94,7 @@ html {
   font-size: 2rem;
   font-weight: bold;
   color: var(--navy);
-  font-family: "Yu Mincho", "貂ｸ譏取悃", YuMincho, serif;
+  font-family: "Yu Mincho", "游明朝", YuMincho, serif;
 }
 
 .mem-page-user {
@@ -106,7 +106,7 @@ html {
   gap: 10px;
 }
 
-/* =============================================   莨壼藤繝翫ン繧ｿ繝・   ============================================= */
+/* =============================================   会員ナビタブ   ============================================= */
 .mem-nav {
   background: #f0ece3;
   padding-bottom: 0;
@@ -217,7 +217,7 @@ html {
 }
 
 /* =============================================   繧ｫ繝ｼ繝牙・蜈ｱ騾夊ｦ∫ｴ   ============================================= */
-/* 繝代Φ縺上★ */
+/* パンくず */
 .mem-breadcrumb.mem-breadcrumb--sp {
   display: none;
 }
@@ -259,7 +259,7 @@ html {
   margin-bottom: 0;
 }
 
-/* =============================================   繧､繝ｳ繝輔か繝｡繝ｼ繧ｷ繝ｧ繝ｳ荳隕ｧ   ============================================= */
+/* =============================================   インフォメーション一覧   ============================================= */
 .info-list {
   list-style: none;
   padding: 0;
@@ -366,7 +366,7 @@ html {
   padding: 0 4px;
 }
 
-/* =============================================   繧､繝ｳ繝輔か繝｡繝ｼ繧ｷ繝ｧ繝ｳ 隧ｳ邏ｰ   ============================================= */
+/* =============================================   インフォメーション 詳細   ============================================= */
 .info-detail {
   width: 1000px;
   margin: 0 auto;
@@ -420,7 +420,7 @@ html {
   opacity: 0.7;
 }
 
-/* =============================================   繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝・   ============================================= */
+/* =============================================   ビジネスダイレクト   ============================================= */
 /* 繧ｻ繧ｯ繧ｷ繝ｧ繝ｳ隕句・縺暦ｼ医ち繧､繝医Ν・狗匳骭ｲ繝懊ち繝ｳ讓ｪ荳ｦ縺ｳ・・*/
 .bd-sec-head {
   position: relative;
@@ -463,7 +463,7 @@ html {
   padding-right: 30px;
 }
 
-/* 繧ｵ繝悶ち繝・*/
+/* サブタブ */
 .bd-subtabs {
   display: flex;
   gap: 2px;
@@ -720,7 +720,7 @@ html {
   opacity: 0.7;
 }
 
-/* =============================================   繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝・隧ｳ邏ｰ   ============================================= */
+/* =============================================   ビジネスダイレクト 詳細   ============================================= */
 .bd-detail {
   width: 1000px;
   margin: 0 auto;
@@ -746,7 +746,7 @@ html {
   margin: 0 0 24px;
 }
 
-/* 隧ｳ邏ｰ繝輔ぅ繝ｼ繝ｫ繝峨ユ繝ｼ繝悶Ν */
+/* 詳細フィールドテーブル */
 .bd-detail-table {
   display: flex;
   flex-direction: column;
@@ -774,7 +774,7 @@ html {
   line-height: 1.6;
 }
 
-/* 蜍慕判繧ｵ繝繝阪う繝ｫ */
+/* 動画サムネイル */
 .bd-detail-video {
   width: 180px;
   height: 120px;
@@ -796,10 +796,11 @@ html {
   height: 225px;
 }
 
-/* 豺ｻ莉倥ヵ繧｡繧､繝ｫ */
+/* 添付ファイル */
+/* 元画像が max-width を下回る場合は拡大せず原寸で表示する */
 .bd-detail-thumb {
   max-width: 200px;
-  width: 100%;
+  width: auto;
   height: auto;
   display: block;
 }
@@ -872,7 +873,7 @@ html {
   opacity: 0.7;
 }
 
-/* 霑ｽ險倥お繝ｪ繧｢ */
+/* 追記エリア */
 .bd-detail-addons {
   margin-bottom: 32px;
   display: flex;
@@ -967,7 +968,7 @@ html {
   font-size: 0.7rem;
 }
 
-/* 謌ｻ繧九Μ繝ｳ繧ｯ */
+/* 戻るリンク */
 .bd-detail-footer {
   display: flex;
   justify-content: flex-end;
@@ -983,7 +984,7 @@ html {
   color: var(--gold);
 }
 
-/* =============================================   繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝・譁ｰ隕冗匳骭ｲ   ============================================= */
+/* =============================================   ビジネスダイレクト 新規登録   ============================================= */
 .bd-reg {
   width: 1000px;
   margin: 0 auto;
@@ -1092,6 +1093,14 @@ html {
 
 .bd-reg-thumb {
   width: 450px;
+}
+
+/* 元画像が枠より小さい場合は拡大せず原寸で表示する */
+.bd-reg-thumb img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  display: block;
 }
 
 .bd-reg-filename {
@@ -1379,7 +1388,7 @@ html {
   gap: 4px 24px;
 }
 
-/* =============================================   Google繝槭ャ繝苓ｪｬ譏弱Δ繝ｼ繝繝ｫ   ============================================= */
+/* =============================================   Googleマップ説明モーダル   ============================================= */
 .map-modal-overlay {
   display: none;
   position: fixed;
@@ -1505,7 +1514,7 @@ html {
   font-weight: bold;
 }
 
-/* 繧ｵ繝悶ち繧､繝医Ν */
+/* サブタイトル */
 .reg-subtitle {
   font-size: 1.278rem;
   font-weight: normal;
@@ -1516,7 +1525,7 @@ html {
   border-bottom: 1px solid var(--gray-line);
 }
 
-/* 繝輔か繝ｼ繝 */
+/* フォーム */
 .reg-form {
   width: 700px;
   margin-left: auto;
@@ -1688,7 +1697,7 @@ html {
   text-decoration: underline;
 }
 
-/* 繝ｭ繧ｴ逕ｻ蜒上そ繧ｯ繧ｷ繝ｧ繝ｳ */
+/* ロゴ画像セクション */
 .reg-map-header {
   display: flex;
   align-items: center;
@@ -1825,13 +1834,13 @@ html {
   opacity: 0.8;
 }
 
-/* 閾ｪ蜍慕函謌舌ユ繧ｭ繧ｹ繝・*/
+/* 自動生成テキスト */
 .reg-auto-text {
   font-size: 0.778rem;
   color: #000;
 }
 
-/* 騾∽ｿ｡繝懊ち繝ｳ */
+/* 送信ボタン */
 .reg-submit-row {
   display: flex;
   justify-content: center;
@@ -3096,7 +3105,7 @@ html {
     width: 100%;
   }
 
-  /* 繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝・*/
+  /* ビジネスダイレクト */
   .bd-sec-head {
     width: auto;
   }
@@ -3113,7 +3122,7 @@ html {
     width: auto;
   }
 
-  /* 繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝・譁ｰ隕冗匳骭ｲ */
+  /* ビジネスダイレクト 新規登録 */
   .bd-reg {
     width: auto;
   }
@@ -3223,7 +3232,7 @@ html {
     white-space: normal;
   }
 
-  /* 繧ｿ繝悶リ繝難ｼ夐撼陦ｨ遉ｺ */
+  /* タブナビ：非表示 */
   .mem-nav {
     display: none;
   }
@@ -3241,7 +3250,7 @@ html {
     padding: 60px 40px;
   }
 
-  /* 繝代Φ縺上★ */
+  /* パンくず */
   .mem-breadcrumb.mem-breadcrumb--pc {
     display: none;
   }
@@ -3267,7 +3276,7 @@ html {
     margin: 24px auto;
   }
 
-  /* 繧､繝ｳ繝輔か繝｡繝ｼ繧ｷ繝ｧ繝ｳ荳隕ｧ */
+  /* インフォメーション一覧 */
   .info-list {
     width: auto;
   }
@@ -3311,7 +3320,7 @@ html {
     font-size: 0.778rem;
   }
 
-  /* 繝輔ャ繧ｿ繝ｼ */
+  /* フッター */
   .mem-footer .footer-address {
     font-size: 0.778rem;
   }
@@ -3334,7 +3343,7 @@ html {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  /* 繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝・*/
+  /* ビジネスダイレクト */
   .bd-sec-head {
     width: auto;
     flex-direction: column;
@@ -3461,7 +3470,7 @@ html {
     margin: 8px 40px 8px 8px;
   }
 
-  /* 繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝郁ｩｳ邏ｰ */
+  /* ビジネスダイレクト詳細 */
   .bd-detail {
     width: auto;
     padding: 20px 0 40px;
@@ -3500,8 +3509,10 @@ html {
   }
 
   .bd-detail-thumb {
-    width: 100%;
-    height: 240px;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 240px;
   }
 
   .bd-detail-company,
@@ -3540,7 +3551,7 @@ html {
     text-align: center;
   }
 
-  /* 莨夂､ｾ讎りｦ∫｢ｺ隱・SP */
+  /* 会社概要確認 SP */
   .reg-confirm,
   .reg-confirm.reg-confirm-table {
     width: 100%;
@@ -3744,7 +3755,7 @@ html {
     height: auto;
   }
 
-  /* 繝薙ず繝阪せ繝繧､繝ｬ繧ｯ繝・譁ｰ隕冗匳骭ｲ */
+  /* ビジネスダイレクト 新規登録 */
   .bd-reg {
     width: auto;
     padding: 20px 0 40px;
@@ -3889,7 +3900,7 @@ html {
     margin: 0 auto;
   }
 
-  /* Google繝槭ャ繝励Δ繝ｼ繝繝ｫ SP */
+  /* Googleマップモーダル SP */
   .map-modal {
     width: 90vw;
     padding: 40px 74px;

@@ -33,7 +33,7 @@
           <div class="bd-detail-attachment">
             <?php if ($cfIsImage): ?>
             <div class="bd-detail-thumb">
-              <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($confirmFile); ?>" alt="添付画像" style="max-width:480px;height:auto;">
+              <img src="/<?php echo APP_NAME; ?>/file/na=<?php echo h($confirmFile); ?>" alt="添付画像" class="bd-detail-thumb-img">
             </div>
             <?php else: ?>
             <a href="/<?php echo APP_NAME; ?>/file/na=<?php echo h($confirmFile); ?>" target="_blank" class="bd-detail-pdf">
