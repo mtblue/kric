@@ -216,8 +216,11 @@ print("</div>");
 	public function send_cron_db() {
 		global	$objInit, $objOrg;
 
-		// TODO: 公開時にコメントアウトを解除すること（Phase 6）
-		// $this->_sendMailDB();
+		// ビジネスダイレクトのお知らせを bd_mail キューからまとめて送信する。
+		// さくらコンパネの Cron（https://kric.co.jp/iis/send_cron_db）から呼ばれる。
+		// ※ 2026-09-10 の公開時に有効化。Cron を止めるとキューが溜まり続け、
+		//    再開した瞬間に一斉送信されるため、停止時はキューのクリアも行うこと。
+		$this->_sendMailDB();
 
 	}
 
