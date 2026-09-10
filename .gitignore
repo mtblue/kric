@@ -35,3 +35,12 @@ node_modules/
 *.key
 id_rsa
 id_ed25519
+
+# デザイン支給データ（19GB。git add -A で巻き込む事故を防ぐため明示的に除外）
+Design/
+
+# 会員企業の住所データ（個人情報を含む可能性）
+kric_company.sql
+
+# 作業用の一時バックアップ（*.bak_xxx 形式）
+*.bak_*
