@@ -1,0 +1,9 @@
+# ============================================================
+# テスト環境用 ~/www/.htaccess（kric.sakura.ne.jp）
+# ============================================================
+
+# kric.co.jp/www/ サブフォルダをドキュメントルートとして扱う
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_URI} !^/kric\.co\.jp/
+RewriteRule ^(.*)$ kric.co.jp/www/$1 [L]
