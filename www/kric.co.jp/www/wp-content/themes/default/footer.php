@@ -9,7 +9,7 @@
         <div class="footer-address">
           <p>〒530-0012 大阪市北区芝田2丁目1番18号 西阪急ビル7階</p>
         </div>
-        <a href="https://maps.google.com/?q=大阪市北区芝田2丁目1番18号+西阪急ビル7階" target="_blank" rel="noopener" class="footer-map-btn"><span class="btn-text">google map</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></a>
+        <a href="https://www.google.com/maps/search/?api=1&query=34.7055664%2C135.4967281" target="_blank" rel="noopener" class="footer-map-btn"><span class="btn-text">google map</span><span class="btn-sep">|</span><span class="btn-arrow">&#x25B6;&#xFE0E;</span></a>
       </div>
       <div class="footer-right">
         <nav class="footer-nav">
