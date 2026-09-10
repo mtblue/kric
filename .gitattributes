@@ -1,0 +1,6 @@
+# core.autocrlf=true の環境でクローンすると作業ツリーが CRLF になる。
+# 以下は CRLF だと壊れるため、常に LF で取り出す。
+#   *.sh      … WSL / さくら(FreeBSD) で実行するシェルスクリプト
+#   .htaccess … Apache 設定。サーバー側で sed 編集することもある
+*.sh       text eol=lf
+.htaccess  text eol=lf

@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+# =============================================================================
+# 旧・会社紹介（CakePHP）は 2026-09-10 のリニューアルで /kaiin.html へ移行済み。
+#
+# ★最重要: dir_json / detail_json / file は新しい会員紹介ページ（/kaiin.html）が
+#   一覧・地図・詳細・画像表示に使用している現役 API。必ず CakePHP へ通すこと。
+#   この行を消すと会員紹介ページが全滅する。
+# ※ 親（docroot）の .htaccess のルールはこのディレクトリには継承されない。
+# =============================================================================
+    RewriteRule ^(dir_json|detail_json|file)(/|$) ../app.php [QSA,L]
+
+# 上記以外の旧 URL は新ページへ 301（?c=N はそのまま引き継がれ会社詳細が開く）
+    RewriteRule ^ /kaiin.html [R=301,L]
+</IfModule>

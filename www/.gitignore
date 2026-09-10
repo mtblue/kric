@@ -35,8 +35,18 @@ kric.co.jp/www/wp-content/themes/twentytwentyfive/
 # メディアアップロード（バイナリ大量のためgit管理外）
 kric.co.jp/www/wp-content/uploads/
 
-# ローカル開発専用（IP制限・URL書き換え）
+# .htaccess は原則 git 管理外（環境ごとに内容が異なるため）
 .htaccess
+
+# ただし以下はサイトの動作を左右する重要ファイルのため管理対象にする。
+#   - kric.co.jp/www/.htaccess       旧URL→新ページの301、WordPress のリライト
+#   - kric.co.jp/www/member/.htaccess  /member/ 配下を /kaiin.html へ301
+#   - kric.co.jp/www/intro/.htaccess   ★現役API(dir_json/detail_json/file)の除外を含む。
+#                                        消すと会員紹介ページが動作しなくなる
+# iis/ admin/ は Docker と本番で HTTPS 設定が異なる（デプロイ時に sed で切替）ため除外のまま。
+!kric.co.jp/www/.htaccess
+!kric.co.jp/www/member/.htaccess
+!kric.co.jp/www/intro/.htaccess
 
 # 不要ファイル
 kric.co.jp/www/renewal.zip

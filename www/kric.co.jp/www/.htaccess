@@ -1,0 +1,80 @@
+<IfModule mod_rewrite.c>
+ RewriteEngine On
+RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/fileauth.txt
+RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/6c06ef349afa1481f81704507415b22c.txt
+RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/bd600d68289d46c207ddd4055df676ac.txt
+RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/aea686c8e0783507ee0ffd67fa5351e2.txt
+RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/f2fa6287545167a809220cc91df571fb.txt
+RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/0afb97a88cc169fdba8de89a7dcd8473.txt
+
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L] 
+ #RewriteCond %{HTTP_HOST} ^(kric.co.jp)(:80)?
+ #RewriteRule ^(.*) https://kric.co.jp/$1 [R=301,L]
+
+
+# =============================================================================
+# 旧サイト URL の 301 リダイレクト（2026-09-10 リニューアル公開に伴い追加）
+#
+# /member/ と /intro/ 配下の転送は member/.htaccess・intro/.htaccess 側に記述。
+# 現役 API（intro/dir_json ほか）の除外もそちらにあるので必ず併せて確認すること。
+# =============================================================================
+
+# --- 旧・短縮URL（名刺・印刷物等の外部導線）---
+# /kaiin.html は ?c=<company_id> で会社詳細を直接開ける（page-kaiin.php が対応）
+# c=84（信和不動産）/ c=126（攝津商会）は退会済みのため一覧へ送る
+RewriteRule ^crade/?$         /kaiin.html?c=7 [R=301,L]
+RewriteRule ^fujikohsan/?$    /kaiin.html?c=127 [R=301,L]
+RewriteRule ^shinwa/?$        /kaiin.html [R=301,L]
+RewriteRule ^settsushoukai/?$ /kaiin.html [R=301,L]
+RewriteRule ^settushoukai/?$  /kaiin.html [R=301,L]
+
+# --- 旧・会員紹介（CakePHP）→ 新・会員紹介（WordPress）---
+# /intro/?c=N の c はそのまま引き継がれ、該当会社の詳細が開く
+# ※ /member/ と /intro/ 配下は各ディレクトリの .htaccess で処理する
+#    （mod_rewrite はサブディレクトリの .htaccess が親のルールを上書きするため、
+#      ここに書いても効かない）
+RewriteRule ^member\.html$ /kaiin.html [R=301,L]
+
+# --- 旧 WordPress ページ → 新ページ ---
+RewriteRule ^activity\.html$        /katsudo.html [R=301,L]
+RewriteRule ^activity/[a-z]+\.html$ /katsudo.html [R=301,L]
+RewriteRule ^kric/history\.html$    /dantai.html#history [R=301,NE,L]
+RewriteRule ^kric/formation\.html$  /dantai.html#orgchart [R=301,NE,L]
+RewriteRule ^kric/object\.html$     /kric.html [R=301,L]
+RewriteRule ^about\.html$           /dantai.html [R=301,L]
+RewriteRule ^service\.html$         /kric.html [R=301,L]
+RewriteRule ^enter/guide\.html$     /nyukai.html [R=301,L]
+RewriteRule ^enter\.html$           /nyukai.html [R=301,L]
+# ===== 旧URL リダイレクトここまで =====
+
+RewriteBase /
+RewriteRule ^(member|iis|admin|intro)/ - [END]
+RewriteRule ^index\.php$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . /index.php [L]
+</IfModule>
+
+
+
+#SetEnvIf User-Agent "Googlebot" allowbot
+#SetEnvIf User-Agent "Slurp" allowbot
+#SetEnvIf User-Agent "bingbot" allowbot
+
+
+# BEGIN WordPress
+# "BEGIN WordPress" から "END WordPress" までのディレクティブ (行) は
+# 動的に生成され、WordPress フィルターによってのみ修正が可能です。
+# これらのマーカー間にあるディレクティブへのいかなる変更も上書きされてしまいます。
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
