@@ -164,7 +164,7 @@ print("</div>");
  * return value        :  
  * Comment             :  
 */
-	private function _addMailDB($existence='', $zokusei='', $title='', $doc='', $tmp='') {
+	private function _addMailDB($existence='', $zokusei='', $title='', $doc='', $tmp='', $poster_company='', $poster_name='') {
 		global	$objInit, $objOrg;
 		
 		$mail_data['id'] = '';
@@ -173,6 +173,11 @@ print("</div>");
 		$mail_data['title'] = $title;
 		$mail_data['doc'] = $doc;
 		$mail_data['tmp'] = $tmp;
+		// 投稿者情報はキュー投入時（ログイン中）に保存する。
+		// 送信は Cron（send_cron_db）から行われセッションが存在しないため、
+		// 送信時にセッションから取得することはできない。
+		$mail_data['poster_company'] = $poster_company;
+		$mail_data['poster_name'] = $poster_name;
 		$mail_data['cron'] = '';
 		$this->log($mail_data, 'original_log');
 		$resId = $objOrg->db_ShareQuery_Insert('bd_mail', $mail_data);
@@ -200,7 +205,9 @@ print("</div>");
 		$D_ROW = $objOrg->Select_wide_use(2, $TAKE, $TABLE, $WHERE, $WHERE_VAL);
 		if (is_array($D_ROW) == false) { $D_ROW = array(); }
 		foreach($D_ROW AS $row) {
-			$this->_bdMemberSend($row['existence'], $row['zokusei'], $row['title'], $row['doc'], $row['tmp']);
+			$this->_bdMemberSend($row['existence'], $row['zokusei'], $row['title'], $row['doc'], $row['tmp'],
+				isset($row['poster_company']) == true ? $row['poster_company'] : '',
+				isset($row['poster_name']) == true ? $row['poster_name'] : '');
 			$objOrg->db_ShareQuery_Delete('bd_mail', array('bd_mail_id' => $row['bd_mail_id']));
 		}
 
@@ -231,7 +238,7 @@ print("</div>");
  * return value        :  
  * Comment             :  
 */
-	private function _bdMemberSend($existence='', $zokusei='', $title='', $doc='', $tmp='') {
+	private function _bdMemberSend($existence='', $zokusei='', $title='', $doc='', $tmp='', $poster_company='', $poster_name='') {
 		global	$objInit, $objOrg;
 
 		if ($zokusei == '' || $zokusei < 1 || $zokusei > 4) {
@@ -296,8 +303,9 @@ print("</div>");
 										'edit_flag' =>			$existence > 0 ? true : false,
 										'company_name' =>		isset($row['company_name']) == true ? $row['company_name'] : '',
 										'member_name' =>		isset($row['name']) == true ? $row['name'] : '',
-										'poster_company' =>		isset($objOrg->disp['sessionInfo']['company_name']) == true ? $objOrg->disp['sessionInfo']['company_name'] : '',
-										'poster_name' =>		isset($objOrg->disp['sessionInfo']['name']) == true ? $objOrg->disp['sessionInfo']['name'] : '',
+										// Cron 実行時はセッションが無いため、キューに保存した値を使う
+										'poster_company' =>		$poster_company,
+										'poster_name' =>		$poster_name,
 										'zokusei' =>			$zokusei,
 										'title' =>				isset($title) == true ? $title : '',
 										'doc' =>				isset($doc) == true ? $doc : '',
@@ -1339,7 +1347,9 @@ print("</div>");
 							if((isset($objOrg->formList['file1']) && $objOrg->form['file1'] != '') || (isset($objOrg->formList['file2']) && $objOrg->form['file2'] != '') || (isset($objOrg->formList['file3']) && $objOrg->form['file3'] != '')){ $tmp = true; }
 						}
 						//$this->_bdMemberSend($existence, $objOrg->form['zo'], $title, $doc, $tmp);
-						$this->_addMailDB($existence, $objOrg->form['zo'], $title, $doc, $tmp);
+						$this->_addMailDB($existence, $objOrg->form['zo'], $title, $doc, $tmp,
+							isset($objOrg->form['poster_company']) == true ? $objOrg->form['poster_company'] : '',
+							isset($objOrg->form['poster_name']) == true ? $objOrg->form['poster_name'] : '');
 
 						// セッションクリア
 						unset($_SESSION[SESSION_VAR_NAME]);

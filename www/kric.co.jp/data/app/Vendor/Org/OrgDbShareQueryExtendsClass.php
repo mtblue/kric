@@ -128,6 +128,8 @@ class OrgDbShareQueryExtends extends OrgNavi {
 			'title' =>		'varchar',			// タイトル
 			'doc' =>		'text',			// 内容
 			'tmp' =>		'tinyint',			// 削除フラグ
+			'poster_company' =>	'varchar',			// 投稿者情報(会社)
+			'poster_name' =>	'varchar',			// 投稿者情報(氏名)
 			'create_date' =>		'datetime',			// 登録日時
 );
 
