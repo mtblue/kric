@@ -4,3 +4,10 @@
 #   .htaccess … Apache 設定。サーバー側で sed 編集することもある
 *.sh       text eol=lf
 .htaccess  text eol=lf
+
+# 自作テーマの PHP は常に LF で取り出す。
+# リポジトリのブロブも本番（さくら/FreeBSD）も LF だが、指定が無いと
+# core.autocrlf=true の環境でチェックアウト時に CRLF へ変換され、
+# sync_to_prod.sh がそのまま本番へ送ってしまう（2026-09-16 に発生）。
+# ※ vendor（WordPress コア・プラグイン）には意図的に適用しない。
+/www/kric.co.jp/www/wp-content/themes/default/*.php text eol=lf
