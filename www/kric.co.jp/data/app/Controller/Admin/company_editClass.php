@@ -45,6 +45,8 @@ class OrgPage extends OrgStd {
 		$objOrg->formCheck();
 
 		// その他のエラーチェック処理	※必要な場合追加する	入力情報：$objOrg->form
+		// ※座標（lat/lng）は必須としない。GoogleマップURL も住所も手がかりが無い場合は
+		//   「地図にピンを立てられない」だけなので、登録自体は通す。
 
 
 
@@ -328,6 +330,26 @@ class OrgPage extends OrgStd {
 								'type' =>		'0',
 								'kana' =>		'',
 								'detail' =>		'4,,,10000',
+								'tag' =>		'0',
+								'support' =>	array( 'flag' => '0' ),
+							),
+			'lat' =>	array(
+								'name' =>		'緯度',
+								'essential' =>	'0',
+								'mail' =>		'0',
+								'type' =>		'0',
+								'kana' =>		'a',
+								'detail' =>		'0,,,',
+								'tag' =>		'0',
+								'support' =>	array( 'flag' => '0' ),
+							),
+			'lng' =>	array(
+								'name' =>		'経度',
+								'essential' =>	'0',
+								'mail' =>		'0',
+								'type' =>		'0',
+								'kana' =>		'a',
+								'detail' =>		'0,,,',
 								'tag' =>		'0',
 								'support' =>	array( 'flag' => '0' ),
 							),

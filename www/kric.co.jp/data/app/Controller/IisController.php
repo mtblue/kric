@@ -1891,7 +1891,8 @@ print("</div>");
 							isset($objOrg->form['city'])         ? $objOrg->form['city']         : '',
 							isset($objOrg->form['address_town']) ? $objOrg->form['address_town'] : '',
 							isset($objOrg->form['building'])     ? $objOrg->form['building']     : '',
-							(isset($resTable) && isset($resTable['lat'])) ? $resTable['lat'] : null
+							isset($objOrg->form['lat']) ? $objOrg->form['lat'] : null,
+							isset($objOrg->form['lng']) ? $objOrg->form['lng'] : null
 						);
 
 						// メール送信
@@ -3320,112 +3321,6 @@ print("</div>");
 		$this->_dispOutSetting();
 
 	} // function end
-
-//-------------------------------------------------------------------------------------------------
-	/**
-	 * 会社保存後にジオコーディングを実行し lat/lng を更新する。
-	 * Phase 1  : google_map URL から座標を直接抽出（!3d!4d ピン優先）
-	 * Phase 1.5: 短縮URL をリダイレクト追跡して座標を抽出
-	 * Phase 2  : Google Maps Geocoding API で住所（都道府県含む）から座標取得
-	 */
-	private function _geocodeCompany($company_id, $google_map, $ken, $city, $address_town, $building, $current_lat) {
-		global $objOrg;
-		$lat = null;
-		$lng = null;
-
-		// 都道府県コード → 都道府県名
-		static $kenNames = [
-			 1=>'北海道',  2=>'青森県',  3=>'岩手県',  4=>'宮城県',  5=>'秋田県',
-			 6=>'山形県',  7=>'福島県',  8=>'茨城県',  9=>'栃木県', 10=>'群馬県',
-			11=>'埼玉県', 12=>'千葉県', 13=>'東京都', 14=>'神奈川県',15=>'新潟県',
-			16=>'富山県', 17=>'石川県', 18=>'福井県', 19=>'山梨県', 20=>'長野県',
-			21=>'岐阜県', 22=>'静岡県', 23=>'愛知県', 24=>'三重県', 25=>'滋賀県',
-			26=>'京都府', 27=>'大阪府', 28=>'兵庫県', 29=>'奈良県', 30=>'和歌山県',
-			31=>'鳥取県', 32=>'島根県', 33=>'岡山県', 34=>'広島県', 35=>'山口県',
-			36=>'徳島県', 37=>'香川県', 38=>'愛媛県', 39=>'高知県', 40=>'福岡県',
-			41=>'佐賀県', 42=>'長崎県', 43=>'熊本県', 44=>'大分県', 45=>'宮崎県',
-			46=>'鹿児島県',47=>'沖縄県',
-		];
-
-		// URL パターンマッチ（優先順位: !3d!4d ピン > ll= > q= > place@ > /@ 表示中心）
-		$extractFromUrl = function($url) {
-			if (preg_match('/!3d(-?\d+\.?\d+)!4d(-?\d+\.?\d+)/', $url, $m))
-				return [(float)$m[1], (float)$m[2]];
-			if (preg_match('/[?&]ll=(-?\d+\.?\d*),(-?\d+\.?\d*)/', $url, $m))
-				return [(float)$m[1], (float)$m[2]];
-			if (preg_match('/[?&]q=(-?\d+\.?\d+),(-?\d+\.?\d+)/', $url, $m))
-				return [(float)$m[1], (float)$m[2]];
-			if (preg_match('|/place/[^@]+/@(-?\d+\.?\d+),(-?\d+\.?\d+)|', $url, $m))
-				return [(float)$m[1], (float)$m[2]];
-			if (preg_match('/\/@(-?\d+\.?\d+),(-?\d+\.?\d+)/', $url, $m))
-				return [(float)$m[1], (float)$m[2]];
-			return null;
-		};
-
-		// Phase 1: google_map URL から座標を直接抽出
-		if (!empty($google_map)) {
-			$coords = $extractFromUrl($google_map);
-			if ($coords !== null) {
-				[$lat, $lng] = $coords;
-			}
-		}
-
-		// Phase 1.5: 短縮URL（maps.app.goo.gl 等）をリダイレクト追跡して座標抽出
-		if ($lat === null && !empty($google_map)) {
-			$ch = curl_init($google_map);
-			curl_setopt_array($ch, [
-				CURLOPT_RETURNTRANSFER => true,
-				CURLOPT_FOLLOWLOCATION => true,
-				CURLOPT_MAXREDIRS      => 10,
-				CURLOPT_TIMEOUT        => 10,
-				CURLOPT_NOBODY         => true,
-				CURLOPT_USERAGENT      => 'Mozilla/5.0 kric-geocode/2.0',
-				CURLOPT_SSL_VERIFYPEER => false,
-			]);
-			curl_exec($ch);
-			$resolved = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
-			curl_close($ch);
-			if ($resolved && $resolved !== $google_map) {
-				$coords = $extractFromUrl($resolved);
-				if ($coords !== null) {
-					[$lat, $lng] = $coords;
-				}
-			}
-		}
-
-		// Phase 2: Google Maps Geocoding API で住所（都道府県含む）から座標取得
-		if ($lat === null) {
-			$apiKey = defined('GOOGLE_MAPS_API_KEY') ? GOOGLE_MAPS_API_KEY : '';
-			if ($apiKey !== '') {
-				$kenName = isset($kenNames[(int)$ken]) ? $kenNames[(int)$ken] : '';
-				$address = trim(implode('', array_filter([$kenName, $city, $address_town, $building])));
-				if ($address !== '') {
-					$url = 'https://maps.googleapis.com/maps/api/geocode/json?'
-					     . http_build_query(['address' => $address, 'key' => $apiKey, 'language' => 'ja', 'region' => 'jp']);
-					$ctx = stream_context_create(['http' => ['timeout' => 5]]);
-					$json = @file_get_contents($url, false, $ctx);
-					if ($json !== false) {
-						$data = json_decode($json, true);
-						if (isset($data['status']) && $data['status'] === 'OK'
-						    && isset($data['results'][0]['geometry']['location'])) {
-							$loc = $data['results'][0]['geometry']['location'];
-							$lat = (float)$loc['lat'];
-							$lng = (float)$loc['lng'];
-						}
-					}
-				}
-			}
-		}
-
-		if ($lat !== null && $lng !== null) {
-			$stmt = $objOrg->dbLink->prepare('UPDATE company SET lat=?, lng=? WHERE company_id=?');
-			if ($stmt) {
-				$stmt->bind_param('ddi', $lat, $lng, $company_id);
-				$stmt->execute();
-				$stmt->close();
-			}
-		}
-	}
 
 //-------------------------------------------------------------------------------------------------
 } // class end

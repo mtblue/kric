@@ -65,6 +65,14 @@
               <input type="hidden" name="id" value="<?php echo h(isset($tpl_disp['org_info']['company_id']) ? $tpl_disp['org_info']['company_id'] : ''); ?>">
               <input type="hidden" name="zip" id="zip" value="<?php echo h(isset($tpl_disp['zip']) ? $tpl_disp['zip'] : ''); ?>">
               <input type="hidden" name="shozoku" value="<?php echo h(isset($tpl_disp['shozoku']) ? $tpl_disp['shozoku'] : (isset($tpl_disp['org_info']['shozoku']) ? $tpl_disp['org_info']['shozoku'] : '')); ?>">
+              <?php
+                // 座標はブラウザ側（Maps JavaScript API の Geocoder）で取得して送信する。
+                // 未取得のまま送信された場合はサーバー側で従来どおり google_map URL から抽出する。
+                $_latVal = (isset($tpl_disp['lat']) && $tpl_disp['lat'] !== '') ? $tpl_disp['lat'] : (isset($tpl_disp['org_info']['lat']) ? $tpl_disp['org_info']['lat'] : '');
+                $_lngVal = (isset($tpl_disp['lng']) && $tpl_disp['lng'] !== '') ? $tpl_disp['lng'] : (isset($tpl_disp['org_info']['lng']) ? $tpl_disp['org_info']['lng'] : '');
+              ?>
+              <input type="hidden" name="lat" id="geoLat" value="<?php echo h($_latVal); ?>">
+              <input type="hidden" name="lng" id="geoLng" value="<?php echo h($_lngVal); ?>">
 
               <p class="reg-required-note">※は入力必須項目です。</p>
 
@@ -591,4 +599,118 @@
     }
   })();
   </script>
+
+  <script>
+  // 住所から座標を取得する（ブラウザ側 Geocoder）。画面表示は変更しない。
+  // サーバー側の Geocoding ウェブサービスはリファラー制限付きキーでは使用できないため、
+  // 座標取得はこちらを主経路とする。取得値は hidden の lat/lng で送信される。
+  // ※GoogleマップURL が入力されている場合は、サーバー側が URL から座標を取得するため
+  //   こちらの値は使われない。
+  (function () {
+    var latEl = document.getElementById('geoLat');
+    var lngEl = document.getElementById('geoLng');
+    if (!latEl || !lngEl) { return; }
+    var kenEl  = document.getElementById('ken');
+    var cityEl = document.getElementById('addrCity');
+    var townEl = document.getElementById('addrTown');
+    var bldgEl = document.getElementById('addrBuilding');
+    var gmEl   = document.querySelector('[name="google_map"]');
+    var form   = document.getElementById('companyForm');
+    var geocoder   = null;
+    var lastQuery  = '';
+    var apiFailed  = false;  // API 側の異常。住所の打ち間違い（ZERO_RESULTS）とは区別する
+    var MAX_GAP_KM = 1;      // 住所とURLの位置がこれ以上離れていたら確認する
+
+    function kenName() {
+      if (!kenEl || kenEl.value === '') { return ''; }
+      return kenEl.options[kenEl.selectedIndex].text;
+    }
+    function address() {
+      return [kenName(),
+              cityEl ? cityEl.value.trim() : '',
+              townEl ? townEl.value.trim() : '',
+              bldgEl ? bldgEl.value.trim() : ''].join('');
+    }
+    // GoogleマップURL から座標を抽出する（サーバー側 _geocodeCompany と同じ優先順位）。
+    // 短縮URL は展開できないため null を返す。その場合はサーバー側で解決する。
+    function urlLatLng() {
+      if (!gmEl || gmEl.value.trim() === '') { return null; }
+      var u = gmEl.value;
+      var m = u.match(/!3d(-?\d+\.?\d+)!4d(-?\d+\.?\d+)/)
+           || u.match(/[?&]ll=(-?\d+\.?\d*),(-?\d+\.?\d*)/)
+           || u.match(/[?&]q=(-?\d+\.?\d+),(-?\d+\.?\d+)/)
+           || u.match(/\/place\/[^@]+\/@(-?\d+\.?\d+),(-?\d+\.?\d+)/)
+           || u.match(/\/@(-?\d+\.?\d+),(-?\d+\.?\d+)/);
+      return m ? { lat: parseFloat(m[1]), lng: parseFloat(m[2]) } : null;
+    }
+    function distanceKm(a, b) {
+      var R = 6371, toRad = Math.PI / 180;
+      var dLat = (b.lat - a.lat) * toRad;
+      var dLng = (b.lng - a.lng) * toRad;
+      var x = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+            + Math.cos(a.lat * toRad) * Math.cos(b.lat * toRad) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+      return R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
+    }
+    function resolve() {
+      if (!geocoder) { return; }
+      var addr = address();
+      if (addr === '' || addr === lastQuery) { return; }
+      lastQuery = addr;
+      geocoder.geocode({ address: addr, region: 'jp', language: 'ja' }, function (res, status) {
+        if (status === 'OK' && res && res[0]) {
+          apiFailed = false;
+          var loc = res[0].geometry.location;
+          latEl.value = loc.lat().toFixed(7);
+          lngEl.value = loc.lng().toFixed(7);
+          return;
+        }
+        latEl.value = '';
+        lngEl.value = '';
+        // ZERO_RESULTS は住所が見つからなかっただけなので登録は妨げない。
+        // REQUEST_DENIED / OVER_QUERY_LIMIT / UNKNOWN_ERROR 等は API 側の異常として扱う。
+        apiFailed = (status !== 'ZERO_RESULTS');
+      });
+    }
+
+    // Maps JavaScript API の読み込み完了で呼ばれる
+    window.kricInitGeo = function () {
+      geocoder = new google.maps.Geocoder();
+      resolve();
+    };
+
+    if (kenEl)  { kenEl.addEventListener('change', resolve); }
+    if (cityEl) { cityEl.addEventListener('change', resolve); }
+    if (townEl) { townEl.addEventListener('change', resolve); }
+    if (bldgEl) { bldgEl.addEventListener('change', resolve); }
+
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        var urlPos = urlLatLng();
+        var hasUrl = (gmEl && gmEl.value.trim() !== '');
+
+        // ① API が応答しない場合はエラー。
+        //    GoogleマップURL があればそちらから座標を取得できるので妨げない。
+        if ((apiFailed || !geocoder) && !hasUrl) {
+          e.preventDefault();
+          alert('地図サービスに接続できないため、位置情報を取得できませんでした。\n時間をおいて、もう一度お試しください。');
+          return;
+        }
+
+        // ② 住所から求めた位置と GoogleマップURL の位置が離れている場合は確認する。
+        if (urlPos && latEl.value !== '' && lngEl.value !== '') {
+          var gap = distanceKm(urlPos, { lat: parseFloat(latEl.value), lng: parseFloat(lngEl.value) });
+          if (gap > MAX_GAP_KM) {
+            var d = (gap < 10) ? gap.toFixed(1) : String(Math.round(gap));
+            if (!confirm('入力された住所と、GoogleマップURLが示す位置が約' + d + 'km 離れています。\n'
+                       + '地図にはGoogleマップURLの位置でピンを立てます。\n'
+                       + '住所またはURLに誤りがないかご確認ください。\n\nこのまま進めますか？')) {
+              e.preventDefault();
+            }
+          }
+        }
+      });
+    }
+  })();
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo h(defined('GOOGLE_MAPS_BROWSER_KEY') ? GOOGLE_MAPS_BROWSER_KEY : ''); ?>&callback=kricInitGeo&language=ja&region=JP" async defer></script>
 <?php endif; ?>

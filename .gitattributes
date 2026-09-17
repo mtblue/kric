@@ -11,3 +11,8 @@
 # sync_to_prod.sh がそのまま本番へ送ってしまう（2026-09-16 に発生）。
 # ※ vendor（WordPress コア・プラグイン）には意図的に適用しない。
 /www/kric.co.jp/www/wp-content/themes/default/*.php text eol=lf
+
+# app.php は本番へ配信する。ローカル・本番とも LF なので固定する。
+# 指定が無いと core.autocrlf=true の環境でチェックアウト時に CRLF 化され、
+# sync_to_prod.sh がそれを本番へ送ってしまう。
+/www/kric.co.jp/www/app.php text eol=lf

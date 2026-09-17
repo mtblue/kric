@@ -45,6 +45,22 @@ if (DEVELOPMENT_FLAG === '') {
 	define('GOOGLE_MAPS_API_KEY', 'AIzaSyDKNRY5M-4TUVJ29xeO6rTfObogadC6o9Q');
 }
 //-------------------------------------------------------------------------------------------------
+// Google Maps JavaScript API キー（ブラウザ用・環境別）
+//
+// 会社登録画面の座標取得はブラウザ側の Geocoder で行う。こちらは HTTP リファラー制限付きの
+// キーであり、ページソースに露出する前提で運用する（サーバー用の GOOGLE_MAPS_API_KEY とは別物）。
+//
+// ※本番は現在も開発用キーを使用している。KRIC 側のキーは「APIの制限」に
+//   Maps JavaScript API が含まれておらず ApiTargetBlockedMapError になるため。
+//   KRIC 側で追加され次第、下記の本番分岐を KRIC のキーに差し替えること。
+if (DEVELOPMENT_FLAG === '') {
+	// 本番環境
+	define('GOOGLE_MAPS_BROWSER_KEY', 'AIzaSyDKNRY5M-4TUVJ29xeO6rTfObogadC6o9Q');
+} else {
+	// Docker・開発・テスト・さくらテスト環境
+	define('GOOGLE_MAPS_BROWSER_KEY', 'AIzaSyDKNRY5M-4TUVJ29xeO6rTfObogadC6o9Q');
+}
+//-------------------------------------------------------------------------------------------------
 // 環境別設定　※環境に合わせて編集（必須）
 if (DEVELOPMENT_FLAG == 'DOCKER') {
 	// Docker環境
