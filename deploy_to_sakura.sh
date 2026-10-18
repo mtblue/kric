@@ -205,6 +205,7 @@ step "www アーカイブ作成中..."
 tar czf "$DEPLOY_TMP/kric_www.tar.gz" \
     --exclude='www/wp-includes' \
     --exclude='www/wordpress' \
+    --exclude='www/wp-config.php' \
     --exclude='www/wp-content/uploads' \
     --exclude='www/wp-content/cache' \
     --exclude='www/wp-content/upgrade' \

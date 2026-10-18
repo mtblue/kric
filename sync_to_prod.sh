@@ -96,6 +96,7 @@ rsync -azv --progress --stats $RSYNC_PERM $RSYNC_DRY \
     --delete \
     --exclude='/wp-includes/' \
     --exclude='/wordpress/' \
+    --exclude='/wp-config.php' \
     --exclude='/wp-content/uploads/' \
     --exclude='/wp-content/cache/' \
     --exclude='/wp-content/upgrade/' \
