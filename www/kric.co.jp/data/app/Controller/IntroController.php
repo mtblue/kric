@@ -224,9 +224,17 @@ print("</div>");
 		$TAKE = "company.company_id, company.company_name, company.company_kana";
 		$TAKE .= ", company.zip, company.ken, company.city, company.address_town, company.building";
 		$TAKE .= ", company.lat, company.lng";
-		$TABLE = "company INNER JOIN member ON company.company_id = member.company_id AND member.login_flg = 1 AND member.del_flg = 0";
+		// 会員紹介の表示条件（2026-10-18 変更）
+		//   ・有効な会員アカウント（login_flg=1 / del_flg=0）が1件以上ある会社
+		//   ・または、会員アカウントがまだ1件も登録されていない会社
+		// 以前は member との INNER JOIN で前者だけを表示していたため、会社情報のみ
+		// 登録された直後の会社が一覧に出なかった。
+		// 会員が在籍していたが退会・休会で無効化された会社は、従来どおり非表示を維持する。
+		$TABLE = "company";
 		$WHERE_VAL = array();
 		$WHERE = "company.del_flg = 0";
+		$WHERE .= " AND ( EXISTS (SELECT 1 FROM member mm WHERE mm.company_id = company.company_id AND mm.login_flg = 1 AND mm.del_flg = 0)";
+		$WHERE .= "      OR NOT EXISTS (SELECT 1 FROM member mm WHERE mm.company_id = company.company_id) )";
 		$GROUP = "company.company_id";
 		$ORDER = "company.company_kana ASC";
 
