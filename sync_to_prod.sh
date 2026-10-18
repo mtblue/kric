@@ -95,6 +95,7 @@ rsync -azv --progress --stats $RSYNC_PERM $RSYNC_DRY \
     -e "ssh $SSH_O" \
     --delete \
     --exclude='/wp-includes/' \
+    --exclude='/wordpress/' \
     --exclude='/wp-content/uploads/' \
     --exclude='/wp-content/cache/' \
     --exclude='/wp-content/upgrade/' \

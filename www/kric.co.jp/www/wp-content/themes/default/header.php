@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Google tag (gtag.js) - Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TK4JNG0SP8"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q35S7Z24WR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-TK4JNG0SP8');
+    gtag('config', 'G-Q35S7Z24WR');
   </script>
   <?php wp_head(); ?>
 </head>
