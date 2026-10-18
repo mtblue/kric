@@ -1,11 +1,9 @@
 <IfModule mod_rewrite.c>
  RewriteEngine On
-RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/fileauth.txt
-RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/6c06ef349afa1481f81704507415b22c.txt
-RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/bd600d68289d46c207ddd4055df676ac.txt
-RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/aea686c8e0783507ee0ffd67fa5351e2.txt
-RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/f2fa6287545167a809220cc91df571fb.txt
-RewriteCond %{REQUEST_URI} !=/.well-known/pki-validation/0afb97a88cc169fdba8de89a7dcd8473.txt
+# 証明書のドメイン認証ファイル（.well-known 配下）は WordPress に渡さず、実ファイルを配信する。
+# 以前はトークンごとに RewriteCond で除外していたが、RewriteCond は直後の RewriteRule に
+# しか適用されないため機能していなかった（2026-10-18 に実測確認のうえ整理）。
+RewriteRule ^[.]well-known/ - [L]
 
 # RewriteCond %{HTTPS} off
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L] 
