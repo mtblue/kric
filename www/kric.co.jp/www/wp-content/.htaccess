@@ -1,0 +1,12 @@
+# 2026-10-18 設置
+# ログ・DBダンプ・バックアップ類が外部から取得できないようにする。
+# 以前 wp-content/debug.log（1.08GB）が公開状態だったため。
+<FilesMatch "\.(log|sql|sql\.gz|bak|tar|tar\.gz|zip|old|orig|swp)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order deny,allow
+    Deny from all
+  </IfModule>
+</FilesMatch>
