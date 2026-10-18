@@ -38,15 +38,20 @@
 class EmailConfig {
 
 	public function __construct() {
-		if (getenv('APP_ENV') === 'docker') {
-			// Docker環境：メール送信を無効化（Debug transportに切り替え）
-			$configs = [
-				'member_new_send', 'member_add_send', 'member_edit_send',
-				'reminder_send', 'reminder_auth', 'information_send',
-				'bd_send', 'company_edit_send', 'member_first_login',
-			];
-			foreach ($configs as $key) {
-				$this->$key['transport'] = 'Debug';
+		// 本番以外ではメールを送信しない。
+		// Debug transport は実送信せず内容をログに出すだけなので、
+		// Docker・STG・開発環境のいずれでも会員へメールが飛ぶことがなくなる。
+		//
+		// 2026-10-18: STG の侵害対応で全環境を見直した際、アプリが使う9設定が
+		// すべて 'Smtp'（localhost:25）で、php.ini の sendmail_path 無効化を
+		// 迂回できる状態だったことが判明したため、対象をプロファイル全件に広げた。
+		$isProduction = (getenv('APP_ENV') !== 'docker')
+			&& defined('DEVELOPMENT_FLAG') && DEVELOPMENT_FLAG === '';
+		if (!$isProduction) {
+			foreach (get_object_vars($this) as $key => $val) {
+				if (is_array($val) && isset($val['transport'])) {
+					$this->{$key}['transport'] = 'Debug';
+				}
 			}
 		}
 	}

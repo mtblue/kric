@@ -227,7 +227,10 @@ print("</div>");
 		// さくらコンパネの Cron（https://kric.co.jp/iis/send_cron_db）から呼ばれる。
 		// ※ 2026-09-10 の公開時に有効化。Cron を止めるとキューが溜まり続け、
 		//    再開した瞬間に一斉送信されるため、停止時はキューのクリアも行うこと。
-		$this->_sendMailDB();
+		// 本番以外では一斉送信を行わない（STG で誤送信した場合の影響が大きいため）
+		if (defined('DEVELOPMENT_FLAG') && DEVELOPMENT_FLAG === '') {
+			$this->_sendMailDB();
+		}
 
 	}
 
