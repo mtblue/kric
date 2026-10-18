@@ -434,7 +434,7 @@ $company_id = $is_detail ? intval($_GET['c']) : -1;
 </script>
 
 <?php if (!$is_detail): ?>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKNRY5M-4TUVJ29xeO6rTfObogadC6o9Q&callback=initKaiinMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDduY_Gqdho8bKF9ZSSR3DAPX5C63yqtPo&callback=initKaiinMap" async defer></script>
 <?php endif; ?>
 
 <?php get_footer(); ?>
