@@ -138,3 +138,32 @@ wsl bash -c "docker exec -i kric-db-1 mysql -uroot -proot --default-character-se
 - Docker専用の変更を本番に適用しないこと（詳細は `MIGRATION_GUIDE.md` 参照）
 - さくら環境は HTTPS あり（`SSL_FLAG = 'ssl'`）。CSRF セッションキーは URL（HTTP/HTTPS）込みで生成されるため、`login_bar` 等 Member コントローラー側でも `HTTP_SSL` を使うこと
 - さくら環境でキャッシュが古いパスを保持していると `Class CakeLog not found` 等が発生するため、コード変更後は必ずキャッシュクリアすること
+
+---
+
+## WordPress コア更新の手順（2026-10-18 策定）
+
+**配布アーカイブ（zip / tar.gz）をドキュメントルート内で展開しないこと。**
+
+公式アーカイブは `wordpress/` というディレクトリに展開される。これをドキュメントルート内で行い、中身をコピーした後に空箱を消し忘れると、`wp-config.php` を持たない未設定の WordPress 一式が残る。この状態は外部から `/wordpress/wp-admin/setup-config.php` に到達でき、**第三者が任意の DB を指定してインストールを完了させ、管理画面からプラグインをアップロードできる**＝実質的な任意コード実行の入口になる。
+
+2026-09-04 の 7.1 更新でこれが発生し、本番・STG の双方へ配布された。STG では 2026-09-09 に実際に悪用され、ウェブシェルを設置されている。
+
+### 正しい手順
+
+```bash
+# 本番（--url は必須。CLI では HTTP_HOST が無く wp-config.php の環境分岐が誤判定するため）
+ssh kric2021@kric.co.jp
+cd ~/www/kric.co.jp/www
+wp --url=https://kric.co.jp core check-update      # 更新の有無を確認
+wp --url=https://kric.co.jp core update            # コア更新
+wp --url=https://kric.co.jp plugin update --all    # プラグイン更新
+```
+
+WP-CLI は両サーバーに標準で導入済み（`/usr/local/bin/wp`）。アーカイブを展開しないため、この種の残骸が構造的に発生しない。
+
+### 併せて守ること
+
+- `deploy_to_sakura.sh` / `sync_to_prod.sh` の除外指定に `wordpress/` を追加済み。外さないこと
+- 更新前に必ずバックアップを取得すること
+- ドキュメントルート配下に、使われていない WordPress 一式・古いバックアップを置かないこと
