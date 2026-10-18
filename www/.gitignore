@@ -42,11 +42,13 @@ kric.co.jp/www/wp-content/uploads/
 #   - kric.co.jp/www/.htaccess       旧URL→新ページの301、WordPress のリライト
 #   - kric.co.jp/www/member/.htaccess  /member/ 配下を /kaiin.html へ301
 #   - kric.co.jp/www/intro/.htaccess   ★現役API(dir_json/detail_json/file)の除外を含む。
+#   - kric.co.jp/www/wp-content/.htaccess  ログ・DBダンプ等への外部アクセスを拒否（2026-10-18 追加）
 #                                        消すと会員紹介ページが動作しなくなる
 # iis/ admin/ は Docker と本番で HTTPS 設定が異なる（デプロイ時に sed で切替）ため除外のまま。
 !kric.co.jp/www/.htaccess
 !kric.co.jp/www/member/.htaccess
 !kric.co.jp/www/intro/.htaccess
+#   - kric.co.jp/www/wp-content/.htaccess  ログ・DBダンプ等への外部アクセスを拒否（2026-10-18 追加）
 
 # 不要ファイル
 kric.co.jp/www/renewal.zip
