@@ -224,16 +224,22 @@ print("</div>");
 		$TAKE = "company.company_id, company.company_name, company.company_kana";
 		$TAKE .= ", company.zip, company.ken, company.city, company.address_town, company.building";
 		$TAKE .= ", company.lat, company.lng";
-		// 会員紹介の表示条件（2026-10-18 変更）
-		//   ・有効な会員アカウント（login_flg=1 / del_flg=0）が1件以上ある会社
+		// 会員紹介の表示条件（2026-10-19 修正）
+		//   ・削除されていない会員（del_flg=0）が1件以上ある会社
 		//   ・または、会員アカウントがまだ1件も登録されていない会社
-		// 以前は member との INNER JOIN で前者だけを表示していたため、会社情報のみ
-		// 登録された直後の会社が一覧に出なかった。
-		// 会員が在籍していたが退会・休会で無効化された会社は、従来どおり非表示を維持する。
+		//
+		// 当初は member との INNER JOIN で「有効な会員（login_flg=1）がいる会社」
+		// だけを表示していたため、会社情報のみ登録された直後の会社が出なかった。
+		// 2026-10-18 に会員ゼロの会社を含めたが、login_flg=0 を退会扱いと誤解し、
+		// 初回ログイン前の会員しかいない会社（例: 株式会社ライズ）を除外していた。
+		// login_flg=0 は「初回ログイン未有効化」であり（IisController の
+		// reminder_code による認証で 1 になる）、退会を表すのは del_flg=1 の方。
+		// そのため判定を del_flg のみに改めた。会員が全員削除された会社（退会）は
+		// 引き続き非表示になる。
 		$TABLE = "company";
 		$WHERE_VAL = array();
 		$WHERE = "company.del_flg = 0";
-		$WHERE .= " AND ( EXISTS (SELECT 1 FROM member mm WHERE mm.company_id = company.company_id AND mm.login_flg = 1 AND mm.del_flg = 0)";
+		$WHERE .= " AND ( EXISTS (SELECT 1 FROM member mm WHERE mm.company_id = company.company_id AND mm.del_flg = 0)";
 		$WHERE .= "      OR NOT EXISTS (SELECT 1 FROM member mm WHERE mm.company_id = company.company_id) )";
 		$GROUP = "company.company_id";
 		$ORDER = "company.company_kana ASC";
